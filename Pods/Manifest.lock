@@ -1,0 +1,38 @@
+PODS:
+  - lottie-ios (4.5.1)
+  - Mixpanel-swift (4.3.0):
+    - Mixpanel-swift/Complete (= 4.3.0)
+  - Mixpanel-swift/Complete (4.3.0)
+  - NVActivityIndicatorView (5.2.0):
+    - NVActivityIndicatorView/Base (= 5.2.0)
+  - NVActivityIndicatorView/Base (5.2.0)
+  - Realm (20.0.1):
+    - Realm/Headers (= 20.0.1)
+  - Realm/Headers (20.0.1)
+  - RealmSwift (20.0.1):
+    - Realm (= 20.0.1)
+
+DEPENDENCIES:
+  - lottie-ios
+  - Mixpanel-swift
+  - NVActivityIndicatorView
+  - RealmSwift
+
+SPEC REPOS:
+  trunk:
+    - lottie-ios
+    - Mixpanel-swift
+    - NVActivityIndicatorView
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  lottie-ios: 248b380fa1b97d18e792c37d90da7ab2aa0d6562
+  Mixpanel-swift: 2192b9a24cf41b870749e4e0e10fbc9822bb2b4a
+  NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
+  Realm: 9572204903ef28caeb3c03bb30c1147f354ee3e7
+  RealmSwift: d230b44017a55a1ba97de6a944da1fe3bedb92b5
+
+PODFILE CHECKSUM: 170f03bbbfefa3d756bfebf1b6518e1dd42ca1f5
+
+COCOAPODS: 1.16.2
