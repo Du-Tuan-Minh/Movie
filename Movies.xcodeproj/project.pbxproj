@@ -25,6 +25,11 @@
 		73215BD72D71B03F00595A86 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BD42D71B03F00595A86 /* SettingViewController.swift */; };
 		73215BDD2D71BF2000595A86 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BDB2D71BF2000595A86 /* TabbarViewController.swift */; };
 		73215BDE2D71BF2000595A86 /* TabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73215BDC2D71BF2000595A86 /* TabbarViewController.xib */; };
+		73215BE32D71C8A900595A86 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73215BE22D71C8A900595A86 /* HomeCell.xib */; };
+		73215BE42D71C8A900595A86 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BE12D71C8A900595A86 /* HomeCell.swift */; };
+		73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BE52D71D5A100595A86 /* RealmManager.swift */; };
+		73215BEA2D71D92800595A86 /* CompareMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73215BE92D71D92800595A86 /* CompareMoviesViewController.xib */; };
+		73215BEB2D71D92800595A86 /* CompareMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BE82D71D92800595A86 /* CompareMoviesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		73215BD52D71B03F00595A86 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		73215BDB2D71BF2000595A86 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		73215BDC2D71BF2000595A86 /* TabbarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabbarViewController.xib; sourceTree = "<group>"; };
+		73215BE12D71C8A900595A86 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		73215BE22D71C8A900595A86 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		73215BE52D71D5A100595A86 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		73215BE82D71D92800595A86 /* CompareMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareMoviesViewController.swift; sourceTree = "<group>"; };
+		73215BE92D71D92800595A86 /* CompareMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompareMoviesViewController.xib; sourceTree = "<group>"; };
 		CBEE04674511C44E671CC440 /* Pods-Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.debug.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.debug.xcconfig"; sourceTree = "<group>"; };
 		D0032CC36DB507BAB9C0C15C /* Pods-Movies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.release.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +166,7 @@
 		73215BC32D71AF8400595A86 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				73215BE72D71D8E600595A86 /* CompareMovie */,
 				73215BC72D71AFF500595A86 /* HomeViewController.swift */,
 				73215BC82D71AFF500595A86 /* HomeViewController.xib */,
 			);
@@ -192,6 +203,7 @@
 		73215BD82D71BEDC00595A86 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73215BDF2D71C86700595A86 /* Cell */,
 				73215BDA2D71BEF500595A86 /* Tabbar */,
 			);
 			path = View;
@@ -200,6 +212,7 @@
 		73215BD92D71BEE300595A86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				73215BE52D71D5A100595A86 /* RealmManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +224,32 @@
 				73215BDC2D71BF2000595A86 /* TabbarViewController.xib */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		73215BDF2D71C86700595A86 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				73215BE02D71C87F00595A86 /* HomeCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		73215BE02D71C87F00595A86 /* HomeCell */ = {
+			isa = PBXGroup;
+			children = (
+				73215BE12D71C8A900595A86 /* HomeCell.swift */,
+				73215BE22D71C8A900595A86 /* HomeCell.xib */,
+			);
+			path = HomeCell;
+			sourceTree = "<group>";
+		};
+		73215BE72D71D8E600595A86 /* CompareMovie */ = {
+			isa = PBXGroup;
+			children = (
+				73215BE82D71D92800595A86 /* CompareMoviesViewController.swift */,
+				73215BE92D71D92800595A86 /* CompareMoviesViewController.xib */,
+			);
+			path = CompareMovie;
 			sourceTree = "<group>";
 		};
 		A476AB7B91E246C92BC7A5A1 /* Pods */ = {
@@ -287,7 +326,9 @@
 				73215BCE2D71B00F00595A86 /* WatchListViewController.xib in Resources */,
 				73215BB52D71A8F400595A86 /* Assets.xcassets in Resources */,
 				73215BC12D71AE8200595A86 /* Localizable.strings in Resources */,
+				73215BEA2D71D92800595A86 /* CompareMoviesViewController.xib in Resources */,
 				73215BCA2D71AFF500595A86 /* HomeViewController.xib in Resources */,
+				73215BE32D71C8A900595A86 /* HomeCell.xib in Resources */,
 				73215BDE2D71BF2000595A86 /* TabbarViewController.xib in Resources */,
 				73215BB72D71A8F400595A86 /* LaunchScreen.storyboard in Resources */,
 				73215BD22D71B02500595A86 /* HistoryViewController.xib in Resources */,
@@ -352,6 +393,9 @@
 				73215BD12D71B02500595A86 /* HistoryViewController.swift in Sources */,
 				73215BCD2D71B00F00595A86 /* WatchListViewController.swift in Sources */,
 				73215BD72D71B03F00595A86 /* SettingViewController.swift in Sources */,
+				73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */,
+				73215BEB2D71D92800595A86 /* CompareMoviesViewController.swift in Sources */,
+				73215BE42D71C8A900595A86 /* HomeCell.swift in Sources */,
 				73215BC92D71AFF500595A86 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
