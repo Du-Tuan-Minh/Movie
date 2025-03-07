@@ -10,5 +10,5 @@ target 'Movies' do
   pod 'Mixpanel-swift'
   pod 'NVActivityIndicatorView'
   pod 'RealmSwift'
-
+  pod 'DropDown'
 end
