@@ -17,19 +17,19 @@ class CompareMoviesViewController: UIViewController {
   //variable
   var selectedMovies: [MovieModel] = []
   
-//  let menu: DropDown = {
-//    let menu = DropDown()
-//    menu.dataSource = ["Delete", "Replace"]
-//    
-//    let images = [UIImage(systemName: "trash"), UIImage(systemName: "pencil")]
-//    menu.cellNib = UINib(nibName: "selectDropDown", bundle: nil)
-//    menu.customCellConfiguration = { index, title, cell in
-//      guard let cell = cell as? selectDropDown else { return }
-//      cell.configSelectDropDown(delete: images[index]!, deleteTitle: "Delete", replace: images[index]! , replaceTitle: "Replace")
-//    }
-//    return menu
-//  }()
-//  
+  //  let menu: DropDown = {
+  //    let menu = DropDown()
+  //    menu.dataSource = ["Delete", "Replace"]
+  //
+  //    let images = [UIImage(systemName: "trash"), UIImage(systemName: "pencil")]
+  //    menu.cellNib = UINib(nibName: "selectDropDown", bundle: nil)
+  //    menu.customCellConfiguration = { index, title, cell in
+  //      guard let cell = cell as? selectDropDown else { return }
+  //      cell.configSelectDropDown(delete: images[index]!, deleteTitle: "Delete", replace: images[index]! , replaceTitle: "Replace")
+  //    }
+  //    return menu
+  //  }()
+  //
   override func viewDidLoad() {
     super.viewDidLoad()
     print("selectedMovies \(selectedMovies)")
@@ -52,7 +52,6 @@ class CompareMoviesViewController: UIViewController {
     resultVC.compareMovies = selectedMovies
     navigationController?.pushViewController(resultVC, animated: true)
   }
-  
 }
 
 //MARK: TableView
@@ -74,7 +73,6 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      return 120
+    return 60
   }
-
 }

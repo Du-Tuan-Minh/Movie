@@ -16,7 +16,7 @@ class selectDropDown: DropDownCell {
   @IBOutlet private weak var replaceImage: UIImageView!
   @IBOutlet private weak var replaceLabel: UILabel!
   
-    override func awakeFromNib() {
+  override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
   }
@@ -27,5 +27,4 @@ class selectDropDown: DropDownCell {
     deleteLabel.text = deleteTitle
     replaceLabel.text = replaceTitle
   }
-  
 }

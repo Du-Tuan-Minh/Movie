@@ -61,7 +61,7 @@ extension UIView {
         self.layer.shadowOpacity = 0.00
         clipsToBounds = false
         
-        
+
         //change shadow
         if let shadowColor: CGColor = color {
             self.layer.shadowColor = shadowColor

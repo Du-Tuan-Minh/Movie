@@ -9,9 +9,9 @@ import UIKit
 
 class CompareCell: UITableViewCell {
   
-  @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var yearOfReleaseLabel: UILabel!
-  @IBOutlet weak var selectButton: UIButton!
+  @IBOutlet private weak var titleLabel: UILabel!
+  @IBOutlet private weak var yearOfReleaseLabel: UILabel!
+  @IBOutlet private weak var selectButton: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -25,7 +25,6 @@ class CompareCell: UITableViewCell {
   }
   
   @IBAction func showDropDownTapped(_ sender: Any) {
-   // CompareMoviesViewController().menu.show()
+    // CompareMoviesViewController().menu.show()
   }
-  
 }

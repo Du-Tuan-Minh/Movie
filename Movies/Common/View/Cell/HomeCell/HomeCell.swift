@@ -55,5 +55,4 @@ class HomeCell: UICollectionViewCell {
     imageCell.image = image
     titleLabelCell.text = title
   }
-  
 }

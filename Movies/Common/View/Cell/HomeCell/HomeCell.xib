@@ -21,18 +21,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="163" height="213"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hYn-xf-REs">
-                                <rect key="frame" x="6.6666666666666714" y="4" width="150" height="150"/>
+                                <rect key="frame" x="4" y="4" width="155" height="155"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="8wi-MC-813"/>
-                                    <constraint firstAttribute="height" constant="150" id="fnz-jm-lsW"/>
+                                    <constraint firstAttribute="width" constant="155" id="8wi-MC-813"/>
+                                    <constraint firstAttribute="height" constant="155" id="fnz-jm-lsW"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nr-9J-gDg">
-                                <rect key="frame" x="4" y="169" width="155" height="19.333333333333343"/>
+                                <rect key="frame" x="1.6666666666666714" y="174" width="160" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="155" id="UmY-bs-MjT"/>
+                                    <constraint firstAttribute="width" constant="160" id="UmY-bs-MjT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -64,7 +69,7 @@
     </objects>
     <resources>
         <namedColor name="blue">
-            <color red="0.050980392156862744" green="0.12156862745098039" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

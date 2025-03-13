@@ -21,6 +21,7 @@ class TabbarViewController: UITabBarController {
     tabBar.tintColor = UIColor(resource: .lightBlue)
     tabBar.unselectedItemTintColor = .white
     tabBar.isTranslucent = false
+    tabBar.layer.cornerRadius = 14
   }
   
   private func configureTabbar() {
@@ -42,4 +43,3 @@ class TabbarViewController: UITabBarController {
     viewControllers = [homeNav, watchListNav, historyNav, settingNav]
   }
 }
-

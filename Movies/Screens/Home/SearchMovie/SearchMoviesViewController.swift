@@ -16,14 +16,15 @@ enum searchMode {
 class SearchMoviesViewController: UIViewController {
   
   //outlet
-  @IBOutlet weak var collectionView: UICollectionView!
-  @IBOutlet weak var searchView: UISearchBar!
-  @IBOutlet weak var compareButton: UIButton!
+  @IBOutlet private weak var collectionView: UICollectionView!
+  @IBOutlet private weak var searchView: UISearchBar!
+  @IBOutlet private weak var compareButton: UIButton!
   
   //variable
   private var movies: Results<MovieModel>!
   private var filteredMovies: Results<MovieModel>!
   private var selectsIndexs: Set<IndexPath> = []
+  var mode: searchMode = .twoMovies
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,7 +34,6 @@ class SearchMoviesViewController: UIViewController {
     setupCollectionView()
     movies = getMovies()
     filteredMovies = movies
-    
   }
   
   private func setupView() {

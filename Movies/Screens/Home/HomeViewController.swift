@@ -10,7 +10,7 @@ import RealmSwift
 class HomeViewController: UIViewController {
   
   //outlet
-  @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet private weak var collectionView: UICollectionView!
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -21,7 +21,6 @@ class HomeViewController: UIViewController {
     super.viewDidLoad()
     
     setupCollectionView()
-    
     let realm = try! Realm()
     print(Realm.Configuration.defaultConfiguration.fileURL)
   }
@@ -36,6 +35,7 @@ extension HomeViewController {
   }
 }
 
+//MARK: CollectionView
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 4
@@ -45,9 +45,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     let homeItem = HomeCellType.allCases[indexPath.row]
     switch homeItem {
     case .compareTwoMovies:
-      navigationController?.pushViewController(CompareMoviesViewController(), animated: true)
-    case .compareMovies:
       navigationController?.pushViewController(SearchMoviesViewController(), animated: true)
+    case .compareMovies:
+      var searchMoviesVC = SearchMoviesViewController()
+      searchMoviesVC.mode = .moreThanTwoMovies
+      navigationController?.pushViewController(searchMoviesVC, animated: true)
     case .watchlist:
       navigationController?.pushViewController(WatchListViewController(), animated: true)
     case .history:

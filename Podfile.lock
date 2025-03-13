@@ -1,5 +1,6 @@
 PODS:
   - DropDown (2.3.13)
+  - FittedSheets (2.7.1)
   - lottie-ios (4.5.1)
   - Mixpanel-swift (4.3.0):
     - Mixpanel-swift/Complete (= 4.3.0)
@@ -15,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - DropDown
+  - FittedSheets
   - lottie-ios
   - Mixpanel-swift
   - NVActivityIndicatorView
@@ -23,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - DropDown
+    - FittedSheets
     - lottie-ios
     - Mixpanel-swift
     - NVActivityIndicatorView
@@ -31,12 +34,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  FittedSheets: 38ec85129bf5c970f99d4dba4fbf48185c5fa98a
   lottie-ios: 248b380fa1b97d18e792c37d90da7ab2aa0d6562
   Mixpanel-swift: 2192b9a24cf41b870749e4e0e10fbc9822bb2b4a
   NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
   Realm: 9572204903ef28caeb3c03bb30c1147f354ee3e7
   RealmSwift: d230b44017a55a1ba97de6a944da1fe3bedb92b5
 
-PODFILE CHECKSUM: 4b88716f8d18a7946944642cde49826720da4015
+PODFILE CHECKSUM: 1f432392af2a6931d658e9a166124f17f3448ab4
 
 COCOAPODS: 1.16.2

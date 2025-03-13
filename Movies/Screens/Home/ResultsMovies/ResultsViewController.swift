@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import FittedSheets
 
 class ResultsViewController: UIViewController {
   
   //outlet
-  @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var saveButton: UIButton!
+  @IBOutlet private weak var tableView: UITableView!
+  @IBOutlet private weak var saveButton: UIButton!
   
   var compareMovies: [MovieModel] = []
   
@@ -25,6 +26,28 @@ class ResultsViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "ResultsCell", bundle: nil), forCellReuseIdentifier: "ResultsCell")
+    
+    let headerView = CustomHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 250))
+    guard compareMovies.count >= 2 else { return }
+    headerView.configureHeaderView(with: compareMovies[0], secondMovie: compareMovies[1])
+    headerView.listMovie = compareMovies
+    tableView.tableHeaderView = headerView
+  }
+  
+  private func saveMovie() {
+    
+  }
+  
+  @IBAction func saveMoviesTapped(_ sender: Any) {
+    self.showAlert(title: "Save movie", message: "Do you want to save this movie to your favorites?") {
+
+      let selectFolderVC = SelectFolderBottomSheets()
+      let sheet = SheetViewController(controller: selectFolderVC, sizes: [ .fixed(350)])
+      sheet.hasBlurBackground = true
+      sheet.cornerRadius = 20
+      self.present(sheet, animated: true)
+      
+    }
   }
 }
 

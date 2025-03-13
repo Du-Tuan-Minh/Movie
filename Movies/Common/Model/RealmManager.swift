@@ -30,6 +30,7 @@ class MovieModel: Object {
 class ComparisonModel: Object {
   @Persisted(primaryKey: true) var id: String
   @Persisted var comparedMovies: List<MovieModel>
+  @Persisted var criteria: String
   @Persisted var compareDate: Date
   @Persisted var filterCriteria: String
   
@@ -55,13 +56,27 @@ class HistoryFolderModel: Object {
 //WatchlistModel
 class WatchlistModel: Object {
   @Persisted(primaryKey: true) var id: String
-  @Persisted var movie: MovieModel?
+  @Persisted var movie: List<MovieModel>
   @Persisted var note: String
   @Persisted var addedDate: Date
   
   override init() {
     super.init()
     self.id = UUID().uuidString
+  }
+}
+
+//WatchlistFolderModel
+class WatchlistFolderModel: Object {
+  @Persisted(primaryKey: true) var id: String
+  @Persisted var title: String
+  @Persisted var movies: List<WatchlistModel>
+  @Persisted var createdDate: Date
+  
+  override init() {
+    super.init()
+    self.id = UUID().uuidString
+    self.createdDate = Date()
   }
 }
 

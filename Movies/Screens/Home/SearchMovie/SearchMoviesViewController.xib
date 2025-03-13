@@ -22,17 +22,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJR-Tz-EOj">
-                    <rect key="frame" x="16" y="59" width="89" height="33"/>
+                    <rect key="frame" x="16" y="55" width="89" height="33"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rno-Nb-Fbr">
-                    <rect key="frame" x="0.0" y="97" width="393" height="755"/>
+                    <rect key="frame" x="0.0" y="98" width="393" height="754"/>
                     <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Le-b4e">
-                            <rect key="frame" x="0.0" y="93" width="393" height="534"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Le-b4e">
+                            <rect key="frame" x="0.0" y="85" width="393" height="574"/>
                             <color key="backgroundColor" name="blue"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aan-yS-oPe">
                                 <size key="itemSize" width="128" height="128"/>
@@ -42,28 +41,33 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLD-JD-XDc">
-                            <rect key="frame" x="46.666666666666657" y="680" width="300" height="45"/>
+                            <rect key="frame" x="46.666666666666657" y="679" width="300" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="300" id="3am-br-zwB"/>
                                 <constraint firstAttribute="height" constant="45" id="4VV-4I-Dma"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Next">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="40"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="compareTapped:" destination="-1" eventType="touchUpInside" id="PHb-Wi-jPy"/>
                             </connections>
                         </button>
                         <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="qJU-7E-ebB">
-                            <rect key="frame" x="0.0" y="5" width="393" height="60"/>
+                            <rect key="frame" x="0.0" y="20" width="393" height="50"/>
                             <color key="backgroundColor" name="lightGray"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="WV9-bw-q3u"/>
+                                <constraint firstAttribute="height" constant="50" id="WV9-bw-q3u"/>
                             </constraints>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="barTintColor" name="lightGray"/>
+                            <color key="barTintColor" name="blue"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="p32-ae-SZL"/>
@@ -72,23 +76,32 @@
                     </subviews>
                     <color key="backgroundColor" name="blue"/>
                     <constraints>
-                        <constraint firstItem="qJU-7E-ebB" firstAttribute="top" secondItem="Rno-Nb-Fbr" secondAttribute="top" constant="5" id="I2m-0n-S5f"/>
+                        <constraint firstItem="qJU-7E-ebB" firstAttribute="top" secondItem="Rno-Nb-Fbr" secondAttribute="top" constant="20" id="I2m-0n-S5f"/>
                         <constraint firstAttribute="bottom" secondItem="TLD-JD-XDc" secondAttribute="bottom" constant="30" id="N7D-Ys-QK3"/>
                         <constraint firstAttribute="trailing" secondItem="qJU-7E-ebB" secondAttribute="trailing" id="U8y-qc-glG"/>
+                        <constraint firstAttribute="trailing" secondItem="wpZ-Le-b4e" secondAttribute="trailing" id="chx-m7-ohF"/>
                         <constraint firstItem="qJU-7E-ebB" firstAttribute="leading" secondItem="Rno-Nb-Fbr" secondAttribute="leading" id="gOE-PH-hFk"/>
                         <constraint firstItem="TLD-JD-XDc" firstAttribute="centerX" secondItem="Rno-Nb-Fbr" secondAttribute="centerX" id="jfl-tD-mIk"/>
+                        <constraint firstItem="wpZ-Le-b4e" firstAttribute="top" secondItem="qJU-7E-ebB" secondAttribute="bottom" constant="15" id="pD9-7c-2Xm"/>
+                        <constraint firstItem="TLD-JD-XDc" firstAttribute="top" secondItem="wpZ-Le-b4e" secondAttribute="bottom" constant="20" id="ux7-0H-68A"/>
+                        <constraint firstItem="wpZ-Le-b4e" firstAttribute="leading" secondItem="Rno-Nb-Fbr" secondAttribute="leading" id="voK-ta-Me7"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="darkBlue"/>
             <constraints>
-                <constraint firstItem="Rno-Nb-Fbr" firstAttribute="top" secondItem="KJR-Tz-EOj" secondAttribute="bottom" constant="5" id="1hF-Cv-aj8"/>
+                <constraint firstItem="Rno-Nb-Fbr" firstAttribute="top" secondItem="KJR-Tz-EOj" secondAttribute="bottom" constant="10" id="1hF-Cv-aj8"/>
                 <constraint firstItem="Rno-Nb-Fbr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Qzj-gy-WFI"/>
                 <constraint firstItem="KJR-Tz-EOj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="YbW-Qx-EnD"/>
                 <constraint firstItem="Rno-Nb-Fbr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dUk-Hf-wZg"/>
                 <constraint firstAttribute="bottom" secondItem="Rno-Nb-Fbr" secondAttribute="bottom" id="hgR-K5-xpv"/>
-                <constraint firstItem="KJR-Tz-EOj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qtj-5T-3Ja"/>
+                <constraint firstItem="KJR-Tz-EOj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="qtj-5T-3Ja"/>
             </constraints>
             <point key="canvasLocation" x="35.877862595419849" y="-11.267605633802818"/>
         </view>
@@ -101,7 +114,7 @@
             <color red="0.019607843137254902" green="0.054901960784313725" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightGray">
-            <color red="0.24313725489999999" green="0.29411764709999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23921568627450981" green="0.29411764705882354" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

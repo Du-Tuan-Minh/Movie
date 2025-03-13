@@ -11,4 +11,5 @@ target 'Movies' do
   pod 'NVActivityIndicatorView'
   pod 'RealmSwift'
   pod 'DropDown'
+  pod 'FittedSheets'
 end

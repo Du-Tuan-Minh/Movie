@@ -26,7 +26,6 @@ extension ResultsCompare {
     }
 }
 
-
 class ResultsCell: UITableViewCell {
 
   @IBOutlet private weak var titleLabel: UILabel!
@@ -34,11 +33,6 @@ class ResultsCell: UITableViewCell {
   @IBOutlet private weak var titleFirstLabel: UILabel!
   @IBOutlet private weak var titleSecondLabel: UILabel!
   
-  override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
   func configureResultsCell(with firstMovie: MovieModel, secondMovie: MovieModel, index: Int) {
        let results = ResultsCompare.compareMovies(firstMovie: firstMovie, secondMovie: secondMovie)
        guard index < results.count else { return }
