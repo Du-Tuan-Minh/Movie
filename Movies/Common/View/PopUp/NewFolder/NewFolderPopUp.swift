@@ -12,6 +12,11 @@ protocol NewFolderPopUpDelegate: AnyObject {
   func didCreateNewFolder()
 }
 
+enum createFolderModel {
+  case folderWatchlist
+  case folderHistory
+}
+
 class NewFolderPopUp: UIViewController {
   
   //outlet
@@ -23,12 +28,11 @@ class NewFolderPopUp: UIViewController {
   
   private var isStatus = false
   weak var delegate: NewFolderPopUpDelegate?
+  var modelStatus: createFolderModel = .folderWatchlist
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     configView()
-    
   }
   
   private func configView() {
@@ -57,13 +61,16 @@ class NewFolderPopUp: UIViewController {
     }
   }
   
-  @IBAction func cancelTapped(_ sender: Any) {
-    isStatus.toggle()
-    configureButton(button: cancelButton)
-    
+  private func hiden() {
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
       self.hinderPopUp(blureView: self.blureView, contentView: self.contentView)
     }
+  }
+  
+  @IBAction func cancelTapped(_ sender: Any) {
+    isStatus.toggle()
+    configureButton(button: cancelButton)
+    hiden()
   }
   
   @IBAction func createFolderTapped(_ sender: Any) {
@@ -71,17 +78,23 @@ class NewFolderPopUp: UIViewController {
     configureButton(button: yesButton)
     
     let realm = try! Realm()
-    let newFolder = WatchlistFolderModel()
-    newFolder.title = titleTextField.text ?? ""
+    var newFolder: Object
+    
+    if modelStatus == .folderWatchlist {
+      let folder = WatchlistFolderModel()
+      folder.title = titleTextField.text ?? ""
+      newFolder = folder
+    } else {
+      let folder = HistoryFolderModel()
+      folder.folderName = titleTextField.text ?? ""
+      newFolder = folder
+    }
     
     try! realm.write {
       realm.add(newFolder)
     }
     
     delegate?.didCreateNewFolder()
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      self.hinderPopUp(blureView: self.blureView, contentView: self.contentView)
-    }
+    hiden()
   }
 }

@@ -12,6 +12,7 @@ class SearchCell: UICollectionViewCell {
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabelCell: UILabel!
   @IBOutlet private weak var yearLabelCell: UILabel!
+  @IBOutlet private weak var ContentView: UIView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -26,5 +27,15 @@ class SearchCell: UICollectionViewCell {
     }
     titleLabelCell.text = model.title
     yearLabelCell.text = "(\(model.releaseYear))"
+  }
+  
+  func isChooseCell(isStatus: Bool) {
+    ContentView.layer.borderWidth = 3
+    ContentView.layer.masksToBounds = true
+    if isStatus {
+      ContentView.layer.borderColor = UIColor(resource: .lightBlue).cgColor
+    } else {
+      ContentView.layer.borderColor = UIColor.clear.cgColor
+    }
   }
 }

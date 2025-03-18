@@ -41,14 +41,12 @@ enum HomeCellType: CaseIterable {
 }
 
 class HomeCell: UICollectionViewCell {
-  
   //outlet
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabelCell: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
   }
   
   func configHomeCell(with image: UIImage, title: String) {

@@ -2,88 +2,69 @@
 //  WatchListViewController.swift
 //  Movies
 //
-//  Created by DuTuanMinh on 13/3/25.
+//  Created by DuTuanMinh on 14/3/25.
 //
 
 import UIKit
 import RealmSwift
 
 class WatchListViewController: UIViewController {
+  //outlet
+  @IBOutlet private weak var tableView: UITableView!
   
-  @IBOutlet private weak var collectionView: UICollectionView!
+  //variable
+  final private let reuseIdentifier: String = "WatchlistCell"
+  var watchlist: List<WatchlistModel>?
+  var allMovies: [(movie: MovieModel, addedDate: Date)] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    setupCollectionView()
-    createBarButton()
+    setupTableView()
+    loadMovies()
+  }
+}
+
+//MARK: setupView
+extension WatchListViewController {
+  private func setupTableView() {
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
   }
   
-  private func createBarButton() {
-    navigationItem.rightBarButtonItem = UIBarButtonItem(
-      image: UIImage(systemName: "plus"),
-      style: .plain,
-      target: self,
-      action: #selector(addNewFolderTapped)
-    )
+  //MARK: test again
+  private func loadMovies() {
+    guard let watchlist = watchlist else { return }
+    allMovies = watchlist.flatMap { watchlistItem in
+      watchlistItem.movie.map { movie in
+        (movie, watchlistItem.addedDate)
+      }
+    }
+    tableView.reloadData()
   }
-  
-  private func setupCollectionView() {
-    collectionView.delegate = self
-    collectionView.dataSource = self
-    collectionView.register(UINib(nibName: "FolderCell", bundle: nil), forCellWithReuseIdentifier: "FolderCell")
-  }
-  
-  func getListFolder() -> Results<WatchlistFolderModel> {
-    return try! Realm().objects(WatchlistFolderModel.self)
-  }
-  
-  @objc func addNewFolderTapped() {
-    let newfolder = NewFolderPopUp()
-    newfolder.delegate = self
-    newfolder.appear(sender: self)
-  }
-  
 }
 
 
-
-//MARK: CollectionView
-extension WatchListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+//MARK: TableView
+extension WatchListViewController: UITableViewDataSource, UITableViewDelegate {
   
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return getListFolder().count
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return allMovies.count
   }
   
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FolderCell", for: indexPath) as? FolderCell else {
-      return UICollectionViewCell()
-    }
-    var title = getListFolder()[indexPath.row].title
-    cell.configueFolderCell(with: title)
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? WatchlistCell else { return UITableViewCell() }
+    let movieItem = allMovies[indexPath.row]
+    cell.configureWatchListCell(with: movieItem.movie, time: movieItem.addedDate)
     return cell
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = (collectionView.frame.width - 10) / 2
-    return CGSize(width: width, height: 170)
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    var detailVC = DetailViewController()
+    navigationController?.pushViewController(detailVC, animated: true)
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
-  }
-}
-
-extension WatchListViewController: NewFolderPopUpDelegate {
-  func didCreateNewFolder() {
-    collectionView.reloadData()
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 170
   }
 }

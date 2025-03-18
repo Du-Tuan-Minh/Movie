@@ -9,9 +9,12 @@ import UIKit
 import RealmSwift
 
 class SelectFolderBottomSheets: UIViewController {
-  
+  //outlet
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var newFolderButton: UIButton!
+  
+  //variable
+  var selectedMovies: [MovieModel] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,7 +43,6 @@ class SelectFolderBottomSheets: UIViewController {
     //    savePopUp.saveMovies = CustomHeaderView().saveMovie
     //    savePopUp.appear(sender: self)
   }
-  
 }
 
 //MARK: TableView
@@ -52,7 +54,7 @@ extension SelectFolderBottomSheets: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let savePopUp = SaveMoviePopUp()
-    savePopUp.saveMovies = CustomHeaderView().saveMovie
+    savePopUp.saveMovies = selectedMovies
     savePopUp.textNote = getTitleFolder()[indexPath.row].title
     savePopUp.folderID = getTitleFolder()[indexPath.row].id
     savePopUp.appear(sender: self)

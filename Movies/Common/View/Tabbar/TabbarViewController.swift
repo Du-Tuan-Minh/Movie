@@ -26,7 +26,7 @@ class TabbarViewController: UITabBarController {
   
   private func configureTabbar() {
     let homeVC = HomeViewController()
-    let watchListVC = WatchListViewController()
+    let watchListVC = FolderWatchListViewController()
     let historyVC = HistoryViewController()
     let settingVC = SettingViewController()
     

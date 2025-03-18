@@ -48,21 +48,23 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tu2-c5-9kF">
-                                    <rect key="frame" x="65" y="278" width="200" height="45"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tu2-c5-9kF">
+                                    <rect key="frame" x="65" y="288" width="200" height="45"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uT-CB-ul1">
-                                            <rect key="frame" x="0.0" y="7.3333333333333712" width="95" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="95" height="45"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" title="Cancel"/>
+                                            <state key="normal" title="Cancel">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <connections>
                                                 <action selector="cancelTapped:" destination="-1" eventType="touchUpInside" id="NF6-QT-0F6"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHo-eK-r6w">
-                                            <rect key="frame" x="105" y="3.3333333333333712" width="95" height="38.333333333333336"/>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="Yes"/>
+                                            <rect key="frame" x="105" y="0.0" width="95" height="45"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Yes"/>
                                             <connections>
                                                 <action selector="createFolderTapped:" destination="-1" eventType="touchUpInside" id="owN-Dv-eX4"/>
                                             </connections>
@@ -84,7 +86,7 @@
                                 <constraint firstItem="xIC-Ha-myO" firstAttribute="top" secondItem="qPL-uA-ShY" secondAttribute="bottom" constant="5" id="k9g-Bg-M5W"/>
                                 <constraint firstAttribute="height" constant="375" id="ksZ-aU-GLe"/>
                                 <constraint firstItem="tu2-c5-9kF" firstAttribute="centerX" secondItem="LOc-5z-jm8" secondAttribute="centerX" id="o7k-cg-wA9"/>
-                                <constraint firstItem="tu2-c5-9kF" firstAttribute="top" secondItem="xIC-Ha-myO" secondAttribute="bottom" constant="5" id="qCB-qK-354"/>
+                                <constraint firstItem="tu2-c5-9kF" firstAttribute="top" secondItem="xIC-Ha-myO" secondAttribute="bottom" constant="15" id="qCB-qK-354"/>
                                 <constraint firstAttribute="trailing" secondItem="xIC-Ha-myO" secondAttribute="trailing" constant="20" id="sNH-hv-eck"/>
                                 <constraint firstAttribute="width" constant="330" id="tkF-ul-RWB"/>
                                 <constraint firstItem="qPL-uA-ShY" firstAttribute="centerX" secondItem="LOc-5z-jm8" secondAttribute="centerX" id="udf-9I-trH"/>
@@ -111,7 +113,7 @@
                 <constraint firstItem="RuT-PP-L6Y" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZwF-Zy-Adu"/>
                 <constraint firstItem="RuT-PP-L6Y" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wKd-Kq-9ft"/>
             </constraints>
-            <point key="canvasLocation" x="28.244274809160306" y="-11.267605633802818"/>
+            <point key="canvasLocation" x="202" y="-30"/>
         </view>
     </objects>
     <resources>

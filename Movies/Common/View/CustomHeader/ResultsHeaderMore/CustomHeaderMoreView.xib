@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomHeaderMoreView" customModule="Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="dropDownButton" destination="Pzm-Ze-sTi" id="sqi-sF-UoB"/>
+                <outlet property="releaseYearLabel" destination="prA-sY-Lvf" id="H1p-xW-NUc"/>
+                <outlet property="statusChooseButton" destination="HfN-eV-j8I" id="SzY-R4-VQr"/>
+                <outlet property="titleLabel" destination="Odp-pJ-tua" id="0hX-7C-HsP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfN-eV-j8I">
+                    <rect key="frame" x="15" y="127.66666666666669" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="GSf-iP-xcr"/>
+                        <constraint firstAttribute="width" constant="45" id="a3A-MJ-XQY"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="circle"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odp-pJ-tua">
+                    <rect key="frame" x="70" y="127.33333333333333" width="96.333333333333314" height="45.666666666666671"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prA-sY-Lvf">
+                    <rect key="frame" x="196.33333333333334" y="138" width="51.333333333333343" height="24"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO4-j9-dMi">
+                    <rect key="frame" x="252.66666666666666" y="140" width="41.333333333333343" height="20.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pzm-Ze-sTi">
+                    <rect key="frame" x="327" y="125" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="TQU-Q9-tA8"/>
+                        <constraint firstAttribute="width" constant="50" id="Ubx-mh-zpe"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="clock"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="blue"/>
+            <constraints>
+                <constraint firstItem="BO4-j9-dMi" firstAttribute="leading" secondItem="prA-sY-Lvf" secondAttribute="trailing" constant="5" id="9FZ-KA-vOl"/>
+                <constraint firstAttribute="trailing" secondItem="Pzm-Ze-sTi" secondAttribute="trailing" constant="16" id="MRG-CH-1RZ"/>
+                <constraint firstItem="prA-sY-Lvf" firstAttribute="leading" secondItem="Odp-pJ-tua" secondAttribute="trailing" constant="30" id="Pod-iu-vS8"/>
+                <constraint firstItem="BO4-j9-dMi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="YFP-Y6-hPl"/>
+                <constraint firstItem="Odp-pJ-tua" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZKV-No-7JC"/>
+                <constraint firstItem="Pzm-Ze-sTi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="c90-uo-e7c"/>
+                <constraint firstItem="HfN-eV-j8I" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="g2D-hh-OFd"/>
+                <constraint firstItem="HfN-eV-j8I" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="klR-kb-2KX"/>
+                <constraint firstItem="Odp-pJ-tua" firstAttribute="leading" secondItem="HfN-eV-j8I" secondAttribute="trailing" constant="10" id="qpX-H3-gMH"/>
+                <constraint firstItem="prA-sY-Lvf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zbC-EU-pij"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-51.145038167938928" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="circle" width="20" height="20"/>
+        <image name="clock" width="16" height="16"/>
+        <namedColor name="blue">
+            <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

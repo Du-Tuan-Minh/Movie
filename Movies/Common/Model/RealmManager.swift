@@ -10,7 +10,7 @@ import UIKit
 
 //MovieModel
 class MovieModel: Object {
-  @Persisted(primaryKey: true) var id: String
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var title: String
   @Persisted var duration: Int
   @Persisted var releaseYear: Int
@@ -19,77 +19,46 @@ class MovieModel: Object {
   @Persisted var budget: Double
   @Persisted var revenue: Double
   @Persisted var pdfData: Data?
-  
-  override init() {
-    super.init()
-    self.id = UUID().uuidString
-  }
 }
 
 //ComparisonModel
 class ComparisonModel: Object {
-  @Persisted(primaryKey: true) var id: String
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var comparedMovies: List<MovieModel>
   @Persisted var criteria: String
   @Persisted var compareDate: Date
   @Persisted var filterCriteria: String
-  
-  override init() {
-    super.init()
-    self.id = UUID().uuidString
-  }
 }
 
 //HistoryFolderModel
 class HistoryFolderModel: Object {
-  @Persisted(primaryKey: true) var id: String
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var folderName: String
   @Persisted var comparisons: List<ComparisonModel>
   @Persisted var createdDate: Date
-  
-  override init() {
-    super.init()
-    self.id = UUID().uuidString
-  }
 }
 
 //WatchlistModel
 class WatchlistModel: Object {
-  @Persisted(primaryKey: true) var id: String
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var movie: List<MovieModel>
   @Persisted var note: String
   @Persisted var addedDate: Date
-  
-  override init() {
-    super.init()
-    self.id = UUID().uuidString
-  }
 }
 
 //WatchlistFolderModel
 class WatchlistFolderModel: Object {
-  @Persisted(primaryKey: true) var id: String
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var title: String
   @Persisted var movies: List<WatchlistModel>
   @Persisted var createdDate: Date
-  
-  override init() {
-    super.init()
-    self.id = UUID().uuidString
-    self.createdDate = Date()
-  }
 }
 
 //CommentModel
 class CommentModel: Object {
-  @Persisted(primaryKey: true) var id: String
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var movie: MovieModel?
   @Persisted var content: String
   @Persisted var author: String
   @Persisted var createdAt: Date
-  
-  override init() {
-    super.init()
-    self.id = UUID().uuidString
-  }
 }

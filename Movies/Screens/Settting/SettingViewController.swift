@@ -8,19 +8,24 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-  
+  //outlet
   @IBOutlet private weak var tableView: UITableView!
+  
+  //variable
+  final private let reuseIdentifier: String = "SettingCell"
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setupTableView()
   }
-  
+}
+
+//MARK: setupView
+extension SettingViewController {
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.register(UINib(nibName: "SettingCell", bundle: nil), forCellReuseIdentifier: "SettingCell")
+    tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
   }
 }
 
@@ -32,7 +37,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell") as? SettingCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? SettingCell else {
       return UITableViewCell()
     }
     let settingItem = SettingCellType.allCases[indexPath.row]

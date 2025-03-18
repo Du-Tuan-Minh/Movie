@@ -34,7 +34,6 @@ class SettingCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
   }
   
   func configuareSettingCell(with image: UIImage, title: String) {

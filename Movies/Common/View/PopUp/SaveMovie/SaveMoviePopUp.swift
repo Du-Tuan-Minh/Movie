@@ -58,18 +58,11 @@ class SaveMoviePopUp: UIViewController {
       realm.add(saveMovie)
     }
     
-    if let folderID = folderID,
-       let existingFolder = realm.object(ofType: WatchlistFolderModel.self, forPrimaryKey: folderID) {
-      try! realm.write {
-        existingFolder.movies.append(saveMovie)
-      }
-    } else {
-      let newFolder = WatchlistFolderModel()
-      newFolder.title = textNote ?? "Untitled Folder"
-      newFolder.movies.append(saveMovie)
-      
-      try! realm.write {
-        realm.add(newFolder)
+    if let folderID = folderID, !folderID.isEmpty {
+      if let existingFolder = realm.object(ofType: WatchlistFolderModel.self, forPrimaryKey: folderID) {
+        try! realm.write {
+          existingFolder.movies.append(saveMovie)
+        }
       }
     }
   }

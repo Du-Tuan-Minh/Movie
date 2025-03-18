@@ -8,6 +8,11 @@
 import UIKit
 import DropDown
 
+enum compareModel {
+  case compareTwo
+  case compareMore
+}
+
 class CompareMoviesViewController: UIViewController {
   
   //outlet
@@ -15,8 +20,9 @@ class CompareMoviesViewController: UIViewController {
   @IBOutlet private weak var compareButton: UIButton!
   
   //variable
+  final private let reuseIdentifier: String = "CompareCell"
   var selectedMovies: [MovieModel] = []
-  
+  var compareModel: compareModel = .compareTwo
   //  let menu: DropDown = {
   //    let menu = DropDown()
   //    menu.dataSource = ["Delete", "Replace"]
@@ -44,11 +50,17 @@ class CompareMoviesViewController: UIViewController {
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.register(UINib(nibName: "CompareCell", bundle: nil), forCellReuseIdentifier: "CompareCell")
+    tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
   }
   
   @IBAction func compareTapped(_ sender: Any) {
-    var resultVC = ResultsViewController()
+    let resultVC = ResultsViewController()
+    switch compareModel {
+    case .compareTwo:
+      resultVC.resultModel = .ResultTwo
+    case .compareMore:
+      resultVC.resultModel = .ResultMore
+    }
     resultVC.compareMovies = selectedMovies
     navigationController?.pushViewController(resultVC, animated: true)
   }
@@ -61,14 +73,21 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
     return selectedMovies.count
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if compareModel == .compareMore {
+      
+    } else if compareModel == .compareTwo {
+      
+    }
+  }
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "CompareCell") as? CompareCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CompareCell else {
       return UITableViewCell()
     }
     
     cell.configureCompareCell(with: selectedMovies[indexPath.row])
-    
     return cell
   }
   

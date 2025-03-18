@@ -21,21 +21,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKr-Rx-38F">
-                    <rect key="frame" x="16" y="59" width="113" height="33"/>
+                    <rect key="frame" x="16" y="55" width="113" height="33"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXc-VO-6T0">
-                    <rect key="frame" x="0.0" y="102" width="393" height="750"/>
+                    <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aII-N4-QA7">
-                            <rect key="frame" x="0.0" y="20" width="393" height="645"/>
+                            <rect key="frame" x="0.0" y="20" width="393" height="644"/>
                             <color key="backgroundColor" name="blue"/>
                             <color key="sectionIndexBackgroundColor" name="blue"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSW-iD-AvU">
-                            <rect key="frame" x="46.666666666666657" y="675" width="300" height="45"/>
+                            <rect key="frame" x="46.666666666666657" y="674" width="300" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="773-q6-cle"/>
                                 <constraint firstAttribute="width" constant="300" id="BE2-lo-zDk"/>
@@ -75,11 +75,11 @@
             <color key="backgroundColor" name="darkBlue"/>
             <constraints>
                 <constraint firstItem="hXc-VO-6T0" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="5JK-tI-Qcj"/>
-                <constraint firstItem="hXc-VO-6T0" firstAttribute="top" secondItem="wKr-Rx-38F" secondAttribute="bottom" constant="10" id="DKz-Qe-Dp8"/>
+                <constraint firstItem="hXc-VO-6T0" firstAttribute="top" secondItem="wKr-Rx-38F" secondAttribute="bottom" constant="15" id="DKz-Qe-Dp8"/>
                 <constraint firstItem="wKr-Rx-38F" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="J9t-4n-6JG"/>
                 <constraint firstItem="hXc-VO-6T0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ux4-dE-eum"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hXc-VO-6T0" secondAttribute="trailing" id="a4k-Ip-c6Y"/>
-                <constraint firstItem="wKr-Rx-38F" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="tsY-h9-Ko4"/>
+                <constraint firstItem="wKr-Rx-38F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="tsY-h9-Ko4"/>
             </constraints>
             <point key="canvasLocation" x="-283.20610687022901" y="-16.197183098591552"/>
         </view>

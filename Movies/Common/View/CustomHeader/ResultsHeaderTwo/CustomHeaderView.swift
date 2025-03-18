@@ -32,21 +32,22 @@ extension ResultsCompareHeaderView {
 }
 
 final class CustomHeaderView: UIView {
-  
   //outlet
-  @IBOutlet weak var movieFirstImage: UIImageView!
-  @IBOutlet weak var chooseFirstButton: UIButton!
-  @IBOutlet weak var titleFirstLabel: UILabel!
-  @IBOutlet weak var releaseYearFirstLabel: UILabel!
+  @IBOutlet private weak var movieFirstImage: UIImageView!
+  @IBOutlet private weak var chooseFirstButton: UIButton!
+  @IBOutlet private weak var titleFirstLabel: UILabel!
+  @IBOutlet private weak var releaseYearFirstLabel: UILabel!
   
-  @IBOutlet weak var movieSecondImage: UIImageView!
-  @IBOutlet weak var chooseSecondButton: UIButton!
-  @IBOutlet weak var titleSecondLabel: UILabel!
-  @IBOutlet weak var releaseYearSecondLabel: UILabel!
+  @IBOutlet private weak var movieSecondImage: UIImageView!
+  @IBOutlet private weak var chooseSecondButton: UIButton!
+  @IBOutlet private weak var titleSecondLabel: UILabel!
+  @IBOutlet private weak var releaseYearSecondLabel: UILabel!
   
   var listMovie: [MovieModel]?
   var saveMovie: [MovieModel] = []
   var isChoose: Bool = false
+  var onMoviesSelected: (([MovieModel]) -> Void)?
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     configureView()
@@ -56,7 +57,6 @@ final class CustomHeaderView: UIView {
     super.init(coder: coder)
     fatalError("init(coder:) has not been implemented")
   }
-  
   
   private func setupView(button: UIButton) {
     if isChoose {
@@ -79,7 +79,6 @@ final class CustomHeaderView: UIView {
     let resultItemFirst = results[0]
     let resultItemSecond = results[1]
     
-    
     movieFirstImage.image = resultItemFirst.movieImage
     titleFirstLabel.text = resultItemFirst.title
     releaseYearFirstLabel.text = resultItemFirst.releaseYear
@@ -94,14 +93,14 @@ final class CustomHeaderView: UIView {
     setupView(button: chooseFirstButton)
     guard let listMovie = self.listMovie, listMovie.count >= 2 else { return }
     saveMovie.append(listMovie[0])
+    onMoviesSelected?(saveMovie)
   }
-  
   
   @IBAction func movieSecondTapped(_ sender: Any) {
     isChoose.toggle()
     setupView(button: chooseSecondButton)
     guard let listMovie = self.listMovie, listMovie.count >= 2 else { return }
     saveMovie.append(listMovie[1])
+    onMoviesSelected?(saveMovie)
   }
-  
 }

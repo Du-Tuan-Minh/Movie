@@ -9,7 +9,6 @@ import UIKit
 import DropDown
 
 class selectDropDown: DropDownCell {
-  
   //outlet
   @IBOutlet private weak var deleteImage: UIImageView!
   @IBOutlet private weak var deleteLabel: UILabel!

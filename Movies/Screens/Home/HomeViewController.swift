@@ -7,58 +7,64 @@
 
 import UIKit
 import RealmSwift
+
 class HomeViewController: UIViewController {
   
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   
+  //variable
+  final private let reuseIdentifier: String = "HomeCell"
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.setNavigationBarHidden(true, animated: animated)
+    navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setupCollectionView()
+    
     let realm = try! Realm()
     print(Realm.Configuration.defaultConfiguration.fileURL)
   }
 }
 
-//MARK: setup
+//MARK: setupView
 extension HomeViewController {
   private func setupCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
-    collectionView.register(UINib(nibName: "HomeCell", bundle: nil), forCellWithReuseIdentifier: "HomeCell")
+    collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
   }
 }
 
 //MARK: CollectionView
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return HomeCellType.allCases.count
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let homeItem = HomeCellType.allCases[indexPath.row]
+    var searchMoviesVC = SearchMoviesViewController()
+    
     switch homeItem {
     case .compareTwoMovies:
-      navigationController?.pushViewController(SearchMoviesViewController(), animated: true)
+      searchMoviesVC.searchModel = .searchTwo
+      navigationController?.pushViewController(searchMoviesVC, animated: true)
     case .compareMovies:
-      var searchMoviesVC = SearchMoviesViewController()
-      searchMoviesVC.mode = .moreThanTwoMovies
+      searchMoviesVC.searchModel = .searchMore
       navigationController?.pushViewController(searchMoviesVC, animated: true)
     case .watchlist:
-      navigationController?.pushViewController(WatchListViewController(), animated: true)
+      navigationController?.pushViewController(FolderWatchListViewController(), animated: true)
     case .history:
       navigationController?.pushViewController(HistoryViewController(), animated: true)
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as? HomeCell else {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? HomeCell else {
       return UICollectionViewCell()
     }
     
