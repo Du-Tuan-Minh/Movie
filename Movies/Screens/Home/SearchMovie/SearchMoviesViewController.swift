@@ -26,6 +26,7 @@ class SearchMoviesViewController: UIViewController {
   private var filteredMovies: Results<MovieModel>!
   private var selectsIndexs: Set<IndexPath> = []
   var searchModel: SearchModel = .searchTwo
+  var selectedMovies: [MovieModel] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -74,10 +75,14 @@ class SearchMoviesViewController: UIViewController {
       compareVC.compareModel = .compareMore
     }
     
-    let selectedMovies = selectsIndexs.map { filteredMovies[$0.row] }
+    selectedMovies = selectsIndexs.map { filteredMovies[$0.row] }
     historyCompare(selectedMovies: selectedMovies)
     compareVC.selectedMovies = selectedMovies
     navigationController?.pushViewController(compareVC, animated: true)
+  }
+  
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
   }
 }
 

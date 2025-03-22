@@ -20,6 +20,10 @@ class FolderWatchListViewController: UIViewController {
     setupCollectionView()
     createBarButton()
   }
+  
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
 }
 
 //MARK: setupView

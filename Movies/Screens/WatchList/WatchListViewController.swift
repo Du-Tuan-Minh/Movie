@@ -22,6 +22,10 @@ class WatchListViewController: UIViewController {
     setupTableView()
     loadMovies()
   }
+  
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
 }
 
 //MARK: setupView
@@ -44,7 +48,6 @@ extension WatchListViewController {
   }
 }
 
-
 //MARK: TableView
 extension WatchListViewController: UITableViewDataSource, UITableViewDelegate {
   
@@ -60,7 +63,7 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    var detailVC = DetailViewController()
+    let detailVC = DetailViewController()
     navigationController?.pushViewController(detailVC, animated: true)
   }
   

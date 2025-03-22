@@ -11,7 +11,7 @@ import RealmSwift
 class HistoryViewController: UIViewController {
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
-
+  
   //variable
   final private let reuseIdentifier: String = "SearchCell"
   var allMovies: [MovieModel] = []
@@ -20,6 +20,10 @@ class HistoryViewController: UIViewController {
     super.viewDidLoad()
     loadMovie()
     setupCollectionView()
+  }
+  
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
   }
 }
 
@@ -39,9 +43,9 @@ extension HistoryViewController {
   }
   
   private func loadMovie() {
-      let historyList = getListHistory()
-      allMovies = historyList.flatMap { $0.comparedMovies }
-      collectionView.reloadData()
+    let historyList = getListHistory()
+    allMovies = historyList.flatMap { $0.comparedMovies }
+    collectionView.reloadData()
   }
 }
 

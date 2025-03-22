@@ -19,17 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watchlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLH-8B-aDh">
-                    <rect key="frame" x="16.000000000000007" y="59" width="118.66666666666669" height="32.333333333333343"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOB-03-0Pb">
-                    <rect key="frame" x="0.0" y="106.33333333333331" width="393" height="745.66666666666674"/>
+                    <rect key="frame" x="0.0" y="118" width="393" height="734"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KTI-xs-uYH">
-                            <rect key="frame" x="16" y="10" width="361" height="685.66666666666663"/>
+                            <rect key="frame" x="16" y="10" width="361" height="674"/>
                             <color key="backgroundColor" name="blue"/>
                         </tableView>
                     </subviews>
@@ -46,16 +40,27 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9n-ze-xRR">
+                    <rect key="frame" x="16" y="55" width="132" height="48"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Watchlist">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="backTapped:" destination="-1" eventType="touchUpInside" id="LXJ-MX-b0K"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="darkBlue"/>
             <constraints>
+                <constraint firstItem="cOB-03-0Pb" firstAttribute="top" secondItem="M9n-ze-xRR" secondAttribute="bottom" constant="15" id="1ss-qU-6NG"/>
                 <constraint firstItem="cOB-03-0Pb" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6R4-sx-ebs"/>
-                <constraint firstItem="MLH-8B-aDh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Dwa-wC-Xjt"/>
-                <constraint firstItem="cOB-03-0Pb" firstAttribute="top" secondItem="MLH-8B-aDh" secondAttribute="bottom" constant="15" id="FtY-RJ-dyE"/>
                 <constraint firstItem="cOB-03-0Pb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LHo-Uw-0tF"/>
-                <constraint firstItem="MLH-8B-aDh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Mhs-ma-EeA"/>
                 <constraint firstAttribute="bottom" secondItem="cOB-03-0Pb" secondAttribute="bottom" id="Y38-El-BqN"/>
+                <constraint firstItem="M9n-ze-xRR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="pQF-H4-4mT"/>
+                <constraint firstItem="M9n-ze-xRR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="yeE-hH-wNh"/>
             </constraints>
             <point key="canvasLocation" x="9.9236641221374047" y="-11.267605633802818"/>
         </view>

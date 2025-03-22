@@ -16,16 +16,10 @@ class HomeViewController: UIViewController {
   //variable
   final private let reuseIdentifier: String = "HomeCell"
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    navigationController?.setNavigationBarHidden(false, animated: animated)
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
-    
-    let realm = try! Realm()
+
     print(Realm.Configuration.defaultConfiguration.fileURL)
   }
 }
@@ -47,7 +41,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let homeItem = HomeCellType.allCases[indexPath.row]
-    var searchMoviesVC = SearchMoviesViewController()
+    let searchMoviesVC = SearchMoviesViewController()
     
     switch homeItem {
     case .compareTwoMovies:

@@ -13,6 +13,11 @@ enum compareModel {
   case compareMore
 }
 
+enum ItemCompareDropDown: String, CaseIterable {
+  case delete = "Delete"
+  case replace = "Replace"
+}
+
 class CompareMoviesViewController: UIViewController {
   
   //outlet
@@ -23,24 +28,29 @@ class CompareMoviesViewController: UIViewController {
   final private let reuseIdentifier: String = "CompareCell"
   var selectedMovies: [MovieModel] = []
   var compareModel: compareModel = .compareTwo
-  //  let menu: DropDown = {
-  //    let menu = DropDown()
-  //    menu.dataSource = ["Delete", "Replace"]
-  //
-  //    let images = [UIImage(systemName: "trash"), UIImage(systemName: "pencil")]
-  //    menu.cellNib = UINib(nibName: "selectDropDown", bundle: nil)
-  //    menu.customCellConfiguration = { index, title, cell in
-  //      guard let cell = cell as? selectDropDown else { return }
-  //      cell.configSelectDropDown(delete: images[index]!, deleteTitle: "Delete", replace: images[index]! , replaceTitle: "Replace")
-  //    }
-  //    return menu
-  //  }()
-  //
+  var selectedIndexPath: IndexPath?
+  
+  let menu: DropDown = {
+    let menu = DropDown()
+    menu.width = 200
+    menu.dataSource = ItemCompareDropDown.allCases.map(\.rawValue)
+    let images = [UIImage(systemName: "trash"), UIImage(systemName: "pencil")]
+    menu.cellNib = UINib(nibName: "SelectCell", bundle: nil)
+    
+    menu.customCellConfiguration = { index, title, cell in
+      guard let cell = cell as? SelectCell else {
+        return
+      }
+      cell.configSelectDropDown(selectImage: images[index], selectTitle: title)
+    }
+    return menu
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("selectedMovies \(selectedMovies)")
     setupTableView()
     setupButton()
+    chooseItemDropDown()
   }
   
   private func setupButton() {
@@ -64,6 +74,10 @@ class CompareMoviesViewController: UIViewController {
     resultVC.compareMovies = selectedMovies
     navigationController?.pushViewController(resultVC, animated: true)
   }
+  
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
 }
 
 //MARK: TableView
@@ -74,11 +88,8 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if compareModel == .compareMore {
-      
-    } else if compareModel == .compareTwo {
-      
-    }
+    let detailVC = DetailViewController()
+    navigationController?.pushViewController(detailVC, animated: true)
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,12 +97,43 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
     guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CompareCell else {
       return UITableViewCell()
     }
-    
+    cell.delegate = self
     cell.configureCompareCell(with: selectedMovies[indexPath.row])
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 60
+  }
+}
+
+//MARK: Delegate
+extension CompareMoviesViewController: CompareCellDelegate {
+  func didTapSelectButton(in cell: CompareCell) {
+    guard let indexPath = tableView.indexPath(for: cell) else { return }
+    selectedIndexPath = indexPath
+    menu.anchorView = cell
+    menu.show()
+  }
+}
+
+//MARK: Menu
+extension CompareMoviesViewController {
+  func chooseItemDropDown() {
+    menu.selectionAction = { [weak self] (index, item) in
+      guard let self = self, let selectedIndexPath = self.selectedIndexPath else { return }
+      guard let selectItem = ItemCompareDropDown(rawValue: item) else { return }
+      
+      switch selectItem {
+      case .delete:
+        self.selectedMovies.remove(at: selectedIndexPath.row)
+        self.tableView.reloadData()
+        
+      case .replace:
+        var searchVC = SearchMoviesViewController()
+        searchVC.searchModel = self.compareModel == .compareTwo ? .searchTwo : .searchMore
+        navigationController?.pushViewController(searchVC, animated: true)
+      }
+    }
   }
 }

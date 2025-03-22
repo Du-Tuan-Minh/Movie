@@ -68,6 +68,10 @@ class ResultsViewController: UIViewController {
       self.present(sheet, animated: true)
     }
   }
+  
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
 }
 
 //MARK: TableView

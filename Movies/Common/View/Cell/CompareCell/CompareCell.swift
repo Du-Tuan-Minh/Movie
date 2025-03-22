@@ -7,15 +7,21 @@
 
 import UIKit
 
+protocol CompareCellDelegate: AnyObject {
+    func didTapSelectButton(in cell: CompareCell)
+}
+
 class CompareCell: UITableViewCell {
   
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var yearOfReleaseLabel: UILabel!
   @IBOutlet private weak var selectButton: UIButton!
   
+  weak var delegate: CompareCellDelegate?
+  
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+   // selectButton.isUserInteractionEnabled = true
   }
   
   func configureCompareCell(with model: MovieModel) {
@@ -25,6 +31,6 @@ class CompareCell: UITableViewCell {
   }
   
   @IBAction func showDropDownTapped(_ sender: Any) {
-    // CompareMoviesViewController().menu.show()
+    delegate?.didTapSelectButton(in: self)
   }
 }

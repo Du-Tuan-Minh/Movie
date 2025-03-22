@@ -11,7 +11,6 @@ class TabbarViewController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setupTabbar()
     configureTabbar()
   }
@@ -20,7 +19,6 @@ class TabbarViewController: UITabBarController {
     tabBar.backgroundColor = UIColor(resource: .darkBlue)
     tabBar.tintColor = UIColor(resource: .lightBlue)
     tabBar.unselectedItemTintColor = .white
-    tabBar.isTranslucent = false
     tabBar.layer.cornerRadius = 14
   }
   

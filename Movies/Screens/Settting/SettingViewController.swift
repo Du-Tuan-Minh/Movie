@@ -18,6 +18,10 @@ class SettingViewController: UIViewController {
     super.viewDidLoad()
     setupTableView()
   }
+  
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
 }
 
 //MARK: setupView
