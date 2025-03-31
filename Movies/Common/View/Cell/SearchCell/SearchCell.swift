@@ -13,12 +13,7 @@ class SearchCell: UICollectionViewCell {
   @IBOutlet private weak var titleLabelCell: UILabel!
   @IBOutlet private weak var yearLabelCell: UILabel!
   @IBOutlet private weak var ContentView: UIView!
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
-  
+
   func configSearchCell(with model: MovieModel) {
     if let pdfData = model.pdfData, let pdfImage = UIImage.convertPDFToImage(from: pdfData) {
       imageCell.image = pdfImage

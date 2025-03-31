@@ -33,9 +33,9 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nr-9J-gDg">
-                                <rect key="frame" x="6.6666666666666714" y="174" width="150" height="18"/>
+                                <rect key="frame" x="4" y="174" width="155" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="UmY-bs-MjT"/>
+                                    <constraint firstAttribute="width" constant="155" id="UmY-bs-MjT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

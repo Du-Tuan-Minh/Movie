@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FoodViewController" customModule="Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="wVR-Xj-1CG" id="hr7-eM-79S"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maW-Gb-kgT">
+                    <rect key="frame" x="16" y="55" width="66" height="46"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Food">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ob-Co-JKo">
+                    <rect key="frame" x="0.0" y="116" width="393" height="736"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="ycH-ba-uXE">
+                            <rect key="frame" x="0.0" y="10" width="393" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="3Ff-rr-wKA"/>
+                            </constraints>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Pgj-sU-geJ"/>
+                            </connections>
+                        </searchBar>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wVR-Xj-1CG">
+                            <rect key="frame" x="16" y="69" width="361" height="567"/>
+                            <color key="backgroundColor" name="blue"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8ce-MG-Ox2">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" name="blue"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ycH-ba-uXE" secondAttribute="trailing" id="IJF-Qs-XzR"/>
+                        <constraint firstAttribute="trailing" secondItem="wVR-Xj-1CG" secondAttribute="trailing" constant="16" id="MQt-aV-8Dx"/>
+                        <constraint firstAttribute="bottom" secondItem="wVR-Xj-1CG" secondAttribute="bottom" constant="100" id="QYC-6E-jq1"/>
+                        <constraint firstItem="wVR-Xj-1CG" firstAttribute="top" secondItem="ycH-ba-uXE" secondAttribute="bottom" constant="15" id="iuq-SK-lpm"/>
+                        <constraint firstItem="ycH-ba-uXE" firstAttribute="top" secondItem="1Ob-Co-JKo" secondAttribute="top" constant="10" id="rZf-1B-CcX"/>
+                        <constraint firstItem="ycH-ba-uXE" firstAttribute="leading" secondItem="1Ob-Co-JKo" secondAttribute="leading" id="x8d-jL-1xK"/>
+                        <constraint firstItem="wVR-Xj-1CG" firstAttribute="leading" secondItem="1Ob-Co-JKo" secondAttribute="leading" constant="16" id="xxd-Qy-VTK"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="darkBlue"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1Ob-Co-JKo" secondAttribute="trailing" id="3HX-BT-EPh"/>
+                <constraint firstItem="1Ob-Co-JKo" firstAttribute="top" secondItem="maW-Gb-kgT" secondAttribute="bottom" constant="15" id="Hsk-ez-XrC"/>
+                <constraint firstItem="maW-Gb-kgT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="VXF-ah-gnR"/>
+                <constraint firstItem="maW-Gb-kgT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="mCV-tk-hMz"/>
+                <constraint firstItem="1Ob-Co-JKo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wwt-sJ-V9f"/>
+                <constraint firstAttribute="bottom" secondItem="1Ob-Co-JKo" secondAttribute="bottom" id="yCB-Ju-PCI"/>
+            </constraints>
+            <point key="canvasLocation" x="-74" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="blue">
+            <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="darkBlue">
+            <color red="0.019607843137254902" green="0.054901960784313725" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

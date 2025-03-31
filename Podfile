@@ -12,4 +12,5 @@ target 'Movies' do
   pod 'RealmSwift'
   pod 'DropDown'
   pod 'FittedSheets'
+  pod 'Cloudinary'
 end

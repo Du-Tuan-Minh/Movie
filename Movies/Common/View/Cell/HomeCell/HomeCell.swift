@@ -29,7 +29,7 @@ enum HomeCellType: CaseIterable {
   var title: String {
     switch self {
     case .compareTwoMovies:
-      return "Compare Two Movies"
+      return "Compare Two \n Movies"
     case .compareMovies:
       return "Compare Movies"
     case .watchlist:
@@ -44,11 +44,7 @@ class HomeCell: UICollectionViewCell {
   //outlet
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabelCell: UILabel!
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
+
   func configHomeCell(with image: UIImage, title: String) {
     imageCell.image = image
     titleLabelCell.text = title

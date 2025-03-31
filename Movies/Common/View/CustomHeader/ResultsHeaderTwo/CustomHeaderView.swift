@@ -44,7 +44,7 @@ final class CustomHeaderView: UIView {
   @IBOutlet private weak var releaseYearSecondLabel: UILabel!
   
   var listMovie: [MovieModel]?
-  var saveMovie: [MovieModel] = []
+  private var saveMovie: [MovieModel] = []
   var isChoose: Bool = false
   var onMoviesSelected: (([MovieModel]) -> Void)?
   

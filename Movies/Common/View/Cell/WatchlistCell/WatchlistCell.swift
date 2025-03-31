@@ -12,23 +12,16 @@ class WatchlistCell: UITableViewCell {
   @IBOutlet private weak var movieImage: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var releaseYearLabel: UILabel!
-  
+  @IBOutlet private weak var userScoreImage: UIImageView!
   @IBOutlet private weak var genresLabel: UILabel!
   @IBOutlet private weak var durationLabel: UILabel!
   @IBOutlet private weak var saveTimeLabel: UILabel!
   @IBOutlet private weak var revenueLabel: UILabel!
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    
-  }
-  
+
   func configureWatchListCell(with movie: MovieModel, time: Date) {
-    if let pdfData = movie.pdfData, let pdfImage = UIImage.convertPDFToImage(from: pdfData) {
-      movieImage.image = pdfImage
-    } else {
-      movieImage.image = UIImage(named: "placeholder")
-    }
+    guard let imageData = movie.pdfData else {return}
+    movieImage.image = UIImage().convertDateToImage(data: imageData)
+    userScoreImage.image = UIImage().convertUseScoreToImage(movieScore: movie.userScore)
     titleLabel.text = movie.title
     releaseYearLabel.text = "(\(movie.releaseYear))"
     genresLabel.text = movie.genres.joined(separator: ", ")

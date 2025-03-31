@@ -18,16 +18,10 @@ class CompareCell: UITableViewCell {
   @IBOutlet private weak var selectButton: UIButton!
   
   weak var delegate: CompareCellDelegate?
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-   // selectButton.isUserInteractionEnabled = true
-  }
-  
+
   func configureCompareCell(with model: MovieModel) {
     titleLabel.text = model.title
     yearOfReleaseLabel.text = "(\(model.releaseYear))"
-    print(" model.title\( model.title)")
   }
   
   @IBAction func showDropDownTapped(_ sender: Any) {

@@ -24,9 +24,9 @@
                                 <rect key="frame" x="21" y="0.0" width="125" height="175"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fOi-Ww-FLf">
-                                        <rect key="frame" x="10" y="7.6666666666666714" width="105" height="160"/>
+                                        <rect key="frame" x="10" y="12.666666666666671" width="105" height="150"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="160" id="DcS-Un-EXs"/>
+                                            <constraint firstAttribute="height" constant="150" id="DcS-Un-EXs"/>
                                             <constraint firstAttribute="width" constant="105" id="Slg-Tw-BsR"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -50,13 +50,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzR-60-tys">
-                                <rect key="frame" x="60" y="180" width="47" height="21"/>
+                                <rect key="frame" x="60" y="177" width="47" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV3-aV-5Ty">
-                                <rect key="frame" x="63.666666666666671" y="216" width="39.666666666666671" height="19.333333333333343"/>
+                                <rect key="frame" x="63.666666666666671" y="213" width="39.666666666666671" height="19.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                         <color key="backgroundColor" name="blue"/>
                         <constraints>
                             <constraint firstItem="DV3-aV-5Ty" firstAttribute="centerX" secondItem="b2L-Vx-lXl" secondAttribute="centerX" id="1wT-MT-5MR"/>
-                            <constraint firstItem="NzR-60-tys" firstAttribute="top" secondItem="Nn7-Ge-ciY" secondAttribute="bottom" constant="5" id="F3X-2t-sA5"/>
+                            <constraint firstItem="NzR-60-tys" firstAttribute="top" secondItem="Nn7-Ge-ciY" secondAttribute="bottom" constant="2" id="F3X-2t-sA5"/>
                             <constraint firstItem="Nn7-Ge-ciY" firstAttribute="top" secondItem="b2L-Vx-lXl" secondAttribute="top" id="GlL-hv-wbv"/>
                             <constraint firstItem="NzR-60-tys" firstAttribute="centerX" secondItem="b2L-Vx-lXl" secondAttribute="centerX" id="Ua9-kD-aIJ"/>
                             <constraint firstItem="DV3-aV-5Ty" firstAttribute="top" secondItem="NzR-60-tys" secondAttribute="bottom" constant="15" id="a2W-sy-OvH"/>

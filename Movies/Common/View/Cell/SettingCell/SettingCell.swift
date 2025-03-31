@@ -31,11 +31,7 @@ class SettingCell: UITableViewCell {
   
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
+
   func configuareSettingCell(with image: UIImage, title: String) {
     imageCell?.image = image
     titleLabel.text = title

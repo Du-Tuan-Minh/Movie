@@ -8,6 +8,16 @@
 import DropDown
 import UIKit
 
+enum ItemCompareDropDown: String, CaseIterable {
+  case delete = "Delete"
+  case replace = "Replace"
+}
+
+enum ItemFolderDropDown: String, CaseIterable {
+  case remove = "Remove"
+  case rename = "Rename"
+}
+
 class SelectCell: DropDownCell {
   
   @IBOutlet private weak var movieImage: UIImageView!

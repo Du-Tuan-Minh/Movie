@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="358" height="235"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6zx-7m-oYl">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6zx-7m-oYl">
                         <rect key="frame" x="0.0" y="42.666666666666657" width="105" height="150"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="105" id="5bB-uP-ObB"/>
@@ -36,8 +36,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4b-vW-gYz">
-                        <rect key="frame" x="172" y="38.333333333333336" width="41.333333333333343" height="20.333333333333336"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="172" y="38.666666666666664" width="39.666666666666657" height="19.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -107,6 +107,13 @@
                             <constraint firstAttribute="height" constant="135" id="RAR-gc-GJ5"/>
                         </constraints>
                     </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gUx-hb-gna">
+                        <rect key="frame" x="10" y="207.66666666666666" width="85" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="w2V-eZ-DlU"/>
+                            <constraint firstAttribute="height" constant="15" id="ySs-FA-odv"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" name="blue"/>
                 <constraints>
@@ -118,6 +125,8 @@
                     <constraint firstItem="hZe-oe-StD" firstAttribute="leading" secondItem="6zx-7m-oYl" secondAttribute="trailing" constant="15" id="dev-kP-87r"/>
                     <constraint firstItem="O4b-vW-gYz" firstAttribute="centerY" secondItem="KTx-tY-mtO" secondAttribute="centerY" id="jsf-dp-whv"/>
                     <constraint firstItem="KTx-tY-mtO" firstAttribute="leading" secondItem="6zx-7m-oYl" secondAttribute="trailing" constant="15" id="kPe-eV-ypH"/>
+                    <constraint firstItem="gUx-hb-gna" firstAttribute="centerX" secondItem="6zx-7m-oYl" secondAttribute="centerX" id="nU5-EU-hnG"/>
+                    <constraint firstItem="gUx-hb-gna" firstAttribute="top" secondItem="6zx-7m-oYl" secondAttribute="bottom" constant="15" id="uqa-WC-liI"/>
                     <constraint firstItem="O4b-vW-gYz" firstAttribute="leading" secondItem="KTx-tY-mtO" secondAttribute="trailing" constant="5" id="xgD-pl-a6T"/>
                 </constraints>
             </tableViewCellContentView>
@@ -130,6 +139,7 @@
                 <outlet property="revenueLabel" destination="7Jo-EL-qDu" id="5Yb-8u-oJ3"/>
                 <outlet property="saveTimeLabel" destination="gVp-0s-Jso" id="ftJ-jF-TC6"/>
                 <outlet property="titleLabel" destination="KTx-tY-mtO" id="gpb-US-7Qr"/>
+                <outlet property="userScoreImage" destination="gUx-hb-gna" id="jm4-Td-Dxd"/>
             </connections>
             <point key="canvasLocation" x="106.87022900763358" y="55.985915492957751"/>
         </tableViewCell>
