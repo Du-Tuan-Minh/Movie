@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 
 class HistoryViewController: UIViewController {
+  
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   

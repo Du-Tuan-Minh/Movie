@@ -8,6 +8,7 @@
 import UIKit
 
 class SettingViewController: UIViewController {
+  
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   
@@ -40,7 +41,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+    
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

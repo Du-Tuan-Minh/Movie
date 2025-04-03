@@ -7,6 +7,7 @@
 
 import UIKit
 import AVKit
+import AVFoundation
 import RealmSwift
 import PhotosUI
 import Cloudinary
@@ -34,16 +35,18 @@ class DetailsViewController: UIViewController {
     apiKey: "431475188649929",
     apiSecret: "LTEyhxoLmc6XGOJavyDIH72ZiTM"))
   
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configureDetails()
     setupView()
-    navigationController?.isNavigationBarHidden = true
   }
-  
+}
+
+//MARK: Update View
+extension DetailsViewController {
   private func setupView() {
-    CAGradientLayer().addGradient(to: uploadVideoButton, colors: [UIColor(resource: .lightBlue), UIColor(resource: .violet)], startPoint:  CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
-    
+    CAGradientLayer().gradientButton(btn: uploadVideoButton)
     guard let movie = movie else {return}
     trailerButton.isHidden = movie.videoURL == nil
   }
@@ -59,7 +62,7 @@ class DetailsViewController: UIViewController {
     durationLabel.text = "\(movie.duration) minutes"
     userScoreLabel.text = "\(movie.userScore)%"
     releaseYearLabel.text = "\(movie.releaseYear)"
-    generOneLabel.text = "  \(movie.genres[0])  "
+    generOneLabel.text = "  " + "\(movie.genres[0])" + "  "
     generTwoLabel.text = "  1234  "
   }
   
@@ -81,8 +84,7 @@ class DetailsViewController: UIViewController {
   
   //play trailer
   private func playCloudinaryVideo() {
-    guard let videoURLString = movie?.videoURL,
-          let videoURL = URL(string: videoURLString) else { return  }
+    guard let videoURLString = movie?.videoURL, let videoURL = URL(string: videoURLString) else { return  }
     
     let player = AVPlayer(url: videoURL)
     let playerViewController = AVPlayerViewController()
@@ -92,7 +94,10 @@ class DetailsViewController: UIViewController {
       player.play()
     }
   }
-  
+}
+
+//MARK: Action
+extension DetailsViewController {
   @IBAction func trailerVideoTapper(_ sender: Any) {
     playCloudinaryVideo()
   }
@@ -103,6 +108,14 @@ class DetailsViewController: UIViewController {
     let picker = PHPickerViewController(configuration: configuration)
     picker.delegate = self
     present(picker, animated: true)
+  }
+  
+  @IBAction func playVideoTapped(_ sender: Any) {
+    guard let movie = movie, !movie.videoURLs.isEmpty else {  return  }
+    let playVideoVC = PlayVideoViewController()
+    playVideoVC.movie = movie
+    playVideoVC.modalPresentationStyle = .fullScreen
+    present(playVideoVC, animated: true, completion: nil)
   }
 }
 
@@ -130,4 +143,3 @@ extension DetailsViewController: PHPickerViewControllerDelegate {
     }
   }
 }
-

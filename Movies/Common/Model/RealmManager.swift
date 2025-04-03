@@ -22,6 +22,7 @@ class MovieModel: Object {
   @Persisted var pdfData: Data?
   @Persisted var comments: List<CommentModel>
   @Persisted var videoURL: String?
+  @Persisted var videoURLs: List<String>
 }
 
 //ComparisonModel

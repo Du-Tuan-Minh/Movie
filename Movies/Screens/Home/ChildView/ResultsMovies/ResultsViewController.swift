@@ -30,9 +30,12 @@ class ResultsViewController: UIViewController {
     setupView()
     setupTableView()
   }
-  
+}
+
+//MARK: SetupView
+extension ResultsViewController {
   private func setupView() {
-    CAGradientLayer().addGradient(to: saveButton, colors: [UIColor(resource: .lightBlue), UIColor(resource: .violet)], startPoint:  CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
+    CAGradientLayer().gradientButton(btn: saveButton)
   }
   
   private func setupTableView() {
@@ -57,7 +60,10 @@ class ResultsViewController: UIViewController {
       tableView.tableHeaderView = headerView
     }
   }
-  
+}
+
+//MARK: Action
+extension ResultsViewController {
   //create bottmSheet
   @IBAction func saveMoviesTapped(_ sender: Any) {
     self.showAlert(title: "Save movie", message: "Do you want to save this movie to your favorites?") {
@@ -164,7 +170,7 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
       guard compareMovies.count >= 2 else { return cell }
       let firstMovie = compareMovies[0]
       let secondMovie = compareMovies[1]
-
+      
       cell.configureResultsCell(with: firstMovie, secondMovie: secondMovie, index: indexPath.row)
       return cell
     }

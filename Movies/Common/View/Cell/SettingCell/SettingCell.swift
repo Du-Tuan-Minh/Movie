@@ -29,9 +29,10 @@ enum SettingCellType: String, CaseIterable {
 
 class SettingCell: UITableViewCell {
   
+  //outlet
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
-
+  
   func configuareSettingCell(with image: UIImage, title: String) {
     imageCell?.image = image
     titleLabel.text = title

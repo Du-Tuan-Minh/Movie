@@ -8,9 +8,11 @@
 import UIKit
 
 class FolderCell: UICollectionViewCell {
+  
   //outlet
-  @IBOutlet weak var titleLabel: UILabel!
-
+  @IBOutlet private weak var titleLabel: UILabel!
+  
+  //variable
   var didTapSelect: (() -> Void)?
   
   func configueFolderCell(with title: String) {

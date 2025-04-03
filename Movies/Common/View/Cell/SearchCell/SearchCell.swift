@@ -9,6 +9,7 @@ import UIKit
 
 class SearchCell: UICollectionViewCell {
   
+  //outlet
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabelCell: UILabel!
   @IBOutlet private weak var yearLabelCell: UILabel!

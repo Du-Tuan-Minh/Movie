@@ -19,7 +19,7 @@ class FilterCriteriaBottomSheets: UIViewController {
   @IBOutlet private weak var tableView: UITableView!
   
   //variable
-  let itemFilterCriteria = FilterCriteriaModel.allCases.map(\.rawValue)
+  private let itemFilterCriteria = FilterCriteriaModel.allCases.map(\.rawValue)
   var listMovieFilter = [MovieModel]()
   var chooseFilterCriteria: (([MovieModel]) -> Void)?
   
@@ -37,7 +37,6 @@ class FilterCriteriaBottomSheets: UIViewController {
 
 //MARK: TableView
 extension FilterCriteriaBottomSheets: UITableViewDataSource, UITableViewDelegate {
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return itemFilterCriteria.count
   }

@@ -16,18 +16,19 @@ struct ResultsCompare {
 extension ResultsCompare {
   static func compareMovies(firstMovie: MovieModel, secondMovie: MovieModel) -> [ResultsCompare] {
     return [
-      ResultsCompare(title: "Duration", firstMovieValue: "\(firstMovie.duration) min", secondMovieValue: "\(secondMovie.duration) min"),
+      ResultsCompare(title: "Duration", firstMovieValue: Date().toHoursAndMinutes(time: firstMovie.duration), secondMovieValue: Date().toHoursAndMinutes(time: secondMovie.duration)),
       ResultsCompare(title: "Time", firstMovieValue: "\(firstMovie.releaseYear)", secondMovieValue: "\(secondMovie.releaseYear)"),
       ResultsCompare(title: "Genres", firstMovieValue: firstMovie.genres.joined(separator: ", "), secondMovieValue: secondMovie.genres.joined(separator: ", ")),
       ResultsCompare(title: "User Score", firstMovieValue: "\(firstMovie.userScore)/10", secondMovieValue: "\(secondMovie.userScore)/10"),
-      ResultsCompare(title: "Budget", firstMovieValue: "$\(firstMovie.budget)M", secondMovieValue: "$\(secondMovie.budget)M"),
-      ResultsCompare(title: "Revenue", firstMovieValue: "$\(firstMovie.revenue)M", secondMovieValue: "$\(secondMovie.revenue)M")
+      ResultsCompare(title: "Budget", firstMovieValue: "$\(firstMovie.budget)", secondMovieValue: "$\(secondMovie.budget)"),
+      ResultsCompare(title: "Revenue", firstMovieValue: "$\(firstMovie.revenue)", secondMovieValue: "$\(secondMovie.revenue)")
     ]
   }
 }
 
 class ResultsCell: UITableViewCell {
   
+  //outlet
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var separateImage: UIImageView!
   @IBOutlet private weak var titleFirstLabel: UILabel!

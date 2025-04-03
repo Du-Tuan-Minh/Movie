@@ -29,6 +29,7 @@ class SearchMoviesViewController: UIViewController {
   var selectedMovies: [MovieModel] = []
   private var selectedIndex: Int? // replace movie
   
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
@@ -37,11 +38,6 @@ class SearchMoviesViewController: UIViewController {
     setupDearchBar()
     movies = getMovies()
     filteredMovies = movies
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    print("selectedMovies \(selectedMovies.count)")
   }
 }
 
@@ -60,7 +56,7 @@ extension SearchMoviesViewController {
   }
   
   private func setupView() {
-    CAGradientLayer().addGradient(to: compareButton, colors: [UIColor(resource: .lightBlue), UIColor(resource: .violet)], startPoint:  CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
+    CAGradientLayer().gradientButton(btn: compareButton)
   }
   
   private func setupsearchBar() {
@@ -86,7 +82,10 @@ extension SearchMoviesViewController {
       realm.add(history)
     }
   }
-  
+}
+
+//MARK: Action
+extension SearchMoviesViewController {
   @IBAction func compareTapped(_ sender: Any) {
     let compareVC = CompareMoviesViewController()
     compareVC.delegate = self
@@ -125,7 +124,6 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 
 //MARK: CollectionView
 extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return filteredMovies.count
   }
@@ -151,7 +149,6 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
     if let cell = collectionView.cellForItem(at: indexPath) as? SearchCell {
       cell.isChooseCell(isStatus: selectsIndexs.contains(indexPath))
     }
-    
     //replace
     selectedIndex =  indexPath.row
   }

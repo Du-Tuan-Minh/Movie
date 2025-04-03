@@ -8,6 +8,7 @@
 import UIKit
 
 class WatchlistCell: UITableViewCell {
+  
   //outlet
   @IBOutlet private weak var movieImage: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
@@ -17,7 +18,7 @@ class WatchlistCell: UITableViewCell {
   @IBOutlet private weak var durationLabel: UILabel!
   @IBOutlet private weak var saveTimeLabel: UILabel!
   @IBOutlet private weak var revenueLabel: UILabel!
-
+  
   func configureWatchListCell(with movie: MovieModel, time: Date) {
     guard let imageData = movie.pdfData else {return}
     movieImage.image = UIImage().convertDateToImage(data: imageData)
@@ -25,7 +26,7 @@ class WatchlistCell: UITableViewCell {
     titleLabel.text = movie.title
     releaseYearLabel.text = "(\(movie.releaseYear))"
     genresLabel.text = movie.genres.joined(separator: ", ")
-    durationLabel.text = "\(movie.duration) minutes"
+    durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
     saveTimeLabel.text = "\(time)"
     revenueLabel.text = "\(movie.revenue) $"
   }

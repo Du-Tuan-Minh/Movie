@@ -50,13 +50,17 @@ class CompareMoviesViewController: UIViewController {
     return menu
   }()
   
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
     setupButton()
     chooseItemDropDown()
   }
-  
+}
+
+//MARK: Action
+extension CompareMoviesViewController {
   //bottom sheets
   @IBAction func addTapped(_ sender: Any) {
     let filter = FilterCriteriaBottomSheets()
@@ -78,7 +82,7 @@ class CompareMoviesViewController: UIViewController {
 //MARK: SetupVỉew
 extension CompareMoviesViewController {
   private func setupButton() {
-    CAGradientLayer().addGradient(to: compareButton, colors: [UIColor(resource: .lightBlue), UIColor(resource: .violet)], startPoint:  CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
+    CAGradientLayer().gradientButton(btn: compareButton)
   }
   
   private func setupTableView() {
@@ -106,7 +110,6 @@ extension CompareMoviesViewController {
 
 //MARK: TableView
 extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegate {
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return selectedMovies.count
   }
@@ -118,7 +121,6 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
     guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CompareCell else {
       return UITableViewCell()
     }

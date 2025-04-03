@@ -16,6 +16,7 @@ class SelectFolderBottomSheets: UIViewController {
   //variable
   var selectedMovies: [MovieModel] = []
   
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
@@ -23,7 +24,7 @@ class SelectFolderBottomSheets: UIViewController {
   }
   
   private func setupView() {
-    CAGradientLayer().addGradient(to: newFolderButton, colors: [UIColor(resource: .lightBlue), UIColor(resource: .violet)], startPoint:  CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
+    CAGradientLayer().gradientButton(btn: newFolderButton)
   }
   
   private func setupTableView() {
@@ -40,15 +41,11 @@ class SelectFolderBottomSheets: UIViewController {
     let newfolder = NewFolderPopUp()
     newfolder.appear(sender: self)
     dismiss(animated: true)
-    //    let savePopUp = SaveMoviePopUp()
-    //    savePopUp.saveMovies = CustomHeaderView().saveMovie
-    //    savePopUp.appear(sender: self)
   }
 }
 
 //MARK: TableView
 extension SelectFolderBottomSheets: UITableViewDataSource, UITableViewDelegate {
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return getTitleFolder().count
   }
@@ -62,10 +59,7 @@ extension SelectFolderBottomSheets: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectFolderCell")  else {
-      return UITableViewCell()
-    }
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectFolderCell")  else { return UITableViewCell() }
     cell.textLabel?.text = getTitleFolder()[indexPath.row].title
     return cell
   }

@@ -20,6 +20,7 @@ enum ItemFolderDropDown: String, CaseIterable {
 
 class SelectCell: DropDownCell {
   
+  //outlet
   @IBOutlet private weak var movieImage: UIImageView!
   
   func configSelectDropDown(selectImage: UIImage?, selectTitle: String?) {

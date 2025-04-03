@@ -10,6 +10,7 @@ import RealmSwift
 import DropDown
 
 class FolderWatchListViewController: UIViewController {
+  
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   
@@ -34,6 +35,7 @@ class FolderWatchListViewController: UIViewController {
     return menu
   }()
   
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
@@ -66,7 +68,7 @@ extension FolderWatchListViewController {
 
 //MARK: Realm
 extension FolderWatchListViewController {
-  func getListFolder() -> Results<WatchlistFolderModel> {
+  private func getListFolder() -> Results<WatchlistFolderModel> {
     return try! Realm().objects(WatchlistFolderModel.self)
   }
   
@@ -100,12 +102,11 @@ extension FolderWatchListViewController: UICollectionViewDelegateFlowLayout, UIC
     
     cell.didTapSelect = { [weak self] in
       guard let self = self else { return }
-      var indexpath = collectionView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
+      let indexpath = collectionView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
       selectedIndexPath = indexpath
       self.menu.anchorView = cell
       self.menu.show()
     }
-    
     return cell
   }
   
@@ -135,7 +136,7 @@ extension FolderWatchListViewController {
   func selectItemDropDown() {
     self.menu.selectionAction = { [weak self] (index, item) in
       guard let selectItem = ItemFolderDropDown(rawValue: item) else {return}
-      guard let selectedIndexPath = self?.selectedIndexPath else {return}
+      guard (self?.selectedIndexPath) != nil else {return}
       switch selectItem {
       case .remove:
         return

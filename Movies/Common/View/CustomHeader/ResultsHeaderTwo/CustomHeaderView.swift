@@ -32,12 +32,12 @@ extension ResultsCompareHeaderView {
 }
 
 final class CustomHeaderView: UIView {
+  
   //outlet
   @IBOutlet private weak var movieFirstImage: UIImageView!
   @IBOutlet private weak var chooseFirstButton: UIButton!
   @IBOutlet private weak var titleFirstLabel: UILabel!
   @IBOutlet private weak var releaseYearFirstLabel: UILabel!
-  
   @IBOutlet private weak var movieSecondImage: UIImageView!
   @IBOutlet private weak var chooseSecondButton: UIButton!
   @IBOutlet private weak var titleSecondLabel: UILabel!

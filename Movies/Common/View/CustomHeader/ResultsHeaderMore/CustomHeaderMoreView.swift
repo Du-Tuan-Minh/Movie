@@ -42,7 +42,7 @@ class CustomHeaderMoreView: UIView {
   }
   
   private func setupView() {
-    guard let view = self.loadViewFromNib(nibName: "CustomHeaderMoreView") else{return}
+    guard let view = self.loadViewFromNib(nibName: CustomHeaderMoreView.identifier) else{return}
     view.frame = self.bounds
     self.addSubview(view)
   }

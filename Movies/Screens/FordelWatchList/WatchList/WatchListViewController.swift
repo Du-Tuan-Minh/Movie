@@ -51,7 +51,6 @@ extension WatchListViewController {
 
 //MARK: TableView
 extension WatchListViewController: UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegateFlowLayout {
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return allMovies.count
   }

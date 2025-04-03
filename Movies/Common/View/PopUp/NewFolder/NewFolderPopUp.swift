@@ -34,11 +34,13 @@ class NewFolderPopUp: UIViewController {
     super.viewDidLoad()
     configView()
   }
-  
+}
+
+//MARK: Setup View
+extension NewFolderPopUp {
   private func configView() {
     view.backgroundColor = .clear
     self.configurePopUp(blureView: blureView, contentView: contentView)
-    
     cancelButton.backgroundColor = UIColor(resource: .gray)
     cancelButton.setTitleColor(.black, for: .normal)
     yesButton.backgroundColor = UIColor(resource: .gray)
@@ -66,7 +68,10 @@ class NewFolderPopUp: UIViewController {
       self.hinderPopUp(blureView: self.blureView, contentView: self.contentView)
     }
   }
-  
+}
+
+//MARK: Action
+extension NewFolderPopUp {
   @IBAction func cancelTapped(_ sender: Any) {
     isStatus.toggle()
     configureButton(button: cancelButton)

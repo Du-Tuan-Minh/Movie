@@ -189,16 +189,15 @@
                                         <action selector="uploadVideoTapped:" destination="-1" eventType="touchUpInside" id="hIB-Mo-1xW"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29D-vY-RUQ">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29D-vY-RUQ">
                                     <rect key="frame" x="227" y="422" width="150" height="40"/>
                                     <color key="backgroundColor" systemColor="systemRedColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="JX3-dr-4dJ"/>
                                         <constraint firstAttribute="width" constant="150" id="TTs-Z9-L9Q"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" title="Trailer">
+                                    <state key="normal" title="Trailer" image="play">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -210,12 +209,25 @@
                                         <action selector="trailerVideoTapper:" destination="-1" eventType="touchUpInside" id="1cH-8O-VXW"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epi-dc-uWH">
+                                    <rect key="frame" x="156.66666666666666" y="160" width="80" height="80"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="DNR-1q-dYG"/>
+                                        <constraint firstAttribute="width" constant="80" id="YWd-KH-gom"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="run"/>
+                                    <connections>
+                                        <action selector="playVideoTapped:" destination="-1" eventType="touchUpInside" id="CN2-RB-qya"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="8Ot-NM-dET" firstAttribute="leading" secondItem="oCc-dY-ugN" secondAttribute="leading" constant="16" id="1W5-lD-8uL"/>
                                 <constraint firstItem="HsB-1S-KRx" firstAttribute="leading" secondItem="oCc-dY-ugN" secondAttribute="leading" constant="16" id="1oS-Sc-73B"/>
                                 <constraint firstItem="qjy-ko-ArT" firstAttribute="centerX" secondItem="oCc-dY-ugN" secondAttribute="centerX" id="6gB-NB-zKC"/>
+                                <constraint firstItem="epi-dc-uWH" firstAttribute="centerY" secondItem="qjy-ko-ArT" secondAttribute="centerY" id="7q6-hR-Nwo"/>
                                 <constraint firstItem="MLz-FZ-i3L" firstAttribute="leading" secondItem="oCc-dY-ugN" secondAttribute="leading" constant="16" id="7yT-As-r3d"/>
                                 <constraint firstItem="932-q2-T6M" firstAttribute="top" secondItem="MLz-FZ-i3L" secondAttribute="bottom" constant="20" id="AKi-vz-GkG"/>
                                 <constraint firstItem="HsB-1S-KRx" firstAttribute="top" secondItem="932-q2-T6M" secondAttribute="bottom" constant="10" id="BIZ-yg-Ah2"/>
@@ -226,6 +238,7 @@
                                 <constraint firstItem="W80-mw-dT3" firstAttribute="top" secondItem="vnr-ed-H6i" secondAttribute="bottom" constant="-15" id="Kn5-DA-rkg"/>
                                 <constraint firstItem="DAz-Za-gHR" firstAttribute="top" secondItem="MLz-FZ-i3L" secondAttribute="bottom" constant="20" id="NEb-Dk-vHK"/>
                                 <constraint firstAttribute="bottom" secondItem="XFb-9x-oXp" secondAttribute="bottom" constant="40" id="OCR-Fq-bVB"/>
+                                <constraint firstItem="epi-dc-uWH" firstAttribute="centerX" secondItem="qjy-ko-ArT" secondAttribute="centerX" id="OOZ-qS-4E8"/>
                                 <constraint firstItem="baA-vM-oc4" firstAttribute="leading" secondItem="dAP-Yq-7kX" secondAttribute="trailing" constant="10" id="VmI-E9-KEe"/>
                                 <constraint firstAttribute="height" constant="900" id="WlR-cl-Qbu"/>
                                 <constraint firstItem="fjD-P0-pA6" firstAttribute="top" secondItem="dAP-Yq-7kX" secondAttribute="bottom" constant="15" id="X8o-8O-B7I"/>
@@ -266,6 +279,8 @@
     </objects>
     <resources>
         <image name="oclock" width="14" height="14"/>
+        <image name="play" width="32" height="32"/>
+        <image name="run" width="77" height="77"/>
         <image name="star" width="13" height="13"/>
         <namedColor name="blue">
             <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
