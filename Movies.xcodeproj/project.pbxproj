@@ -33,6 +33,10 @@
 		73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BE52D71D5A100595A86 /* RealmManager.swift */; };
 		73215BEA2D71D92800595A86 /* CompareMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73215BE92D71D92800595A86 /* CompareMoviesViewController.xib */; };
 		73215BEB2D71D92800595A86 /* CompareMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BE82D71D92800595A86 /* CompareMoviesViewController.swift */; };
+		732E323F2D9F3388005A0E9C /* HistoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 732E323E2D9F3387005A0E9C /* HistoryHeaderView.xib */; };
+		732E32402D9F3388005A0E9C /* HistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E323D2D9F3387005A0E9C /* HistoryHeaderView.swift */; };
+		7345CDE12DA17C2A00B33F6D /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345CDE02DA17C2A00B33F6D /* FooterCell.swift */; };
+		7345CDE32DA17C3D00B33F6D /* FooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7345CDE22DA17C3D00B33F6D /* FooterCell.xib */; };
 		734CBBA02D9217A5004B613A /* ResultsMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734CBB9F2D9217A5004B613A /* ResultsMoreCell.xib */; };
 		734CBBA12D9217A5004B613A /* ResultsMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734CBB9E2D9217A5004B613A /* ResultsMoreCell.swift */; };
 		7355C6812D9CC9D7005A2D16 /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355C6802D9CC9D7005A2D16 /* Extension + Date.swift */; };
@@ -58,6 +62,8 @@
 		738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738482CF2D8B8F4B009BA729 /* SelectCell.xib */; };
 		739480B32D77E90900980400 /* Extension + Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739480B22D77E8F800980400 /* Extension + Image.swift */; };
 		739574D82D78BBD1002B9C1F /* Extension + GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574D72D78BBBE002B9C1F /* Extension + GradientLayer.swift */; };
+		73A091962DA6D5C8002D2440 /* TypeFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A091942DA6D5C8002D2440 /* TypeFoodCell.swift */; };
+		73A091972DA6D5C8002D2440 /* TypeFoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */; };
 		73A94D502D931B43005333AB /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A94D4E2D931B43005333AB /* FoodViewController.swift */; };
 		73A94D512D931B43005333AB /* FoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A94D4F2D931B43005333AB /* FoodViewController.xib */; };
 		73C05BCB2D9E36F5006DAC44 /* PlayVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C05BC92D9E36F5006DAC44 /* PlayVideoViewController.swift */; };
@@ -113,6 +119,10 @@
 		73215BE52D71D5A100595A86 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		73215BE82D71D92800595A86 /* CompareMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareMoviesViewController.swift; sourceTree = "<group>"; };
 		73215BE92D71D92800595A86 /* CompareMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompareMoviesViewController.xib; sourceTree = "<group>"; };
+		732E323D2D9F3387005A0E9C /* HistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderView.swift; sourceTree = "<group>"; };
+		732E323E2D9F3387005A0E9C /* HistoryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryHeaderView.xib; sourceTree = "<group>"; };
+		7345CDE02DA17C2A00B33F6D /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
+		7345CDE22DA17C3D00B33F6D /* FooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCell.xib; sourceTree = "<group>"; };
 		734CBB9E2D9217A5004B613A /* ResultsMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsMoreCell.swift; sourceTree = "<group>"; };
 		734CBB9F2D9217A5004B613A /* ResultsMoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsMoreCell.xib; sourceTree = "<group>"; };
 		7355C6802D9CC9D7005A2D16 /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
@@ -138,6 +148,8 @@
 		738482CF2D8B8F4B009BA729 /* SelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCell.xib; sourceTree = "<group>"; };
 		739480B22D77E8F800980400 /* Extension + Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Image.swift"; sourceTree = "<group>"; };
 		739574D72D78BBBE002B9C1F /* Extension + GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + GradientLayer.swift"; sourceTree = "<group>"; };
+		73A091942DA6D5C8002D2440 /* TypeFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeFoodCell.swift; sourceTree = "<group>"; };
+		73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypeFoodCell.xib; sourceTree = "<group>"; };
 		73A94D4E2D931B43005333AB /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		73A94D4F2D931B43005333AB /* FoodViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodViewController.xib; sourceTree = "<group>"; };
 		73C05BC92D9E36F5006DAC44 /* PlayVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoViewController.swift; sourceTree = "<group>"; };
@@ -408,6 +420,15 @@
 			path = CompareMovie;
 			sourceTree = "<group>";
 		};
+		732E32382D9F31FD005A0E9C /* HistoryHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				732E323D2D9F3387005A0E9C /* HistoryHeaderView.swift */,
+				732E323E2D9F3387005A0E9C /* HistoryHeaderView.xib */,
+			);
+			path = HistoryHeaderView;
+			sourceTree = "<group>";
+		};
 		733DF9772D8861FA007661A1 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +524,7 @@
 		735F621B2D93BB4700B9C15D /* FoodCell */ = {
 			isa = PBXGroup;
 			children = (
+				73A091932DA6D5A1002D2440 /* TypeFoodCell */,
 				735F621C2D93BB6B00B9C15D /* FoodCell.swift */,
 				735F621D2D93BB6B00B9C15D /* FoodCell.xib */,
 			);
@@ -538,6 +560,15 @@
 			path = ChildView;
 			sourceTree = "<group>";
 		};
+		73A091932DA6D5A1002D2440 /* TypeFoodCell */ = {
+			isa = PBXGroup;
+			children = (
+				73A091942DA6D5C8002D2440 /* TypeFoodCell.swift */,
+				73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */,
+			);
+			path = TypeFoodCell;
+			sourceTree = "<group>";
+		};
 		73A94D4D2D931B24005333AB /* FoodView */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +581,7 @@
 		73C652452D7D7BD500ED524D /* CustomHeader */ = {
 			isa = PBXGroup;
 			children = (
+				732E32382D9F31FD005A0E9C /* HistoryHeaderView */,
 				735E2B312D869A1A00BB3562 /* ResultsHeaderMore */,
 				73F3D34B2D8CAA3300D4703D /* FootedView */,
 				735E2B302D8699D200BB3562 /* ResultsHeaderTwo */,
@@ -606,6 +638,8 @@
 		73F3D34B2D8CAA3300D4703D /* FootedView */ = {
 			isa = PBXGroup;
 			children = (
+				7345CDE02DA17C2A00B33F6D /* FooterCell.swift */,
+				7345CDE22DA17C3D00B33F6D /* FooterCell.xib */,
 			);
 			path = FootedView;
 			sourceTree = "<group>";
@@ -685,6 +719,7 @@
 				7359B7C32D74C4960049FAB5 /* CompareCell.xib in Resources */,
 				73E5DD642D8376CC00C75E53 /* SelectFolderBottomSheets.xib in Resources */,
 				73215BB52D71A8F400595A86 /* Assets.xcassets in Resources */,
+				7345CDE32DA17C3D00B33F6D /* FooterCell.xib in Resources */,
 				7360A55A2D81236B0084E567 /* HistoryViewController.xib in Resources */,
 				73215BC12D71AE8200595A86 /* Localizable.strings in Resources */,
 				73215BEA2D71D92800595A86 /* CompareMoviesViewController.xib in Resources */,
@@ -699,10 +734,12 @@
 				7359B7BE2D74AAD80049FAB5 /* SearchMoviesViewController.xib in Resources */,
 				73DADFC82D8239A900F1ACD7 /* FolderWatchListViewController.xib in Resources */,
 				73CAA55C2D92BBEB00983DF0 /* DetailsViewController.xib in Resources */,
+				732E323F2D9F3388005A0E9C /* HistoryHeaderView.xib in Resources */,
 				735F621E2D93BB6B00B9C15D /* FoodCell.xib in Resources */,
 				73A94D512D931B43005333AB /* FoodViewController.xib in Resources */,
 				738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */,
 				7318A0DC2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.xib in Resources */,
+				73A091972DA6D5C8002D2440 /* TypeFoodCell.xib in Resources */,
 				7359B7D32D74E8170049FAB5 /* ResultsCell.xib in Resources */,
 				73215BB72D71A8F400595A86 /* LaunchScreen.storyboard in Resources */,
 				73C05BCC2D9E36F5006DAC44 /* PlayVideoViewController.xib in Resources */,
@@ -770,10 +807,12 @@
 				739480B32D77E90900980400 /* Extension + Image.swift in Sources */,
 				7355C6812D9CC9D7005A2D16 /* Extension + Date.swift in Sources */,
 				735E2B332D869A8A00BB3562 /* CustomHeaderMoreView.swift in Sources */,
+				732E32402D9F3388005A0E9C /* HistoryHeaderView.swift in Sources */,
 				73215BB22D71A8F400595A86 /* AppDelegate.swift in Sources */,
 				73E5DD632D8376CC00C75E53 /* SelectFolderBottomSheets.swift in Sources */,
 				73D0896A2D7B7CAA001C61DB /* Extension + Radius.swift in Sources */,
 				73DADFC12D82355000F1ACD7 /* NewFolderPopUp.swift in Sources */,
+				7345CDE12DA17C2A00B33F6D /* FooterCell.swift in Sources */,
 				73CAA55D2D92BBEB00983DF0 /* DetailsViewController.swift in Sources */,
 				73215BB32D71A8F400595A86 /* SceneDelegate.swift in Sources */,
 				73A94D502D931B43005333AB /* FoodViewController.swift in Sources */,
@@ -790,6 +829,7 @@
 				73215BD72D71B03F00595A86 /* SettingViewController.swift in Sources */,
 				7359B7CA2D74E5A60049FAB5 /* ResultsViewController.swift in Sources */,
 				7360A55B2D81236B0084E567 /* HistoryViewController.swift in Sources */,
+				73A091962DA6D5C8002D2440 /* TypeFoodCell.swift in Sources */,
 				73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */,
 				73215BEB2D71D92800595A86 /* CompareMoviesViewController.swift in Sources */,
 				73DADFCA2D823C4E00F1ACD7 /* Extension + PopUp.swift in Sources */,

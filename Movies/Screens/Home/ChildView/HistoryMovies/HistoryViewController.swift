@@ -15,16 +15,13 @@ class HistoryViewController: UIViewController {
   
   //variable
   final private let reuseIdentifier: String = "SearchCell"
-  private var allMovies: [MovieModel] = []
+  final private let reuseIdentifierHistoryHeaderView: String = "HistoryHeaderView"
+  private var groupedMovies: [(createdDate: Date, movies: [MovieModel])] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
     loadMovie()
     setupCollectionView()
-  }
-  
-  @IBAction func backTapped(_ sender: Any) {
-    navigationController?.popViewController(animated: true)
   }
 }
 
@@ -34,44 +31,70 @@ extension HistoryViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+    
+    collectionView.register(
+      UINib(nibName: reuseIdentifierHistoryHeaderView, bundle: nil),
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: reuseIdentifierHistoryHeaderView
+    )
   }
 }
 
 //MARK: Realm
 extension HistoryViewController {
-  private func getListHistory() -> Results<ComparisonModel> {
-    return try! Realm().objects(ComparisonModel.self)
+  private func getListHistory() -> Results<HistoryFolderModel> {
+    return try! Realm().objects(HistoryFolderModel.self)
   }
   
   private func loadMovie() {
     let historyList = getListHistory()
-    allMovies = historyList.flatMap { $0.comparedMovies }
+    groupedMovies = historyList.map { folder in
+      (createdDate: folder.createdDate, movies: Array(folder.comparisons))
+    }.sorted { $0.createdDate > $1.createdDate }
     collectionView.reloadData()
+  }
+}
+
+//MARK: Action
+extension HistoryViewController {
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
+  
+  @IBAction func cleanAllTapped(_ sender: Any) {
+    self.showAlert(title: "do you want to delete everything", message: "") {
+      let realm = try! Realm()
+      try! realm.write {
+        realm.delete(realm.objects(HistoryFolderModel.self))
+        self.groupedMovies.removeAll()
+        self.collectionView.reloadData()
+      }
+    }
   }
 }
 
 //MARK: CollectionView
 extension HistoryViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return groupedMovies.count
+  }
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return allMovies.count
+    return groupedMovies[section].movies.count
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let detailVC = DetailsViewController()
-    guard indexPath.row < allMovies.count else { return }
-    let selectedMovie = allMovies[indexPath.row]
-    detailVC.movie =  selectedMovie
-    navigationController?.pushViewController(detailVC, animated: true)
+    //    let detailVC = DetailsViewController()
+    //    let selectedMovie = groupedMovies[indexPath.section].movies[indexPath.row]
+    //    detailVC.movie = selectedMovie
+    //    navigationController?.pushViewController(detailVC, animated: true)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? SearchCell else {
       return UICollectionViewCell()
     }
-    guard indexPath.row < allMovies.count else {
-      return cell
-    }
-    let movieItem = allMovies[indexPath.row]
+    let movieItem = groupedMovies[indexPath.section].movies[indexPath.row]
     cell.configSearchCell(with: movieItem)
     return cell
   }
@@ -87,5 +110,23 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout, UICollectio
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     return 5
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    if kind == UICollectionView.elementKindSectionHeader {
+      let header = collectionView.dequeueReusableSupplementaryView(
+        ofKind: kind,
+        withReuseIdentifier: reuseIdentifierHistoryHeaderView,
+        for: indexPath) as! HistoryHeaderView
+      
+      let createdDate = groupedMovies[indexPath.section].createdDate
+      header.dateLabel.text =  Date().formattedDate(date: createdDate)
+      return header
+    }
+    return UICollectionReusableView()
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    return CGSize(width: collectionView.frame.width, height: 45)
   }
 }

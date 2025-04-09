@@ -49,29 +49,41 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tu2-c5-9kF">
-                                    <rect key="frame" x="65" y="288" width="200" height="45"/>
+                                    <rect key="frame" x="40" y="288" width="250" height="45"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uT-CB-ul1">
-                                            <rect key="frame" x="0.0" y="0.0" width="95" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="45"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Cancel">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="cancelTapped:" destination="-1" eventType="touchUpInside" id="NF6-QT-0F6"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHo-eK-r6w">
-                                            <rect key="frame" x="105" y="0.0" width="95" height="45"/>
+                                            <rect key="frame" x="130" y="0.0" width="120" height="45"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Yes"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="createFolderTapped:" destination="-1" eventType="touchUpInside" id="owN-Dv-eX4"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="Kl8-B4-Jyj"/>
+                                        <constraint firstAttribute="width" constant="250" id="Kl8-B4-Jyj"/>
                                         <constraint firstAttribute="height" constant="45" id="RMt-Lz-irc"/>
                                     </constraints>
                                 </stackView>

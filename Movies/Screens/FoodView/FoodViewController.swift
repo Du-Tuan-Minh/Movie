@@ -15,6 +15,7 @@ class FoodViewController: UIViewController {
   
   //variable
   final private let reuseIdentifier: String = "FoodCell"
+  final private let TypeFoodreuseIdentifier: String = "TypeFoodCell"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,41 +29,121 @@ extension FoodViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+    collectionView.register(UINib(nibName: TypeFoodreuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TypeFoodreuseIdentifier)
+    
+    collectionView.collectionViewLayout = createCompositionalLayout()
+    collectionView.alwaysBounceVertical = true
   }
   
   private func getListFood() -> Results<FoodModel> {
     return try! Realm().objects(FoodModel.self)
   }
+  
+  private func getListTypeFood() -> Results<TypeFoodModel> {
+    return try! Realm().objects(TypeFoodModel.self)
+  }
 }
 
 //MARK: CollectioView
-extension FoodViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return getListFood().count
+extension FoodViewController {
+  private func createCompositionalLayout() -> UICollectionViewLayout {
+    let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+      // Section 0: Horizontal scrolling
+      if sectionIndex == 0 {
+        return self.createHorizontalScrollSection()
+      }
+      // Section 1: Vertical scrolling
+      else {
+        return self.createVerticalScrollSection()
+      }
+    }
+    
+    let config = UICollectionViewCompositionalLayoutConfiguration()
+    config.interSectionSpacing = 20
+    layout.configuration = config
+    return layout
   }
   
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  private func createHorizontalScrollSection() -> NSCollectionLayoutSection {
+    // Item
+    let itemSize = NSCollectionLayoutSize(
+      widthDimension: .estimated(100), heightDimension: .absolute(40)
+    )
+    let item = NSCollectionLayoutItem(layoutSize: itemSize)
     
+    // Group (horizontal)
+    let groupSize = NSCollectionLayoutSize(
+      widthDimension: .estimated(100), heightDimension: .absolute(40)
+    )
+    let group = NSCollectionLayoutGroup.horizontal(
+      layoutSize: groupSize, subitems: [item]
+    )
+    
+    // Section
+    let section = NSCollectionLayoutSection(group: group)
+    section.interGroupSpacing = 10
+    section.contentInsets = NSDirectionalEdgeInsets(
+      top: 10, leading: 10, bottom: 10, trailing: 10
+    )
+    section.orthogonalScrollingBehavior = .continuous
+    
+    return section
+  }
+  
+  private func createVerticalScrollSection() -> NSCollectionLayoutSection {
+    // Item
+    let itemSize = NSCollectionLayoutSize(
+      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(150)
+    )
+    let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    
+    // Group
+    let groupSize = NSCollectionLayoutSize(
+      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(150)
+    )
+    let group = NSCollectionLayoutGroup.vertical(
+      layoutSize: groupSize, subitems: [item]
+    )
+    
+    // Section
+    let section = NSCollectionLayoutSection(group: group)
+    section.interGroupSpacing = 15
+    section.contentInsets = NSDirectionalEdgeInsets(
+      top: 0, leading: 10, bottom: 20, trailing: 10
+    )
+    
+    return section
+  }
+}
+
+// MARK: - UICollectionView DataSource & Delegate
+extension FoodViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return 2
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return section == 0 ? getListTypeFood().count : getListFood().count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FoodCell else {
-      return UICollectionViewCell()
+    if indexPath.section == 0 {
+      let cell = collectionView.dequeueReusableCell( withReuseIdentifier: TypeFoodreuseIdentifier, for: indexPath ) as! TypeFoodCell
+      cell.configure(with: getListTypeFood()[indexPath.item])
+      return cell
     }
-    cell.configureFoodCell(with: getListFood()[indexPath.row])
-    return cell
+    else {
+      let cell = collectionView.dequeueReusableCell( withReuseIdentifier: reuseIdentifier, for: indexPath ) as! FoodCell
+      cell.configureFoodCell(with: getListFood()[indexPath.item])
+      return cell
+    }
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = collectionView.frame.width
-    return CGSize(width: width, height: 150)
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 0
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if indexPath.section == 0 {
+      
+    } else {
+      
+    }
   }
 }

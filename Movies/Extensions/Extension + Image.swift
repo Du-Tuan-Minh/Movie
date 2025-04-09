@@ -9,17 +9,31 @@ import UIKit
 import PDFKit
 
 extension UIImage {
-  static func convertPDFToImage(from data: Data) -> UIImage? {
+  static func convertPDFToImage(from data: Data, scale: CGFloat = 3.0) -> UIImage? {
     guard let document = PDFDocument(data: data),
           let page = document.page(at: 0) else { return nil }
     
     let pageRect = page.bounds(for: .mediaBox)
-    let renderer = UIGraphicsImageRenderer(size: pageRect.size)
+    let scaledSize = CGSize(width: pageRect.width * scale, height: pageRect.height * scale)
+    
+    let format = UIGraphicsImageRendererFormat()
+    format.scale = 1
+    
+    let renderer = UIGraphicsImageRenderer(size: scaledSize, format: format)
     
     let image = renderer.image { ctx in
       UIColor.white.set()
-      ctx.fill(pageRect)
-      page.draw(with: .mediaBox, to: ctx.cgContext)
+      ctx.fill(CGRect(origin: .zero, size: scaledSize))
+      
+      let context = ctx.cgContext
+      context.saveGState()
+      
+      context.translateBy(x: 0, y: scaledSize.height)
+      context.scaleBy(x: scale, y: -scale)
+      
+      page.draw(with: .mediaBox, to: context)
+      
+      context.restoreGState()
     }
     return image
   }

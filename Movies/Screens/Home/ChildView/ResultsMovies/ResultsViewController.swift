@@ -17,7 +17,6 @@ class ResultsViewController: UIViewController {
   
   //outlet
   @IBOutlet private weak var tableView: UITableView!
-  @IBOutlet private weak var saveButton: UIButton!
   
   //variable
   var compareMovies: [MovieModel] = []
@@ -27,17 +26,12 @@ class ResultsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupView()
     setupTableView()
   }
 }
 
 //MARK: SetupView
 extension ResultsViewController {
-  private func setupView() {
-    CAGradientLayer().gradientButton(btn: saveButton)
-  }
-  
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
@@ -64,18 +58,6 @@ extension ResultsViewController {
 
 //MARK: Action
 extension ResultsViewController {
-  //create bottmSheet
-  @IBAction func saveMoviesTapped(_ sender: Any) {
-    self.showAlert(title: "Save movie", message: "Do you want to save this movie to your favorites?") {
-      let selectFolderVC = SelectFolderBottomSheets()
-      selectFolderVC.selectedMovies = self.compareMovies
-      let sheet = SheetViewController(controller: selectFolderVC, sizes: [ .fixed(350)])
-      sheet.hasBlurBackground = true
-      sheet.cornerRadius = 20
-      self.present(sheet, animated: true)
-    }
-  }
-  
   @IBAction func backTapped(_ sender: Any) {
     navigationController?.popViewController(animated: true)
   }
@@ -84,7 +66,6 @@ extension ResultsViewController {
 //MARK: TableView
 extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   func numberOfSections(in tableView: UITableView) -> Int {
-    
     switch resultModel.self {
     case .ResultMore:
       return compareMovies.count
@@ -94,7 +75,6 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     switch resultModel.self {
     case .ResultMore:
       return expandedSections.contains(section) ? 1 : 0
@@ -104,7 +84,6 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
     switch resultModel.self {
     case .ResultMore:
       let headerView = CustomHeaderMoreView()
@@ -134,7 +113,6 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
     switch resultModel.self {
     case .ResultMore:
       break
@@ -144,7 +122,6 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    
     switch resultModel.self {
     case .ResultMore:
       return 55
@@ -154,7 +131,6 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
     switch resultModel {
     case .ResultMore:
       guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultsMoreCell") as? ResultsMoreCell else {
@@ -177,13 +153,22 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    
     switch resultModel.self {
     case .ResultMore:
       return 245
     case .ResultTwo:
       return 95
     }
+  }
+  
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell
+    footer?.delegate = self
+    return footer
+  }
+  
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 60
   }
 }
 
@@ -204,5 +189,18 @@ extension ResultsViewController: CustomHeaderMoreViewDelegate {
       saveMoreMovies.removeAll { $0.id == selectedMovie.id }
     }
     compareMovies = saveMoreMovies
+  }
+}
+
+extension ResultsViewController: FooterCellDelegate {
+  func footerClick() {
+    self.showAlert(title: "Save movie", message: "Do you want to save this movie to your favorites?") {
+      let selectFolderVC = SelectFolderBottomSheets()
+      selectFolderVC.selectedMovies = self.compareMovies
+      let sheet = SheetViewController(controller: selectFolderVC, sizes: [ .fixed(350)])
+      sheet.hasBlurBackground = true
+      sheet.cornerRadius = 20
+      self.present(sheet, animated: true)
+    }
   }
 }

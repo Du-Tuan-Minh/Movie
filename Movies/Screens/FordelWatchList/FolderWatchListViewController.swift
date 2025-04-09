@@ -135,13 +135,33 @@ extension FolderWatchListViewController: NewFolderPopUpDelegate {
 extension FolderWatchListViewController {
   func selectItemDropDown() {
     self.menu.selectionAction = { [weak self] (index, item) in
-      guard let selectItem = ItemFolderDropDown(rawValue: item) else {return}
-      guard (self?.selectedIndexPath) != nil else {return}
+      guard let self = self, let selectedIndexPath = self.selectedIndexPath else { return }
+      guard let selectItem = ItemFolderDropDown(rawValue: item) else { return }
+      
+      let realm = try! Realm()
+      let selectedFolder = getListFolder()[selectedIndexPath.row]
+      
       switch selectItem {
       case .remove:
-        return
+        try! realm.write {
+          realm.delete(selectedFolder)
+        }
+        self.collectionView.reloadData()
       case .rename:
-        return
+        let alert = UIAlertController(title: "Rename the folder", message: nil, preferredStyle: .alert)
+        alert.addTextField { textField in
+          textField.text = selectedFolder.title
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+          if let newName = alert.textFields?.first?.text, !newName.isEmpty {
+            try! realm.write {
+              selectedFolder.title = newName
+            }
+            self.collectionView.reloadData()
+          }
+        }))
+        present(alert, animated: true, completion: nil)
       }
     }
   }

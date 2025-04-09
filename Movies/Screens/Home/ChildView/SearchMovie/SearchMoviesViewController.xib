@@ -11,7 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMoviesViewController" customModule="Movies" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="wpZ-Le-b4e" id="24Z-Lw-FY2"/>
-                <outlet property="compareButton" destination="TLD-JD-XDc" id="Wtq-Jf-0yC"/>
                 <outlet property="searchView" destination="qJU-7E-ebB" id="nyb-Vg-2YW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,7 +24,7 @@
                     <rect key="frame" x="0.0" y="95" width="393" height="757"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Le-b4e">
-                            <rect key="frame" x="0.0" y="88" width="393" height="504"/>
+                            <rect key="frame" x="0.0" y="88" width="393" height="619"/>
                             <color key="backgroundColor" name="blue"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aan-yS-oPe">
                                 <size key="itemSize" width="128" height="128"/>
@@ -34,26 +33,6 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLD-JD-XDc">
-                            <rect key="frame" x="46.666666666666657" y="612" width="300" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="300" id="3am-br-zwB"/>
-                                <constraint firstAttribute="height" constant="45" id="4VV-4I-Dma"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Next">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="40"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="compareTapped:" destination="-1" eventType="touchUpInside" id="PHb-Wi-jPy"/>
-                            </connections>
-                        </button>
                         <searchBar contentMode="scaleAspectFill" barStyle="black" searchBarStyle="minimal" text="" placeholder="Text here" translatesAutoresizingMaskIntoConstraints="NO" id="qJU-7E-ebB">
                             <rect key="frame" x="0.0" y="20" width="393" height="50"/>
                             <color key="backgroundColor" name="blue"/>
@@ -74,14 +53,12 @@
                     </subviews>
                     <color key="backgroundColor" name="blue"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="wpZ-Le-b4e" secondAttribute="bottom" constant="50" id="CxS-ga-Yti"/>
                         <constraint firstItem="qJU-7E-ebB" firstAttribute="top" secondItem="Rno-Nb-Fbr" secondAttribute="top" constant="20" id="I2m-0n-S5f"/>
-                        <constraint firstAttribute="bottom" secondItem="TLD-JD-XDc" secondAttribute="bottom" constant="100" id="N7D-Ys-QK3"/>
                         <constraint firstAttribute="trailing" secondItem="qJU-7E-ebB" secondAttribute="trailing" id="U8y-qc-glG"/>
                         <constraint firstAttribute="trailing" secondItem="wpZ-Le-b4e" secondAttribute="trailing" id="chx-m7-ohF"/>
                         <constraint firstItem="qJU-7E-ebB" firstAttribute="leading" secondItem="Rno-Nb-Fbr" secondAttribute="leading" id="gOE-PH-hFk"/>
-                        <constraint firstItem="TLD-JD-XDc" firstAttribute="centerX" secondItem="Rno-Nb-Fbr" secondAttribute="centerX" id="jfl-tD-mIk"/>
                         <constraint firstItem="wpZ-Le-b4e" firstAttribute="top" secondItem="qJU-7E-ebB" secondAttribute="bottom" constant="18" id="pD9-7c-2Xm"/>
-                        <constraint firstItem="TLD-JD-XDc" firstAttribute="top" secondItem="wpZ-Le-b4e" secondAttribute="bottom" constant="20" id="ux7-0H-68A"/>
                         <constraint firstItem="wpZ-Le-b4e" firstAttribute="leading" secondItem="Rno-Nb-Fbr" secondAttribute="leading" id="voK-ta-Me7"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>

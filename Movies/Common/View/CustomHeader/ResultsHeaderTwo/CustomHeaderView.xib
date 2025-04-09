@@ -35,10 +35,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="250"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgo-FC-MI1">
-                                            <rect key="frame" x="0.0" y="117.66666666666666" width="15" height="15"/>
+                                            <rect key="frame" x="0.0" y="112.66666666666666" width="25" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="vw0-Kj-SqS"/>
-                                                <constraint firstAttribute="width" constant="15" id="zGh-im-rRr"/>
+                                                <constraint firstAttribute="height" constant="25" id="vw0-Kj-SqS"/>
+                                                <constraint firstAttribute="width" constant="25" id="zGh-im-rRr"/>
                                             </constraints>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" image="circle"/>
@@ -87,10 +87,10 @@
                                     <rect key="frame" x="190" y="0.0" width="150" height="250"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd8-9q-BKJ">
-                                            <rect key="frame" x="0.0" y="117.66666666666666" width="15" height="15"/>
+                                            <rect key="frame" x="0.0" y="112.66666666666666" width="25" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="15" id="MuD-pL-UIn"/>
-                                                <constraint firstAttribute="height" constant="15" id="d8M-CC-Jnh"/>
+                                                <constraint firstAttribute="width" constant="25" id="MuD-pL-UIn"/>
+                                                <constraint firstAttribute="height" constant="25" id="d8M-CC-Jnh"/>
                                             </constraints>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" image="circle"/>
@@ -164,7 +164,7 @@
                 <constraint firstItem="ppv-S1-i56" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="OXN-lj-0RC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="130" y="-4"/>
+            <point key="canvasLocation" x="284" y="1"/>
         </view>
     </objects>
     <resources>

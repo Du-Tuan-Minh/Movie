@@ -18,7 +18,6 @@ class SearchMoviesViewController: UIViewController {
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   @IBOutlet private weak var searchView: UISearchBar!
-  @IBOutlet private weak var compareButton: UIButton!
   
   //variable
   final private let reuseIdentifier: String = "SearchCell"
@@ -32,7 +31,6 @@ class SearchMoviesViewController: UIViewController {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupView()
     setupsearchBar()
     setupCollectionView()
     setupDearchBar()
@@ -45,7 +43,6 @@ class SearchMoviesViewController: UIViewController {
 extension SearchMoviesViewController {
   private func setupDearchBar() {
     searchView.searchTextField.translatesAutoresizingMaskIntoConstraints = false
-    
     NSLayoutConstraint.activate([
       searchView.searchTextField.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 16),
       searchView.searchTextField.trailingAnchor.constraint(equalTo: searchView.trailingAnchor, constant: -16),
@@ -53,10 +50,6 @@ extension SearchMoviesViewController {
       searchView.searchTextField.bottomAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 0),
       searchView.searchTextField.heightAnchor.constraint(equalToConstant: 75)
     ])
-  }
-  
-  private func setupView() {
-    CAGradientLayer().gradientButton(btn: compareButton)
   }
   
   private func setupsearchBar() {
@@ -68,6 +61,7 @@ extension SearchMoviesViewController {
     collectionView.dataSource = self
     collectionView.allowsMultipleSelection = true
     collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+    collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "FooterWrapper")
   }
   
   private func getMovies() -> Results<MovieModel> {
@@ -76,33 +70,16 @@ extension SearchMoviesViewController {
   
   private func historyCompare(selectedMovies: [MovieModel]) {
     let realm = try! Realm()
-    let history = ComparisonModel()
+    let compare = ComparisonModel()
     try! realm.write {
-      history.comparedMovies.append(objectsIn: selectedMovies)
-      realm.add(history)
+      compare.comparedMovies.append(objectsIn: selectedMovies)
+      realm.add(compare)
     }
   }
 }
 
 //MARK: Action
 extension SearchMoviesViewController {
-  @IBAction func compareTapped(_ sender: Any) {
-    let compareVC = CompareMoviesViewController()
-    compareVC.delegate = self
-    
-    switch searchModel {
-    case .searchTwo:
-      compareVC.compareModel = .compareTwo
-    case .searchMore:
-      compareVC.compareModel = .compareMore
-    }
-    
-    selectedMovies = selectsIndexs.map { filteredMovies[$0.row] }
-    historyCompare(selectedMovies: selectedMovies)
-    compareVC.selectedMovies = selectedMovies
-    navigationController?.pushViewController(compareVC, animated: true)
-  }
-  
   @IBAction func backTapped(_ sender: Any) {
     navigationController?.popViewController(animated: true)
   }
@@ -173,6 +150,26 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     return 10
   }
+  
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    if kind == UICollectionView.elementKindSectionFooter {
+      let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FooterWrapper", for: indexPath)
+      
+      footer.subviews.forEach { $0.removeFromSuperview() }
+      if let footerCell = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell {
+        footerCell.frame = footer.bounds
+        footerCell.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        footerCell.delegate = self
+        footer.addSubview(footerCell)
+      }
+      return footer
+    }
+    return UICollectionReusableView()
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    return CGSize(width: collectionView.frame.width, height: 60)
+  }
 }
 
 //MARK: Delegate
@@ -187,5 +184,24 @@ extension SearchMoviesViewController: CompareMovieDelegate {
     guard let selectedIndex = selectedIndex else { return}
     selectedMovies[index] = filteredMovies[selectedIndex]
     collectionView.reloadData()
+  }
+}
+
+extension SearchMoviesViewController: FooterCellDelegate {
+  func footerClick() {
+    let compareVC = CompareMoviesViewController()
+    compareVC.delegate = self
+    
+    switch searchModel {
+    case .searchTwo:
+      compareVC.compareModel = .compareTwo
+    case .searchMore:
+      compareVC.compareModel = .compareMore
+    }
+    
+    selectedMovies = selectsIndexs.map { filteredMovies[$0.row] }
+    historyCompare(selectedMovies: selectedMovies)
+    compareVC.selectedMovies = selectedMovies
+    navigationController?.pushViewController(compareVC, animated: true)
   }
 }

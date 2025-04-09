@@ -67,12 +67,25 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = (collectionView.frame.width - 10) / 2
-    return CGSize(width: width, height: 220)
+    let columns: CGFloat = 2
+    
+    switch UIDevice.current.userInterfaceIdiom {
+    case .pad:
+      let totalSpacing = 50 * (columns - 1)
+      let width = (collectionView.frame.width - totalSpacing) / columns
+      return CGSize(width: width, height: 350)
+    case .phone:
+      let totalSpacing = 10 * (columns - 1)
+      let width = (collectionView.frame.width - totalSpacing) / columns
+      return CGSize(width: width, height: 220)
+    default:
+      let width = (collectionView.frame.width - 10) / 2
+      return CGSize(width: width, height: 220)
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 30
+    return 40
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

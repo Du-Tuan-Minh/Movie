@@ -37,7 +37,7 @@ class ComparisonModel: Object {
 class HistoryFolderModel: Object {
   @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var folderName: String
-  @Persisted var comparisons: List<ComparisonModel>
+  @Persisted var comparisons: List<MovieModel>
   @Persisted var createdDate: Date
 }
 
@@ -71,11 +71,17 @@ class FoodModel: Object {
   @Persisted var title: String
   @Persisted var price: String
   @Persisted var pdfData: Data?
+  @Persisted var typeFoods: List<TypeFoodModel>
+}
+
+class TypeFoodModel: Object {
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
+  @Persisted var title: String
 }
 
 //HistoryBuyFoodModel
 class HistoryBuyFoodModel: Object {
   @Persisted(primaryKey: true) var id: String = UUID().uuidString
-  @Persisted var food: List<MovieModel>
+  @Persisted var food: List<FoodModel>
   @Persisted var createdAt: Date
 }

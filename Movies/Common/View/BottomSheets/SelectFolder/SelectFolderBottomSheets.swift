@@ -39,8 +39,8 @@ class SelectFolderBottomSheets: UIViewController {
   
   @IBAction func createFolderTapped(_ sender: Any) {
     let newfolder = NewFolderPopUp()
+    newfolder.delegate = self
     newfolder.appear(sender: self)
-    dismiss(animated: true)
   }
 }
 
@@ -66,5 +66,12 @@ extension SelectFolderBottomSheets: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 45
+  }
+}
+
+//MARK: Delegate
+extension SelectFolderBottomSheets: NewFolderPopUpDelegate {
+  func didCreateNewFolder() {
+    tableView.reloadData()
   }
 }

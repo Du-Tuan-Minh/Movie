@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultsViewController" customModule="Movies" customModuleProvider="target">
             <connections>
-                <outlet property="saveButton" destination="ix9-ln-Dq7" id="zkT-VQ-dqH"/>
                 <outlet property="tableView" destination="Fvk-7A-mrt" id="uKM-bM-VfQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +23,7 @@
                     <rect key="frame" x="0.0" y="100" width="393" height="752"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fvk-7A-mrt">
-                            <rect key="frame" x="16" y="15" width="361" height="562"/>
+                            <rect key="frame" x="16" y="15" width="361" height="637"/>
                             <color key="backgroundColor" name="blue"/>
                             <color key="sectionIndexBackgroundColor" name="blue"/>
                             <userDefinedRuntimeAttributes>
@@ -33,35 +32,13 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </tableView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ix9-ln-Dq7">
-                            <rect key="frame" x="46.666666666666657" y="607" width="300" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="300" id="3DW-fc-W0w"/>
-                                <constraint firstAttribute="height" constant="45" id="ZnU-Kc-lEQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Save">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="20"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="saveMoviesTapped:" destination="-1" eventType="touchUpInside" id="qrc-Fj-XZV"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" name="blue"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Fvk-7A-mrt" secondAttribute="trailing" constant="16" id="Iuo-4W-zo1"/>
-                        <constraint firstItem="ix9-ln-Dq7" firstAttribute="centerX" secondItem="xFg-BH-MBd" secondAttribute="centerX" id="Jkd-LF-3GC"/>
                         <constraint firstItem="Fvk-7A-mrt" firstAttribute="leading" secondItem="xFg-BH-MBd" secondAttribute="leading" constant="16" id="Q3G-Ht-1iy"/>
-                        <constraint firstItem="ix9-ln-Dq7" firstAttribute="top" secondItem="Fvk-7A-mrt" secondAttribute="bottom" constant="30" id="b8o-qn-DKs"/>
                         <constraint firstItem="Fvk-7A-mrt" firstAttribute="top" secondItem="xFg-BH-MBd" secondAttribute="top" constant="15" id="kEn-48-G5V"/>
-                        <constraint firstAttribute="bottom" secondItem="ix9-ln-Dq7" secondAttribute="bottom" constant="100" id="p8C-dN-Um7"/>
+                        <constraint firstAttribute="bottom" secondItem="Fvk-7A-mrt" secondAttribute="bottom" constant="100" id="zKJ-Bz-wTh"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

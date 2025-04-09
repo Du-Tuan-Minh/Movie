@@ -10,16 +10,14 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
-  
+  var coverView: UIView?
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     
     guard let screen = (scene as? UIWindowScene) else { return }
-    
     let windowScreen = UIWindow(windowScene: screen)
     let tabbarVC = TabbarViewController()
     let navi = UINavigationController(rootViewController: tabbarVC)
-    navi.setNavigationBarHidden(true, animated: false)
     
     windowScreen.rootViewController = navi
     windowScreen.makeKeyAndVisible()
@@ -34,26 +32,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
   func sceneDidBecomeActive(_ scene: UIScene) {
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    removeWhiteCoverView()
   }
   
   func sceneWillResignActive(_ scene: UIScene) {
-    // Called when the scene will move from an active state to an inactive state.
-    // This may occur due to temporary interruptions (ex. an incoming phone call).
+    addWhiteCoverView()
   }
   
   func sceneWillEnterForeground(_ scene: UIScene) {
-    // Called as the scene transitions from the background to the foreground.
-    // Use this method to undo the changes made on entering the background.
+    removeWhiteCoverView()
   }
   
   func sceneDidEnterBackground(_ scene: UIScene) {
-    // Called as the scene transitions from the foreground to the background.
-    // Use this method to save data, release shared resources, and store enough scene-specific state information
-    // to restore the scene back to its current state.
+    addWhiteCoverView()
   }
   
+  private func removeWhiteCoverView() {
+    DispatchQueue.main.async { [weak self] in
+      self?.coverView?.removeFromSuperview()
+      self?.coverView = nil
+    }
+  }
   
+  private func addWhiteCoverView() {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self, let window = self.window else { return }
+      
+      let whiteCover = UIView(frame: window.bounds)
+      whiteCover.backgroundColor = .white
+      
+      window.addSubview(whiteCover)
+      window.bringSubviewToFront(whiteCover)
+      self.coverView = whiteCover
+    }
+  }
 }
-

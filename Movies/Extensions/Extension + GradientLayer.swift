@@ -18,5 +18,6 @@ extension CAGradientLayer {
   
   func gradientButton(btn: UIButton) {
     addGradient(to: btn, colors: [UIColor(resource: .lightBlue), UIColor(resource: .violet)], startPoint:  CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
+    btn.layer.masksToBounds = true
   }
 }

@@ -24,7 +24,6 @@ class CompareMoviesViewController: UIViewController {
   
   //outlet
   @IBOutlet private weak var tableView: UITableView!
-  @IBOutlet private weak var compareButton: UIButton!
   
   //variable
   final private let reuseIdentifier: String = "CompareCell"
@@ -54,7 +53,6 @@ class CompareMoviesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
-    setupButton()
     chooseItemDropDown()
   }
 }
@@ -81,26 +79,10 @@ extension CompareMoviesViewController {
 
 //MARK: SetupVỉew
 extension CompareMoviesViewController {
-  private func setupButton() {
-    CAGradientLayer().gradientButton(btn: compareButton)
-  }
-  
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
-  }
-  
-  @IBAction func compareTapped(_ sender: Any) {
-    let resultVC = ResultsViewController()
-    switch compareModel {
-    case .compareTwo:
-      resultVC.resultModel = .ResultTwo
-    case .compareMore:
-      resultVC.resultModel = .ResultMore
-    }
-    resultVC.compareMovies = selectedMovies
-    navigationController?.pushViewController(resultVC, animated: true)
   }
   
   @IBAction func backTapped(_ sender: Any) {
@@ -129,6 +111,16 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
     return cell
   }
   
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell
+    footer?.delegate = self
+    return footer
+  }
+  
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 60
+  }
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 65
   }
@@ -141,6 +133,28 @@ extension CompareMoviesViewController: CompareCellDelegate {
     selectedIndexPath = indexPath
     menu.anchorView = cell
     menu.show()
+  }
+}
+
+extension CompareMoviesViewController: FooterCellDelegate {
+  func footerClick() {
+    let realm = try! Realm()
+    let history = HistoryFolderModel()
+    
+    try! realm.write {
+      history.comparisons.append(objectsIn: self.selectedMovies)
+      realm.add(history)
+    }
+    
+    let resultVC = ResultsViewController()
+    switch compareModel {
+    case .compareTwo:
+      resultVC.resultModel = .ResultTwo
+    case .compareMore:
+      resultVC.resultModel = .ResultMore
+    }
+    resultVC.compareMovies = selectedMovies
+    navigationController?.pushViewController(resultVC, animated: true)
   }
 }
 

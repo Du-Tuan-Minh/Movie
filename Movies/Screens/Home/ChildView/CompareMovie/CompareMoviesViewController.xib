@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompareMoviesViewController" customModule="Movies" customModuleProvider="target">
             <connections>
-                <outlet property="compareButton" destination="SSW-iD-AvU" id="sZC-of-moB"/>
                 <outlet property="tableView" destination="aII-N4-QA7" id="UD9-to-gg2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +23,7 @@
                     <rect key="frame" x="0.0" y="100" width="393" height="752"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aII-N4-QA7">
-                            <rect key="frame" x="0.0" y="15" width="393" height="582"/>
+                            <rect key="frame" x="0.0" y="15" width="393" height="687"/>
                             <color key="backgroundColor" name="blue"/>
                             <color key="sectionIndexBackgroundColor" name="blue"/>
                             <userDefinedRuntimeAttributes>
@@ -33,33 +32,11 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </tableView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSW-iD-AvU">
-                            <rect key="frame" x="46.666666666666657" y="607" width="300" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="773-q6-cle"/>
-                                <constraint firstAttribute="width" constant="300" id="BE2-lo-zDk"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Compare">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="20"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="compareTapped:" destination="-1" eventType="touchUpInside" id="sdG-Z8-Lha"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" name="blue"/>
                     <constraints>
-                        <constraint firstItem="SSW-iD-AvU" firstAttribute="top" secondItem="aII-N4-QA7" secondAttribute="bottom" constant="10" id="EKf-Vv-fgj"/>
-                        <constraint firstAttribute="bottom" secondItem="SSW-iD-AvU" secondAttribute="bottom" constant="100" id="UQH-4m-j86"/>
+                        <constraint firstAttribute="bottom" secondItem="aII-N4-QA7" secondAttribute="bottom" constant="50" id="4U3-HE-6mL"/>
                         <constraint firstAttribute="trailing" secondItem="aII-N4-QA7" secondAttribute="trailing" id="cm8-d1-cjg"/>
-                        <constraint firstItem="SSW-iD-AvU" firstAttribute="centerX" secondItem="hXc-VO-6T0" secondAttribute="centerX" id="hgb-Ec-fX5"/>
                         <constraint firstItem="aII-N4-QA7" firstAttribute="top" secondItem="hXc-VO-6T0" secondAttribute="top" constant="15" id="l8B-S2-5xf"/>
                         <constraint firstItem="aII-N4-QA7" firstAttribute="leading" secondItem="hXc-VO-6T0" secondAttribute="leading" id="ssT-gX-oZn"/>
                     </constraints>
