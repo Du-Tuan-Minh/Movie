@@ -19,6 +19,14 @@ class FooterCell: UIView {
   //varriable
   static let identifier: String = "FooterCell"
   weak var delegate: FooterCellDelegate?
+  var titleButton: String? {
+    get {
+      return footerButton.title(for: .normal)
+    }
+    set {
+      footerButton.setTitle(newValue, for: .normal)
+    }
+  }
   
   override func layoutSubviews() {
     super.layoutSubviews()

@@ -82,7 +82,6 @@ extension FolderWatchListViewController {
 
 //MARK: CollectionView
 extension FolderWatchListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
-  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return getListFolder().count
   }

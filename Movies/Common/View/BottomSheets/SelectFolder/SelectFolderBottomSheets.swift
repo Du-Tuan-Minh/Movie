@@ -61,6 +61,8 @@ extension SelectFolderBottomSheets: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectFolderCell")  else { return UITableViewCell() }
     cell.textLabel?.text = getTitleFolder()[indexPath.row].title
+    cell.contentView.backgroundColor = UIColor(resource: .graySmoke)
+    cell.textLabel?.textColor = UIColor(resource: .lightBlue)
     return cell
   }
   

@@ -35,7 +35,7 @@ class CompareMoviesViewController: UIViewController {
   //dropdown
   lazy var menu: DropDown = {
     let menu = DropDown()
-    menu.width = 250
+    menu.width = 150
     menu.dataSource = ItemCompareDropDown.allCases.map(\.rawValue)
     let images = [UIImage(systemName: "trash"), UIImage(systemName: "pencil")]
     menu.cellNib = UINib(nibName: "SelectCell", bundle: nil)
@@ -54,6 +54,7 @@ class CompareMoviesViewController: UIViewController {
     super.viewDidLoad()
     setupTableView()
     chooseItemDropDown()
+    self.enableEdgePanBackGesture()
   }
 }
 
@@ -114,6 +115,7 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell
     footer?.delegate = self
+    footer?.titleButton = "Compare"
     return footer
   }
   
@@ -131,7 +133,7 @@ extension CompareMoviesViewController: CompareCellDelegate {
   func didTapSelectButton(in cell: CompareCell) {
     guard let indexPath = tableView.indexPath(for: cell) else { return }
     selectedIndexPath = indexPath
-    menu.anchorView = cell
+    menu.anchorView = cell.btn
     menu.show()
   }
 }
@@ -170,14 +172,12 @@ extension CompareMoviesViewController {
         self.selectedMovies.remove(at: selectedIndexPath.row)
         self.tableView.reloadData()
         if selectedMovies.count < 2 {
-          if let searchVC = navigationController?.viewControllers.first(where: { $0 is SearchMoviesViewController }) as? SearchMoviesViewController {
-            searchVC.selectedMovies = selectedMovies
-            delegate?.backUploadMovies()
-            navigationController?.popViewController(animated: true)
-          }
+          delegate?.backUploadMovies()
+          navigationController?.popViewController(animated: true)
+          
         }
       case .replace:
-        delegate?.replaceUploadMovies(index)
+        delegate?.replaceUploadMovies(selectedIndexPath.row)
         navigationController?.popViewController(animated: true)
       }
     }

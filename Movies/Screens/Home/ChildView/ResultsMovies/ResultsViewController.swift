@@ -27,6 +27,8 @@ class ResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
+    setupTableViewFooterAndHeader()
+    self.enableEdgePanBackGesture()
   }
 }
 
@@ -42,6 +44,9 @@ extension ResultsViewController {
     case .ResultTwo:
       tableView.register(UINib(nibName: "ResultsCell", bundle: nil), forCellReuseIdentifier: "ResultsCell")
     }
+  }
+  
+  private func setupTableViewFooterAndHeader() {
     //create header tablebView on Case ResultTwo
     if resultModel == .ResultTwo {
       let headerView = CustomHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 250))
@@ -49,10 +54,17 @@ extension ResultsViewController {
       headerView.configureHeaderView(with: compareMovies[0], secondMovie: compareMovies[1])
       headerView.listMovie = compareMovies
       headerView.onMoviesSelected = { [weak self] selectedMovies in
-        self?.compareMovies = selectedMovies
+        self?.saveMoreMovies = selectedMovies
       }
       tableView.tableHeaderView = headerView
     }
+    
+    //create footer
+    guard let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell else { return }
+    footer.delegate = self
+    footer.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 80)
+    footer.titleButton = "Save"
+    tableView.tableFooterView = footer
   }
 }
 
@@ -94,32 +106,24 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
       let movie = compareMovies[section]
       headerView.configureCustomHeaderMoreView(with: movie, at: section)
       
-      let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleSection(_:)))
-      headerView.addGestureRecognizer(tapGesture)
+      //      let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleSection(_:)))
+      //      headerView.addGestureRecognizer(tapGesture)
       return headerView
     case .ResultTwo:
       return UIView()
     }
   }
   
-  @objc private func toggleSection(_ sender: UITapGestureRecognizer) {
-    guard let section = sender.view?.tag else { return }
-    if expandedSections.contains(section) {
-      expandedSections.remove(section)
-    } else {
-      expandedSections.insert(section)
-    }
-    tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-  }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    switch resultModel.self {
-    case .ResultMore:
-      break
-    case .ResultTwo:
-      break
-    }
-  }
+  // @objc private func toggleSection(_ sender: UITapGestureRecognizer) {
+  //    guard let section = sender.view?.tag else { return }
+  //    if expandedSections.contains(section) {
+  //      expandedSections.remove(section)
+  //    } else {
+  //      expandedSections.insert(section)
+  //    }
+  //    print(expandedSections.count)
+  //    tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+  //}
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     switch resultModel.self {
@@ -138,11 +142,11 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
       }
       cell.configureResultsMoreCell(with: compareMovies[indexPath.row])
       return cell
+      
     case .ResultTwo:
       guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultsCell") as? ResultsCell else {
         return UITableViewCell()
       }
-      
       guard compareMovies.count >= 2 else { return cell }
       let firstMovie = compareMovies[0]
       let secondMovie = compareMovies[1]
@@ -159,16 +163,6 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
     case .ResultTwo:
       return 95
     }
-  }
-  
-  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell
-    footer?.delegate = self
-    return footer
-  }
-  
-  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return 60
   }
 }
 
@@ -188,7 +182,6 @@ extension ResultsViewController: CustomHeaderMoreViewDelegate {
     } else {
       saveMoreMovies.removeAll { $0.id == selectedMovie.id }
     }
-    compareMovies = saveMoreMovies
   }
 }
 
@@ -196,7 +189,7 @@ extension ResultsViewController: FooterCellDelegate {
   func footerClick() {
     self.showAlert(title: "Save movie", message: "Do you want to save this movie to your favorites?") {
       let selectFolderVC = SelectFolderBottomSheets()
-      selectFolderVC.selectedMovies = self.compareMovies
+      selectFolderVC.selectedMovies = self.saveMoreMovies
       let sheet = SheetViewController(controller: selectFolderVC, sizes: [ .fixed(350)])
       sheet.hasBlurBackground = true
       sheet.cornerRadius = 20

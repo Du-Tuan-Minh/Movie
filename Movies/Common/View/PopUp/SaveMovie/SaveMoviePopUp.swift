@@ -28,7 +28,7 @@ class SaveMoviePopUp: UIViewController {
   }
   
   private func setupView() {
-    titleLabel.text = "Note \n \(textNote ?? "")"
+    titleLabel.text = "\(textNote ?? "")"
     CAGradientLayer().gradientButton(btn: saveButton)
   }
   

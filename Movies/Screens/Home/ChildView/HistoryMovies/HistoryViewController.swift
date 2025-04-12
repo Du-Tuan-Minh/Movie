@@ -46,11 +46,26 @@ extension HistoryViewController {
     return try! Realm().objects(HistoryFolderModel.self)
   }
   
+  //  private func loadMovie() {
+  //    let historyList = getListHistory()
+  //    groupedMovies = historyList.map { folder in
+  //      (createdDate: folder.createdDate, movies: Array(folder.comparisons))
+  //    }.sorted { $0.createdDate > $1.createdDate }
+  //    collectionView.reloadData()
+  //  }
+  
   private func loadMovie() {
     let historyList = getListHistory()
-    groupedMovies = historyList.map { folder in
-      (createdDate: folder.createdDate, movies: Array(folder.comparisons))
-    }.sorted { $0.createdDate > $1.createdDate }
+    var moviesGroupedByDate = [Date: [MovieModel]]()
+    
+    for folder in historyList {
+      let dateOnly = Calendar.current.startOfDay(for: folder.createdDate)
+      moviesGroupedByDate[dateOnly, default: []].append(contentsOf: Array(folder.comparisons))
+    }
+    
+    groupedMovies = moviesGroupedByDate.map { (date: Date, movies: [MovieModel]) -> (createdDate: Date, movies: [MovieModel]) in
+      return (createdDate: date, movies: movies)
+    } .sorted { $0.createdDate > $1.createdDate }
     collectionView.reloadData()
   }
 }
@@ -84,10 +99,10 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout, UICollectio
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //    let detailVC = DetailsViewController()
-    //    let selectedMovie = groupedMovies[indexPath.section].movies[indexPath.row]
-    //    detailVC.movie = selectedMovie
-    //    navigationController?.pushViewController(detailVC, animated: true)
+    let detailVC = DetailsViewController()
+    let selectedMovie = groupedMovies[indexPath.section].movies[indexPath.row]
+    detailVC.movie = selectedMovie
+    navigationController?.pushViewController(detailVC, animated: true)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,10 +129,7 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout, UICollectio
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     if kind == UICollectionView.elementKindSectionHeader {
-      let header = collectionView.dequeueReusableSupplementaryView(
-        ofKind: kind,
-        withReuseIdentifier: reuseIdentifierHistoryHeaderView,
-        for: indexPath) as! HistoryHeaderView
+      let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifierHistoryHeaderView, for: indexPath) as! HistoryHeaderView
       
       let createdDate = groupedMovies[indexPath.section].createdDate
       header.dateLabel.text =  Date().formattedDate(date: createdDate)

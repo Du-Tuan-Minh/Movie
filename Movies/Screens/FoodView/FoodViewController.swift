@@ -12,14 +12,18 @@ class FoodViewController: UIViewController {
   
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
+  @IBOutlet private weak var searchView: UISearchBar!
   
   //variable
   final private let reuseIdentifier: String = "FoodCell"
   final private let TypeFoodreuseIdentifier: String = "TypeFoodCell"
+  private var filterFood: Results<FoodModel>?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
+    setupSearchBar()
+    filterFood = getListFood()
   }
 }
 
@@ -35,6 +39,17 @@ extension FoodViewController {
     collectionView.alwaysBounceVertical = true
   }
   
+  private func setupSearchBar() {
+    searchView.searchTextField.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      searchView.searchTextField.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 16),
+      searchView.searchTextField.trailingAnchor.constraint(equalTo: searchView.trailingAnchor, constant: -16),
+      searchView.searchTextField.topAnchor.constraint(equalTo: searchView.topAnchor, constant: 0),
+      searchView.searchTextField.bottomAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 0),
+      searchView.searchTextField.heightAnchor.constraint(equalToConstant: 75)
+    ])
+  }
+  
   private func getListFood() -> Results<FoodModel> {
     return try! Realm().objects(FoodModel.self)
   }
@@ -44,15 +59,27 @@ extension FoodViewController {
   }
 }
 
-//MARK: CollectioView
+//MARK: SearchBar
+extension FoodViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    if searchText.isEmpty {
+      filterFood = getListFood()
+    } else {
+      filterFood = getListFood().filter("title CONTAINS[c] %@", searchText)
+    }
+    collectionView.reloadData()
+  }
+}
+
+//MARK: CompositionalLayout
 extension FoodViewController {
   private func createCompositionalLayout() -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
-      // Section 0: Horizontal scrolling
+      // Section 0: Horizontal
       if sectionIndex == 0 {
         return self.createHorizontalScrollSection()
       }
-      // Section 1: Vertical scrolling
+      // Section 1: Vertical
       else {
         return self.createVerticalScrollSection()
       }
@@ -67,13 +94,13 @@ extension FoodViewController {
   private func createHorizontalScrollSection() -> NSCollectionLayoutSection {
     // Item
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .estimated(100), heightDimension: .absolute(40)
+      widthDimension: .absolute(110), heightDimension: .absolute(40)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     
     // Group (horizontal)
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .estimated(100), heightDimension: .absolute(40)
+      widthDimension: .absolute(110), heightDimension: .absolute(40)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize, subitems: [item]
@@ -83,23 +110,22 @@ extension FoodViewController {
     let section = NSCollectionLayoutSection(group: group)
     section.interGroupSpacing = 10
     section.contentInsets = NSDirectionalEdgeInsets(
-      top: 10, leading: 10, bottom: 10, trailing: 10
+      top: 15, leading: 10, bottom: 15, trailing: 10
     )
     section.orthogonalScrollingBehavior = .continuous
-    
     return section
   }
   
   private func createVerticalScrollSection() -> NSCollectionLayoutSection {
     // Item
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(150)
+      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(145)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     
     // Group
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(150)
+      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(145)
     )
     let group = NSCollectionLayoutGroup.vertical(
       layoutSize: groupSize, subitems: [item]
@@ -111,19 +137,18 @@ extension FoodViewController {
     section.contentInsets = NSDirectionalEdgeInsets(
       top: 0, leading: 10, bottom: 20, trailing: 10
     )
-    
     return section
   }
 }
 
-// MARK: - UICollectionView DataSource & Delegate
+// MARK: - UICollectionView
 extension FoodViewController: UICollectionViewDataSource, UICollectionViewDelegate {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 2
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return section == 0 ? getListTypeFood().count : getListFood().count
+    return section == 0 ? getListTypeFood().count : filterFood?.count ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -134,16 +159,18 @@ extension FoodViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     else {
       let cell = collectionView.dequeueReusableCell( withReuseIdentifier: reuseIdentifier, for: indexPath ) as! FoodCell
-      cell.configureFoodCell(with: getListFood()[indexPath.item])
+      guard let filterFood = filterFood else { return cell }
+      cell.configureFoodCell(with: filterFood[indexPath.item])
       return cell
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if indexPath.section == 0 {
-      
+      let selectType = getListTypeFood()[indexPath.item]
+      filterFood = getListFood().filter("ANY typeFoods.id == %@", selectType.id)
+      collectionView.reloadSections(IndexSet(integer: 1))
     } else {
-      
     }
   }
 }

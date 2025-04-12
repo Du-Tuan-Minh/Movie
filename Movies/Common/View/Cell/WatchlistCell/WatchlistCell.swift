@@ -19,7 +19,7 @@ class WatchlistCell: UITableViewCell {
   @IBOutlet private weak var saveTimeLabel: UILabel!
   @IBOutlet private weak var revenueLabel: UILabel!
   
-  func configureWatchListCell(with movie: MovieModel, time: Date) {
+  func configureWatchListCell(with movie: MovieModel, time: Date, tag: Int) {
     guard let imageData = movie.pdfData else {return}
     movieImage.image = UIImage().convertDateToImage(data: imageData)
     userScoreImage.image = UIImage().convertUseScoreToImage(movieScore: movie.userScore)
@@ -29,5 +29,7 @@ class WatchlistCell: UITableViewCell {
     durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
     saveTimeLabel.text = "\(time)"
     revenueLabel.text = "\(movie.revenue) $"
+    
+    titleLabel.textColor = tag % 2 == 0 ? UIColor(resource: .lightBlue): UIColor(resource: .violet)
   }
 }

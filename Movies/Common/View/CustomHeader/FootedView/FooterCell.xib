@@ -20,7 +20,11 @@
                         <constraint firstAttribute="height" constant="45" id="m7K-q8-n2y"/>
                         <constraint firstAttribute="width" constant="300" id="n1j-ys-uQc"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="10"/>

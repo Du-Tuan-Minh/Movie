@@ -18,11 +18,8 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Haw-uC-mCz">
-                        <rect key="frame" x="41" y="26.666666666666671" width="80" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="Phd-kz-BDq"/>
-                            <constraint firstAttribute="height" constant="35" id="UOM-bp-Y0F"/>
-                        </constraints>
+                        <rect key="frame" x="10" y="0.0" width="142" height="88"/>
+                        <color key="backgroundColor" red="0.31630694869999998" green="0.60577899219999998" blue="0.95213836429999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal">
@@ -34,8 +31,10 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" name="graySmoke"/>
             <constraints>
-                <constraint firstItem="Haw-uC-mCz" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="odm-8X-3QN"/>
-                <constraint firstItem="Haw-uC-mCz" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zNP-4W-tiO"/>
+                <constraint firstAttribute="bottom" secondItem="Haw-uC-mCz" secondAttribute="bottom" id="J3s-VU-ANS"/>
+                <constraint firstItem="Haw-uC-mCz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Kfk-b7-GfT"/>
+                <constraint firstAttribute="trailing" secondItem="Haw-uC-mCz" secondAttribute="trailing" constant="10" id="Y1Q-cI-6XV"/>
+                <constraint firstItem="Haw-uC-mCz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lF7-lA-LbK"/>
             </constraints>
             <size key="customSize" width="162" height="88"/>
             <userDefinedRuntimeAttributes>

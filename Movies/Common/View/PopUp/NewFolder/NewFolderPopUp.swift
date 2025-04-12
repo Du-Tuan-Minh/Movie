@@ -42,9 +42,9 @@ extension NewFolderPopUp {
     view.backgroundColor = .clear
     self.configurePopUp(blureView: blureView, contentView: contentView)
     cancelButton.backgroundColor = UIColor(resource: .gray)
-    cancelButton.setTitleColor(.black, for: .normal)
+    cancelButton.setTitleColor(UIColor(resource: .violet), for: .normal)
     yesButton.backgroundColor = UIColor(resource: .gray)
-    yesButton.setTitleColor(.black, for: .normal)
+    yesButton.setTitleColor(UIColor(resource: .violet), for: .normal)
   }
   
   func appear(sender: UIViewController) {
@@ -56,10 +56,10 @@ extension NewFolderPopUp {
   func configureButton(button: UIButton) {
     if isStatus {
       button.backgroundColor = UIColor(resource: .blueSky)
-      button.setTitleColor(.white, for: .normal)
+      button.setTitleColor(UIColor(resource: .lightBlue), for: .normal)
     } else {
       button.backgroundColor = UIColor(resource: .gray)
-      button.setTitleColor(.black, for: .normal)
+      button.setTitleColor(UIColor(resource: .violet), for: .normal)
     }
   }
   

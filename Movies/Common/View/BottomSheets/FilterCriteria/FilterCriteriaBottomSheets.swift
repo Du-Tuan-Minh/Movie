@@ -48,16 +48,16 @@ extension FilterCriteriaBottomSheets: UITableViewDataSource, UITableViewDelegate
       dismiss(animated: true)
       return
     }
-    switch selectedFilter {
-    case .coment:
-      listMovieFilter.sort{ $0.comments.count < $1.comments.count}
-    case .rating:
-      listMovieFilter.sort{ $0.userScore < $1.userScore}
-    case .releaseYear:
-      listMovieFilter.sort { $0.releaseYear < $1.releaseYear }
+    
+    let sortedMovies = listMovieFilter.sorted {
+      switch selectedFilter {
+      case .coment: return $0.comments.count < $1.comments.count
+      case .rating: return $0.userScore < $1.userScore
+      case .releaseYear: return $0.releaseYear < $1.releaseYear
+      }
     }
     
-    chooseFilterCriteria?(listMovieFilter)
+    chooseFilterCriteria?(sortedMovies)
     dismiss(animated: true)
   }
   
@@ -66,12 +66,13 @@ extension FilterCriteriaBottomSheets: UITableViewDataSource, UITableViewDelegate
       return UITableViewCell()
     }
     cell.textLabel?.text = itemFilterCriteria[indexPath.row]
-    cell.backgroundColor = .lightBlue
+    cell.textLabel?.textColor = .lightBlue
+    cell.backgroundColor = UIColor(resource: .blue)
     cell.textLabel?.textAlignment = .center
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 45
+    return 50
   }
 }

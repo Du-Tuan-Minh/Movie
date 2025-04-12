@@ -33,19 +33,20 @@ class SearchMoviesViewController: UIViewController {
     super.viewDidLoad()
     setupsearchBar()
     setupCollectionView()
-    setupDearchBar()
+    setupSearchBar()
     movies = getMovies()
     filteredMovies = movies
+    self.enableEdgePanBackGesture()
   }
 }
 
 //MARK: setupView
 extension SearchMoviesViewController {
-  private func setupDearchBar() {
+  private func setupSearchBar() {
     searchView.searchTextField.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      searchView.searchTextField.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 16),
-      searchView.searchTextField.trailingAnchor.constraint(equalTo: searchView.trailingAnchor, constant: -16),
+      searchView.searchTextField.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 0),
+      searchView.searchTextField.trailingAnchor.constraint(equalTo: searchView.trailingAnchor, constant: 0),
       searchView.searchTextField.topAnchor.constraint(equalTo: searchView.topAnchor, constant: 0),
       searchView.searchTextField.bottomAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 0),
       searchView.searchTextField.heightAnchor.constraint(equalToConstant: 75)
@@ -160,6 +161,7 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
         footerCell.frame = footer.bounds
         footerCell.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         footerCell.delegate = self
+        footerCell.titleButton = "Next"
         footer.addSubview(footerCell)
       }
       return footer
@@ -175,8 +177,7 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
 //MARK: Delegate
 extension SearchMoviesViewController: CompareMovieDelegate {
   func backUploadMovies() {
-    // self.collectionView.reloadData()
-    self.collectionView.reloadSections(IndexSet(integer: 0))
+    self.collectionView.reloadData()
   }
   
   func replaceUploadMovies(_ index: Int) {

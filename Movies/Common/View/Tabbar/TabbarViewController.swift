@@ -17,8 +17,8 @@ class TabbarViewController: UITabBarController {
   
   private func setupTabbar() {
     var tabFrame = tabBar.frame
-    tabFrame.size.height = 450
-    tabFrame.origin.y = view.frame.height - 450
+    tabFrame.size.height = 470
+    tabFrame.origin.y = view.frame.height - 470
     tabBar.frame = tabFrame
     tabBar.backgroundColor = UIColor(resource: .darkBlue)
     tabBar.tintColor = UIColor(resource: .lightBlue)

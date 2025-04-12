@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     super.viewDidLoad()
     setupCollectionView()
     print(Realm.Configuration.defaultConfiguration.fileURL)
+    navigationController?.isNavigationBarHidden = true
   }
 }
 
@@ -40,19 +41,25 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let homeItem = HomeCellType.allCases[indexPath.row]
-    let searchMoviesVC = SearchMoviesViewController()
+    let folderVC = FolderWatchListViewController()
+    let searchVC = SearchMoviesViewController()
+    let historyVC = HistoryViewController()
     
     switch homeItem {
     case .compareTwoMovies:
-      searchMoviesVC.searchModel = .searchTwo
-      navigationController?.pushViewController(searchMoviesVC, animated: true)
+      searchVC.searchModel = .searchTwo
+      searchVC.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(searchVC, animated: true)
     case .compareMovies:
-      searchMoviesVC.searchModel = .searchMore
-      navigationController?.pushViewController(searchMoviesVC, animated: true)
+      searchVC.searchModel = .searchMore
+      searchVC.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(searchVC, animated: true)
     case .watchlist:
-      navigationController?.pushViewController(FolderWatchListViewController(), animated: true)
+      folderVC.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(folderVC, animated: true)
     case .history:
-      navigationController?.pushViewController(HistoryViewController(), animated: true)
+      historyVC.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(historyVC, animated: true)
     }
   }
   

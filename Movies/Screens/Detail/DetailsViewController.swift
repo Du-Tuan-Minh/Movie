@@ -40,6 +40,7 @@ class DetailsViewController: UIViewController {
     super.viewDidLoad()
     configureDetails()
     setupView()
+    self.enableEdgePanBackGesture()
   }
 }
 
@@ -62,8 +63,8 @@ extension DetailsViewController {
     durationLabel.text = "\(movie.duration) minutes"
     userScoreLabel.text = "\(movie.userScore)%"
     releaseYearLabel.text = "\(movie.releaseYear)"
-    generOneLabel.text = "  " + "\(movie.genres[0])" + "  "
-    generTwoLabel.text = "  1234  "
+    generOneLabel.text = movie.genres.isEmpty ? "  N/A  " : "  \(movie.genres[0])  "
+    generTwoLabel.text = movie.genres.count > 1 ? "  \(movie.genres[1])  " : "  N/A  "
   }
   
   private func uploadVideoToCloudinary(videoURL: URL) {

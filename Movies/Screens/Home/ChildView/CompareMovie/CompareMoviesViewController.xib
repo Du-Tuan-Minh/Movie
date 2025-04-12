@@ -20,10 +20,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXc-VO-6T0">
-                    <rect key="frame" x="0.0" y="100" width="393" height="752"/>
+                    <rect key="frame" x="0.0" y="105" width="393" height="747"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aII-N4-QA7">
-                            <rect key="frame" x="0.0" y="15" width="393" height="687"/>
+                            <rect key="frame" x="0.0" y="15" width="393" height="682"/>
                             <color key="backgroundColor" name="blue"/>
                             <color key="sectionIndexBackgroundColor" name="blue"/>
                             <userDefinedRuntimeAttributes>
@@ -46,7 +46,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guV-Cu-fmF">
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guV-Cu-fmF">
                     <rect key="frame" x="16" y="45" width="111" height="45"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -54,7 +54,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="backTapped:" destination="-1" eventType="touchUpInside" id="zsc-tQ-Ogq"/>
+                        <action selector="backTapped:" destination="-1" eventType="touchUpInside" id="Qvd-hO-NGp"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPa-PG-RCV">
@@ -66,23 +66,23 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="add"/>
                     <connections>
-                        <action selector="addTapped:" destination="-1" eventType="touchUpInside" id="kHS-FT-K7r"/>
+                        <action selector="addTapped:" destination="-1" eventType="touchUpInside" id="03E-UG-6pp"/>
                     </connections>
                 </button>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <viewLayoutGuide key="safeArea" id="Z6W-lf-Q9f"/>
             <color key="backgroundColor" name="darkBlue"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gPa-PG-RCV" secondAttribute="trailing" constant="16" id="1Dg-ub-M7X"/>
+                <constraint firstAttribute="trailing" secondItem="gPa-PG-RCV" secondAttribute="trailing" constant="16" id="1Dg-ub-M7X"/>
                 <constraint firstItem="hXc-VO-6T0" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="5JK-tI-Qcj"/>
                 <constraint firstItem="gPa-PG-RCV" firstAttribute="centerY" secondItem="guV-Cu-fmF" secondAttribute="centerY" id="Kna-fr-4Ni"/>
                 <constraint firstItem="guV-Cu-fmF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="OYn-er-HEu"/>
-                <constraint firstItem="hXc-VO-6T0" firstAttribute="top" secondItem="guV-Cu-fmF" secondAttribute="bottom" constant="10" id="RzD-6m-7Md"/>
-                <constraint firstItem="hXc-VO-6T0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ux4-dE-eum"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hXc-VO-6T0" secondAttribute="trailing" id="a4k-Ip-c6Y"/>
-                <constraint firstItem="guV-Cu-fmF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="d3X-2c-cAh"/>
+                <constraint firstItem="hXc-VO-6T0" firstAttribute="top" secondItem="guV-Cu-fmF" secondAttribute="bottom" constant="15" id="RzD-6m-7Md"/>
+                <constraint firstItem="hXc-VO-6T0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ux4-dE-eum"/>
+                <constraint firstAttribute="trailing" secondItem="hXc-VO-6T0" secondAttribute="trailing" id="a4k-Ip-c6Y"/>
+                <constraint firstItem="guV-Cu-fmF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="d3X-2c-cAh"/>
             </constraints>
-            <point key="canvasLocation" x="-508" y="-185"/>
+            <point key="canvasLocation" x="-509.16030534351142" y="-185.21126760563382"/>
         </view>
     </objects>
     <resources>

@@ -60,8 +60,14 @@
 		7360A5652D81277D0084E567 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A5612D81277D0084E567 /* WatchlistCell.swift */; };
 		738482D02D8B8F4B009BA729 /* SelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738482CE2D8B8F4B009BA729 /* SelectCell.swift */; };
 		738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738482CF2D8B8F4B009BA729 /* SelectCell.xib */; };
+		738F4BAD2DAA1FBC004F5C10 /* Extension + Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F4BAC2DAA1FB9004F5C10 /* Extension + Gesture.swift */; };
 		739480B32D77E90900980400 /* Extension + Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739480B22D77E8F800980400 /* Extension + Image.swift */; };
 		739574D82D78BBD1002B9C1F /* Extension + GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574D72D78BBBE002B9C1F /* Extension + GradientLayer.swift */; };
+		739EC4072DAAA22300446B29 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739EC4052DAAA22300446B29 /* OnboardingViewController.swift */; };
+		739EC4082DAAA22300446B29 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739EC4062DAAA22300446B29 /* OnboardingViewController.xib */; };
+		739EC40C2DAAA3D300446B29 /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739EC40A2DAAA3D300446B29 /* OnboardingCell.swift */; };
+		739EC40D2DAAA3D300446B29 /* OnboardingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739EC40B2DAAA3D300446B29 /* OnboardingCell.xib */; };
+		739EC4112DAAC1DC00446B29 /* OnboaringSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739EC4102DAAC1DC00446B29 /* OnboaringSlide.swift */; };
 		73A091962DA6D5C8002D2440 /* TypeFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A091942DA6D5C8002D2440 /* TypeFoodCell.swift */; };
 		73A091972DA6D5C8002D2440 /* TypeFoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */; };
 		73A94D502D931B43005333AB /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A94D4E2D931B43005333AB /* FoodViewController.swift */; };
@@ -146,8 +152,14 @@
 		7360A5622D81277D0084E567 /* WatchlistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCell.xib; sourceTree = "<group>"; };
 		738482CE2D8B8F4B009BA729 /* SelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCell.swift; sourceTree = "<group>"; };
 		738482CF2D8B8F4B009BA729 /* SelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCell.xib; sourceTree = "<group>"; };
+		738F4BAC2DAA1FB9004F5C10 /* Extension + Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Gesture.swift"; sourceTree = "<group>"; };
 		739480B22D77E8F800980400 /* Extension + Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Image.swift"; sourceTree = "<group>"; };
 		739574D72D78BBBE002B9C1F /* Extension + GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + GradientLayer.swift"; sourceTree = "<group>"; };
+		739EC4052DAAA22300446B29 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		739EC4062DAAA22300446B29 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
+		739EC40A2DAAA3D300446B29 /* OnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
+		739EC40B2DAAA3D300446B29 /* OnboardingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCell.xib; sourceTree = "<group>"; };
+		739EC4102DAAC1DC00446B29 /* OnboaringSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboaringSlide.swift; sourceTree = "<group>"; };
 		73A091942DA6D5C8002D2440 /* TypeFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeFoodCell.swift; sourceTree = "<group>"; };
 		73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypeFoodCell.xib; sourceTree = "<group>"; };
 		73A94D4E2D931B43005333AB /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +278,7 @@
 				73215BB92D71A90A00595A86 /* Helper */,
 				73215BBA2D71A91B00595A86 /* Extensions */,
 				73215BBC2D71A94200595A86 /* Screens */,
+				739EC4042DAAA1FB00446B29 /* Onboarding */,
 				73215BBD2D71A94A00595A86 /* Resources */,
 				73215BAA2D71A8F400595A86 /* Info.plist */,
 				73215BBF2D71AE8200595A86 /* Localizable.strings */,
@@ -283,6 +296,7 @@
 		73215BBA2D71A91B00595A86 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				738F4BAC2DAA1FB9004F5C10 /* Extension + Gesture.swift */,
 				73D0896B2D7B7D67001C61DB /* Extension + Border.swift */,
 				73DADFC92D823C3F00F1ACD7 /* Extension + PopUp.swift */,
 				73D0896D2D7B7D9B001C61DB /* Extension + Corner.swift */,
@@ -321,10 +335,10 @@
 			children = (
 				73215BA92D71A8F400595A86 /* Assets.xcassets */,
 				73215BA82D71A8F400595A86 /* AppDelegate.swift */,
-				73215BAC2D71A8F400595A86 /* LaunchScreen.storyboard */,
-				73215BAE2D71A8F400595A86 /* Main.storyboard */,
 				73215BAF2D71A8F400595A86 /* SceneDelegate.swift */,
 				73215BB02D71A8F400595A86 /* ViewController.swift */,
+				73215BAC2D71A8F400595A86 /* LaunchScreen.storyboard */,
+				73215BAE2D71A8F400595A86 /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -373,7 +387,8 @@
 		73215BD92D71BEE300595A86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				73215BE52D71D5A100595A86 /* RealmManager.swift */,
+				739EC40F2DAAC1A500446B29 /* OnboaringSlide */,
+				739EC40E2DAAC19B00446B29 /* RealmData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -390,6 +405,7 @@
 		73215BDF2D71C86700595A86 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				739EC4092DAAA3A700446B29 /* OnboardingCell */,
 				735F621B2D93BB4700B9C15D /* FoodCell */,
 				73DADFCB2D82442900F1ACD7 /* FolderCell */,
 				7360A5632D81277D0084E567 /* WatchlistCell */,
@@ -560,6 +576,40 @@
 			path = ChildView;
 			sourceTree = "<group>";
 		};
+		739EC4042DAAA1FB00446B29 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				739EC4052DAAA22300446B29 /* OnboardingViewController.swift */,
+				739EC4062DAAA22300446B29 /* OnboardingViewController.xib */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		739EC4092DAAA3A700446B29 /* OnboardingCell */ = {
+			isa = PBXGroup;
+			children = (
+				739EC40A2DAAA3D300446B29 /* OnboardingCell.swift */,
+				739EC40B2DAAA3D300446B29 /* OnboardingCell.xib */,
+			);
+			path = OnboardingCell;
+			sourceTree = "<group>";
+		};
+		739EC40E2DAAC19B00446B29 /* RealmData */ = {
+			isa = PBXGroup;
+			children = (
+				73215BE52D71D5A100595A86 /* RealmManager.swift */,
+			);
+			path = RealmData;
+			sourceTree = "<group>";
+		};
+		739EC40F2DAAC1A500446B29 /* OnboaringSlide */ = {
+			isa = PBXGroup;
+			children = (
+				739EC4102DAAC1DC00446B29 /* OnboaringSlide.swift */,
+			);
+			path = OnboaringSlide;
+			sourceTree = "<group>";
+		};
 		73A091932DA6D5A1002D2440 /* TypeFoodCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,6 +771,7 @@
 				73215BB52D71A8F400595A86 /* Assets.xcassets in Resources */,
 				7345CDE32DA17C3D00B33F6D /* FooterCell.xib in Resources */,
 				7360A55A2D81236B0084E567 /* HistoryViewController.xib in Resources */,
+				739EC40D2DAAA3D300446B29 /* OnboardingCell.xib in Resources */,
 				73215BC12D71AE8200595A86 /* Localizable.strings in Resources */,
 				73215BEA2D71D92800595A86 /* CompareMoviesViewController.xib in Resources */,
 				73215BCA2D71AFF500595A86 /* HomeViewController.xib in Resources */,
@@ -738,6 +789,7 @@
 				735F621E2D93BB6B00B9C15D /* FoodCell.xib in Resources */,
 				73A94D512D931B43005333AB /* FoodViewController.xib in Resources */,
 				738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */,
+				739EC4082DAAA22300446B29 /* OnboardingViewController.xib in Resources */,
 				7318A0DC2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.xib in Resources */,
 				73A091972DA6D5C8002D2440 /* TypeFoodCell.xib in Resources */,
 				7359B7D32D74E8170049FAB5 /* ResultsCell.xib in Resources */,
@@ -803,12 +855,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				73215BDD2D71BF2000595A86 /* TabbarViewController.swift in Sources */,
+				739EC4112DAAC1DC00446B29 /* OnboaringSlide.swift in Sources */,
 				73067F092D81CDD50042E0C4 /* SaveMoviePopUp.swift in Sources */,
 				739480B32D77E90900980400 /* Extension + Image.swift in Sources */,
 				7355C6812D9CC9D7005A2D16 /* Extension + Date.swift in Sources */,
 				735E2B332D869A8A00BB3562 /* CustomHeaderMoreView.swift in Sources */,
 				732E32402D9F3388005A0E9C /* HistoryHeaderView.swift in Sources */,
 				73215BB22D71A8F400595A86 /* AppDelegate.swift in Sources */,
+				739EC4072DAAA22300446B29 /* OnboardingViewController.swift in Sources */,
 				73E5DD632D8376CC00C75E53 /* SelectFolderBottomSheets.swift in Sources */,
 				73D0896A2D7B7CAA001C61DB /* Extension + Radius.swift in Sources */,
 				73DADFC12D82355000F1ACD7 /* NewFolderPopUp.swift in Sources */,
@@ -833,10 +887,12 @@
 				73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */,
 				73215BEB2D71D92800595A86 /* CompareMoviesViewController.swift in Sources */,
 				73DADFCA2D823C4E00F1ACD7 /* Extension + PopUp.swift in Sources */,
+				739EC40C2DAAA3D300446B29 /* OnboardingCell.swift in Sources */,
 				73C05BCB2D9E36F5006DAC44 /* PlayVideoViewController.swift in Sources */,
 				735F621F2D93BB6B00B9C15D /* FoodCell.swift in Sources */,
 				73001FF72D75F4A400ACB84B /* SearchCell.swift in Sources */,
 				73DADFC72D8239A900F1ACD7 /* FolderWatchListViewController.swift in Sources */,
+				738F4BAD2DAA1FBC004F5C10 /* Extension + Gesture.swift in Sources */,
 				73215BE42D71C8A900595A86 /* HomeCell.swift in Sources */,
 				73D0896C2D7B7D81001C61DB /* Extension + Border.swift in Sources */,
 				7360A5572D811B860084E567 /* SettingCell.swift in Sources */,

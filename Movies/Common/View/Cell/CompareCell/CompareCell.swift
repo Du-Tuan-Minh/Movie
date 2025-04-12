@@ -20,6 +20,9 @@ class CompareCell: UITableViewCell {
   
   //variable
   weak var delegate: CompareCellDelegate?
+  var btn: UIButton? {
+    return selectButton
+  }
   
   func configureCompareCell(with model: MovieModel) {
     titleLabel.text = model.title

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="sTz-eT-xOy" id="CMl-sL-8cG"/>
+                <outlet property="nextButton" destination="HNB-oi-5BK" id="PlS-a3-IHy"/>
+                <outlet property="pageControl" destination="LbK-zP-hwQ" id="Z4i-Vh-ANc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNB-oi-5BK">
+                    <rect key="frame" x="71.666666666666686" y="723" width="250" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="c64-8z-oGR"/>
+                        <constraint firstAttribute="width" constant="250" id="oFL-nG-xoT"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Next"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="nextTapped:" destination="-1" eventType="touchUpInside" id="ALc-Ur-R5C"/>
+                    </connections>
+                </button>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="LbK-zP-hwQ">
+                    <rect key="frame" x="146.66666666666666" y="683" width="100" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="hSn-H3-OcY"/>
+                        <constraint firstAttribute="width" constant="100" id="sGL-fd-EIM"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" systemColor="systemGray2Color"/>
+                    <color key="currentPageIndicatorTintColor" name="lightBlue"/>
+                </pageControl>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sTz-eT-xOy">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="673"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="y9q-JS-HIg">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="LbK-zP-hwQ" firstAttribute="top" secondItem="sTz-eT-xOy" secondAttribute="bottom" constant="10" id="8O5-Lv-xgG"/>
+                <constraint firstItem="sTz-eT-xOy" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="CWJ-TZ-HxA"/>
+                <constraint firstItem="HNB-oi-5BK" firstAttribute="top" secondItem="LbK-zP-hwQ" secondAttribute="bottom" constant="15" id="GvT-aC-DdM"/>
+                <constraint firstItem="sTz-eT-xOy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="I9D-u3-Zx5"/>
+                <constraint firstItem="sTz-eT-xOy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MMb-eH-O83"/>
+                <constraint firstItem="HNB-oi-5BK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c7c-Hc-hzu"/>
+                <constraint firstItem="LbK-zP-hwQ" firstAttribute="centerX" secondItem="HNB-oi-5BK" secondAttribute="centerX" id="caY-Hz-r8r"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="HNB-oi-5BK" secondAttribute="bottom" constant="50" id="ta7-8d-Y7q"/>
+            </constraints>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="lightBlue">
+            <color red="0.28235294117647058" green="0.81176470588235294" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

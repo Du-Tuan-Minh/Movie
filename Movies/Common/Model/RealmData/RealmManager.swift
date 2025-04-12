@@ -54,7 +54,7 @@ class WatchlistFolderModel: Object {
   @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var title: String
   @Persisted var movies: List<WatchlistModel>
-  @Persisted var createdDate: Date
+  @Persisted var createdDate: Date 
 }
 
 //CommentModel
