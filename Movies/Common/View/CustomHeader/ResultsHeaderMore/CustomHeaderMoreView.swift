@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CustomHeaderMoreViewDelegate: AnyObject {
+protocol ChooseButtonSessionDelegate: AnyObject {
   func chooseMovie(view: UIView)
 }
 
@@ -22,8 +22,12 @@ class CustomHeaderMoreView: UIView {
   
   //variable
   static let identifier = "CustomHeaderMoreView"
-  weak var delegate: CustomHeaderMoreViewDelegate?
-  var isChoose: Bool = false
+  weak var delegate: ChooseButtonSessionDelegate?
+  var isChoose: Bool = false {
+    didSet {
+      statusChooseButton.setImage(isChoose ? UIImage(resource: .tickCircle) : UIImage(resource: .circle), for: .normal)
+    }
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -37,7 +41,6 @@ class CustomHeaderMoreView: UIView {
   
   @IBAction func chooseMovieTapped(_ sender: Any) {
     isChoose.toggle()
-    statusChooseButton.setImage(isChoose ? UIImage(resource: .tickCircle) : UIImage(resource: .circle), for: .normal)
     delegate?.chooseMovie(view: self)
   }
   

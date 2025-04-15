@@ -25,6 +25,7 @@ class NewFolderPopUp: UIViewController {
   @IBOutlet private weak var cancelButton: UIButton!
   @IBOutlet private weak var yesButton: UIButton!
   @IBOutlet private weak var titleTextField: UITextField!
+  @IBOutlet private weak var titleLabel: UILabel!
   
   private var isStatus = false
   weak var delegate: NewFolderPopUpDelegate?
@@ -32,14 +33,20 @@ class NewFolderPopUp: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    configView()
+    setupButton()
+    setupText()
   }
 }
 
 //MARK: Setup View
 extension NewFolderPopUp {
-  private func configView() {
-    view.backgroundColor = .clear
+  private func setupText() {
+    titleLabel.text = "new_folder".localized()
+    yesButton.setTitle("yes".localized(), for: .normal)
+    cancelButton.setTitle("cancel".localized(), for: .normal)
+  }
+  
+  private func setupButton() {
     self.configurePopUp(blureView: blureView, contentView: contentView)
     cancelButton.backgroundColor = UIColor(resource: .gray)
     cancelButton.setTitleColor(UIColor(resource: .violet), for: .normal)
@@ -98,7 +105,6 @@ extension NewFolderPopUp {
     try! realm.write {
       realm.add(newFolder)
     }
-    
     delegate?.didCreateNewFolder()
     hiden()
   }

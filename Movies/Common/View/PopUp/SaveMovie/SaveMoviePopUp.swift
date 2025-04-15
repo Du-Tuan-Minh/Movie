@@ -29,6 +29,7 @@ class SaveMoviePopUp: UIViewController {
   
   private func setupView() {
     titleLabel.text = "\(textNote ?? "")"
+    saveButton.setTitle("save".localized(), for: .normal)
     CAGradientLayer().gradientButton(btn: saveButton)
   }
   

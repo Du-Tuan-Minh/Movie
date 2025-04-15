@@ -13,7 +13,7 @@ extension UIViewController {
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
       onAction()
     }
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let cancelAction = UIAlertAction(title: "cancel".localized(), style: .cancel, handler: nil)
     alert.addAction(okAction)
     alert.addAction(cancelAction)
     present(alert, animated: true)

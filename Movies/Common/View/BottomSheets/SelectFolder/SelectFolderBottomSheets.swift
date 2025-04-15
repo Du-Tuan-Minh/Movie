@@ -12,7 +12,7 @@ class SelectFolderBottomSheets: UIViewController {
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var newFolderButton: UIButton!
-  
+  @IBOutlet private weak var titleLabel: UILabel!
   //variable
   var selectedMovies: [MovieModel] = []
   
@@ -24,6 +24,8 @@ class SelectFolderBottomSheets: UIViewController {
   }
   
   private func setupView() {
+    titleLabel.text = "select_folder".localized()
+    newFolderButton.setTitle("new_folder".localized(), for: .normal)
     CAGradientLayer().gradientButton(btn: newFolderButton)
   }
   

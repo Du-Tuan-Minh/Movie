@@ -7,10 +7,6 @@
 
 import UIKit
 
-enum UserDefaultsKey {
-  static let hasSeenOnboarding = "hasSeenOnboarding"
-}
-
 struct OnboaringSlide {
   var title: String
   var description: String

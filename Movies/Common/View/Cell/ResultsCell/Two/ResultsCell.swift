@@ -16,12 +16,12 @@ struct ResultsCompare {
 extension ResultsCompare {
   static func compareMovies(firstMovie: MovieModel, secondMovie: MovieModel) -> [ResultsCompare] {
     return [
-      ResultsCompare(title: "Duration", firstMovieValue: Date().toHoursAndMinutes(time: firstMovie.duration), secondMovieValue: Date().toHoursAndMinutes(time: secondMovie.duration)),
-      ResultsCompare(title: "Time", firstMovieValue: "\(firstMovie.releaseYear)", secondMovieValue: "\(secondMovie.releaseYear)"),
-      ResultsCompare(title: "Genres", firstMovieValue: firstMovie.genres.joined(separator: ", "), secondMovieValue: secondMovie.genres.joined(separator: ", ")),
-      ResultsCompare(title: "User Score", firstMovieValue: "\(firstMovie.userScore)/10", secondMovieValue: "\(secondMovie.userScore)/10"),
-      ResultsCompare(title: "Budget", firstMovieValue: "$\(firstMovie.budget)", secondMovieValue: "$\(secondMovie.budget)"),
-      ResultsCompare(title: "Revenue", firstMovieValue: "$\(firstMovie.revenue)", secondMovieValue: "$\(secondMovie.revenue)")
+      ResultsCompare(title: "duration".localized(), firstMovieValue: Date().toHoursAndMinutes(time: firstMovie.duration), secondMovieValue: Date().toHoursAndMinutes(time: secondMovie.duration)),
+      ResultsCompare(title: "time".localized(), firstMovieValue: "\(firstMovie.releaseYear)", secondMovieValue: "\(secondMovie.releaseYear)"),
+      ResultsCompare(title: "genres".localized(), firstMovieValue: firstMovie.genres.joined(separator: ", "), secondMovieValue: secondMovie.genres.joined(separator: ", ")),
+      ResultsCompare(title: "userScore".localized(), firstMovieValue: "\(firstMovie.userScore)/10", secondMovieValue: "\(secondMovie.userScore)/10"),
+      ResultsCompare(title: "budget".localized(), firstMovieValue: "$\(firstMovie.budget)", secondMovieValue: "$\(secondMovie.budget)"),
+      ResultsCompare(title: "revenue".localized(), firstMovieValue: "$\(firstMovie.revenue)", secondMovieValue: "$\(secondMovie.revenue)")
     ]
   }
 }
@@ -47,7 +47,7 @@ class ResultsCell: UITableViewCell {
     
     let resultItem = results[index]
     titleLabel.text = resultItem.title
-    let isShowImage = resultItem.title == "User Score"
+    let isShowImage = resultItem.title == "userScore".localized()
     
     titleFirstLabel.isHidden = isShowImage
     titleSecondLabel.isHidden = isShowImage

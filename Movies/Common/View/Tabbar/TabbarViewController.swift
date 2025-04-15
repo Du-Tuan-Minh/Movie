@@ -28,20 +28,20 @@ class TabbarViewController: UITabBarController {
   
   private func configureTabbar() {
     let homeVC = HomeViewController()
-    let watchListVC = FolderWatchListViewController()
+    let chatVC = ChatViewController()
     let foodVC = FoodViewController()
     let settingVC = SettingViewController()
     
-    homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(resource: .home), selectedImage: nil)
-    watchListVC.tabBarItem = UITabBarItem(title: "WatchList", image: UIImage(resource: .watchList), selectedImage: nil)
-    foodVC.tabBarItem = UITabBarItem(title: "Food", image: UIImage(resource: .food), selectedImage: nil)
-    settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(resource: .setting), selectedImage: nil)
+    homeVC.tabBarItem = UITabBarItem(title: "home".localized(), image: UIImage(resource: .home), selectedImage: nil)
+    chatVC.tabBarItem = UITabBarItem(title: "chat".localized(), image: UIImage(resource: .message), selectedImage: nil)
+    foodVC.tabBarItem = UITabBarItem(title: "food".localized(), image: UIImage(resource: .food), selectedImage: nil)
+    settingVC.tabBarItem = UITabBarItem(title: "setting".localized(), image: UIImage(resource: .setting), selectedImage: nil)
     
     let homeNav = UINavigationController(rootViewController: homeVC)
-    let watchListNav = UINavigationController(rootViewController: watchListVC)
+    let chatNav = UINavigationController(rootViewController: chatVC)
     let foodNaV = UINavigationController(rootViewController: foodVC)
     let settingNav = UINavigationController(rootViewController: settingVC)
     
-    viewControllers = [homeNav, watchListNav, foodNaV, settingNav]
+    viewControllers = [homeNav, chatNav, foodNaV, settingNav]
   }
 }

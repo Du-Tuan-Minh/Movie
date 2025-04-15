@@ -77,6 +77,11 @@ class FoodModel: Object {
 class TypeFoodModel: Object {
   @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var title: String
+//  @Persisted var describe: String
+//  @Persisted var userScore: String
+//  @Persisted var pdfData: Data?
+//  @Persisted var total: Int
+//  @Persisted var price: Double
 }
 
 //HistoryBuyFoodModel

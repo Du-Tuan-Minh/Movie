@@ -5,3 +5,47 @@
   Created by DuTuanMinh on 28/2/25.
   
 */
+"search" = "Search";
+"textHere" = "Text here";
+"home" = "Home";
+"watchlist" = "Watchlist";
+"history" = "History";
+"setting" = "Setting";
+"results" = "Results";
+"duration" = "Duration";
+"time" = "Time";
+"genres" = "Genres";
+"userScore" = "User score";
+"budget" = "Budget";
+"revenue" = "Revenue";
+"save" = "Save";
+"compare" = "Compare";
+"delete" = "Delete";
+"replace" = "Replace";
+"next" = "Next";
+"aboutApp" = "About App";
+"privacy_policy" = "Privacy & Policy";
+"rating" = "Rating";
+"feedBack" = "FeedBack";
+"yes" = "Yes";
+"cancel" = "Cancel";
+"food" = "Food";
+"chat" = "Chat";
+"compare_Two_Movies" = "Compare Two \n Movies";
+"compare_Movies" = "Compare Movies";
+"select_folder" = "Select Folder";
+"new_folder" = "New folder";
+"food" = "FoodGo";
+"language" = "Language";
+"do_you_want_to_delete_everything" = "Do you want to delete everything";
+"my_list" = "Mylist";
+"rename_the_folder" = "Rename the folder";
+"total" = "Total";
+"order_now" = "ORDER NOW";
+"release_date" = "Release date";
+"description" = "Description";
+"upload_video" = "Upload Video";
+"coment" = "Coment";
+"releaseYear" = "Release Year";
+"save_movie" = "Save movie";
+"Do_you_want_to_save_movie" = "Bạn có muốn lưu bộ phim này vào mục yêu thích không?";

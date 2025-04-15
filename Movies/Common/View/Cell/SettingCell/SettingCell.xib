@@ -17,16 +17,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="342" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Itk-CW-atb">
-                        <rect key="frame" x="16" y="27" width="30" height="30"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Itk-CW-atb">
+                        <rect key="frame" x="16" y="29.666666666666671" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="RJq-8A-uKp"/>
-                            <constraint firstAttribute="height" constant="30" id="zMl-j2-Vie"/>
+                            <constraint firstAttribute="width" constant="25" id="RJq-8A-uKp"/>
+                            <constraint firstAttribute="height" constant="25" id="zMl-j2-Vie"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3O-QN-ep6">
-                        <rect key="frame" x="56" y="31.666666666666671" width="43.666666666666657" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <rect key="frame" x="51" y="31.666666666666671" width="41.333333333333343" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>

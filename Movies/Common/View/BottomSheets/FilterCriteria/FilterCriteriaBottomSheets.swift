@@ -8,9 +8,20 @@
 import UIKit
 
 enum FilterCriteriaModel: String, CaseIterable {
-  case coment = "Coment"
-  case rating = "Rating"
-  case releaseYear = "Release Year"
+  case coment
+  case rating
+  case releaseYear
+  
+  var title: String {
+    switch self {
+    case .coment:
+      return "coment".localized()
+    case .rating:
+      return "rating".localized()
+    case .releaseYear:
+      return "releaseYear".localized()
+    }
+  }
 }
 
 class FilterCriteriaBottomSheets: UIViewController {
@@ -19,7 +30,7 @@ class FilterCriteriaBottomSheets: UIViewController {
   @IBOutlet private weak var tableView: UITableView!
   
   //variable
-  private let itemFilterCriteria = FilterCriteriaModel.allCases.map(\.rawValue)
+  private let itemFilterCriteria = FilterCriteriaModel.allCases.map(\.title)
   var listMovieFilter = [MovieModel]()
   var chooseFilterCriteria: (([MovieModel]) -> Void)?
   

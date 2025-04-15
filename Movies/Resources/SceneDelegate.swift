@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let screen = (scene as? UIWindowScene) else { return }
     let windowScreen = UIWindow(windowScene: screen)
     
-    let hasSeenOnBoarding = UserDefaults.standard.bool(forKey: UserDefaultsKey.hasSeenOnboarding)
+    let hasSeenOnBoarding = UserDefaults.standard.bool(forKey: UserDefaultKey().hasSeenOnboarding)
     
     if hasSeenOnBoarding {
       windowScreen.rootViewController = TabbarViewController()

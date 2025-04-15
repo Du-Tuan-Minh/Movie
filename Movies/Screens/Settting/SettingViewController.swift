@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FittedSheets
 
 class SettingViewController: UIViewController {
   
   //outlet
   @IBOutlet private weak var tableView: UITableView!
+  @IBOutlet private weak var titleButton: UIButton!
   
   //variable
   final private let reuseIdentifier: String = "SettingCell"
@@ -18,15 +20,17 @@ class SettingViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
-  }
-  
-  @IBAction func backTapped(_ sender: Any) {
-    navigationController?.popViewController(animated: true)
+    setupView()
   }
 }
 
 //MARK: setupView
 extension SettingViewController {
+  private func setupView() {
+    titleButton.setTitle("setting".localized(), for: .normal)
+    navigationController?.isNavigationBarHidden = true
+  }
+  
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
@@ -34,14 +38,43 @@ extension SettingViewController {
   }
 }
 
+//MARK: Action
+extension SettingViewController {
+  @IBAction func backTapped(_ sender: Any) {
+    navigationController?.popViewController(animated: true)
+  }
+}
+
 //MARK: TableView
 extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return SettingCellType.allCases.count
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+    tableView.deselectRow(at: indexPath, animated: true)
+    let listCell = SettingCellType.allCases[indexPath.row]
+    switch listCell {
+    case .aboutApp:
+      let aboutAppVC = AboutAppViewController()
+      navigationController?.pushViewController(aboutAppVC, animated: true)
+    case .primaryPolicy:
+      break
+    case .rating:
+      break
+    case .feedBack:
+      let feedbackVC = FeedbackViewController()
+      let sheet = SheetViewController(controller: feedbackVC, sizes: [.percent(0.9)])
+      sheet.hasBlurBackground = true
+      sheet.cornerRadius = 20
+      self.present(sheet, animated: true)
+    case .appLanguage:
+      let languageVC = LanguageBottomSheets()
+      let sheet = SheetViewController(controller: languageVC, sizes: [.fixed(200)])
+      sheet.hasBlurBackground = true
+      sheet.cornerRadius = 20
+      self.present(sheet, animated: true)
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,7 +82,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
       return UITableViewCell()
     }
     let settingItem = SettingCellType.allCases[indexPath.row]
-    cell.configuareSettingCell(with: settingItem.image, title: settingItem.rawValue)
+    cell.configuareSettingCell(with: settingItem.image, title: settingItem.title)
     return cell
   }
   

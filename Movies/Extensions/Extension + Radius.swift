@@ -571,3 +571,14 @@ extension UIView {
     ])
   }
 }
+
+public extension String {
+  func localized() -> String {
+    let languageCode = UserDefaultKey.shared.LocalizeDefaultLanguage
+    if let path = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+       let bundle = Bundle(path: path) {
+      return NSLocalizedString(self, bundle: bundle, comment: "")
+    }
+    return self
+  }
+}

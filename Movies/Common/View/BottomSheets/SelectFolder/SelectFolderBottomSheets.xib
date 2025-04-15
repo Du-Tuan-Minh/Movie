@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="newFolderButton" destination="yyI-Ir-hM4" id="UNx-Hv-FuG"/>
                 <outlet property="tableView" destination="4gI-wE-uxX" id="2fZ-99-SPS"/>
+                <outlet property="titleLabel" destination="F0b-KU-CzL" id="mmt-E4-8U3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,7 +35,7 @@
                     </constraints>
                     <color key="sectionIndexBackgroundColor" name="graySmoke"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyI-Ir-hM4">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyI-Ir-hM4">
                     <rect key="frame" x="16" y="285" width="361" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="OyY-g8-7sM"/>

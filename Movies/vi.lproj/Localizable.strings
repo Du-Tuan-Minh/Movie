@@ -5,3 +5,47 @@
   Created by DuTuanMinh on 28/2/25.
   
 */
+"search" = "Tìm kiếm";
+"textHere" = "Nhập tại đây";
+"home" = "Trang chủ";
+"watchlist" = "Danh sách";
+"history" = "Lịch sử";
+"setting" = "Cài đặt";
+"results" = "Kết quả";
+"duration" = "Thời lượng";
+"time" = "Thời gian";
+"genres" = "Thể loại";
+"userScore" = "Đánh giá";
+"budget" = "Ngân sách";
+"revenue" = "Doanh thu";
+"save" = "Lưu";
+"compare" = "So sánh";
+"delete" = "Xóa";
+"replace" = "Thay thế";
+"next" = "Tiếp theo";
+"aboutApp" = "Giới thiệu về ứng dụng";
+"privacy_policy" = "Quyền riêng tư & Chính sách";
+"rating" = "Xếp hạng";
+"feedBack" = "Phản hồi";
+"yes" = "Có";
+"cancel" = "Huỷ";
+"food" = "Đồ ăn";
+"chat" = "Nhắn tin";
+"compare_Two_Movies" = "So sánh \n hai phim";
+"compare_Movies" = "So sánh phim";
+"select_folder" = "Chọn thư mục";
+"new_folder" = "Thư mục mới";
+"food" = "Ăn gì cũng có";
+"language" = "Ngôn ngữ";
+"do_you_want_to_delete_everything" = "Bạn có muốn xóa tất cả mọi thứ không";
+"my_list" = "Danh sách yêu thích";
+"rename_the_folder" = "Đổi tên thư mục";
+"total" = "Tổng";
+"order_now" = "ĐẶT HÀNG NGAY";
+"release_date" = "Ngày phát hành";
+"description" = "Nội dung";
+"upload_video" = "Tải lên Video";
+"coment" = "Bình luận";
+"releaseYear" = "Năm phát hành";
+"save_movie" = "Lưu phim";
+"Do_you_want_to_save_movie" = "Bạn có muốn lưu bộ phim này vào mục yêu thích không?";

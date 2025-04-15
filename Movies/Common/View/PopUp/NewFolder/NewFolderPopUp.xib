@@ -14,6 +14,7 @@
                 <outlet property="blureView" destination="RuT-PP-L6Y" id="aLH-mQ-F1x"/>
                 <outlet property="cancelButton" destination="9uT-CB-ul1" id="btP-g4-iwn"/>
                 <outlet property="contentView" destination="LOc-5z-jm8" id="niH-PF-Cdd"/>
+                <outlet property="titleLabel" destination="iMX-pa-Y8M" id="Zed-yE-EEe"/>
                 <outlet property="titleTextField" destination="xIC-Ha-myO" id="nS1-5g-mU6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yesButton" destination="aHo-eK-r6w" id="aDY-06-0N7"/>
@@ -110,7 +111,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" name="graySmoke"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="LOc-5z-jm8" firstAttribute="centerY" secondItem="RuT-PP-L6Y" secondAttribute="centerY" id="ZAo-Zm-anD"/>
                         <constraint firstItem="LOc-5z-jm8" firstAttribute="centerX" secondItem="RuT-PP-L6Y" secondAttribute="centerX" id="czj-8O-pum"/>
@@ -132,9 +133,6 @@
         <image name="newFolder" width="195" height="176"/>
         <namedColor name="blue">
             <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="graySmoke">
-            <color red="0.16862745098039217" green="0.16862745098039217" blue="0.21568627450980393" alpha="0.74000000953674316" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightBlue">
             <color red="0.28235294117647058" green="0.81176470588235294" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

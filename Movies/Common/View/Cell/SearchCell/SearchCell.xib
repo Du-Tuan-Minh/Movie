@@ -53,6 +53,13 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="blue"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzR-60-tys">
@@ -94,7 +101,7 @@
             </constraints>
             <size key="customSize" width="167" height="275"/>
             <connections>
-                <outlet property="ContentView" destination="Nn7-Ge-ciY" id="ot0-IX-h6x"/>
+                <outlet property="containView" destination="Nn7-Ge-ciY" id="s3F-E4-n7d"/>
                 <outlet property="imageCell" destination="fOi-Ww-FLf" id="awb-oN-cSX"/>
                 <outlet property="titleLabelCell" destination="NzR-60-tys" id="yCa-hS-lEW"/>
                 <outlet property="yearLabelCell" destination="DV3-aV-5Ty" id="ueg-il-en9"/>

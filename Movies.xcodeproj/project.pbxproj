@@ -35,6 +35,8 @@
 		73215BEB2D71D92800595A86 /* CompareMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BE82D71D92800595A86 /* CompareMoviesViewController.swift */; };
 		732E323F2D9F3388005A0E9C /* HistoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 732E323E2D9F3387005A0E9C /* HistoryHeaderView.xib */; };
 		732E32402D9F3388005A0E9C /* HistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E323D2D9F3387005A0E9C /* HistoryHeaderView.swift */; };
+		73353CB32DAB744A00CD0898 /* DetailFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73353CB12DAB744A00CD0898 /* DetailFoodViewController.swift */; };
+		73353CB42DAB744A00CD0898 /* DetailFoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73353CB22DAB744A00CD0898 /* DetailFoodViewController.xib */; };
 		7345CDE12DA17C2A00B33F6D /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345CDE02DA17C2A00B33F6D /* FooterCell.swift */; };
 		7345CDE32DA17C3D00B33F6D /* FooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7345CDE22DA17C3D00B33F6D /* FooterCell.xib */; };
 		734CBBA02D9217A5004B613A /* ResultsMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734CBB9F2D9217A5004B613A /* ResultsMoreCell.xib */; };
@@ -58,6 +60,9 @@
 		7360A55B2D81236B0084E567 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A5582D81236B0084E567 /* HistoryViewController.swift */; };
 		7360A5642D81277D0084E567 /* WatchlistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7360A5622D81277D0084E567 /* WatchlistCell.xib */; };
 		7360A5652D81277D0084E567 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A5612D81277D0084E567 /* WatchlistCell.swift */; };
+		736B98EF2DAE9FE200A0FF62 /* LanguageBottomSheets.xib in Resources */ = {isa = PBXBuildFile; fileRef = 736B98EE2DAE9FE200A0FF62 /* LanguageBottomSheets.xib */; };
+		736B98F02DAE9FE200A0FF62 /* LanguageBottomSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736B98ED2DAE9FE200A0FF62 /* LanguageBottomSheets.swift */; };
+		736B98F32DAEA48900A0FF62 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736B98F22DAEA48400A0FF62 /* UserDefaultKey.swift */; };
 		738482D02D8B8F4B009BA729 /* SelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738482CE2D8B8F4B009BA729 /* SelectCell.swift */; };
 		738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738482CF2D8B8F4B009BA729 /* SelectCell.xib */; };
 		738F4BAD2DAA1FBC004F5C10 /* Extension + Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F4BAC2DAA1FB9004F5C10 /* Extension + Gesture.swift */; };
@@ -70,6 +75,14 @@
 		739EC4112DAAC1DC00446B29 /* OnboaringSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739EC4102DAAC1DC00446B29 /* OnboaringSlide.swift */; };
 		73A091962DA6D5C8002D2440 /* TypeFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A091942DA6D5C8002D2440 /* TypeFoodCell.swift */; };
 		73A091972DA6D5C8002D2440 /* TypeFoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */; };
+		73A6DA912DAD493700A1637E /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A6DA902DAD493700A1637E /* FeedbackViewController.xib */; };
+		73A6DA922DAD493700A1637E /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DA8F2DAD493700A1637E /* FeedbackViewController.swift */; };
+		73A6DA962DAD537900A1637E /* RateAppPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DA942DAD537900A1637E /* RateAppPopUp.swift */; };
+		73A6DA972DAD537900A1637E /* RateAppPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A6DA952DAD537900A1637E /* RateAppPopUp.xib */; };
+		73A6DA9B2DAD566400A1637E /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DA992DAD566400A1637E /* AboutAppViewController.swift */; };
+		73A6DA9C2DAD566400A1637E /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A6DA9A2DAD566400A1637E /* AboutAppViewController.xib */; };
+		73A6DAA22DAD638A00A1637E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DAA02DAD638A00A1637E /* ChatViewController.swift */; };
+		73A6DAA32DAD638A00A1637E /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A6DAA12DAD638A00A1637E /* ChatViewController.xib */; };
 		73A94D502D931B43005333AB /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A94D4E2D931B43005333AB /* FoodViewController.swift */; };
 		73A94D512D931B43005333AB /* FoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A94D4F2D931B43005333AB /* FoodViewController.xib */; };
 		73C05BCB2D9E36F5006DAC44 /* PlayVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C05BC92D9E36F5006DAC44 /* PlayVideoViewController.swift */; };
@@ -127,6 +140,8 @@
 		73215BE92D71D92800595A86 /* CompareMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompareMoviesViewController.xib; sourceTree = "<group>"; };
 		732E323D2D9F3387005A0E9C /* HistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderView.swift; sourceTree = "<group>"; };
 		732E323E2D9F3387005A0E9C /* HistoryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryHeaderView.xib; sourceTree = "<group>"; };
+		73353CB12DAB744A00CD0898 /* DetailFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFoodViewController.swift; sourceTree = "<group>"; };
+		73353CB22DAB744A00CD0898 /* DetailFoodViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailFoodViewController.xib; sourceTree = "<group>"; };
 		7345CDE02DA17C2A00B33F6D /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		7345CDE22DA17C3D00B33F6D /* FooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCell.xib; sourceTree = "<group>"; };
 		734CBB9E2D9217A5004B613A /* ResultsMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsMoreCell.swift; sourceTree = "<group>"; };
@@ -150,6 +165,9 @@
 		7360A5592D81236B0084E567 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		7360A5612D81277D0084E567 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
 		7360A5622D81277D0084E567 /* WatchlistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCell.xib; sourceTree = "<group>"; };
+		736B98ED2DAE9FE200A0FF62 /* LanguageBottomSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageBottomSheets.swift; sourceTree = "<group>"; };
+		736B98EE2DAE9FE200A0FF62 /* LanguageBottomSheets.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageBottomSheets.xib; sourceTree = "<group>"; };
+		736B98F22DAEA48400A0FF62 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		738482CE2D8B8F4B009BA729 /* SelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCell.swift; sourceTree = "<group>"; };
 		738482CF2D8B8F4B009BA729 /* SelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCell.xib; sourceTree = "<group>"; };
 		738F4BAC2DAA1FB9004F5C10 /* Extension + Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Gesture.swift"; sourceTree = "<group>"; };
@@ -162,6 +180,14 @@
 		739EC4102DAAC1DC00446B29 /* OnboaringSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboaringSlide.swift; sourceTree = "<group>"; };
 		73A091942DA6D5C8002D2440 /* TypeFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeFoodCell.swift; sourceTree = "<group>"; };
 		73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypeFoodCell.xib; sourceTree = "<group>"; };
+		73A6DA8F2DAD493700A1637E /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		73A6DA902DAD493700A1637E /* FeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackViewController.xib; sourceTree = "<group>"; };
+		73A6DA942DAD537900A1637E /* RateAppPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppPopUp.swift; sourceTree = "<group>"; };
+		73A6DA952DAD537900A1637E /* RateAppPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateAppPopUp.xib; sourceTree = "<group>"; };
+		73A6DA992DAD566400A1637E /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		73A6DA9A2DAD566400A1637E /* AboutAppViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutAppViewController.xib; sourceTree = "<group>"; };
+		73A6DAA02DAD638A00A1637E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		73A6DAA12DAD638A00A1637E /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		73A94D4E2D931B43005333AB /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		73A94D4F2D931B43005333AB /* FoodViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodViewController.xib; sourceTree = "<group>"; };
 		73C05BC92D9E36F5006DAC44 /* PlayVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +255,7 @@
 		73067F052D81CD7E0042E0C4 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
+				73A6DA932DAD531F00A1637E /* RateApp */,
 				73DADFC42D82356800F1ACD7 /* NewFolder */,
 				73DADFC32D82355600F1ACD7 /* SaveMovie */,
 			);
@@ -278,6 +305,7 @@
 				73215BB92D71A90A00595A86 /* Helper */,
 				73215BBA2D71A91B00595A86 /* Extensions */,
 				73215BBC2D71A94200595A86 /* Screens */,
+				737666102D9AE15700739A66 /* ChildView */,
 				739EC4042DAAA1FB00446B29 /* Onboarding */,
 				73215BBD2D71A94A00595A86 /* Resources */,
 				73215BAA2D71A8F400595A86 /* Info.plist */,
@@ -289,6 +317,7 @@
 		73215BB92D71A90A00595A86 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				736B98F12DAEA45900A0FF62 /* UserDefaultKey */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -321,10 +350,9 @@
 		73215BBC2D71A94200595A86 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				73A6DA9F2DAD637100A1637E /* Chat */,
 				73A94D4D2D931B24005333AB /* FoodView */,
-				733DF9772D8861FA007661A1 /* Detail */,
 				73215BC62D71AFD100595A86 /* Settting */,
-				73E5DD652D839C5B00C75E53 /* FordelWatchList */,
 				73215BC32D71AF8400595A86 /* Home */,
 			);
 			path = Screens;
@@ -346,7 +374,6 @@
 		73215BC32D71AF8400595A86 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				737666102D9AE15700739A66 /* ChildView */,
 				73215BC72D71AFF500595A86 /* HomeViewController.swift */,
 				73215BC82D71AFF500595A86 /* HomeViewController.xib */,
 			);
@@ -448,10 +475,8 @@
 		733DF9772D8861FA007661A1 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				73CAA55A2D92BBEB00983DF0 /* DetailsViewController.swift */,
-				73CAA55B2D92BBEB00983DF0 /* DetailsViewController.xib */,
-				73C05BC92D9E36F5006DAC44 /* PlayVideoViewController.swift */,
-				73C05BCA2D9E36F5006DAC44 /* PlayVideoViewController.xib */,
+				73A6DA8C2DAD48DA00A1637E /* DetailFood */,
+				73A6DA8B2DAD48C100A1637E /* DetailMovie */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -565,13 +590,29 @@
 			path = WatchlistCell;
 			sourceTree = "<group>";
 		};
+		736B98EC2DAE9FA000A0FF62 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				736B98ED2DAE9FE200A0FF62 /* LanguageBottomSheets.swift */,
+				736B98EE2DAE9FE200A0FF62 /* LanguageBottomSheets.xib */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
+		736B98F12DAEA45900A0FF62 /* UserDefaultKey */ = {
+			isa = PBXGroup;
+			children = (
+				736B98F22DAEA48400A0FF62 /* UserDefaultKey.swift */,
+			);
+			path = UserDefaultKey;
+			sourceTree = "<group>";
+		};
 		737666102D9AE15700739A66 /* ChildView */ = {
 			isa = PBXGroup;
 			children = (
-				73215BE72D71D8E600595A86 /* CompareMovie */,
-				7359B7BA2D74AAA10049FAB5 /* SearchMovie */,
-				7359B7C62D74E55F0049FAB5 /* ResultsMovies */,
-				73001FEE2D75EB5A00ACB84B /* HistoryMovies */,
+				73A6DA9E2DAD632000A1637E /* HomeChild */,
+				73A6DA9D2DAD62FC00A1637E /* SettingChild */,
+				733DF9772D8861FA007661A1 /* Detail */,
 			);
 			path = ChildView;
 			sourceTree = "<group>";
@@ -617,6 +658,83 @@
 				73A091952DA6D5C8002D2440 /* TypeFoodCell.xib */,
 			);
 			path = TypeFoodCell;
+			sourceTree = "<group>";
+		};
+		73A6DA8B2DAD48C100A1637E /* DetailMovie */ = {
+			isa = PBXGroup;
+			children = (
+				73CAA55B2D92BBEB00983DF0 /* DetailsViewController.xib */,
+				73CAA55A2D92BBEB00983DF0 /* DetailsViewController.swift */,
+				73C05BCA2D9E36F5006DAC44 /* PlayVideoViewController.xib */,
+				73C05BC92D9E36F5006DAC44 /* PlayVideoViewController.swift */,
+			);
+			path = DetailMovie;
+			sourceTree = "<group>";
+		};
+		73A6DA8C2DAD48DA00A1637E /* DetailFood */ = {
+			isa = PBXGroup;
+			children = (
+				73353CB12DAB744A00CD0898 /* DetailFoodViewController.swift */,
+				73353CB22DAB744A00CD0898 /* DetailFoodViewController.xib */,
+			);
+			path = DetailFood;
+			sourceTree = "<group>";
+		};
+		73A6DA8D2DAD490100A1637E /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DA8F2DAD493700A1637E /* FeedbackViewController.swift */,
+				73A6DA902DAD493700A1637E /* FeedbackViewController.xib */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		73A6DA932DAD531F00A1637E /* RateApp */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DA942DAD537900A1637E /* RateAppPopUp.swift */,
+				73A6DA952DAD537900A1637E /* RateAppPopUp.xib */,
+			);
+			path = RateApp;
+			sourceTree = "<group>";
+		};
+		73A6DA982DAD564600A1637E /* AboutApp */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DA992DAD566400A1637E /* AboutAppViewController.swift */,
+				73A6DA9A2DAD566400A1637E /* AboutAppViewController.xib */,
+			);
+			path = AboutApp;
+			sourceTree = "<group>";
+		};
+		73A6DA9D2DAD62FC00A1637E /* SettingChild */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DA8D2DAD490100A1637E /* Feedback */,
+				73A6DA982DAD564600A1637E /* AboutApp */,
+			);
+			path = SettingChild;
+			sourceTree = "<group>";
+		};
+		73A6DA9E2DAD632000A1637E /* HomeChild */ = {
+			isa = PBXGroup;
+			children = (
+				7359B7C62D74E55F0049FAB5 /* ResultsMovies */,
+				73001FEE2D75EB5A00ACB84B /* HistoryMovies */,
+				7359B7BA2D74AAA10049FAB5 /* SearchMovie */,
+				73215BE72D71D8E600595A86 /* CompareMovie */,
+				73E5DD652D839C5B00C75E53 /* FordelWatchList */,
+			);
+			path = HomeChild;
+			sourceTree = "<group>";
+		};
+		73A6DA9F2DAD637100A1637E /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DAA02DAD638A00A1637E /* ChatViewController.swift */,
+				73A6DAA12DAD638A00A1637E /* ChatViewController.xib */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		73A94D4D2D931B24005333AB /* FoodView */ = {
@@ -669,6 +787,7 @@
 		73E5DD5E2D8368E100C75E53 /* BottomSheets */ = {
 			isa = PBXGroup;
 			children = (
+				736B98EC2DAE9FA000A0FF62 /* Language */,
 				7318A0DE2D8FFD6D00DA3898 /* SelectFolder */,
 				7318A0D92D8FFD0E00DA3898 /* FilterCriteria */,
 			);
@@ -767,19 +886,23 @@
 			files = (
 				7360A5642D81277D0084E567 /* WatchlistCell.xib in Resources */,
 				7359B7C32D74C4960049FAB5 /* CompareCell.xib in Resources */,
+				73A6DAA32DAD638A00A1637E /* ChatViewController.xib in Resources */,
 				73E5DD642D8376CC00C75E53 /* SelectFolderBottomSheets.xib in Resources */,
 				73215BB52D71A8F400595A86 /* Assets.xcassets in Resources */,
 				7345CDE32DA17C3D00B33F6D /* FooterCell.xib in Resources */,
+				73353CB42DAB744A00CD0898 /* DetailFoodViewController.xib in Resources */,
 				7360A55A2D81236B0084E567 /* HistoryViewController.xib in Resources */,
 				739EC40D2DAAA3D300446B29 /* OnboardingCell.xib in Resources */,
 				73215BC12D71AE8200595A86 /* Localizable.strings in Resources */,
 				73215BEA2D71D92800595A86 /* CompareMoviesViewController.xib in Resources */,
+				736B98EF2DAE9FE200A0FF62 /* LanguageBottomSheets.xib in Resources */,
 				73215BCA2D71AFF500595A86 /* HomeViewController.xib in Resources */,
 				7360A5562D811B860084E567 /* SettingCell.xib in Resources */,
 				734CBBA02D9217A5004B613A /* ResultsMoreCell.xib in Resources */,
 				73C652492D7D7C2300ED524D /* CustomHeaderView.xib in Resources */,
 				73215BE32D71C8A900595A86 /* HomeCell.xib in Resources */,
 				73DADFC22D82355000F1ACD7 /* NewFolderPopUp.xib in Resources */,
+				73A6DA912DAD493700A1637E /* FeedbackViewController.xib in Resources */,
 				73215BDE2D71BF2000595A86 /* TabbarViewController.xib in Resources */,
 				735E2B352D869A9800BB3562 /* CustomHeaderMoreView.xib in Resources */,
 				7359B7BE2D74AAD80049FAB5 /* SearchMoviesViewController.xib in Resources */,
@@ -789,11 +912,13 @@
 				735F621E2D93BB6B00B9C15D /* FoodCell.xib in Resources */,
 				73A94D512D931B43005333AB /* FoodViewController.xib in Resources */,
 				738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */,
+				73A6DA972DAD537900A1637E /* RateAppPopUp.xib in Resources */,
 				739EC4082DAAA22300446B29 /* OnboardingViewController.xib in Resources */,
 				7318A0DC2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.xib in Resources */,
 				73A091972DA6D5C8002D2440 /* TypeFoodCell.xib in Resources */,
 				7359B7D32D74E8170049FAB5 /* ResultsCell.xib in Resources */,
 				73215BB72D71A8F400595A86 /* LaunchScreen.storyboard in Resources */,
+				73A6DA9C2DAD566400A1637E /* AboutAppViewController.xib in Resources */,
 				73C05BCC2D9E36F5006DAC44 /* PlayVideoViewController.xib in Resources */,
 				7359B7C92D74E5A60049FAB5 /* ResultsViewController.xib in Resources */,
 				73215BB82D71A8F400595A86 /* Main.storyboard in Resources */,
@@ -866,14 +991,19 @@
 				73E5DD632D8376CC00C75E53 /* SelectFolderBottomSheets.swift in Sources */,
 				73D0896A2D7B7CAA001C61DB /* Extension + Radius.swift in Sources */,
 				73DADFC12D82355000F1ACD7 /* NewFolderPopUp.swift in Sources */,
+				736B98F02DAE9FE200A0FF62 /* LanguageBottomSheets.swift in Sources */,
 				7345CDE12DA17C2A00B33F6D /* FooterCell.swift in Sources */,
 				73CAA55D2D92BBEB00983DF0 /* DetailsViewController.swift in Sources */,
 				73215BB32D71A8F400595A86 /* SceneDelegate.swift in Sources */,
+				736B98F32DAEA48900A0FF62 /* UserDefaultKey.swift in Sources */,
 				73A94D502D931B43005333AB /* FoodViewController.swift in Sources */,
 				73215BB42D71A8F400595A86 /* ViewController.swift in Sources */,
+				73A6DA9B2DAD566400A1637E /* AboutAppViewController.swift in Sources */,
 				7359B7BD2D74AAD80049FAB5 /* SearchMoviesViewController.swift in Sources */,
+				73A6DA962DAD537900A1637E /* RateAppPopUp.swift in Sources */,
 				73E5DD682D839DCA00C75E53 /* WatchListViewController.swift in Sources */,
 				739574D82D78BBD1002B9C1F /* Extension + GradientLayer.swift in Sources */,
+				73A6DAA22DAD638A00A1637E /* ChatViewController.swift in Sources */,
 				734CBBA12D9217A5004B613A /* ResultsMoreCell.swift in Sources */,
 				738482D02D8B8F4B009BA729 /* SelectCell.swift in Sources */,
 				7360A5652D81277D0084E567 /* WatchlistCell.swift in Sources */,
@@ -885,10 +1015,12 @@
 				7360A55B2D81236B0084E567 /* HistoryViewController.swift in Sources */,
 				73A091962DA6D5C8002D2440 /* TypeFoodCell.swift in Sources */,
 				73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */,
+				73A6DA922DAD493700A1637E /* FeedbackViewController.swift in Sources */,
 				73215BEB2D71D92800595A86 /* CompareMoviesViewController.swift in Sources */,
 				73DADFCA2D823C4E00F1ACD7 /* Extension + PopUp.swift in Sources */,
 				739EC40C2DAAA3D300446B29 /* OnboardingCell.swift in Sources */,
 				73C05BCB2D9E36F5006DAC44 /* PlayVideoViewController.swift in Sources */,
+				73353CB32DAB744A00CD0898 /* DetailFoodViewController.swift in Sources */,
 				735F621F2D93BB6B00B9C15D /* FoodCell.swift in Sources */,
 				73001FF72D75F4A400ACB84B /* SearchCell.swift in Sources */,
 				73DADFC72D8239A900F1ACD7 /* FolderWatchListViewController.swift in Sources */,

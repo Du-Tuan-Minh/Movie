@@ -23,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfN-eV-j8I">
-                    <rect key="frame" x="0.0" y="29" width="40" height="40"/>
+                    <rect key="frame" x="0.0" y="31.666666666666671" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="GSf-iP-xcr"/>
-                        <constraint firstAttribute="width" constant="40" id="a3A-MJ-XQY"/>
+                        <constraint firstAttribute="height" constant="35" id="GSf-iP-xcr"/>
+                        <constraint firstAttribute="width" constant="35" id="a3A-MJ-XQY"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="circle"/>
@@ -35,20 +35,20 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odp-pJ-tua">
-                    <rect key="frame" x="49.999999999999993" y="24.000000000000004" width="106.33333333333331" height="50.333333333333343"/>
+                    <rect key="frame" x="39.999999999999993" y="24.000000000000004" width="106.33333333333331" height="50.333333333333343"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="42"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prA-sY-Lvf">
-                    <rect key="frame" x="186.33333333333334" y="37.666666666666664" width="49.333333333333343" height="23"/>
+                    <rect key="frame" x="176.33333333333334" y="37.666666666666664" width="49.333333333333343" height="23"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO4-j9-dMi">
-                    <rect key="frame" x="240.66666666666666" y="39" width="41.333333333333343" height="20.333333333333329"/>
+                    <rect key="frame" x="230.66666666666666" y="39" width="41.333333333333343" height="20.333333333333329"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                         <constraint firstAttribute="width" constant="50" id="Ubx-mh-zpe"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="clock"/>
+                    <state key="normal" image="add"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtN-hY-WYc">
                     <rect key="frame" x="0.0" y="97" width="411" height="1"/>
@@ -84,7 +84,7 @@
                 <constraint firstItem="HfN-eV-j8I" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="g2D-hh-OFd"/>
                 <constraint firstItem="HfN-eV-j8I" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="klR-kb-2KX"/>
                 <constraint firstAttribute="bottom" secondItem="CtN-hY-WYc" secondAttribute="bottom" id="p6e-74-UYW"/>
-                <constraint firstItem="Odp-pJ-tua" firstAttribute="leading" secondItem="HfN-eV-j8I" secondAttribute="trailing" constant="10" id="qpX-H3-gMH"/>
+                <constraint firstItem="Odp-pJ-tua" firstAttribute="leading" secondItem="HfN-eV-j8I" secondAttribute="trailing" constant="5" id="qpX-H3-gMH"/>
                 <constraint firstItem="prA-sY-Lvf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zbC-EU-pij"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -92,8 +92,8 @@
         </view>
     </objects>
     <resources>
+        <image name="add" width="32" height="32"/>
         <image name="circle" width="29" height="29"/>
-        <image name="clock" width="16" height="16"/>
         <namedColor name="blue">
             <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

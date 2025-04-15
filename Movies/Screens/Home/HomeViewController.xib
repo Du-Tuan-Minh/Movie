@@ -22,7 +22,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFq-FL-1Jq">
                     <rect key="frame" x="0.0" y="100" width="393" height="752"/>
                     <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MJ4-ao-2jG">
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MJ4-ao-2jG">
                             <rect key="frame" x="16" y="95" width="361" height="597"/>
                             <color key="backgroundColor" name="blue"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9jc-Jc-9Pf">

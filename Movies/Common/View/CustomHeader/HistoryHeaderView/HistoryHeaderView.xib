@@ -25,6 +25,9 @@
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="circle"/>
+                            <connections>
+                                <action selector="chooseTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="bml-W0-PsF"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxU-TI-v5o">
                             <rect key="frame" x="36" y="14.666666666666664" width="42" height="21"/>
@@ -50,6 +53,7 @@
                 <constraint firstItem="DPT-QD-0Ms" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="m5m-oq-ef4"/>
             </constraints>
             <connections>
+                <outlet property="chooseButton" destination="HKo-ea-YHg" id="LvK-P3-5dB"/>
                 <outlet property="dateLabel" destination="vxU-TI-v5o" id="N09-vL-lQi"/>
             </connections>
             <point key="canvasLocation" x="37" y="-11"/>

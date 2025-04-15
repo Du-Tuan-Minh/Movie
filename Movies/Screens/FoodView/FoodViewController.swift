@@ -13,6 +13,7 @@ class FoodViewController: UIViewController {
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   @IBOutlet private weak var searchView: UISearchBar!
+  @IBOutlet private weak var titleButton: UIButton!
   
   //variable
   final private let reuseIdentifier: String = "FoodCell"
@@ -22,6 +23,7 @@ class FoodViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionView()
+    setupView()
     setupSearchBar()
     filterFood = getListFood()
   }
@@ -29,6 +31,11 @@ class FoodViewController: UIViewController {
 
 //MARK: SetupView
 extension FoodViewController {
+  private func setupView() {
+    titleButton.setTitle("food".localized(), for: .normal)
+    navigationController?.isNavigationBarHidden = true
+  }
+  
   private func setupCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
@@ -119,16 +126,17 @@ extension FoodViewController {
   private func createVerticalScrollSection() -> NSCollectionLayoutSection {
     // Item
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(145)
+      widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(200)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
     
     // Group
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(145)
+      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(200)
     )
-    let group = NSCollectionLayoutGroup.vertical(
-      layoutSize: groupSize, subitems: [item]
+    let group = NSCollectionLayoutGroup.horizontal(
+      layoutSize: groupSize, subitem: item, count: 2
     )
     
     // Section
@@ -171,6 +179,9 @@ extension FoodViewController: UICollectionViewDataSource, UICollectionViewDelega
       filterFood = getListFood().filter("ANY typeFoods.id == %@", selectType.id)
       collectionView.reloadSections(IndexSet(integer: 1))
     } else {
+      let detailVC = DetailFoodViewController()
+      detailVC.hidesBottomBarWhenPushed = true
+      navigationController?.pushViewController(detailVC, animated: true)
     }
   }
 }

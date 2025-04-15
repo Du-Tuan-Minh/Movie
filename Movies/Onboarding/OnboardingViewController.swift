@@ -55,7 +55,7 @@ class OnboardingViewController: UIViewController {
   
   @IBAction func nextTapped(_ sender: Any) {
     if currentPage == slide.count - 1 {
-      UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasSeenOnboarding)
+      UserDefaults.standard.set(true, forKey: UserDefaultKey.shared.hasSeenOnboarding)
       
       let tabbarVC = TabbarViewController()
       tabbarVC.modalPresentationStyle = .fullScreen

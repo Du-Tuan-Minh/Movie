@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompareMoviesViewController" customModule="Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="aII-N4-QA7" id="UD9-to-gg2"/>
+                <outlet property="titleButton" destination="guV-Cu-fmF" id="jmi-73-ZDx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXc-VO-6T0">
+                    <rect key="frame" x="0.0" y="105" width="393" height="747"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aII-N4-QA7">
+                            <rect key="frame" x="0.0" y="15" width="393" height="682"/>
+                            <color key="backgroundColor" name="blue"/>
+                            <color key="sectionIndexBackgroundColor" name="blue"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" name="blue"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="aII-N4-QA7" secondAttribute="bottom" constant="50" id="4U3-HE-6mL"/>
+                        <constraint firstAttribute="trailing" secondItem="aII-N4-QA7" secondAttribute="trailing" id="cm8-d1-cjg"/>
+                        <constraint firstItem="aII-N4-QA7" firstAttribute="top" secondItem="hXc-VO-6T0" secondAttribute="top" constant="15" id="l8B-S2-5xf"/>
+                        <constraint firstItem="aII-N4-QA7" firstAttribute="leading" secondItem="hXc-VO-6T0" secondAttribute="leading" id="ssT-gX-oZn"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guV-Cu-fmF">
+                    <rect key="frame" x="16" y="45" width="111" height="45"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Compare">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="backTapped:" destination="-1" eventType="touchUpInside" id="Qvd-hO-NGp"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPa-PG-RCV">
+                    <rect key="frame" x="327" y="42.666666666666657" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="EbT-7e-xDk"/>
+                        <constraint firstAttribute="width" constant="50" id="KXe-dW-YGQ"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="add"/>
+                    <connections>
+                        <action selector="addTapped:" destination="-1" eventType="touchUpInside" id="03E-UG-6pp"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Z6W-lf-Q9f"/>
+            <color key="backgroundColor" name="darkBlue"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="gPa-PG-RCV" secondAttribute="trailing" constant="16" id="1Dg-ub-M7X"/>
+                <constraint firstItem="hXc-VO-6T0" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="5JK-tI-Qcj"/>
+                <constraint firstItem="gPa-PG-RCV" firstAttribute="centerY" secondItem="guV-Cu-fmF" secondAttribute="centerY" id="Kna-fr-4Ni"/>
+                <constraint firstItem="guV-Cu-fmF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="OYn-er-HEu"/>
+                <constraint firstItem="hXc-VO-6T0" firstAttribute="top" secondItem="guV-Cu-fmF" secondAttribute="bottom" constant="15" id="RzD-6m-7Md"/>
+                <constraint firstItem="hXc-VO-6T0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ux4-dE-eum"/>
+                <constraint firstAttribute="trailing" secondItem="hXc-VO-6T0" secondAttribute="trailing" id="a4k-Ip-c6Y"/>
+                <constraint firstItem="guV-Cu-fmF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="d3X-2c-cAh"/>
+            </constraints>
+            <point key="canvasLocation" x="-509.16030534351142" y="-185.21126760563382"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="add" width="32" height="32"/>
+        <namedColor name="blue">
+            <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="darkBlue">
+            <color red="0.019607843137254902" green="0.054901960784313725" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

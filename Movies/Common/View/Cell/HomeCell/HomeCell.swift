@@ -29,13 +29,13 @@ enum HomeCellType: CaseIterable {
   var title: String {
     switch self {
     case .compareTwoMovies:
-      return "Compare Two \n Movies"
+      return "compare_Two_Movies".localized()
     case .compareMovies:
-      return "Compare Movies"
+      return "compare_Movies".localized()
     case .watchlist:
-      return "Watchlist"
+      return "watchlist".localized()
     case .history:
-      return "History"
+      return "history".localized()
     }
   }
 }

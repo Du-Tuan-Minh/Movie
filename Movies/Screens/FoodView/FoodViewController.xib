@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="collectionView" destination="wVR-Xj-1CG" id="hr7-eM-79S"/>
                 <outlet property="searchView" destination="ycH-ba-uXE" id="ZZ6-oE-Gg5"/>
+                <outlet property="titleButton" destination="maW-Gb-kgT" id="1Gx-ci-g7u"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maW-Gb-kgT">
-                    <rect key="frame" x="16" y="55" width="66" height="46"/>
+                    <rect key="frame" x="16" y="55" width="103" height="46"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Food">
+                    <state key="normal" title="FoodGo">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
@@ -41,8 +42,8 @@
                                 <outlet property="delegate" destination="-1" id="Pgj-sU-geJ"/>
                             </connections>
                         </searchBar>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wVR-Xj-1CG">
-                            <rect key="frame" x="16" y="90" width="361" height="546"/>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wVR-Xj-1CG">
+                            <rect key="frame" x="16" y="75" width="361" height="591"/>
                             <color key="backgroundColor" name="blue"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8ce-MG-Ox2">
                                 <size key="itemSize" width="128" height="128"/>
@@ -56,8 +57,8 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ycH-ba-uXE" secondAttribute="trailing" id="IJF-Qs-XzR"/>
                         <constraint firstAttribute="trailing" secondItem="wVR-Xj-1CG" secondAttribute="trailing" constant="16" id="MQt-aV-8Dx"/>
-                        <constraint firstAttribute="bottom" secondItem="wVR-Xj-1CG" secondAttribute="bottom" constant="100" id="QYC-6E-jq1"/>
-                        <constraint firstItem="wVR-Xj-1CG" firstAttribute="top" secondItem="ycH-ba-uXE" secondAttribute="bottom" constant="20" id="iuq-SK-lpm"/>
+                        <constraint firstAttribute="bottom" secondItem="wVR-Xj-1CG" secondAttribute="bottom" constant="70" id="QYC-6E-jq1"/>
+                        <constraint firstItem="wVR-Xj-1CG" firstAttribute="top" secondItem="ycH-ba-uXE" secondAttribute="bottom" constant="5" id="iuq-SK-lpm"/>
                         <constraint firstItem="ycH-ba-uXE" firstAttribute="top" secondItem="1Ob-Co-JKo" secondAttribute="top" constant="20" id="rZf-1B-CcX"/>
                         <constraint firstItem="ycH-ba-uXE" firstAttribute="leading" secondItem="1Ob-Co-JKo" secondAttribute="leading" id="x8d-jL-1xK"/>
                         <constraint firstItem="wVR-Xj-1CG" firstAttribute="leading" secondItem="1Ob-Co-JKo" secondAttribute="leading" constant="16" id="xxd-Qy-VTK"/>

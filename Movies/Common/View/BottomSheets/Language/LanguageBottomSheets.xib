@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LanguageBottomSheets" customModule="Movies" customModuleProvider="target">
+            <connections>
+                <outlet property="englishButton" destination="6ca-xR-eiQ" id="dB6-Hv-cy6"/>
+                <outlet property="vietButton" destination="OFK-ta-ywh" id="c6r-x0-eUf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="183"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JYL-h5-IAP">
+                    <rect key="frame" x="65" y="44" width="300" height="95"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ca-xR-eiQ">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="7kp-Z5-yhm"/>
+                                <constraint firstAttribute="height" constant="45" id="hQ6-DH-MqG"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="English"/>
+                            <connections>
+                                <action selector="englishTapped:" destination="-1" eventType="touchUpInside" id="UaK-j6-pyd"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFK-ta-ywh">
+                            <rect key="frame" x="0.0" y="50" width="300" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="qLt-jE-jf0"/>
+                                <constraint firstAttribute="width" constant="300" id="s1R-Xb-Oak"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Việt Nam"/>
+                            <connections>
+                                <action selector="vietTapped:" destination="-1" eventType="touchUpInside" id="FX0-KI-gYO"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="blue"/>
+            <constraints>
+                <constraint firstItem="JYL-h5-IAP" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="bEx-1k-5j4"/>
+                <constraint firstItem="JYL-h5-IAP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="e7u-E4-1Xh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="129.7709923664122" y="186.97183098591549"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="blue">
+            <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
