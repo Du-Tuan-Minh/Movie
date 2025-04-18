@@ -73,11 +73,19 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate, U
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let detailVC = DetailsViewController()
     detailVC.movie = allMovies[indexPath.row].movie
-    navigationController?.pushViewController(detailVC, animated: true)
+    detailVC.modalPresentationStyle = .fullScreen
+    present(detailVC, animated: true)
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 225
+    switch UIDevice.current.userInterfaceIdiom {
+    case .pad:
+      return 400
+    case .phone:
+      return 225
+    default:
+      return 225
+    }
   }
   
   func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -104,6 +112,7 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate, U
         }
         self.allMovies.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.reloadData()
         completionHandler(true)
       } catch {
         completionHandler(false)

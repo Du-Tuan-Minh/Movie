@@ -36,8 +36,9 @@
                     <color key="sectionIndexBackgroundColor" name="graySmoke"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyI-Ir-hM4">
-                    <rect key="frame" x="16" y="285" width="361" height="45"/>
+                    <rect key="frame" x="46.666666666666657" y="285" width="300" height="45"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="300" id="Ges-C2-jiF"/>
                         <constraint firstAttribute="height" constant="45" id="OyY-g8-7sM"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -60,12 +61,11 @@
             <color key="backgroundColor" name="blue"/>
             <constraints>
                 <constraint firstItem="4gI-wE-uxX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2xK-h9-gR5"/>
-                <constraint firstItem="yyI-Ir-hM4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="7BX-zY-Fno"/>
                 <constraint firstItem="4gI-wE-uxX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="EL3-i9-rVf"/>
                 <constraint firstItem="F0b-KU-CzL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="HPC-v6-sh6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4gI-wE-uxX" secondAttribute="trailing" constant="16" id="KMS-6X-UJx"/>
+                <constraint firstItem="yyI-Ir-hM4" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="OoK-Yr-s1s"/>
                 <constraint firstItem="F0b-KU-CzL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Szo-mn-DKj"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yyI-Ir-hM4" secondAttribute="trailing" constant="16" id="UUo-vP-nFi"/>
                 <constraint firstItem="yyI-Ir-hM4" firstAttribute="top" secondItem="4gI-wE-uxX" secondAttribute="bottom" constant="10" id="abo-3b-Oxb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

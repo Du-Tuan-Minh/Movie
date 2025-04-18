@@ -107,16 +107,16 @@ extension FolderWatchListViewController: UICollectionViewDelegateFlowLayout, UIC
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = (collectionView.frame.width - 10) / 2
+    let width = (collectionView.frame.width - 30) / 2
     return CGSize(width: width, height: 170)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
+    return 30
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
+    return 15
   }
 }
 
@@ -136,7 +136,7 @@ extension FolderWatchListViewController {
       
       let realm = try! Realm()
       let selectedFolder = getListFolder()[selectedIndexPath.row]
-
+      
       switch selectItem {
       case .remove:
         try! realm.write {

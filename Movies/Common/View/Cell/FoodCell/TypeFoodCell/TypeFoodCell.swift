@@ -10,9 +10,9 @@ import UIKit
 class TypeFoodCell: UICollectionViewCell {
   
   //outlet
-  @IBOutlet private weak var typeFoodButton: UIButton!
+  @IBOutlet private weak var typeFoodLabel: UILabel!
   
-  func configure(with type: TypeFoodModel) {
-    typeFoodButton.setTitle(type.title, for: .normal)
+  func configure(with type: String) {
+    typeFoodLabel.text = type
   }
 }

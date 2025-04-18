@@ -19,6 +19,7 @@ class CustomHeaderMoreView: UIView {
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var releaseYearLabel: UILabel!
   @IBOutlet private weak var dropDownButton: UIButton!
+  @IBOutlet private weak var arrowButton: UIButton!
   
   //variable
   static let identifier = "CustomHeaderMoreView"
@@ -29,14 +30,29 @@ class CustomHeaderMoreView: UIView {
     }
   }
   
+  var isStatusArrow: Bool = false {
+    didSet {
+      arrowButton.setImage(isStatusArrow ? UIImage(resource: .arrowUp) : UIImage(resource: .arrowDown), for: .normal)
+    }
+  }
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupView()
+    commonInit()
   }
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-    fatalError("init(coder:) has not been implemented")
+    commonInit()
+  }
+  
+  private func commonInit() {
+    guard let view = self.loadViewFromNib(nibName: CustomHeaderMoreView.identifier) else { return }
+    view.frame = self.bounds
+    view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    addSubview(view)
+    
+    isStatusArrow = false
   }
   
   @IBAction func chooseMovieTapped(_ sender: Any) {
@@ -44,16 +60,10 @@ class CustomHeaderMoreView: UIView {
     delegate?.chooseMovie(view: self)
   }
   
-  private func setupView() {
-    guard let view = self.loadViewFromNib(nibName: CustomHeaderMoreView.identifier) else{return}
-    view.frame = self.bounds
-    self.addSubview(view)
-  }
-  
   func configureCustomHeaderMoreView(with model: MovieModel, at section: Int) {
     userScore.text = "\(model.userScore)"
     titleLabel.text = model.title
-    releaseYearLabel.text = "(\(model.releaseYear))"
+    releaseYearLabel.text = "(\(Date().getYear(date: model.releaseYear ?? Date())))"
     userScore.textColor = section.isMultiple(of: 2) ?  UIColor(resource: .lightBlue) : UIColor(resource: .violet)
   }
 }

@@ -36,6 +36,13 @@ class SaveMoviePopUp: UIViewController {
   private func configView() {
     view.backgroundColor = .clear
     self.configurePopUp(blureView: blureView, contentView: contentView)
+    
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
+    blureView.addGestureRecognizer(tapGesture)
+  }
+  
+  @objc private func dismissPopup() {
+    self.hinderPopUp(blureView: self.blureView, contentView: self.contentView)
   }
   
   func appear(sender: UIViewController) {
@@ -45,9 +52,7 @@ class SaveMoviePopUp: UIViewController {
   }
   
   private func saveMoviesToRealm() {
-    guard let movies = saveMovies, !movies.isEmpty else {
-      return
-    }
+    guard let movies = saveMovies, !movies.isEmpty else { return }
     let realm = try! Realm()
     
     let saveMovie = WatchlistModel()

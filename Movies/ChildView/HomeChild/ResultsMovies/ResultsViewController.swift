@@ -25,6 +25,7 @@ class ResultsViewController: UIViewController {
   private var expandedSections: Set<Int> = []
   private var saveMoreMovies: [MovieModel] = []
   private var selectedMovieIds: Set<String> = []
+  var headerViews: [Int: CustomHeaderMoreView] = [:]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -56,7 +57,15 @@ extension ResultsViewController {
   private func setupTableViewFooterAndHeader() {
     //create header tablebView on Case ResultTwo
     if resultModel == .ResultTwo {
-      let headerView = CustomHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 250))
+      let headerView: CustomHeaderView!
+      switch UIDevice.current.userInterfaceIdiom {
+      case .pad:
+        headerView = CustomHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 440))
+      case .phone:
+        headerView = CustomHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 250))
+      default:
+        headerView = CustomHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 250))
+      }
       guard compareMovies.count >= 2 else { return }
       headerView.configureHeaderView(with: compareMovies[0], secondMovie: compareMovies[1])
       headerView.listMovie = compareMovies
@@ -69,8 +78,8 @@ extension ResultsViewController {
     //create footer
     guard let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell else { return }
     footer.delegate = self
-    footer.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 80)
     footer.titleButton = "save".localized()
+    footer.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 75)
     tableView.tableFooterView = footer
   }
 }
@@ -116,6 +125,9 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
       
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleSection(_:)))
       headerView.addGestureRecognizer(tapGesture)
+      
+      headerViews[section] = headerView
+      headerView.isStatusArrow = expandedSections.contains(section)
       return headerView
     case .ResultTwo:
       return UIView()
@@ -124,10 +136,15 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   
   @objc private func toggleSection(_ sender: UITapGestureRecognizer) {
     guard let section = sender.view?.tag else { return }
+    
     if expandedSections.contains(section) {
       expandedSections.remove(section)
     } else {
       expandedSections.insert(section)
+    }
+    
+    if let headerView = headerViews[section] {
+      headerView.isStatusArrow = expandedSections.contains(section)
     }
     tableView.reloadSections(IndexSet(integer: section), with: .automatic)
   }
@@ -147,7 +164,7 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultsMoreCell") as? ResultsMoreCell else {
         return UITableViewCell()
       }
-      cell.configureResultsMoreCell(with: compareMovies[indexPath.row])
+      cell.configureResultsMoreCell(with: compareMovies[indexPath.section])
       return cell
       
     case .ResultTwo:
@@ -189,15 +206,21 @@ extension ResultsViewController: ChooseButtonSessionDelegate {
   }
 }
 
+//MARK: Delegate
 extension ResultsViewController: FooterCellDelegate {
   func footerClick() {
-    self.showAlert(title: "save_movie".localized(), message: "Do_you_want_to_save_movie".localized()) {
-      let selectFolderVC = SelectFolderBottomSheets()
-      selectFolderVC.selectedMovies = self.saveMoreMovies
-      let sheet = SheetViewController(controller: selectFolderVC, sizes: [ .fixed(350)])
-      sheet.hasBlurBackground = true
-      sheet.cornerRadius = 20
-      self.present(sheet, animated: true)
+    if saveMoreMovies.count == 0 {
+      self.showAlert(title: "no_movies_selected_yet".localized(), message: "", onAction: {})
+    } else {
+      self.showAlert(title: "save_movie".localized(), message: "Do_you_want_to_save_movie".localized()) {
+        let selectFolderVC = SelectFolderBottomSheets()
+        selectFolderVC.selectedMovies = self.saveMoreMovies
+        let sheet = SheetViewController(controller: selectFolderVC, sizes: [ .fixed(350)])
+        sheet.hasBlurBackground = true
+        sheet.cornerRadius = 20
+        self.present(sheet, animated: true)
+      }
+      
     }
   }
 }

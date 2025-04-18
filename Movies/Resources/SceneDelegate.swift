@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
   func sceneWillEnterForeground(_ scene: UIScene) {
-    removeWhiteCoverView()
+    //  removeWhiteCoverView()
   }
   
   func sceneDidEnterBackground(_ scene: UIScene) {
@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
   private func removeWhiteCoverView() {
-    DispatchQueue.main.async { [weak self] in
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
       self?.coverView?.removeFromSuperview()
       self?.coverView = nil
     }
@@ -62,6 +62,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   private func addWhiteCoverView() {
     DispatchQueue.main.async { [weak self] in
       guard let self = self, let window = self.window else { return }
+      
+      if self.coverView != nil { return }
       
       let whiteCover = UIView(frame: window.bounds)
       whiteCover.backgroundColor = .white

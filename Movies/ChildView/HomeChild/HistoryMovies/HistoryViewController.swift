@@ -126,7 +126,8 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout, UICollectio
     let detailVC = DetailsViewController()
     let selectedMovie = groupedMovies[indexPath.section].movies[indexPath.row]
     detailVC.movie = selectedMovie
-    navigationController?.pushViewController(detailVC, animated: true)
+    detailVC.modalPresentationStyle = .fullScreen
+    present(detailVC, animated: true)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -139,12 +140,23 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout, UICollectio
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = (collectionView.frame.width - 10) / 3
-    return CGSize(width: width, height: 235)
+    switch UIDevice.current.userInterfaceIdiom {
+    case .pad:
+      let totalSpacing: CGFloat = 100
+      let width = (collectionView.frame.width - totalSpacing) / 3
+      return CGSize(width: width, height: 400)
+    case .phone:
+      let totalSpacing: CGFloat = 10
+      let width = (collectionView.frame.width - totalSpacing) / 3
+      return CGSize(width: width, height: 250)
+    default:
+      let width = (collectionView.frame.width - 10) / 2
+      return CGSize(width: width, height: 250)
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 5
+    return 15
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

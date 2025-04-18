@@ -24,10 +24,11 @@ class WatchlistCell: UITableViewCell {
     movieImage.image = UIImage().convertDateToImage(data: imageData)
     userScoreImage.image = UIImage().convertUseScoreToImage(movieScore: movie.userScore)
     titleLabel.text = movie.title
-    releaseYearLabel.text = "(\(movie.releaseYear))"
-    genresLabel.text = movie.genres.joined(separator: ", ")
+    releaseYearLabel.text = "(\(Date().getYear(date: movie.releaseYear ?? Date())))"
+    let genres = movie.genres.map { $0.title }
+    genresLabel.text = genres.joined(separator: ", ")
     durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
-    saveTimeLabel.text = "\(time)"
+    saveTimeLabel.text = "\(Date().formattedDate(date: time))"
     revenueLabel.text = "\(movie.revenue) $"
     
     titleLabel.textColor = tag % 2 == 0 ? UIColor(resource: .lightBlue): UIColor(resource: .violet)

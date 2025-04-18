@@ -26,7 +26,7 @@ class CompareCell: UITableViewCell {
   
   func configureCompareCell(with model: MovieModel) {
     titleLabel.text = model.title
-    yearOfReleaseLabel.text = "(\(model.releaseYear))"
+    yearOfReleaseLabel.text = "(\(Date().getYear(date: model.releaseYear ?? Date())))"
   }
   
   @IBAction func showDropDownTapped(_ sender: Any) {

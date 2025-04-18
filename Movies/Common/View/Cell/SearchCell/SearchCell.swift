@@ -16,13 +16,13 @@ class SearchCell: UICollectionViewCell {
   @IBOutlet private weak var containView: UIView!
   
   func configSearchCell(with model: MovieModel) {
-    if let pdfData = model.pdfData, let pdfImage = UIImage.convertPDFToImage(from: pdfData) {
+    if let pdfData = model.pdfData, let pdfImage = UIImage.convertDataToImage(from: pdfData) {
       imageCell.image = pdfImage
     } else {
       imageCell.image = UIImage(named: "placeholder")
     }
     titleLabelCell.text = model.title
-    yearLabelCell.text = "(\(model.releaseYear))"
+    yearLabelCell.text = "(\(Date().getYear(date: model.releaseYear ?? Date())))"
   }
   
   func isChooseCell(isStatus: Bool) {
@@ -33,11 +33,7 @@ class SearchCell: UICollectionViewCell {
     }
   }
   
-  func isReplaceCell(isStatus: Bool) {
-    if isStatus {
-      containView.layer.borderColor = UIColor.red.cgColor
-    } else {
-      containView.layer.borderColor = UIColor.clear.cgColor
-    }
+  func isReplaceCell() {
+    containView.layer.borderColor = UIColor.red.cgColor
   }
 }

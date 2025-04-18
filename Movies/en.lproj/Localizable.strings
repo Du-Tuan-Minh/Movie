@@ -40,7 +40,7 @@
 "do_you_want_to_delete_everything" = "Do you want to delete everything";
 "my_list" = "Mylist";
 "rename_the_folder" = "Rename the folder";
-"total" = "Total";
+"total" = "Total: ";
 "order_now" = "ORDER NOW";
 "release_date" = "Release date";
 "description" = "Description";
@@ -48,4 +48,13 @@
 "coment" = "Coment";
 "releaseYear" = "Release Year";
 "save_movie" = "Save movie";
-"Do_you_want_to_save_movie" = "Bạn có muốn lưu bộ phim này vào mục yêu thích không?";
+"Do_you_want_to_save_movie" = "Do you want to save this movie to your favorites?";
+"feedback" = "Feedback - Movie app";
+"to" = "To: ";
+"from" = "Cc/Bcc, From: ";
+"subject" = "Subject: ";
+"feedback" = "Please enter your feedback";
+"send" = "Send";
+"no_movies_selected_yet" = "No movies selected yet";
+"can't_compare" = "Can't compare";
+"need_at_least_2_movies_to_compare" = "Need at least 2 movies to compare";

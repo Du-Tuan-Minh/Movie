@@ -14,8 +14,8 @@ class MovieModel: Object {
   @Persisted var title: String
   @Persisted var describe: String
   @Persisted var duration: Int
-  @Persisted var releaseYear: Int
-  @Persisted var genres: List<String>
+  @Persisted var releaseYear: Date?
+  @Persisted var genres: List<GenersModel>
   @Persisted var userScore: Double
   @Persisted var budget: Double
   @Persisted var revenue: Double
@@ -23,6 +23,11 @@ class MovieModel: Object {
   @Persisted var comments: List<CommentModel>
   @Persisted var videoURL: String?
   @Persisted var videoURLs: List<String>
+}
+
+class GenersModel: Object {
+  @Persisted(primaryKey: true) var id: String = UUID().uuidString
+  @Persisted var title: String
 }
 
 //ComparisonModel
@@ -71,17 +76,15 @@ class FoodModel: Object {
   @Persisted var title: String
   @Persisted var price: String
   @Persisted var pdfData: Data?
+  @Persisted var describe: String
+  @Persisted var userScore: Double
+  @Persisted var total: Int
   @Persisted var typeFoods: List<TypeFoodModel>
 }
 
 class TypeFoodModel: Object {
   @Persisted(primaryKey: true) var id: String = UUID().uuidString
   @Persisted var title: String
-//  @Persisted var describe: String
-//  @Persisted var userScore: String
-//  @Persisted var pdfData: Data?
-//  @Persisted var total: Int
-//  @Persisted var price: Double
 }
 
 //HistoryBuyFoodModel

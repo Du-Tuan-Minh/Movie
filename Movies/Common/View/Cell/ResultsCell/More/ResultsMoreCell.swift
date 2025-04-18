@@ -17,9 +17,10 @@ class ResultsMoreCell: UITableViewCell {
   @IBOutlet private weak var userScoreImage: UIImageView!
   
   func configureResultsMoreCell(with movie: MovieModel) {
-    genresLabel.text = movie.genres.joined(separator: ", ")
+    let genres = movie.genres.map { $0.title }
+    genresLabel.text = genres.joined(separator: ", ")
     DurationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
-    saveTimeLabel.text = "\(movie.releaseYear)"
+    saveTimeLabel.text = "(\(Date().formattedDate(date: movie.releaseYear ?? Date())))"
     revenueLabel.text = "\(movie.revenue)"
     userScoreImage.image = UIImage().convertUseScoreToImage(movieScore: movie.userScore)
   }

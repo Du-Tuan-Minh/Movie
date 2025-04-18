@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController {
   @IBOutlet private weak var generLabel: UILabel!
   @IBOutlet private weak var releaseDateLabel: UILabel!
   @IBOutlet private weak var descriptionLabel: UILabel!
+  @IBOutlet private weak var contentLabel: UILabel!
   @IBOutlet private weak var uploadVideoButton: UIButton!
   @IBOutlet private weak var trailerButton: UIButton!
   
@@ -56,30 +57,38 @@ extension DetailsViewController {
   
   private func setupText() {
     generLabel.text = "genres".localized()
-    releaseDateLabel.text = "release_date".localized()
+    releaseDateLabel.text = "releaseYear".localized()
     descriptionLabel.text = "description".localized()
     uploadVideoButton.setTitle("upload_video".localized(), for: .normal)
   }
   
   private func setupButton() {
-    guard let movie = movie else {return}
-    trailerButton.isHidden = movie.videoURL == nil
     CAGradientLayer().gradientButton(btn: uploadVideoButton)
   }
   
   private func configureDetails() {
     guard let movie = movie else {return}
-    if let pdfData = movie.pdfData, let pdfImage = UIImage.convertPDFToImage(from: pdfData) {
+    if let pdfData = movie.pdfData, let pdfImage = UIImage.convertDataToImage(from: pdfData) {
       movieImage.image = pdfImage
     } else {
       movieImage.image = UIImage(named: "placeholder")
     }
     titleLabel.text = movie.title
-    durationLabel.text = "\(movie.duration) minutes"
-    userScoreLabel.text = "\(movie.userScore)%"
-    releaseYearLabel.text = "\(movie.releaseYear)"
-    generOneLabel.text = movie.genres.isEmpty ? "  N/A  " : "  \(movie.genres[0])  "
-    generTwoLabel.text = movie.genres.count > 1 ? "  \(movie.genres[1])  " : "  N/A  "
+    durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
+    userScoreLabel.text = "\(movie.userScore)"
+    releaseYearLabel.text = "\(Date().formattedDate(date: movie.releaseYear ?? Date()))"
+    configureGenresLabels(with: movie.genres)
+    contentLabel.text = movie.describe
+  }
+  
+  private func configureGenresLabels(with genres: List<GenersModel>) {
+    let genresList = genres.map { $0.title }
+    
+    generOneLabel.text = genresList.isEmpty ? "N/A" : "   \(genresList[0])   "
+    generTwoLabel.text = genresList.count > 1 ? "   \(genresList[1])   " : "N/A"
+    
+    generOneLabel.isHidden = generOneLabel.text == "N/A"
+    generTwoLabel.isHidden = generTwoLabel.text == "N/A"
   }
   
   private func uploadVideoToCloudinary(videoURL: URL) {

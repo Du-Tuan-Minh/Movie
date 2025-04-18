@@ -17,8 +17,8 @@ extension ResultsCompare {
   static func compareMovies(firstMovie: MovieModel, secondMovie: MovieModel) -> [ResultsCompare] {
     return [
       ResultsCompare(title: "duration".localized(), firstMovieValue: Date().toHoursAndMinutes(time: firstMovie.duration), secondMovieValue: Date().toHoursAndMinutes(time: secondMovie.duration)),
-      ResultsCompare(title: "time".localized(), firstMovieValue: "\(firstMovie.releaseYear)", secondMovieValue: "\(secondMovie.releaseYear)"),
-      ResultsCompare(title: "genres".localized(), firstMovieValue: firstMovie.genres.joined(separator: ", "), secondMovieValue: secondMovie.genres.joined(separator: ", ")),
+      ResultsCompare(title: "time".localized(), firstMovieValue: "\(Date().getYear(date: firstMovie.releaseYear ?? Date()))", secondMovieValue: "\(Date().getYear(date: secondMovie.releaseYear ?? Date()))"),
+      ResultsCompare(title: "genres".localized(), firstMovieValue: firstMovie.genres.map { $0.title }.joined(separator: ", "), secondMovieValue: secondMovie.genres.map { $0.title }.joined(separator: ", ")),
       ResultsCompare(title: "userScore".localized(), firstMovieValue: "\(firstMovie.userScore)/10", secondMovieValue: "\(secondMovie.userScore)/10"),
       ResultsCompare(title: "budget".localized(), firstMovieValue: "$\(firstMovie.budget)", secondMovieValue: "$\(secondMovie.budget)"),
       ResultsCompare(title: "revenue".localized(), firstMovieValue: "$\(firstMovie.revenue)", secondMovieValue: "$\(secondMovie.revenue)")

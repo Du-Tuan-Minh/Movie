@@ -3,7 +3,7 @@
 //  Movies
 //
 //  Created by DuTuanMinh on 25/3/25.
-
+//
 import UIKit
 import AVKit
 import AVFoundation
@@ -22,6 +22,7 @@ class PlayVideoViewController: UIViewController {
   
   var movie: MovieModel? {
     didSet {
+      print("Movie videoURLs: \(movie?.videoURLs ?? List<String>())")
       guard isViewLoaded else { return }
       resetPlayback()
     }

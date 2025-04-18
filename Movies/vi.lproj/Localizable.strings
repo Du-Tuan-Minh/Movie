@@ -40,7 +40,7 @@
 "do_you_want_to_delete_everything" = "Bạn có muốn xóa tất cả mọi thứ không";
 "my_list" = "Danh sách yêu thích";
 "rename_the_folder" = "Đổi tên thư mục";
-"total" = "Tổng";
+"total" = "Tổng: ";
 "order_now" = "ĐẶT HÀNG NGAY";
 "release_date" = "Ngày phát hành";
 "description" = "Nội dung";
@@ -49,3 +49,12 @@
 "releaseYear" = "Năm phát hành";
 "save_movie" = "Lưu phim";
 "Do_you_want_to_save_movie" = "Bạn có muốn lưu bộ phim này vào mục yêu thích không?";
+"feedback" = "Phản hồi - Movie app";
+"to" = "Đến: ";
+"from" = "Cc/Bcc, Từ: ";
+"subject" = "Chủ đề: ";
+"feedback" = "Vui lòng nhập phản hồi của bạn";
+"send" = "Gửi";
+"no_movies_selected_yet" = "Chưa có bộ phim nào được chọn";
+"can't_compare" = "Không thể so sánh";
+"need_at_least_2_movies_to_compare" = "Cần ít nhất 2 bộ phim để so sánh";

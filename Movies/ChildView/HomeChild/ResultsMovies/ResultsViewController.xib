@@ -21,10 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFg-BH-MBd">
-                    <rect key="frame" x="0.0" y="100" width="393" height="752"/>
+                    <rect key="frame" x="0.0" y="98" width="393" height="754"/>
                     <subviews>
                         <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fvk-7A-mrt">
-                            <rect key="frame" x="16" y="15" width="361" height="637"/>
+                            <rect key="frame" x="16" y="15" width="361" height="689"/>
                             <color key="backgroundColor" name="blue"/>
                             <color key="sectionIndexBackgroundColor" name="blue"/>
                             <userDefinedRuntimeAttributes>
@@ -39,7 +39,7 @@
                         <constraint firstAttribute="trailing" secondItem="Fvk-7A-mrt" secondAttribute="trailing" constant="16" id="Iuo-4W-zo1"/>
                         <constraint firstItem="Fvk-7A-mrt" firstAttribute="leading" secondItem="xFg-BH-MBd" secondAttribute="leading" constant="16" id="Q3G-Ht-1iy"/>
                         <constraint firstItem="Fvk-7A-mrt" firstAttribute="top" secondItem="xFg-BH-MBd" secondAttribute="top" constant="15" id="kEn-48-G5V"/>
-                        <constraint firstAttribute="bottom" secondItem="Fvk-7A-mrt" secondAttribute="bottom" constant="100" id="zKJ-Bz-wTh"/>
+                        <constraint firstAttribute="bottom" secondItem="Fvk-7A-mrt" secondAttribute="bottom" constant="50" id="zKJ-Bz-wTh"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -47,11 +47,11 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xv0-Wd-Edz">
-                    <rect key="frame" x="16" y="45" width="89" height="45"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xv0-Wd-Edz">
+                    <rect key="frame" x="16" y="55" width="115" height="33"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Results">
+                    <state key="normal" title="Results" image="arrow_left">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
@@ -65,7 +65,7 @@
                 <constraint firstItem="xFg-BH-MBd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8OK-GH-Cbo"/>
                 <constraint firstItem="xv0-Wd-Edz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="YaG-aA-Dri"/>
                 <constraint firstItem="xFg-BH-MBd" firstAttribute="top" secondItem="xv0-Wd-Edz" secondAttribute="bottom" constant="10" id="hAf-iE-eRB"/>
-                <constraint firstItem="xv0-Wd-Edz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="lWn-ck-h3e"/>
+                <constraint firstItem="xv0-Wd-Edz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="lWn-ck-h3e"/>
                 <constraint firstItem="xFg-BH-MBd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="roo-vL-uXo"/>
                 <constraint firstAttribute="bottom" secondItem="xFg-BH-MBd" secondAttribute="bottom" id="tAv-A7-GAg"/>
             </constraints>
@@ -73,6 +73,7 @@
         </view>
     </objects>
     <resources>
+        <image name="arrow_left" width="24" height="24"/>
         <namedColor name="blue">
             <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

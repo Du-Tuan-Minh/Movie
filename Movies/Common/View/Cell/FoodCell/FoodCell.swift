@@ -13,11 +13,13 @@ class FoodCell: UICollectionViewCell {
   @IBOutlet private weak var foodImage: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var priceLabel: UILabel!
+  @IBOutlet private weak var userScoreLabel: UILabel!
   
   func configureFoodCell(with food: FoodModel) {
     guard let foodData = food.pdfData else { return }
     foodImage.image = UIImage().convertDateToImage(data: foodData)
     titleLabel.text = food.title
     priceLabel.text = "\(food.price) $"
+    userScoreLabel.text = "\(food.userScore)"
   }
 }

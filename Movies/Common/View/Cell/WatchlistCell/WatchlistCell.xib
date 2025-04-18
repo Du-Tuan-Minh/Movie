@@ -20,8 +20,12 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6zx-7m-oYl">
                         <rect key="frame" x="0.0" y="42.666666666666657" width="105" height="150"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="105" id="5bB-uP-ObB"/>
-                            <constraint firstAttribute="height" constant="150" id="ssI-vH-mM2"/>
+                            <constraint firstAttribute="width" constant="105" id="5bB-uP-ObB">
+                                <variation key="heightClass=regular-widthClass=regular" constant="200"/>
+                            </constraint>
+                            <constraint firstAttribute="height" constant="150" id="ssI-vH-mM2">
+                                <variation key="heightClass=regular-widthClass=regular" constant="300"/>
+                            </constraint>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -33,6 +37,7 @@
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTx-tY-mtO">
@@ -116,8 +121,12 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gUx-hb-gna">
                         <rect key="frame" x="10" y="207.66666666666666" width="85" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="85" id="w2V-eZ-DlU"/>
-                            <constraint firstAttribute="height" constant="15" id="ySs-FA-odv"/>
+                            <constraint firstAttribute="width" constant="85" id="w2V-eZ-DlU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="130"/>
+                            </constraint>
+                            <constraint firstAttribute="height" constant="15" id="ySs-FA-odv">
+                                <variation key="heightClass=regular-widthClass=regular" constant="25"/>
+                            </constraint>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -125,7 +134,9 @@
                 <constraints>
                     <constraint firstItem="6zx-7m-oYl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5GO-ad-keS"/>
                     <constraint firstItem="KTx-tY-mtO" firstAttribute="top" secondItem="6zx-7m-oYl" secondAttribute="top" constant="-5" id="MvK-rU-bpz"/>
-                    <constraint firstItem="hZe-oe-StD" firstAttribute="top" secondItem="KTx-tY-mtO" secondAttribute="bottom" constant="5" id="Q9V-Fu-CPZ"/>
+                    <constraint firstItem="hZe-oe-StD" firstAttribute="top" secondItem="KTx-tY-mtO" secondAttribute="bottom" constant="5" id="Q9V-Fu-CPZ">
+                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                    </constraint>
                     <constraint firstAttribute="trailing" secondItem="hZe-oe-StD" secondAttribute="trailing" id="RBA-Bi-byK"/>
                     <constraint firstItem="6zx-7m-oYl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RgH-LJ-kiO"/>
                     <constraint firstItem="hZe-oe-StD" firstAttribute="leading" secondItem="6zx-7m-oYl" secondAttribute="trailing" constant="15" id="dev-kP-87r"/>

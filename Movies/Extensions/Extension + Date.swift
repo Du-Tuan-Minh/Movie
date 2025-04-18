@@ -19,4 +19,9 @@ extension Date {
     let minutes = time % 60
     return "\(hours)h \(minutes)m"
   }
+  
+  func getYear(date: Date) -> Int {
+    let calendar = Calendar.current
+    return calendar.component(.year, from: date)
+  }
 }

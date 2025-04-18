@@ -37,9 +37,13 @@
                     <color key="backgroundColor" name="blue"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="q5k-qH-3Eh" secondAttribute="bottom" constant="50" id="5Og-CW-j9M"/>
-                        <constraint firstItem="q5k-qH-3Eh" firstAttribute="leading" secondItem="eVE-5q-ST6" secondAttribute="leading" constant="16" id="g3X-MH-HaM"/>
+                        <constraint firstItem="q5k-qH-3Eh" firstAttribute="leading" secondItem="eVE-5q-ST6" secondAttribute="leading" constant="16" id="g3X-MH-HaM">
+                            <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                        </constraint>
                         <constraint firstItem="q5k-qH-3Eh" firstAttribute="top" secondItem="eVE-5q-ST6" secondAttribute="top" constant="15" id="j5L-Yh-oG0"/>
-                        <constraint firstAttribute="trailing" secondItem="q5k-qH-3Eh" secondAttribute="trailing" constant="16" id="vjB-dH-tSq"/>
+                        <constraint firstAttribute="trailing" secondItem="q5k-qH-3Eh" secondAttribute="trailing" constant="16" id="vjB-dH-tSq">
+                            <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                        </constraint>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTT-ub-ZjG">

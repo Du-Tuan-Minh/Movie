@@ -33,13 +33,23 @@ class NewFolderPopUp: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupButton()
-    setupText()
+    setupView()
   }
 }
 
 //MARK: Setup View
 extension NewFolderPopUp {
+  private func setupView() {
+    setupButton()
+    setupText()
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
+    blureView.addGestureRecognizer(tapGesture)
+  }
+  
+  @objc private func dismissPopup() {
+    self.hinderPopUp(blureView: self.blureView, contentView: self.contentView)
+  }
+  
   private func setupText() {
     titleLabel.text = "new_folder".localized()
     yesButton.setTitle("yes".localized(), for: .normal)
@@ -48,10 +58,6 @@ extension NewFolderPopUp {
   
   private func setupButton() {
     self.configurePopUp(blureView: blureView, contentView: contentView)
-    cancelButton.backgroundColor = UIColor(resource: .gray)
-    cancelButton.setTitleColor(UIColor(resource: .violet), for: .normal)
-    yesButton.backgroundColor = UIColor(resource: .gray)
-    yesButton.setTitleColor(UIColor(resource: .violet), for: .normal)
   }
   
   func appear(sender: UIViewController) {
@@ -62,8 +68,8 @@ extension NewFolderPopUp {
   
   func configureButton(button: UIButton) {
     if isStatus {
-      button.backgroundColor = UIColor(resource: .blueSky)
-      button.setTitleColor(UIColor(resource: .lightBlue), for: .normal)
+      CAGradientLayer().gradientButton(btn: button)
+      button.setTitleColor(UIColor.red, for: .normal)
     } else {
       button.backgroundColor = UIColor(resource: .gray)
       button.setTitleColor(UIColor(resource: .violet), for: .normal)

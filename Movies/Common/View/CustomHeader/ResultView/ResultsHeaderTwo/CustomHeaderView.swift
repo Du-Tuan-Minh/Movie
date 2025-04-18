@@ -18,12 +18,12 @@ extension ResultsCompareHeaderView {
     let defaultImage = UIImage(systemName: "doc.fill") ?? UIImage()
     return [
       ResultsCompareHeaderView(
-        movieImage: UIImage.convertPDFToImage(from: firstMovie.pdfData ?? Data()) ?? defaultImage,
+        movieImage: UIImage.convertDataToImage(from: firstMovie.pdfData ?? Data()) ?? defaultImage,
         title: firstMovie.title,
         releaseYear: "\(firstMovie.releaseYear)"
       ),
       ResultsCompareHeaderView(
-        movieImage: UIImage.convertPDFToImage(from: secondMovie.pdfData ?? Data()) ?? defaultImage,
+        movieImage: UIImage.convertDataToImage(from: secondMovie.pdfData ?? Data()) ?? defaultImage,
         title: secondMovie.title,
         releaseYear: "\(secondMovie.releaseYear)"
       )
@@ -38,15 +38,17 @@ final class CustomHeaderView: UIView {
   @IBOutlet private weak var chooseFirstButton: UIButton!
   @IBOutlet private weak var titleFirstLabel: UILabel!
   @IBOutlet private weak var releaseYearFirstLabel: UILabel!
+  
   @IBOutlet private weak var movieSecondImage: UIImageView!
   @IBOutlet private weak var chooseSecondButton: UIButton!
   @IBOutlet private weak var titleSecondLabel: UILabel!
   @IBOutlet private weak var releaseYearSecondLabel: UILabel!
   
   var listMovie: [MovieModel]?
-  private var saveMovie: [MovieModel] = []
-  var isChoose: Bool = false
   var onMoviesSelected: (([MovieModel]) -> Void)?
+  private var selectedMovies: Set<MovieModel> = []
+  private var isFirstSelected = false
+  private var isSecondSelected = false
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -58,49 +60,62 @@ final class CustomHeaderView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private func setupView(button: UIButton) {
-    if isChoose {
-      button.setImage(UIImage(resource: .tickCircle), for: .normal)
-    } else {
-      button.setImage(UIImage(resource: .circle), for: .normal)
-    }
-  }
-  
   private func configureView() {
     guard let view = self.loadViewFromNib(nibName: "CustomHeaderView") else{return}
     view.frame = self.bounds
     self.addSubview(view)
   }
   
+  private func updateButton(_ button: UIButton, isSelected: Bool) {
+    let image = isSelected ? UIImage(resource: .tickCircle) : UIImage(resource: .circle)
+    button.setImage(image, for: .normal)
+  }
+  
   func configureHeaderView(with firstMovie: MovieModel, secondMovie: MovieModel) {
     let results = ResultsCompareHeaderView.compareMoviesHeader(firstMovie: firstMovie, secondMovie: secondMovie)
-    guard results.count >= 2 else { return }
+    guard results.count == 2 else { return }
     
-    let resultItemFirst = results[0]
-    let resultItemSecond = results[1]
+    titleFirstLabel.text = results[0].title
+    releaseYearFirstLabel.text = "(\(Date().getYear(date: firstMovie.releaseYear ?? Date())))"
+    movieFirstImage.image = results[0].movieImage
     
-    movieFirstImage.image = resultItemFirst.movieImage
-    titleFirstLabel.text = resultItemFirst.title
-    releaseYearFirstLabel.text = resultItemFirst.releaseYear
+    titleSecondLabel.text = results[1].title
+    releaseYearSecondLabel.text = "(\(Date().getYear(date: secondMovie.releaseYear ?? Date())))"
+    movieSecondImage.image = results[1].movieImage
     
-    movieSecondImage.image = resultItemSecond.movieImage
-    titleSecondLabel.text = resultItemSecond.title
-    releaseYearSecondLabel.text = resultItemSecond.releaseYear
+    isFirstSelected = false
+    isSecondSelected = false
+    selectedMovies.removeAll()
+    
+    updateButton(chooseFirstButton, isSelected: isFirstSelected)
+    updateButton(chooseSecondButton, isSelected: isSecondSelected)
   }
   
   @IBAction func movieFirstTapped(_ sender: Any) {
-    isChoose.toggle()
-    setupView(button: chooseFirstButton)
     guard let listMovie = self.listMovie, listMovie.count >= 2 else { return }
-    saveMovie.append(listMovie[0])
-    onMoviesSelected?(saveMovie)
+    isFirstSelected.toggle()
+    updateButton(chooseFirstButton, isSelected: isFirstSelected)
+    
+    let movie = listMovie[0]
+    if isFirstSelected {
+      selectedMovies.insert(movie)
+    } else {
+      selectedMovies.remove(movie)
+    }
+    onMoviesSelected?(Array(selectedMovies))
   }
   
   @IBAction func movieSecondTapped(_ sender: Any) {
-    isChoose.toggle()
-    setupView(button: chooseSecondButton)
     guard let listMovie = self.listMovie, listMovie.count >= 2 else { return }
-    saveMovie.append(listMovie[1])
-    onMoviesSelected?(saveMovie)
+    isSecondSelected.toggle()
+    updateButton(chooseSecondButton, isSelected: isSecondSelected)
+    
+    let movie = listMovie[1]
+    if isSecondSelected {
+      selectedMovies.insert(movie)
+    } else {
+      selectedMovies.remove(movie)
+    }
+    onMoviesSelected?(Array(selectedMovies))
   }
 }

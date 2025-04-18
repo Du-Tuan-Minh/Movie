@@ -17,11 +17,6 @@ class OnboardingCell: UICollectionViewCell {
   //variable
   static let reuseIdentifier = "OnboardingCell"
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
-  
   func configureOnboardingCell(slide: OnboaringSlide) {
     slideImage.image = slide.image
     titleLabel.text = slide.title

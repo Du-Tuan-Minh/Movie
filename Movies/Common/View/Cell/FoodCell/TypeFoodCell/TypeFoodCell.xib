@@ -17,24 +17,38 @@
                 <rect key="frame" x="0.0" y="0.0" width="162" height="88"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Haw-uC-mCz">
-                        <rect key="frame" x="10" y="0.0" width="142" height="88"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DmC-wl-xhS">
+                        <rect key="frame" x="0.0" y="0.0" width="162" height="88"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScQ-UV-zaZ">
+                                <rect key="frame" x="0.0" y="0.0" width="162" height="88"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" name="graySmoke"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
+                        <constraints>
+                            <constraint firstItem="ScQ-UV-zaZ" firstAttribute="leading" secondItem="DmC-wl-xhS" secondAttribute="leading" id="J1R-ac-rtZ"/>
+                            <constraint firstItem="ScQ-UV-zaZ" firstAttribute="top" secondItem="DmC-wl-xhS" secondAttribute="top" id="Ttw-PX-Ea9"/>
+                            <constraint firstAttribute="bottom" secondItem="ScQ-UV-zaZ" secondAttribute="bottom" id="b7K-DQ-t9I"/>
+                            <constraint firstAttribute="trailing" secondItem="ScQ-UV-zaZ" secondAttribute="trailing" id="lOd-Tb-w6h"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" name="graySmoke"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" name="graySmoke"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Haw-uC-mCz" secondAttribute="bottom" id="J3s-VU-ANS"/>
-                <constraint firstItem="Haw-uC-mCz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Kfk-b7-GfT"/>
-                <constraint firstAttribute="trailing" secondItem="Haw-uC-mCz" secondAttribute="trailing" constant="10" id="Y1Q-cI-6XV"/>
-                <constraint firstItem="Haw-uC-mCz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lF7-lA-LbK"/>
+                <constraint firstItem="DmC-wl-xhS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9PB-UB-W8i"/>
+                <constraint firstAttribute="bottom" secondItem="DmC-wl-xhS" secondAttribute="bottom" id="DrE-qQ-YDO"/>
+                <constraint firstAttribute="trailing" secondItem="DmC-wl-xhS" secondAttribute="trailing" id="s4p-8t-ubU"/>
+                <constraint firstItem="DmC-wl-xhS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xhc-Tj-tl6"/>
             </constraints>
             <size key="customSize" width="162" height="88"/>
             <userDefinedRuntimeAttributes>
@@ -44,7 +58,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="typeFoodButton" destination="Haw-uC-mCz" id="PzB-ex-9Aq"/>
+                <outlet property="typeFoodLabel" destination="ScQ-UV-zaZ" id="v9B-QA-Nse"/>
             </connections>
             <point key="canvasLocation" x="122.13740458015266" y="2.1126760563380285"/>
         </collectionViewCell>

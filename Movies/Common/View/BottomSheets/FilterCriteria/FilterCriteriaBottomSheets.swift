@@ -15,11 +15,11 @@ enum FilterCriteriaModel: String, CaseIterable {
   var title: String {
     switch self {
     case .coment:
-      return "coment".localized()
+      return "coment"
     case .rating:
-      return "rating".localized()
+      return "rating"
     case .releaseYear:
-      return "releaseYear".localized()
+      return "releaseYear"
     }
   }
 }
@@ -55,6 +55,7 @@ extension FilterCriteriaBottomSheets: UITableViewDataSource, UITableViewDelegate
   // filter
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let selectedFilter = FilterCriteriaModel(rawValue: itemFilterCriteria[indexPath.row]) else { return }
+    
     guard !listMovieFilter.isEmpty else {
       dismiss(animated: true)
       return
@@ -64,10 +65,9 @@ extension FilterCriteriaBottomSheets: UITableViewDataSource, UITableViewDelegate
       switch selectedFilter {
       case .coment: return $0.comments.count < $1.comments.count
       case .rating: return $0.userScore < $1.userScore
-      case .releaseYear: return $0.releaseYear < $1.releaseYear
+      case .releaseYear: return Date().getYear(date: $0.releaseYear ?? Date()) < Date().getYear(date: $1.releaseYear ?? Date())
       }
     }
-    
     chooseFilterCriteria?(sortedMovies)
     dismiss(animated: true)
   }
@@ -76,7 +76,7 @@ extension FilterCriteriaBottomSheets: UITableViewDataSource, UITableViewDelegate
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectFolderCell")  else {
       return UITableViewCell()
     }
-    cell.textLabel?.text = itemFilterCriteria[indexPath.row]
+    cell.textLabel?.text = itemFilterCriteria[indexPath.row].localized()
     cell.textLabel?.textColor = .lightBlue
     cell.backgroundColor = UIColor(resource: .blue)
     cell.textLabel?.textAlignment = .center

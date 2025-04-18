@@ -19,6 +19,7 @@ class FoodViewController: UIViewController {
   final private let reuseIdentifier: String = "FoodCell"
   final private let TypeFoodreuseIdentifier: String = "TypeFoodCell"
   private var filterFood: Results<FoodModel>?
+  private var listTypeFood = List<String>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,6 +27,8 @@ class FoodViewController: UIViewController {
     setupView()
     setupSearchBar()
     filterFood = getListFood()
+    listTypeFood.append("All")
+    listTypeFood.append(objectsIn: getListTypeFood().map { $0.title })
   }
 }
 
@@ -33,6 +36,7 @@ class FoodViewController: UIViewController {
 extension FoodViewController {
   private func setupView() {
     titleButton.setTitle("food".localized(), for: .normal)
+    searchView.placeholder = "textHere".localized()
     navigationController?.isNavigationBarHidden = true
   }
   
@@ -125,15 +129,38 @@ extension FoodViewController {
   
   private func createVerticalScrollSection() -> NSCollectionLayoutSection {
     // Item
-    let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(200)
-    )
+    let itemSize: NSCollectionLayoutSize
+    let itemHeight: CGFloat
+    
+    switch UIDevice.current.userInterfaceIdiom {
+    case .pad:
+      let totalSpacing: CGFloat = 170
+      let width = (UIScreen.main.bounds.width - totalSpacing) / 2
+      itemHeight = 350
+      itemSize = NSCollectionLayoutSize(
+        widthDimension: .absolute(width), heightDimension: .absolute(itemHeight)
+      )
+    case .phone:
+      let totalSpacing: CGFloat = 3
+      let width = (UIScreen.main.bounds.width - totalSpacing) / 2
+      itemHeight = 210
+      itemSize = NSCollectionLayoutSize(
+        widthDimension: .absolute(width), heightDimension: .absolute(itemHeight)
+      )
+    default:
+      let width = (UIScreen.main.bounds.width - 10) / 2
+      itemHeight = 210
+      itemSize = NSCollectionLayoutSize(
+        widthDimension: .absolute(width), heightDimension: .absolute(itemHeight)
+      )
+    }
+    
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+    item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7)
     
     // Group
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(200)
+      widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(itemHeight)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize, subitem: item, count: 2
@@ -156,13 +183,13 @@ extension FoodViewController: UICollectionViewDataSource, UICollectionViewDelega
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return section == 0 ? getListTypeFood().count : filterFood?.count ?? 0
+    return section == 0 ? /*getListTypeFood().count*/ listTypeFood.count : filterFood?.count ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 0 {
       let cell = collectionView.dequeueReusableCell( withReuseIdentifier: TypeFoodreuseIdentifier, for: indexPath ) as! TypeFoodCell
-      cell.configure(with: getListTypeFood()[indexPath.item])
+      cell.configure(with: /*getListTypeFood()[indexPath.item]*/ listTypeFood[indexPath.row])
       return cell
     }
     else {
@@ -174,14 +201,23 @@ extension FoodViewController: UICollectionViewDataSource, UICollectionViewDelega
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    if indexPath.section == 0 {
-      let selectType = getListTypeFood()[indexPath.item]
-      filterFood = getListFood().filter("ANY typeFoods.id == %@", selectType.id)
+    switch indexPath.section {
+    case 0:
+      if  listTypeFood[indexPath.row] == "All" {
+        filterFood = getListFood()
+      } else {
+        let selectType = getListTypeFood()[indexPath.row]
+        filterFood = getListFood().filter("ANY typeFoods.id == %@", selectType.id)
+      }
       collectionView.reloadSections(IndexSet(integer: 1))
-    } else {
+    case 1:
+      guard let foodItem = filterFood?[indexPath.item] else { return }
       let detailVC = DetailFoodViewController()
-      detailVC.hidesBottomBarWhenPushed = true
-      navigationController?.pushViewController(detailVC, animated: true)
+      detailVC.detailFood = foodItem
+      detailVC.modalPresentationStyle = .fullScreen
+      present(detailVC, animated: true)
+    default:
+      break
     }
   }
 }

@@ -137,13 +137,28 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
     }
     cell.configSearchCell(with: filteredMovies[indexPath.row])
     cell.isChooseCell(isStatus: selectsIndexs.contains(indexPath))
-    cell.isReplaceCell(isStatus: replaceIndexPaths == indexPath)
+    
+    if let replaceIndexPaths = replaceIndexPaths , replaceIndexPaths == indexPath {
+      cell.isReplaceCell()
+    }
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = (collectionView.frame.width - 10) / 2
-    return CGSize(width: width, height: 250)
+    
+    switch UIDevice.current.userInterfaceIdiom {
+    case .pad:
+      let totalSpacing: CGFloat = 30
+      let width = (collectionView.frame.width - totalSpacing) / 3
+      return CGSize(width: width, height: 400)
+    case .phone:
+      let totalSpacing: CGFloat = 10
+      let width = (collectionView.frame.width - totalSpacing) / 2
+      return CGSize(width: width, height: 250)
+    default:
+      let width = (collectionView.frame.width - 10) / 2
+      return CGSize(width: width, height: 250)
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -172,7 +187,14 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    return CGSize(width: collectionView.frame.width, height: 60)
+    switch UIDevice.current.userInterfaceIdiom {
+    case .pad:
+      return CGSize(width: collectionView.frame.width, height: 360)
+    case .phone:
+      return CGSize(width: collectionView.frame.width, height: 60)
+    default:
+      return CGSize(width: collectionView.frame.width, height: 60)
+    }
   }
 }
 
@@ -201,11 +223,11 @@ extension SearchMoviesViewController: CompareMovieDelegate {
     
     DispatchQueue.main.async {
       if let replaceCell = self.collectionView.cellForItem(at: indexPath) as? SearchCell {
-        replaceCell.isReplaceCell(isStatus: true)
+        replaceCell.isReplaceCell()
       } else {
         self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
         if let replaceCell = self.collectionView.cellForItem(at: indexPath) as? SearchCell {
-          replaceCell.isReplaceCell(isStatus: true)
+          replaceCell.isReplaceCell()
         }
       }
     }
@@ -226,10 +248,15 @@ extension SearchMoviesViewController: FooterCellDelegate {
     case .searchMore:
       compareVC.compareModel = .compareMore
     }
-    
     selectedMovies = selectsIndexs.map { filteredMovies[$0.row] }
     historyCompare(selectedMovies: selectedMovies)
     compareVC.selectedMovies = selectedMovies
-    navigationController?.pushViewController(compareVC, animated: true)
+    if selectedMovies.count < 2 {
+      showAlert(title: "can't_compare".localized(), message: "need_at_least_2_movies_to_compare".localized(), onAction: {})
+    } else {
+      replaceIndexPaths = nil
+      collectionView.reloadData()
+      navigationController?.pushViewController(compareVC, animated: true)
+    }
   }
 }

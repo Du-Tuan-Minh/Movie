@@ -62,7 +62,7 @@ class CompareMoviesViewController: UIViewController {
 //MARK: SetupVỉew
 extension CompareMoviesViewController {
   private func setupView() {
-    titleButton.setTitle("search".localized(), for: .normal)
+    titleButton.setTitle("compare".localized(), for: .normal)
     self.enableEdgePanBackGesture()
   }
   
@@ -70,9 +70,16 @@ extension CompareMoviesViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+    
+    //create footer
+    guard let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell else { return }
+    footer.delegate = self
+    footer.titleButton = "compare".localized()
+    footer.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 70)
+    tableView.tableFooterView = footer
   }
-  
 }
+
 //MARK: Action
 extension CompareMoviesViewController {
   //bottom sheets
@@ -106,7 +113,8 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let detailVC = DetailsViewController()
     detailVC.movie = selectedMovies[indexPath.row]
-    navigationController?.pushViewController(detailVC, animated: true)
+    detailVC.modalPresentationStyle = .fullScreen
+    present(detailVC, animated: true)
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,17 +124,6 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
     cell.delegate = self
     cell.configureCompareCell(with: selectedMovies[indexPath.row])
     return cell
-  }
-  
-  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell
-    footer?.delegate = self
-    footer?.titleButton = "compare".localized()
-    return footer
-  }
-  
-  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return 60
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

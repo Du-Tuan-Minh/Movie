@@ -89,6 +89,8 @@
 		73C05BCC2D9E36F5006DAC44 /* PlayVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73C05BCA2D9E36F5006DAC44 /* PlayVideoViewController.xib */; };
 		73C652472D7D7C1500ED524D /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C652462D7D7C1500ED524D /* CustomHeaderView.swift */; };
 		73C652492D7D7C2300ED524D /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73C652482D7D7C2300ED524D /* CustomHeaderView.xib */; };
+		73C6FCD72DB111D600E725EA /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73C6FCD62DB111D600E725EA /* AuthorizationViewController.xib */; };
+		73C6FCD82DB111D600E725EA /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C6FCD52DB111D600E725EA /* AuthorizationViewController.swift */; };
 		73CAA55C2D92BBEB00983DF0 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CAA55B2D92BBEB00983DF0 /* DetailsViewController.xib */; };
 		73CAA55D2D92BBEB00983DF0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CAA55A2D92BBEB00983DF0 /* DetailsViewController.swift */; };
 		73D0896A2D7B7CAA001C61DB /* Extension + Radius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D089692D7B7CAA001C61DB /* Extension + Radius.swift */; };
@@ -194,6 +196,8 @@
 		73C05BCA2D9E36F5006DAC44 /* PlayVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayVideoViewController.xib; sourceTree = "<group>"; };
 		73C652462D7D7C1500ED524D /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		73C652482D7D7C2300ED524D /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		73C6FCD52DB111D600E725EA /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		73C6FCD62DB111D600E725EA /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
 		73CAA55A2D92BBEB00983DF0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		73CAA55B2D92BBEB00983DF0 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		73D089692D7B7CAA001C61DB /* Extension + Radius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Radius.swift"; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 				73215BB92D71A90A00595A86 /* Helper */,
 				73215BBA2D71A91B00595A86 /* Extensions */,
 				73215BBC2D71A94200595A86 /* Screens */,
+				73C6FCD42DB111B800E725EA /* Authorization */,
 				737666102D9AE15700739A66 /* ChildView */,
 				739EC4042DAAA1FB00446B29 /* Onboarding */,
 				73215BBD2D71A94A00595A86 /* Resources */,
@@ -617,6 +622,15 @@
 			path = ChildView;
 			sourceTree = "<group>";
 		};
+		739273462DB2115400B3D0AD /* ResultView */ = {
+			isa = PBXGroup;
+			children = (
+				735E2B312D869A1A00BB3562 /* ResultsHeaderMore */,
+				735E2B302D8699D200BB3562 /* ResultsHeaderTwo */,
+			);
+			path = ResultView;
+			sourceTree = "<group>";
+		};
 		739EC4042DAAA1FB00446B29 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,12 +763,20 @@
 		73C652452D7D7BD500ED524D /* CustomHeader */ = {
 			isa = PBXGroup;
 			children = (
+				739273462DB2115400B3D0AD /* ResultView */,
 				732E32382D9F31FD005A0E9C /* HistoryHeaderView */,
-				735E2B312D869A1A00BB3562 /* ResultsHeaderMore */,
 				73F3D34B2D8CAA3300D4703D /* FootedView */,
-				735E2B302D8699D200BB3562 /* ResultsHeaderTwo */,
 			);
 			path = CustomHeader;
+			sourceTree = "<group>";
+		};
+		73C6FCD42DB111B800E725EA /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				73C6FCD52DB111D600E725EA /* AuthorizationViewController.swift */,
+				73C6FCD62DB111D600E725EA /* AuthorizationViewController.xib */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		73DADFC32D82355600F1ACD7 /* SaveMovie */ = {
@@ -924,6 +946,7 @@
 				73215BB82D71A8F400595A86 /* Main.storyboard in Resources */,
 				73001FF62D75F4A400ACB84B /* SearchCell.xib in Resources */,
 				73215BD62D71B03F00595A86 /* SettingViewController.xib in Resources */,
+				73C6FCD72DB111D600E725EA /* AuthorizationViewController.xib in Resources */,
 				73E5DD692D839DCA00C75E53 /* WatchListViewController.xib in Resources */,
 				73067F082D81CDD50042E0C4 /* SaveMoviePopUp.xib in Resources */,
 				73DADFCF2D82445900F1ACD7 /* FolderCell.xib in Resources */,
@@ -1012,6 +1035,7 @@
 				7318A0DD2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.swift in Sources */,
 				73215BD72D71B03F00595A86 /* SettingViewController.swift in Sources */,
 				7359B7CA2D74E5A60049FAB5 /* ResultsViewController.swift in Sources */,
+				73C6FCD82DB111D600E725EA /* AuthorizationViewController.swift in Sources */,
 				7360A55B2D81236B0084E567 /* HistoryViewController.swift in Sources */,
 				73A091962DA6D5C8002D2440 /* TypeFoodCell.swift in Sources */,
 				73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */,

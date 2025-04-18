@@ -27,10 +27,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sr-OX-CGi">
-                    <rect key="frame" x="0.0" y="105" width="393" height="747"/>
+                    <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XEr-ye-LEj">
-                            <rect key="frame" x="16" y="30" width="361" height="617"/>
+                            <rect key="frame" x="16" y="30" width="361" height="619"/>
                             <color key="backgroundColor" name="blue"/>
                         </tableView>
                     </subviews>
@@ -47,11 +47,11 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOj-to-FVw">
-                    <rect key="frame" x="16" y="45" width="87" height="45"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOj-to-FVw">
+                    <rect key="frame" x="16" y="55" width="113" height="33"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Setting">
+                    <state key="normal" title="Setting" image="arrow_left">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
@@ -67,7 +67,7 @@
                 <constraint firstItem="2Sr-OX-CGi" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="A7L-Ke-ljW"/>
                 <constraint firstItem="APY-eG-uxh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="Dw6-6u-g2M"/>
                 <constraint firstItem="APY-eG-uxh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Ork-KJ-c2Z"/>
-                <constraint firstItem="wOj-to-FVw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="Zdj-Vx-f9n"/>
+                <constraint firstItem="wOj-to-FVw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="Zdj-Vx-f9n"/>
                 <constraint firstItem="2Sr-OX-CGi" firstAttribute="top" secondItem="wOj-to-FVw" secondAttribute="bottom" constant="15" id="isr-0G-1WN"/>
                 <constraint firstItem="2Sr-OX-CGi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ohO-dg-57x"/>
             </constraints>
@@ -75,6 +75,7 @@
         </view>
     </objects>
     <resources>
+        <image name="arrow_left" width="24" height="24"/>
         <namedColor name="blue">
             <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

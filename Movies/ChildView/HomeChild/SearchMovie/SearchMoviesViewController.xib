@@ -22,11 +22,11 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sn-dt-QYQ">
-                    <rect key="frame" x="16" y="45" width="85" height="45"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sn-dt-QYQ">
+                    <rect key="frame" x="16" y="55" width="111" height="33"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Search">
+                    <state key="normal" title="Search" image="arrow_left">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
@@ -34,7 +34,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rno-Nb-Fbr">
-                    <rect key="frame" x="0.0" y="95" width="393" height="757"/>
+                    <rect key="frame" x="0.0" y="93" width="393" height="759"/>
                     <subviews>
                         <searchBar contentMode="scaleAspectFill" barStyle="black" searchBarStyle="minimal" text="" placeholder="Text here" translatesAutoresizingMaskIntoConstraints="NO" id="qJU-7E-ebB">
                             <rect key="frame" x="16" y="20" width="361" height="50"/>
@@ -66,10 +66,11 @@
                             </connections>
                         </searchBar>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-Le-b4e">
-                            <rect key="frame" x="0.0" y="88" width="393" height="619"/>
+                            <rect key="frame" x="16" y="80" width="361" height="629"/>
                             <color key="backgroundColor" name="blue"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aan-yS-oPe">
-                                <size key="itemSize" width="128" height="128"/>
+                            <inset key="scrollIndicatorInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aan-yS-oPe">
+                                <size key="itemSize" width="200" height="250"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -81,10 +82,14 @@
                         <constraint firstItem="qJU-7E-ebB" firstAttribute="leading" secondItem="Rno-Nb-Fbr" secondAttribute="leading" constant="16" id="1Iu-CM-lYH"/>
                         <constraint firstAttribute="bottom" secondItem="wpZ-Le-b4e" secondAttribute="bottom" constant="50" id="CxS-ga-Yti"/>
                         <constraint firstItem="qJU-7E-ebB" firstAttribute="top" secondItem="Rno-Nb-Fbr" secondAttribute="top" constant="20" id="I2m-0n-S5f"/>
-                        <constraint firstAttribute="trailing" secondItem="wpZ-Le-b4e" secondAttribute="trailing" id="chx-m7-ohF"/>
-                        <constraint firstItem="wpZ-Le-b4e" firstAttribute="top" secondItem="qJU-7E-ebB" secondAttribute="bottom" constant="18" id="pD9-7c-2Xm"/>
+                        <constraint firstAttribute="trailing" secondItem="wpZ-Le-b4e" secondAttribute="trailing" constant="16" id="chx-m7-ohF">
+                            <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                        </constraint>
+                        <constraint firstItem="wpZ-Le-b4e" firstAttribute="top" secondItem="qJU-7E-ebB" secondAttribute="bottom" constant="10" id="pD9-7c-2Xm"/>
                         <constraint firstAttribute="trailing" secondItem="qJU-7E-ebB" secondAttribute="trailing" constant="16" id="qlE-EM-wHj"/>
-                        <constraint firstItem="wpZ-Le-b4e" firstAttribute="leading" secondItem="Rno-Nb-Fbr" secondAttribute="leading" id="voK-ta-Me7"/>
+                        <constraint firstItem="wpZ-Le-b4e" firstAttribute="leading" secondItem="Rno-Nb-Fbr" secondAttribute="leading" constant="16" id="voK-ta-Me7">
+                            <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                        </constraint>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -96,17 +101,18 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="darkBlue"/>
             <constraints>
-                <constraint firstItem="2Sn-dt-QYQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="MhC-3j-xqq"/>
+                <constraint firstItem="2Sn-dt-QYQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="MhC-3j-xqq"/>
                 <constraint firstItem="Rno-Nb-Fbr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Qzj-gy-WFI"/>
                 <constraint firstItem="2Sn-dt-QYQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Tjy-f8-q4B"/>
                 <constraint firstItem="Rno-Nb-Fbr" firstAttribute="top" secondItem="2Sn-dt-QYQ" secondAttribute="bottom" constant="5" id="bGf-4h-Muc"/>
                 <constraint firstItem="Rno-Nb-Fbr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dUk-Hf-wZg"/>
                 <constraint firstAttribute="bottom" secondItem="Rno-Nb-Fbr" secondAttribute="bottom" id="hgR-K5-xpv"/>
             </constraints>
-            <point key="canvasLocation" x="98" y="-18"/>
+            <point key="canvasLocation" x="611" y="-101"/>
         </view>
     </objects>
     <resources>
+        <image name="arrow_left" width="24" height="24"/>
         <namedColor name="blue">
             <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
