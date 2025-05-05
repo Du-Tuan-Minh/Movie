@@ -57,10 +57,8 @@ class OnboardingViewController: UIViewController {
     if currentPage == slide.count - 1 {
       UserDefaults.standard.set(true, forKey: UserDefaultKey.shared.hasSeenOnboarding)
       
-      let tabbarVC = TabbarViewController()
-      tabbarVC.modalPresentationStyle = .fullScreen
-      tabbarVC.modalTransitionStyle = .flipHorizontal
-      present(tabbarVC, animated: true)
+      let loginVC = LoginViewController()
+      navigationController?.pushViewController(loginVC, animated: true)
     } else {
       currentPage += 1
       let indexPath = IndexPath(item: currentPage, section: 0)

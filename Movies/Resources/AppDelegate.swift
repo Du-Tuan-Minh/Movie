@@ -7,11 +7,11 @@
 
 import UIKit
 import RealmSwift
+import FirebaseCore
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  
-  
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let config = Realm.Configuration(
@@ -23,7 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       })
     
     Realm.Configuration.defaultConfiguration = config
+    FirebaseApp.configure()
+    
+    GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: "195193469928-tumtq30cgoqrt7taebsgjc877u8c6a16.apps.googleusercontent.com")
     return true
+  }
+  
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    return GIDSignIn.sharedInstance.handle(url)
   }
   
   // MARK: UISceneSession Lifecycle

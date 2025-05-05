@@ -15,6 +15,12 @@
 		73067F092D81CDD50042E0C4 /* SaveMoviePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73067F062D81CDD50042E0C4 /* SaveMoviePopUp.swift */; };
 		7318A0DC2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7318A0DB2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.xib */; };
 		7318A0DD2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318A0DA2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.swift */; };
+		731AD1E22DBA73A2008EA423 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731AD1E12DBA73A2008EA423 /* LoginViewController.xib */; };
+		731AD1E32DBA73A2008EA423 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731AD1E02DBA73A2008EA423 /* LoginViewController.swift */; };
+		731AD1E72DBA73D4008EA423 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731AD1E62DBA73D4008EA423 /* SignUpViewController.xib */; };
+		731AD1E82DBA73D4008EA423 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731AD1E52DBA73D4008EA423 /* SignUpViewController.swift */; };
+		731AD1ED2DBA7412008EA423 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731AD1EC2DBA7412008EA423 /* ForgotPasswordViewController.xib */; };
+		731AD1EE2DBA7412008EA423 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731AD1EB2DBA7412008EA423 /* ForgotPasswordViewController.swift */; };
 		73215BB22D71A8F400595A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BA82D71A8F400595A86 /* AppDelegate.swift */; };
 		73215BB32D71A8F400595A86 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BAF2D71A8F400595A86 /* SceneDelegate.swift */; };
 		73215BB42D71A8F400595A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73215BB02D71A8F400595A86 /* ViewController.swift */; };
@@ -39,8 +45,10 @@
 		73353CB42DAB744A00CD0898 /* DetailFoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73353CB22DAB744A00CD0898 /* DetailFoodViewController.xib */; };
 		7345CDE12DA17C2A00B33F6D /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345CDE02DA17C2A00B33F6D /* FooterCell.swift */; };
 		7345CDE32DA17C3D00B33F6D /* FooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7345CDE22DA17C3D00B33F6D /* FooterCell.xib */; };
+		734857A22DC29FA100CBD04F /* Extension + Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734857A12DC29FA100CBD04F /* Extension + Auth.swift */; };
 		734CBBA02D9217A5004B613A /* ResultsMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734CBB9F2D9217A5004B613A /* ResultsMoreCell.xib */; };
 		734CBBA12D9217A5004B613A /* ResultsMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734CBB9E2D9217A5004B613A /* ResultsMoreCell.swift */; };
+		73554BE82DC5449A0052ED31 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73554BE72DC5449A0052ED31 /* GoogleService-Info.plist */; };
 		7355C6812D9CC9D7005A2D16 /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355C6802D9CC9D7005A2D16 /* Extension + Date.swift */; };
 		7359B7BD2D74AAD80049FAB5 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7359B7BB2D74AAD80049FAB5 /* SearchMoviesViewController.swift */; };
 		7359B7BE2D74AAD80049FAB5 /* SearchMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7359B7BC2D74AAD80049FAB5 /* SearchMoviesViewController.xib */; };
@@ -89,8 +97,6 @@
 		73C05BCC2D9E36F5006DAC44 /* PlayVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73C05BCA2D9E36F5006DAC44 /* PlayVideoViewController.xib */; };
 		73C652472D7D7C1500ED524D /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C652462D7D7C1500ED524D /* CustomHeaderView.swift */; };
 		73C652492D7D7C2300ED524D /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73C652482D7D7C2300ED524D /* CustomHeaderView.xib */; };
-		73C6FCD72DB111D600E725EA /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73C6FCD62DB111D600E725EA /* AuthorizationViewController.xib */; };
-		73C6FCD82DB111D600E725EA /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C6FCD52DB111D600E725EA /* AuthorizationViewController.swift */; };
 		73CAA55C2D92BBEB00983DF0 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CAA55B2D92BBEB00983DF0 /* DetailsViewController.xib */; };
 		73CAA55D2D92BBEB00983DF0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CAA55A2D92BBEB00983DF0 /* DetailsViewController.swift */; };
 		73D0896A2D7B7CAA001C61DB /* Extension + Radius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D089692D7B7CAA001C61DB /* Extension + Radius.swift */; };
@@ -118,6 +124,12 @@
 		73067F072D81CDD50042E0C4 /* SaveMoviePopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaveMoviePopUp.xib; sourceTree = "<group>"; };
 		7318A0DA2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCriteriaBottomSheets.swift; sourceTree = "<group>"; };
 		7318A0DB2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCriteriaBottomSheets.xib; sourceTree = "<group>"; };
+		731AD1E02DBA73A2008EA423 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		731AD1E12DBA73A2008EA423 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		731AD1E52DBA73D4008EA423 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		731AD1E62DBA73D4008EA423 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		731AD1EB2DBA7412008EA423 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		731AD1EC2DBA7412008EA423 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		73215B902D71A8AE00595A86 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73215BA82D71A8F400595A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73215BA92D71A8F400595A86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,8 +158,10 @@
 		73353CB22DAB744A00CD0898 /* DetailFoodViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailFoodViewController.xib; sourceTree = "<group>"; };
 		7345CDE02DA17C2A00B33F6D /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		7345CDE22DA17C3D00B33F6D /* FooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCell.xib; sourceTree = "<group>"; };
+		734857A12DC29FA100CBD04F /* Extension + Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Auth.swift"; sourceTree = "<group>"; };
 		734CBB9E2D9217A5004B613A /* ResultsMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsMoreCell.swift; sourceTree = "<group>"; };
 		734CBB9F2D9217A5004B613A /* ResultsMoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsMoreCell.xib; sourceTree = "<group>"; };
+		73554BE72DC5449A0052ED31 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7355C6802D9CC9D7005A2D16 /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
 		7359B7BB2D74AAD80049FAB5 /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
 		7359B7BC2D74AAD80049FAB5 /* SearchMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMoviesViewController.xib; sourceTree = "<group>"; };
@@ -196,8 +210,6 @@
 		73C05BCA2D9E36F5006DAC44 /* PlayVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayVideoViewController.xib; sourceTree = "<group>"; };
 		73C652462D7D7C1500ED524D /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		73C652482D7D7C2300ED524D /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
-		73C6FCD52DB111D600E725EA /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
-		73C6FCD62DB111D600E725EA /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
 		73CAA55A2D92BBEB00983DF0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		73CAA55B2D92BBEB00983DF0 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		73D089692D7B7CAA001C61DB /* Extension + Radius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Radius.swift"; sourceTree = "<group>"; };
@@ -314,6 +326,7 @@
 				739EC4042DAAA1FB00446B29 /* Onboarding */,
 				73215BBD2D71A94A00595A86 /* Resources */,
 				73215BAA2D71A8F400595A86 /* Info.plist */,
+				73554BE72DC5449A0052ED31 /* GoogleService-Info.plist */,
 				73215BBF2D71AE8200595A86 /* Localizable.strings */,
 			);
 			path = Movies;
@@ -339,6 +352,7 @@
 				73D089692D7B7CAA001C61DB /* Extension + Radius.swift */,
 				73067F032D81C6590042E0C4 /* Extension + Alert.swift */,
 				7355C6802D9CC9D7005A2D16 /* Extension + Date.swift */,
+				734857A12DC29FA100CBD04F /* Extension + Auth.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -773,8 +787,12 @@
 		73C6FCD42DB111B800E725EA /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				73C6FCD52DB111D600E725EA /* AuthorizationViewController.swift */,
-				73C6FCD62DB111D600E725EA /* AuthorizationViewController.xib */,
+				731AD1E02DBA73A2008EA423 /* LoginViewController.swift */,
+				731AD1E12DBA73A2008EA423 /* LoginViewController.xib */,
+				731AD1E52DBA73D4008EA423 /* SignUpViewController.swift */,
+				731AD1E62DBA73D4008EA423 /* SignUpViewController.xib */,
+				731AD1EB2DBA7412008EA423 /* ForgotPasswordViewController.swift */,
+				731AD1EC2DBA7412008EA423 /* ForgotPasswordViewController.xib */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -913,7 +931,9 @@
 				73215BB52D71A8F400595A86 /* Assets.xcassets in Resources */,
 				7345CDE32DA17C3D00B33F6D /* FooterCell.xib in Resources */,
 				73353CB42DAB744A00CD0898 /* DetailFoodViewController.xib in Resources */,
+				73554BE82DC5449A0052ED31 /* GoogleService-Info.plist in Resources */,
 				7360A55A2D81236B0084E567 /* HistoryViewController.xib in Resources */,
+				731AD1ED2DBA7412008EA423 /* ForgotPasswordViewController.xib in Resources */,
 				739EC40D2DAAA3D300446B29 /* OnboardingCell.xib in Resources */,
 				73215BC12D71AE8200595A86 /* Localizable.strings in Resources */,
 				73215BEA2D71D92800595A86 /* CompareMoviesViewController.xib in Resources */,
@@ -930,6 +950,7 @@
 				7359B7BE2D74AAD80049FAB5 /* SearchMoviesViewController.xib in Resources */,
 				73DADFC82D8239A900F1ACD7 /* FolderWatchListViewController.xib in Resources */,
 				73CAA55C2D92BBEB00983DF0 /* DetailsViewController.xib in Resources */,
+				731AD1E22DBA73A2008EA423 /* LoginViewController.xib in Resources */,
 				732E323F2D9F3388005A0E9C /* HistoryHeaderView.xib in Resources */,
 				735F621E2D93BB6B00B9C15D /* FoodCell.xib in Resources */,
 				73A94D512D931B43005333AB /* FoodViewController.xib in Resources */,
@@ -945,8 +966,8 @@
 				7359B7C92D74E5A60049FAB5 /* ResultsViewController.xib in Resources */,
 				73215BB82D71A8F400595A86 /* Main.storyboard in Resources */,
 				73001FF62D75F4A400ACB84B /* SearchCell.xib in Resources */,
+				731AD1E72DBA73D4008EA423 /* SignUpViewController.xib in Resources */,
 				73215BD62D71B03F00595A86 /* SettingViewController.xib in Resources */,
-				73C6FCD72DB111D600E725EA /* AuthorizationViewController.xib in Resources */,
 				73E5DD692D839DCA00C75E53 /* WatchListViewController.xib in Resources */,
 				73067F082D81CDD50042E0C4 /* SaveMoviePopUp.xib in Resources */,
 				73DADFCF2D82445900F1ACD7 /* FolderCell.xib in Resources */,
@@ -1028,6 +1049,7 @@
 				739574D82D78BBD1002B9C1F /* Extension + GradientLayer.swift in Sources */,
 				73A6DAA22DAD638A00A1637E /* ChatViewController.swift in Sources */,
 				734CBBA12D9217A5004B613A /* ResultsMoreCell.swift in Sources */,
+				731AD1EE2DBA7412008EA423 /* ForgotPasswordViewController.swift in Sources */,
 				738482D02D8B8F4B009BA729 /* SelectCell.swift in Sources */,
 				7360A5652D81277D0084E567 /* WatchlistCell.swift in Sources */,
 				73DADFCE2D82445900F1ACD7 /* FolderCell.swift in Sources */,
@@ -1035,7 +1057,6 @@
 				7318A0DD2D8FFD5900DA3898 /* FilterCriteriaBottomSheets.swift in Sources */,
 				73215BD72D71B03F00595A86 /* SettingViewController.swift in Sources */,
 				7359B7CA2D74E5A60049FAB5 /* ResultsViewController.swift in Sources */,
-				73C6FCD82DB111D600E725EA /* AuthorizationViewController.swift in Sources */,
 				7360A55B2D81236B0084E567 /* HistoryViewController.swift in Sources */,
 				73A091962DA6D5C8002D2440 /* TypeFoodCell.swift in Sources */,
 				73215BE62D71D5D100595A86 /* RealmManager.swift in Sources */,
@@ -1046,15 +1067,18 @@
 				73C05BCB2D9E36F5006DAC44 /* PlayVideoViewController.swift in Sources */,
 				73353CB32DAB744A00CD0898 /* DetailFoodViewController.swift in Sources */,
 				735F621F2D93BB6B00B9C15D /* FoodCell.swift in Sources */,
+				731AD1E32DBA73A2008EA423 /* LoginViewController.swift in Sources */,
 				73001FF72D75F4A400ACB84B /* SearchCell.swift in Sources */,
 				73DADFC72D8239A900F1ACD7 /* FolderWatchListViewController.swift in Sources */,
 				738F4BAD2DAA1FBC004F5C10 /* Extension + Gesture.swift in Sources */,
 				73215BE42D71C8A900595A86 /* HomeCell.swift in Sources */,
 				73D0896C2D7B7D81001C61DB /* Extension + Border.swift in Sources */,
 				7360A5572D811B860084E567 /* SettingCell.swift in Sources */,
+				731AD1E82DBA73D4008EA423 /* SignUpViewController.swift in Sources */,
 				73067F042D81C6590042E0C4 /* Extension + Alert.swift in Sources */,
 				73C652472D7D7C1500ED524D /* CustomHeaderView.swift in Sources */,
 				73215BC92D71AFF500595A86 /* HomeViewController.swift in Sources */,
+				734857A22DC29FA100CBD04F /* Extension + Auth.swift in Sources */,
 				7359B7C42D74C4960049FAB5 /* CompareCell.swift in Sources */,
 				73D0896E2D7B7DAF001C61DB /* Extension + Corner.swift in Sources */,
 			);
@@ -1098,8 +1122,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2SYZZSR523;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Movies/Info.plist;
@@ -1108,6 +1134,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1115,6 +1142,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = HDT.Movies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1127,8 +1155,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2SYZZSR523;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Movies/Info.plist;
@@ -1137,6 +1167,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1144,6 +1175,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = HDT.Movies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

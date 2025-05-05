@@ -51,7 +51,6 @@ class CustomHeaderMoreView: UIView {
     view.frame = self.bounds
     view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     addSubview(view)
-    
     isStatusArrow = false
   }
   

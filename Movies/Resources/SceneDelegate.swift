@@ -20,13 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let hasSeenOnBoarding = UserDefaults.standard.bool(forKey: UserDefaultKey().hasSeenOnboarding)
     
     if hasSeenOnBoarding {
-      windowScreen.rootViewController = TabbarViewController()
+      let loginVC = LoginViewController()
+      let nav = UINavigationController(rootViewController: loginVC)
+      windowScreen.rootViewController = nav
     } else {
-      windowScreen.rootViewController = OnboardingViewController()
+      let onboardingVC = OnboardingViewController()
+      let nav = UINavigationController(rootViewController: onboardingVC)
+      windowScreen.rootViewController = nav
     }
     
     windowScreen.makeKeyAndVisible()
     self.window = windowScreen
+    RealmManager.shared.syncMoviesFromFirestore()
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {
