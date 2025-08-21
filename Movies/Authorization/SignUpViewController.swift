@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
   
   //outlet
   @IBOutlet private weak var titleLabel: UILabel!
@@ -30,10 +30,10 @@ class SignUpViewController: UIViewController {
     super.viewDidLoad()
     setupView()
   }
-  //}
-  //
-  ////MARK: setup view
-  //extension SignUpViewController {
+}
+
+//MARK: setup view
+extension SignUpViewController {
   private func setupView() {
     setupText()
     setupColor()

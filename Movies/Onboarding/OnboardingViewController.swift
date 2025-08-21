@@ -8,7 +8,6 @@
 import UIKit
 
 class OnboardingViewController: UIViewController {
-  
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   @IBOutlet private weak var pageControl: UIPageControl!

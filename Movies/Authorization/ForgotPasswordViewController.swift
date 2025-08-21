@@ -13,7 +13,7 @@ enum ForgotPasswordMode {
   case reset
 }
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: BaseViewController {
   
   //outlet
   @IBOutlet private weak var titleLabel: UILabel!

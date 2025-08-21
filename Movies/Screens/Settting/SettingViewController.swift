@@ -8,15 +8,11 @@
 import UIKit
 import FittedSheets
 
-class SettingViewController: UIViewController {
-  
+class SettingViewController: BaseViewController {
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var titleButton: UIButton!
-  
-  //variable
-  final private let reuseIdentifier: String = "SettingCell"
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
@@ -34,7 +30,7 @@ extension SettingViewController {
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+    tableView.register(UINib(nibName: SettingCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: SettingCell.reuseIdentifier)
   }
 }
 
@@ -60,8 +56,6 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
       navigationController?.pushViewController(aboutAppVC, animated: true)
     case .primaryPolicy:
       break
-    case .rating:
-      break
     case .feedBack:
       let feedbackVC = FeedbackViewController()
       let sheet = SheetViewController(controller: feedbackVC, sizes: [.percent(0.9)])
@@ -78,7 +72,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? SettingCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.reuseIdentifier) as? SettingCell else {
       return UITableViewCell()
     }
     let settingItem = SettingCellType.allCases[indexPath.row]

@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
   
   //outlet
   @IBOutlet private weak var titleLabel: UILabel!

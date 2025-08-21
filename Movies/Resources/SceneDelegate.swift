@@ -13,25 +13,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var coverView: UIView?
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    
     guard let screen = (scene as? UIWindowScene) else { return }
     let windowScreen = UIWindow(windowScene: screen)
     
     let hasSeenOnBoarding = UserDefaults.standard.bool(forKey: UserDefaultKey().hasSeenOnboarding)
+    let rootVC = hasSeenOnBoarding ? LoginViewController() : OnboardingViewController()
+    windowScreen.rootViewController = UINavigationController(rootViewController: rootVC)
     
-    if hasSeenOnBoarding {
-      let loginVC = LoginViewController()
-      let nav = UINavigationController(rootViewController: loginVC)
-      windowScreen.rootViewController = nav
-    } else {
-      let onboardingVC = OnboardingViewController()
-      let nav = UINavigationController(rootViewController: onboardingVC)
-      windowScreen.rootViewController = nav
-    }
+    RealmManager.shared.syncMoviesFromFirestore()
+    RealmManager.shared.observeRealmChangesAndSync()
     
     windowScreen.makeKeyAndVisible()
     self.window = windowScreen
-    RealmManager.shared.syncMoviesFromFirestore()
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {
@@ -67,12 +60,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   private func addWhiteCoverView() {
     DispatchQueue.main.async { [weak self] in
       guard let self = self, let window = self.window else { return }
-      
       if self.coverView != nil { return }
       
       let whiteCover = UIView(frame: window.bounds)
       whiteCover.backgroundColor = .white
-      
       window.addSubview(whiteCover)
       window.bringSubviewToFront(whiteCover)
       self.coverView = whiteCover

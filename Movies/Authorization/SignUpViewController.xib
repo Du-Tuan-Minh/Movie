@@ -45,7 +45,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="42F-ke-ile">
-                                    <rect key="frame" x="46.666666666666657" y="158.66666666666666" width="300" height="332.33333333333337"/>
+                                    <rect key="frame" x="46.666666666666657" y="143.66666666666666" width="300" height="332.33333333333337"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-Y7-Zg7">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="64.333333333333329"/>
@@ -117,7 +117,7 @@
                                     </constraints>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot3-9T-IZo">
-                                    <rect key="frame" x="195" y="516" width="151.66666666666663" height="38.333333333333371"/>
+                                    <rect key="frame" x="195" y="495.99999999999994" width="151.66666666666663" height="38.333333333333314"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Forgot password"/>
                                     <connections>
@@ -125,7 +125,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsy-EA-JO8">
-                                    <rect key="frame" x="46.666666666666657" y="604.33333333333337" width="300" height="45"/>
+                                    <rect key="frame" x="46.666666666666657" y="584.33333333333337" width="300" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Ch1-My-Ts0"/>
                                         <constraint firstAttribute="width" constant="300" id="zPO-KK-Rvn"/>
@@ -164,7 +164,7 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuI-8n-rrU">
-                                    <rect key="frame" x="159" y="699.33333333333337" width="75" height="75"/>
+                                    <rect key="frame" x="159" y="659.33333333333337" width="75" height="75"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="1Zr-hE-ICo"/>
                                         <constraint firstAttribute="height" constant="75" id="7B4-K8-eLf"/>
@@ -183,10 +183,9 @@
                                 <constraint firstItem="NuI-8n-rrU" firstAttribute="centerX" secondItem="Tsy-EA-JO8" secondAttribute="centerX" id="KMr-2b-68G"/>
                                 <constraint firstItem="42F-ke-ile" firstAttribute="centerX" secondItem="fd1-jC-FOL" secondAttribute="centerX" id="TrV-D3-FGx"/>
                                 <constraint firstItem="Tsy-EA-JO8" firstAttribute="centerX" secondItem="42F-ke-ile" secondAttribute="centerX" id="UyR-eE-23S"/>
-                                <constraint firstItem="42F-ke-ile" firstAttribute="top" secondItem="fd1-jC-FOL" secondAttribute="bottom" constant="75" id="WFK-Eu-0Ap"/>
-                                <constraint firstItem="NuI-8n-rrU" firstAttribute="top" secondItem="Tsy-EA-JO8" secondAttribute="bottom" constant="50" id="YZT-0w-B9g"/>
-                                <constraint firstItem="fd1-jC-FOL" firstAttribute="top" secondItem="RLs-QT-FIt" secondAttribute="top" constant="50" id="be0-gM-YSR"/>
-                                <constraint firstItem="ot3-9T-IZo" firstAttribute="top" secondItem="42F-ke-ile" secondAttribute="bottom" constant="25" id="gJr-kr-mfx"/>
+                                <constraint firstItem="42F-ke-ile" firstAttribute="top" secondItem="fd1-jC-FOL" secondAttribute="bottom" constant="60" id="WFK-Eu-0Ap"/>
+                                <constraint firstItem="NuI-8n-rrU" firstAttribute="top" secondItem="Tsy-EA-JO8" secondAttribute="bottom" constant="30" id="YZT-0w-B9g"/>
+                                <constraint firstItem="ot3-9T-IZo" firstAttribute="top" secondItem="42F-ke-ile" secondAttribute="bottom" constant="20" id="gJr-kr-mfx"/>
                                 <constraint firstItem="ot3-9T-IZo" firstAttribute="trailing" secondItem="42F-ke-ile" secondAttribute="trailing" id="lL8-D9-aLZ"/>
                                 <constraint firstItem="Wk7-Uu-1VU" firstAttribute="centerX" secondItem="42F-ke-ile" secondAttribute="centerX" id="snG-TN-c6w"/>
                             </constraints>
@@ -209,8 +208,10 @@
             <constraints>
                 <constraint firstItem="pGG-a2-hSI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="76M-za-Wce"/>
                 <constraint firstAttribute="bottom" secondItem="pGG-a2-hSI" secondAttribute="bottom" id="9X3-Pq-WC1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fd1-jC-FOL" secondAttribute="bottom" constant="734.33333333333337" id="CPd-HY-ETL"/>
                 <constraint firstItem="pGG-a2-hSI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="SyL-z1-hB0"/>
                 <constraint firstItem="pGG-a2-hSI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XaF-SU-tmf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fd1-jC-FOL" secondAttribute="bottom" constant="734.33333333333337" id="k9V-OV-NR8"/>
             </constraints>
             <point key="canvasLocation" x="-92.36641221374046" y="-11.267605633802818"/>
         </view>

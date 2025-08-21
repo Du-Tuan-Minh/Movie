@@ -17,14 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let config = Realm.Configuration(
       schemaVersion: 1,
       migrationBlock: { migration, oldSchemaVersion in
-        if oldSchemaVersion < 1 {
-          // Migration sẽ tự động thực hiện nếu bạn chỉ thêm mới property
+        if (oldSchemaVersion < 1) {
+
         }
-      })
-    
+      }
+    )
     Realm.Configuration.defaultConfiguration = config
     FirebaseApp.configure()
-    
     GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: "195193469928-tumtq30cgoqrt7taebsgjc877u8c6a16.apps.googleusercontent.com")
     return true
   }
@@ -46,7 +45,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
   }
-  
-  
 }
-

@@ -41,10 +41,11 @@ enum HomeCellType: CaseIterable {
 }
 
 class HomeCell: UICollectionViewCell {
-  
   //outlet
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabelCell: UILabel!
+  
+  static let reuseIdentifier = "HomeCell"
   
   func configHomeCell(with image: UIImage, title: String) {
     imageCell.image = image

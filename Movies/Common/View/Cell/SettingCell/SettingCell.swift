@@ -10,18 +10,15 @@ import UIKit
 enum SettingCellType: String, CaseIterable {
   case aboutApp
   case primaryPolicy
-  case rating
   case feedBack
   case appLanguage
   
   var image: UIImage {
     switch self {
     case .aboutApp:
-      return UIImage(resource: .aboutApp)
+      return UIImage(resource: .star)
     case .primaryPolicy:
       return UIImage(resource: .lock)
-    case .rating:
-      return UIImage(resource: .starGray)
     case .feedBack:
       return UIImage(resource: .feedback)
     case .appLanguage:
@@ -35,8 +32,6 @@ enum SettingCellType: String, CaseIterable {
       return "aboutApp".localized()
     case .primaryPolicy:
       return "privacy_policy".localized()
-    case .rating:
-      return "rating".localized()
     case .feedBack:
       return "feedBack".localized()
     case .appLanguage:
@@ -46,10 +41,11 @@ enum SettingCellType: String, CaseIterable {
 }
 
 class SettingCell: UITableViewCell {
-  
   //outlet
   @IBOutlet private weak var imageCell: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
+  
+  static let reuseIdentifier: String = "SettingCell"
   
   func configuareSettingCell(with image: UIImage, title: String) {
     imageCell?.image = image

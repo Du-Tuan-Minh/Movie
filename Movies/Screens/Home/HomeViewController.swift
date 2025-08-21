@@ -9,12 +9,8 @@ import UIKit
 import RealmSwift
 
 class HomeViewController: UIViewController {
-  
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
-  
-  //variable
-  final private let reuseIdentifier: String = "HomeCell"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,7 +25,7 @@ extension HomeViewController {
   private func setupCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
-    collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+    collectionView.register(UINib(nibName: HomeCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: HomeCell.reuseIdentifier)
   }
 }
 
@@ -64,7 +60,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? HomeCell else {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseIdentifier, for: indexPath) as? HomeCell else {
       return UICollectionViewCell()
     }
     

@@ -18,7 +18,6 @@ enum createFolderModel {
 }
 
 class NewFolderPopUp: UIViewController {
-  
   //outlet
   @IBOutlet private weak var blureView: UIView!
   @IBOutlet private weak var contentView: UIView!
