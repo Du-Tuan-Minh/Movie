@@ -10,7 +10,6 @@ import FirebaseAuth
 import GoogleSignIn
 
 class LoginViewController: BaseViewController {
-  
   //outlet
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var passwordLabel: UILabel!
@@ -31,42 +30,67 @@ class LoginViewController: BaseViewController {
 //MARK: setup View
 extension LoginViewController {
   private func setupView() {
-    setupText()
     setupColor()
-  }
-  
-  private func setupText() {
-    
   }
   
   private func setupColor() {
     CAGradientLayer().gradientButton(btn: logInButton)
   }
   
+  private func checkUserRole() {
+    FirebaseManager.shared.getUserRole { role in
+      if role != nil {
+        self.movieViewController()
+      } else {
+        self.showAlert(title: "Error", message: "Please sign up again.", onAction: {
+          try? Auth.auth().signOut()
+        })
+      }
+    }
+  }
+  
   private func confirmAuth() {
     if Auth.auth().currentUser != nil {
-      movieViewController()
+      checkUserRole()
     }
   }
   
   private func loginApp() {
-    guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
-      showAlert(title: "Alert", message: "Opp! Please try again later", onAction: {})
+    guard let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+          let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+      showAlert(title: "Error", message: "Please fill in all fields", onAction: {})
       return
     }
-    if !email.validateEmailId() {
-      showAlert(title: "Alert", message: "Email address not found", onAction: {})
-    } else {
-      loginEmail()
+    
+    if email.isEmpty {
+      showAlert(title: "Error", message: "Please enter your email address", onAction: {})
+      return
     }
-  }
-  
-  private func loginEmail() {
-    Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { result, error in
+    
+    if !email.validateEmailId() {
+      showAlert(title: "Error", message: "Please enter a valid email address", onAction: {})
+      return
+    }
+    
+    if password.isEmpty {
+      showAlert(title: "Error", message: "Please enter your password", onAction: {})
+      return
+    }
+    
+    if password.count < 6 {
+      showAlert(title: "Error", message: "Password must be at least 6 characters", onAction: {})
+      return
+    }
+    
+    showLoadingIndicator()
+    
+    FirebaseManager.shared.signIn(email: email, password: password) { [weak self] error in
+      guard let self = self else { return }
+      self.hideLoadingIndicator()
       if let error = error {
-        self.showAlert(title: "Error", message: "\(error.localizedDescription)", onAction: {})
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
       } else {
-        self.movieViewController()
+        checkUserRole()
       }
     }
   }

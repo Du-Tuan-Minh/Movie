@@ -58,3 +58,4 @@
 "no_movies_selected_yet" = "Chưa có bộ phim nào được chọn";
 "can't_compare" = "Không thể so sánh";
 "need_at_least_2_movies_to_compare" = "Cần ít nhất 2 bộ phim để so sánh";
+"logout" = "Đăng xuất";

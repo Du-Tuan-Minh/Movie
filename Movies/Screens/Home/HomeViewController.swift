@@ -6,16 +6,14 @@
 //
 
 import UIKit
-import RealmSwift
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupCollectionView()
-    print(Realm.Configuration.defaultConfiguration.fileURL)
+    setupCollectionView() 
     navigationController?.isNavigationBarHidden = true
   }
 }

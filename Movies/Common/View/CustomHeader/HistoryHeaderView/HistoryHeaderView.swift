@@ -8,7 +8,6 @@
 import UIKit
 
 class HistoryHeaderView: UICollectionReusableView {
-  
   //outlet
   @IBOutlet private weak var dateLabel: UILabel!
   @IBOutlet private weak var chooseButton: UIButton!

@@ -7,6 +7,7 @@
 
 import UIKit
 import FittedSheets
+import FirebaseAuth
 
 enum ResultsModel {
   case ResultMore
@@ -14,7 +15,6 @@ enum ResultsModel {
 }
 
 class ResultsViewController: BaseViewController {
-  
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var titleButton: UIButton!
@@ -111,7 +111,7 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    switch resultModel.self {
+    switch resultModel {
     case .ResultMore:
       let headerView = CustomHeaderMoreView()
       headerView.delegate = self
@@ -120,7 +120,7 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
       guard compareMovies.indices.contains(section) else { return headerView }
       let movie = compareMovies[section]
       headerView.configureCustomHeaderMoreView(with: movie, at: section)
-      headerView.isChoose = selectedMovieIds.contains(movie.id)
+      headerView.isChoose = selectedMovieIds.contains(movie.id ?? "")
       
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleSection(_:)))
       headerView.addGestureRecognizer(tapGesture)
@@ -197,29 +197,53 @@ extension ResultsViewController: ChooseButtonSessionDelegate {
     let selectedMovie = compareMovies[section]
     
     if headerView.isChoose {
-      selectedMovieIds.insert(selectedMovie.id)
+      selectedMovieIds.insert(selectedMovie.id ?? "")
     } else {
-      selectedMovieIds.remove(selectedMovie.id)
+      selectedMovieIds.remove(selectedMovie.id ?? "")
     }
-    saveMoreMovies = compareMovies.filter { selectedMovieIds.contains($0.id) }
+    saveMoreMovies = compareMovies.filter { selectedMovieIds.contains($0.id ?? "") }
   }
 }
 
 //MARK: Delegate
 extension ResultsViewController: FooterCellDelegate {
   func footerClick() {
-    if saveMoreMovies.count == 0 {
-      self.showAlert(title: "no_movies_selected_yet".localized(), message: "", onAction: {})
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to save movies", onAction: {})
+      return
+    }
+    
+    if saveMoreMovies.isEmpty {
+      showAlert(title: "No Movies Selected", message: "Please select at least one movie to save", onAction: {})
     } else {
-      self.showAlert(title: "save_movie".localized(), message: "Do_you_want_to_save_movie".localized()) {
+      showAlert(title: "Save Movies", message: "Do you want to save the selected movies?", onAction: {
         let selectFolderVC = SelectFolderBottomSheets()
         selectFolderVC.selectedMovies = self.saveMoreMovies
-        let sheet = SheetViewController(controller: selectFolderVC, sizes: [ .fixed(350)])
+        let sheet = SheetViewController(controller: selectFolderVC, sizes: [.fixed(350)])
         sheet.hasBlurBackground = false
         sheet.cornerRadius = 20
         self.present(sheet, animated: true)
-      }
-      
+        
+        // Save to watchlist
+        let dispatchGroup = DispatchGroup()
+        var errors: [Error] = []
+        
+        for movie in self.saveMoreMovies {
+          dispatchGroup.enter()
+          FirebaseManager.shared.addToWatchlist(userId: userId, movie: movie) { error in
+            if let error = error {
+              errors.append(error)
+            }
+            dispatchGroup.leave()
+          }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+          if !errors.isEmpty {
+            self.showAlert(title: "Error", message: errors.first?.localizedDescription ?? "Failed to save movies", onAction: {})
+          }
+        }
+      })
     }
   }
 }

@@ -25,7 +25,6 @@ enum FilterCriteriaModel: String, CaseIterable {
 }
 
 class FilterCriteriaBottomSheets: UIViewController {
-  
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   

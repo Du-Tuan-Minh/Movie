@@ -6,17 +6,17 @@
 //
 
 import UIKit
-import RealmSwift
+import FirebaseAuth
 import DropDown
 
 class FolderWatchListViewController: BaseViewController {
-  
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   @IBOutlet private weak var titleButton: UIButton!
+  
   //variable
-  final private let reuseIdentifier: String = "FolderCell"
   var selectedIndexPath: IndexPath?
+  private var folders: [WatchlistFolderModel] = []
   
   //dropdown
   var menu: DropDown = {
@@ -40,6 +40,7 @@ class FolderWatchListViewController: BaseViewController {
     super.viewDidLoad()
     setupCollectionView()
     selectItemDropDown()
+    loadFolders()
     setupView()
   }
   
@@ -64,41 +65,69 @@ extension FolderWatchListViewController {
   private func setupCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
-    collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+    collectionView.register(UINib(nibName: FolderCell.identifier, bundle: nil), forCellWithReuseIdentifier: FolderCell.identifier)
   }
-}
-
-//MARK: Realm
-extension FolderWatchListViewController {
-  private func getListFolder() -> Results<WatchlistFolderModel> {
-    return try! Realm().objects(WatchlistFolderModel.self)
+  
+  private func loadFolders() {
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to view folders", onAction: {})
+      return
+    }
+    
+    showLoadingIndicator()
+    FirebaseManager.shared.fetchWatchlistFolders(userId: userId) { [weak self] folders, error in
+      guard let self = self else { return }
+      self.hideLoadingIndicator()
+      if let error = error {
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+      } else if let folders = folders {
+        self.folders = folders
+        self.collectionView.reloadData()
+      }
+    }
   }
 }
 
 //MARK: CollectionView
 extension FolderWatchListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return getListFolder().count
+    return folders.count
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to view watchlist", onAction: {})
+      return
+    }
+    
     let watchListVC = WatchListViewController()
-    watchListVC.watchlist = getListFolder()[indexPath.row].movies
-    watchListVC.idFolder = getListFolder()[indexPath.row].id
-    navigationController?.pushViewController(watchListVC, animated: true)
+    let folder = folders[indexPath.row]
+    
+    showLoadingIndicator()
+    FirebaseManager.shared.fetchWatchlistFolderMovies(userId: userId, folderId: folder.id ?? "") { [weak self] watchlist, error in
+      guard let self = self else { return }
+      self.hideLoadingIndicator()
+      if let error = error {
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+      } else if let watchlist = watchlist {
+        watchListVC.allMovies = watchlist
+        watchListVC.idFolder = folder.id // Pass folderId for potential future use
+        self.navigationController?.pushViewController(watchListVC, animated: true)
+      }
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FolderCell else {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.identifier, for: indexPath) as? FolderCell else {
       return UICollectionViewCell()
     }
-    let title = getListFolder()[indexPath.row].title
-    cell.configueFolderCell(with: title)
+    let folder = folders[indexPath.row]
+    cell.configueFolderCell(with: folder.title)
     
     cell.didTapSelect = { [weak self] in
       guard let self = self else { return }
-      let indexpath = collectionView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
-      selectedIndexPath = indexpath
+      let indexPath = collectionView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
+      self.selectedIndexPath = indexPath
       self.menu.anchorView = cell
       self.menu.show()
     }
@@ -122,7 +151,7 @@ extension FolderWatchListViewController: UICollectionViewDelegateFlowLayout, UIC
 //MARK: Delegate
 extension FolderWatchListViewController: NewFolderPopUpDelegate {
   func didCreateNewFolder() {
-    collectionView.reloadData()
+    loadFolders()
   }
 }
 
@@ -130,34 +159,46 @@ extension FolderWatchListViewController: NewFolderPopUpDelegate {
 extension FolderWatchListViewController {
   func selectItemDropDown() {
     self.menu.selectionAction = { [weak self] (index, item) in
-      guard let self = self, let selectedIndexPath = self.selectedIndexPath else { return }
-      guard let selectItem = ItemFolderDropDown(rawValue: item) else { return }
-      
-      let realm = try! Realm()
-      let selectedFolder = getListFolder()[selectedIndexPath.row]
+      guard let self = self, let selectedIndexPath = self.selectedIndexPath,
+            let userId = Auth.auth().currentUser?.uid,
+            let selectItem = ItemFolderDropDown(rawValue: item),
+            let folderId = folders[selectedIndexPath.row].id else { return }
       
       switch selectItem {
       case .remove:
-        try! realm.write {
-          realm.delete(selectedFolder.movies)
-          realm.delete(selectedFolder)
-        }
-        self.collectionView.reloadData()
-      case .rename:
-        let alert = UIAlertController(title: "rename_the_folder".localized(), message: nil, preferredStyle: .alert)
-        alert.addTextField { textField in
-          textField.text = selectedFolder.title
-        }
-        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "save".localized(), style: .default, handler: { _ in
-          if let newName = alert.textFields?.first?.text, !newName.isEmpty {
-            try! realm.write {
-              selectedFolder.title = newName
-            }
-            self.collectionView.reloadData()
+        showLoadingIndicator()
+        FirebaseManager.shared.deleteWatchlistFolder(userId: userId, folderId: folderId) { [weak self] error in
+          guard let self = self else { return }
+          self.hideLoadingIndicator()
+          if let error = error {
+            self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+          } else {
+            self.folders.remove(at: selectedIndexPath.row)
+            self.collectionView.deleteItems(at: [selectedIndexPath])
           }
-        }))
-        present(alert, animated: true, completion: nil)
+        }
+      case .rename:
+        showAlert(title: "Rename Folder", message: "", onAction: { [weak self] in
+          guard self != nil else { return }
+          // Default OK action does nothing
+        }, additionalActions: [
+          UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            guard let self = self, let newName = (self.presentedViewController as? UIAlertController)?.textFields?.first?.text, !newName.isEmpty else { return }
+            showLoadingIndicator()
+            FirebaseManager.shared.renameWatchlistFolder(userId: userId, folderId: folderId, newTitle: newName) { [weak self] error in
+              guard let self = self else { return }
+              self.hideLoadingIndicator()
+              if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+              } else {
+                self.folders[selectedIndexPath.row].title = newName
+                self.collectionView.reloadItems(at: [selectedIndexPath])
+              }
+            }
+          },
+          UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ])
+        
       }
     }
   }

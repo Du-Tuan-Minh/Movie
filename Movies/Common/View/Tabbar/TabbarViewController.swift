@@ -28,7 +28,7 @@ class TabbarViewController: UITabBarController {
   
   private func configureTabbar() {
     let homeVC = HomeViewController()
-    let chatVC = ChatViewController()
+    let chatVC = UsersViewController()
     let settingVC = SettingViewController()
     
     homeVC.tabBarItem = UITabBarItem(title: "home".localized(), image: UIImage(resource: .home), selectedImage: nil)

@@ -27,7 +27,7 @@ import UIKit
 
 internal class CLDNetworkCoordinator: NSObject {
 
-    static let DEFAULT_VERSION =        "5.1.0"
+    static let DEFAULT_VERSION =        "5.2.3"
     
     fileprivate struct CLDNetworkCoordinatorConsts {
         static let BASE_CLOUDINARY_URL =    "https://api.cloudinary.com"
@@ -36,7 +36,8 @@ internal class CLDNetworkCoordinator: NSObject {
     
     fileprivate var config: CLDConfiguration
     fileprivate var networkAdapter: CLDNetworkAdapter
-    
+    fileprivate var extraHeaders: [String: String]?
+
     // MARK: - Init
     
     init(configuration: CLDConfiguration, networkAdapter: CLDNetworkAdapter = CLDDefaultNetworkAdapter.sharedAdapter) {
@@ -67,6 +68,7 @@ internal class CLDNetworkCoordinator: NSObject {
         params.setTimeout(from: config)
         let requestParams = params.signed ? getSignedRequestParams(params) : params.params
         var headers :[String : String] = getHeaders()
+        headers.cldMerge(self.extraHeaders) //User's configured extra headers
         headers.cldMerge(extraHeaders)
         return networkAdapter.uploadToCloudinary(url, headers: headers, parameters: requestParams,  data: data)
     }
@@ -93,7 +95,7 @@ internal class CLDNetworkCoordinator: NSObject {
             let timestamp = Int(Date().timeIntervalSince1970)
             params[CLDSignature.SignatureParam.Timestamp.rawValue] = cldParamValueAsString(value: timestamp)
             
-            let signature = cloudinarySignParamsUsingSecret(getSignParams(from: params), cloudinaryApiSecret: apiSecret)
+            let signature = cloudinarySignParamsUsingSecret(getSignParams(from: params), cloudinaryApiSecret: apiSecret, signatureVersion: config.signatureVesion)
             params[CLDSignature.SignatureParam.Signature.rawValue] = signature
         }
         else {
@@ -185,6 +187,14 @@ internal class CLDNetworkCoordinator: NSObject {
     
     internal func setMaxConcurrentDownloads(_ maxConcurrentDownloads: Int) {
         networkAdapter.setMaxConcurrentDownloads(maxConcurrentDownloads)
+    }
+
+    internal func setExtraHeaders(_ extraHeaders: [String: String]) {
+        self.extraHeaders = extraHeaders
+    }
+
+    internal func getExtraHeaders() -> [String: String]? {
+        return extraHeaders
     }
 }
 

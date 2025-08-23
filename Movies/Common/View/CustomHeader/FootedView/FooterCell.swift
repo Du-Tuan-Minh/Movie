@@ -12,7 +12,6 @@ protocol FooterCellDelegate: AnyObject {
 }
 
 class FooterCell: UIView {
-  
   //outlet
   @IBOutlet private weak var footerButton: UIButton!
   

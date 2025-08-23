@@ -8,7 +8,6 @@
 import UIKit
 
 class WatchlistCell: UITableViewCell {
-  
   //outlet
   @IBOutlet private weak var movieImage: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
@@ -19,18 +18,30 @@ class WatchlistCell: UITableViewCell {
   @IBOutlet private weak var saveTimeLabel: UILabel!
   @IBOutlet private weak var revenueLabel: UILabel!
   
+  static let identifier: String = "WatchlistCell"
+  
   func configureWatchListCell(with movie: MovieModel, time: Date, tag: Int) {
-    guard let imageData = movie.pdfData else {return}
-    movieImage.image = UIImage().convertDateToImage(data: imageData)
-    userScoreImage.image = UIImage().convertUseScoreToImage(movieScore: movie.userScore)
-    titleLabel.text = movie.title
-    releaseYearLabel.text = "(\(Date().getYear(date: movie.releaseYear ?? Date())))"
-    let genres = movie.genres.map { $0.title }
-    genresLabel.text = genres.joined(separator: ", ")
-    durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
-    saveTimeLabel.text = "\(Date().formattedDate(date: time))"
-    revenueLabel.text = "\(movie.revenue) $"
-    
-    titleLabel.textColor = tag % 2 == 0 ? UIColor(resource: .lightBlue): UIColor(resource: .violet)
-  }
+        if let pdfURL = movie.imageURL {
+            FirebaseManager.shared.storage.child(pdfURL).getData(maxSize: 10 * 1024 * 1024) { [weak self] data, error in
+                guard let self = self, let data = data, error == nil, let image = UIImage.convertDataToImage(from: data) else {
+                    self?.movieImage.image = UIImage(named: "placeholder")
+                    return
+                }
+                self.movieImage.image = image
+            }
+        } else {
+            movieImage.image = UIImage(named: "placeholder")
+        }
+        
+        userScoreImage.image = UIImage().convertUseScoreToImage(movieScore: movie.userScore)
+        titleLabel.text = movie.title
+        releaseYearLabel.text = "(\(Date().getYear(date: movie.releaseYear ?? Date())))"
+        let genres = movie.genres.map { $0.title }
+        genresLabel.text = genres.joined(separator: ", ")
+        durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
+        saveTimeLabel.text = "\(Date().formattedDate(date: time))"
+        revenueLabel.text = "\(movie.revenue) $"
+        
+        titleLabel.textColor = tag % 2 == 0 ? UIColor(resource: .lightBlue) : UIColor(resource: .violet)
+    }
 }

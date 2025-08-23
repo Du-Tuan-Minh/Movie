@@ -7,8 +7,7 @@
 
 import UIKit
 
-class OnboardingCell: UICollectionViewCell {
-  
+class OnboardingCell: UICollectionViewCell { 
   //outlet
   @IBOutlet private weak var slideImage: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!

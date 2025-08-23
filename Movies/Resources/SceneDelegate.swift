@@ -19,10 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let hasSeenOnBoarding = UserDefaults.standard.bool(forKey: UserDefaultKey().hasSeenOnboarding)
     let rootVC = hasSeenOnBoarding ? LoginViewController() : OnboardingViewController()
     windowScreen.rootViewController = UINavigationController(rootViewController: rootVC)
-    
-    RealmManager.shared.syncMoviesFromFirestore()
-    RealmManager.shared.observeRealmChangesAndSync()
-    
+
     windowScreen.makeKeyAndVisible()
     self.window = windowScreen
   }

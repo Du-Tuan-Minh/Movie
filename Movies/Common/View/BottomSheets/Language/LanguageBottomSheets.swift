@@ -8,7 +8,7 @@
 import UIKit
 
 class LanguageBottomSheets: UIViewController {
-  
+  //outlet
   @IBOutlet private weak var englishButton: UIButton!
   @IBOutlet private weak var vietButton: UIButton!
   

@@ -8,34 +8,29 @@
 import UIKit
 
 enum SettingCellType: String, CaseIterable {
-  case aboutApp
-  case primaryPolicy
   case feedBack
   case appLanguage
+  case logout
   
   var image: UIImage {
     switch self {
-    case .aboutApp:
-      return UIImage(resource: .star)
-    case .primaryPolicy:
-      return UIImage(resource: .lock)
     case .feedBack:
       return UIImage(resource: .feedback)
     case .appLanguage:
       return UIImage(resource: .language)
+    case .logout:
+      return UIImage(resource: .logout)
     }
   }
   
   var title: String {
     switch self {
-    case .aboutApp:
-      return "aboutApp".localized()
-    case .primaryPolicy:
-      return "privacy_policy".localized()
     case .feedBack:
       return "feedBack".localized()
     case .appLanguage:
       return "language".localized()
+    case .logout:
+      return "logout".localized()
     }
   }
 }

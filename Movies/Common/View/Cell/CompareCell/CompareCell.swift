@@ -12,13 +12,13 @@ protocol CompareCellDelegate: AnyObject {
 }
 
 class CompareCell: UITableViewCell {
-  
   //outlet
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var yearOfReleaseLabel: UILabel!
   @IBOutlet private weak var selectButton: UIButton!
   
   //variable
+  static let identifier: String = "CompareCell"
   weak var delegate: CompareCellDelegate?
   var btn: UIButton? {
     return selectButton

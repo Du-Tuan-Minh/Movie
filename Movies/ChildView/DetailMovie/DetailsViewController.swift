@@ -8,12 +8,14 @@
 import UIKit
 import AVKit
 import AVFoundation
-import RealmSwift
 import PhotosUI
 import Cloudinary
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class DetailsViewController: BaseViewController {
-  
   //outlet
   @IBOutlet private weak var movieImage: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
@@ -31,7 +33,6 @@ class DetailsViewController: BaseViewController {
   
   //varible
   var movie: MovieModel?
-  let realm = try! Realm()
   
   //Cloudinary Initialization
   let cloudinary = CLDCloudinary(configuration: CLDConfiguration(
@@ -66,9 +67,16 @@ extension DetailsViewController {
   }
   
   private func configureDetails() {
-    guard let movie = movie else {return}
-    if let pdfData = movie.pdfData, let pdfImage = UIImage.convertDataToImage(from: pdfData) {
-      movieImage.image = pdfImage
+    guard let movie = movie else { return }
+    // Load PDF from Firebase Storage if pdfURL exists
+    if let pdfURL = movie.trailerURL {
+      FirebaseManager.shared.storage.child(pdfURL).getData(maxSize: 10 * 1024 * 1024) { [weak self] data, error in
+        guard let self = self, let data = data, error == nil, let pdfImage = UIImage.convertDataToImage(from: data) else {
+          self?.movieImage.image = UIImage(named: "placeholder")
+          return
+        }
+        self.movieImage.image = pdfImage
+      }
     } else {
       movieImage.image = UIImage(named: "placeholder")
     }
@@ -80,7 +88,7 @@ extension DetailsViewController {
     contentLabel.text = movie.describe
   }
   
-  private func configureGenresLabels(with genres: List<GenersModel>) {
+  private func configureGenresLabels(with genres: [GenersModel]) {
     let genresList = genres.map { $0.title }
     
     generOneLabel.text = genresList.isEmpty ? "N/A" : "   \(genresList[0])   "
@@ -91,24 +99,34 @@ extension DetailsViewController {
   }
   
   private func uploadVideoToCloudinary(videoURL: URL) {
+    guard let movieId = movie?.id else {
+      showAlert(title: "Error".localized(), message: "Invalid movie data".localized(), onAction: {})
+      return
+    }
+    
     let params = CLDUploadRequestParams().setResourceType(.video)
     
-    cloudinary.createUploader().upload(url: videoURL,
-                                       uploadPreset: "dutuanminh",
-                                       params: params, completionHandler:  { [weak self] result, error in
-      guard let self = self, let url = result?.secureUrl, error == nil else { return }
-      
-      try? self.realm.write {
-        guard let movie = self.movie else {return}
-        movie.videoURL = url
-        self.realm.add(movie)
+    cloudinary.createUploader().upload(url: videoURL, uploadPreset: "dutuanminh", params: params) { [weak self] result, error in
+      guard let self = self, let url = result?.secureUrl, error == nil else {
+        self?.showAlert(title: "Error".localized(), message: error?.localizedDescription ?? "Failed to upload video".localized(), onAction: {})
+        return
       }
-    })
+      
+      // Update movie's videoURLs in Firestore
+      FirebaseManager.shared.db.collection("movies").document(movieId).collection("videoURLs").document(UUID().uuidString).setData(["url": url]) { error in
+        if let error = error {
+          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        } else {
+          // Update local movie object
+          self.movie?.videoURLs.append(url)
+        }
+      }
+    }
   }
   
   //play trailer
   private func playCloudinaryVideo() {
-    guard let videoURLString = movie?.videoURL, let videoURL = URL(string: videoURLString) else { return  }
+    guard let videoURLString = movie?.trailerURL, let videoURL = URL(string: videoURLString) else { return  }
     
     let player = AVPlayer(url: videoURL)
     let playerViewController = AVPlayerViewController()

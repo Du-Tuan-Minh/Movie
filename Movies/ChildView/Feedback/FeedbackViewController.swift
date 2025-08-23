@@ -6,21 +6,27 @@
 //
 
 import UIKit
+import MessageUI
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-class FeedbackViewController: BaseViewController {
-  
+class FeedbackViewController: BaseViewController, MFMailComposeViewControllerDelegate {
   //outlet
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var toLabel: UILabel!
   @IBOutlet private weak var fromLabel: UILabel!
-  @IBOutlet private weak var subjectLabel: UILabel!
-  @IBOutlet private weak var feedbackLabel: UILabel!
+  @IBOutlet private weak var subjectTextField: UITextField!
+  @IBOutlet private weak var feedbackTextView: UITextView!
   @IBOutlet private weak var sendButton: UIButton!
+  
+  private let recipientEmail = "dutuanminh2812202@gmail.com"
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupText()
     setupButton()
+    loadUserInfo()
   }
   
   private func setupText() {
@@ -35,7 +41,77 @@ class FeedbackViewController: BaseViewController {
     CAGradientLayer().gradientButton(btn: sendButton)
   }
   
-  @IBAction func sendTapped(_ sender: Any) {
+  private func loadUserInfo() {
+    guard let userId = Auth.auth().currentUser?.uid else {
+      fromLabel.text = "From: Not logged in"
+      showAlert(title: "Error".localized(), message: "You must be logged in to send feedback".localized(), onAction: {})
+      return
+    }
     
+    FirebaseManager.shared.fetchUsername(for: userId) { [weak self] username, error in
+      guard let self = self else { return }
+      if let error = error {
+        self.fromLabel.text = "From: Error"
+        self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+      } else if let username = username {
+        self.fromLabel.text = "From: \(username) (\(Auth.auth().currentUser?.email ?? "No email"))"
+      }
+    }
+  }
+  
+  @IBAction func sendTapped(_ sender: Any) {
+    guard MFMailComposeViewController.canSendMail() else {
+      showAlert(title: "Error".localized(), message: "Mail services are not available. Please configure an email account.".localized(), onAction: {})
+      return
+    }
+    
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error".localized(), message: "You must be logged in to send feedback".localized(), onAction: {})
+      return
+    }
+    
+    let subject = subjectTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    let feedback = feedbackTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    
+    if subject.isEmpty || feedback.isEmpty {
+      showAlert(title: "Error".localized(), message: "Please enter both subject and feedback".localized(), onAction: {})
+      return
+    }
+    
+    FirebaseManager.shared.fetchUsername(for: userId) { [weak self] username, error in
+      guard let self = self else { return }
+      if let error = error {
+        self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        return
+      }
+      
+      let mailVC = MFMailComposeViewController()
+      mailVC.mailComposeDelegate = self
+      mailVC.setToRecipients([self.recipientEmail])
+      mailVC.setSubject(subject)
+      mailVC.setMessageBody("From: \(username ?? "Unknown User") (\(Auth.auth().currentUser?.email ?? "No email"))\n\nFeedback:\n\(feedback)", isHTML: false)
+      
+      self.present(mailVC, animated: true, completion: nil)
+    }
+  }
+  
+  func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    if let error = error {
+      showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+    } else {
+      switch result {
+      case .sent:
+        showAlert(title: "Success".localized(), message: "Feedback sent successfully".localized(), onAction: {})
+      case .saved:
+        showAlert(title: "Saved".localized(), message: "Feedback saved as draft".localized(), onAction: {})
+      case .failed:
+        showAlert(title: "Error".localized(), message: "Failed to send feedback".localized(), onAction: {})
+      case .cancelled:
+        break
+      @unknown default:
+        break
+      }
+    }
+    controller.dismiss(animated: true, completion: nil)
   }
 }

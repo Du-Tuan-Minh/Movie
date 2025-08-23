@@ -58,3 +58,4 @@
 "no_movies_selected_yet" = "No movies selected yet";
 "can't_compare" = "Can't compare";
 "need_at_least_2_movies_to_compare" = "Need at least 2 movies to compare";
+"logout" = "Logout";

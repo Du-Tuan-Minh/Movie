@@ -14,7 +14,6 @@ enum ForgotPasswordMode {
 }
 
 class ForgotPasswordViewController: BaseViewController {
-  
   //outlet
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var emailAddressLabel: UILabel!
@@ -25,6 +24,7 @@ class ForgotPasswordViewController: BaseViewController {
   
   //variable
   var mode: ForgotPasswordMode = .forgot
+  var oobCode: String?
   private var isEmailValid: Bool = true {
     didSet {
       if isEmailValid {
@@ -51,10 +51,12 @@ class ForgotPasswordViewController: BaseViewController {
   }
   
   private func setupText() {
+    emailAddressLabel.text = "Email Address"
+    confirmPasswordLabel.text = "New Password"
     if mode == .forgot {
-      titleLabel.text = "Forgot password"
+      titleLabel.text = "Forgot Password"
     } else if mode == .reset {
-      titleLabel.text = "Reset password"
+      titleLabel.text = "Reset Password"
     }
   }
   
@@ -63,30 +65,59 @@ class ForgotPasswordViewController: BaseViewController {
   }
   
   private func updatePassword() {
-    guard let email = emailAddressTextField.text, email.validateEmailId() else {
-      showAlert(title: "Alert", message: "Please enter a valid email address.", onAction: {})
+    guard let email = emailAddressTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+      showAlert(title: "Error", message: "Please enter your email address", onAction: {})
       return
     }
+    
+    if !email.validateEmailId() {
+      showAlert(title: "Error", message: "Please enter a valid email address", onAction: {})
+      return
+    }
+    
+    showLoadingIndicator()
     if isEmailValid {
-      Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
+      // Mode: Forgot - Gửi email reset
+      FirebaseManager.shared.sendPasswordResetEmail(email: email) { [weak self] error in
         guard let self = self else { return }
+        self.hideLoadingIndicator()
         if let error = error {
           self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
         } else {
-          showAlert( title: "Email Sent", message: "A password reset email has been sent to \(email). Please check your inbox.", onAction: {})
-          self.isEmailValid = false
+          self.showAlert(title: "Email Sent", message: "A password reset email has been sent to \(email). Please check your inbox.", onAction: {
+            self.isEmailValid = false
+          })
         }
       }
     } else {
-      guard let confirmPassword = confirmPassWordTextField.text else {
-        showAlert(title: "Alert", message: "Please enter your new password.", onAction: {})
+      // Mode: Reset - Xác nhận mật khẩu mới
+      guard let newPassword = confirmPassWordTextField.text, !newPassword.isEmpty else {
+        self.hideLoadingIndicator()
+        showAlert(title: "Error", message: "Please enter a new password", onAction: {})
         return
       }
-      Auth.auth().signIn(withEmail: emailAddressTextField.text!, password: confirmPassword) { authResult, error in
+      
+      if newPassword.count < 6 {
+        self.hideLoadingIndicator()
+        showAlert(title: "Error", message: "Password must be at least 6 characters", onAction: {})
+        return
+      }
+      
+      guard let oobCode = oobCode else {
+        self.hideLoadingIndicator()
+        showAlert(title: "Error", message: "Invalid reset code. Please request a new reset email.", onAction: {})
+        return
+      }
+      
+      FirebaseManager.shared.confirmPasswordReset(oobCode: oobCode, newPassword: newPassword) { [weak self] error in
+        guard let self = self else { return }
+        self.hideLoadingIndicator()
         if let error = error {
-          self.showAlert(title: "Error", message: "Unable to log in with the new password. Please try again.", onAction: {})
+          self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
         } else {
-          self.movieViewController()
+          self.showAlert(title: "Success", message: "Password reset successfully!", onAction: {
+            self.navigationController?.popViewController(animated: true)
+          })
         }
       }
     }

@@ -6,7 +6,9 @@
 //
 
 import UIKit
-import RealmSwift
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class HistoryViewController: BaseViewController {
   //outlet
@@ -48,71 +50,111 @@ extension HistoryViewController {
 
 //MARK: Realm
 extension HistoryViewController {
-  private func getListHistory() -> Results<HistoryFolderModel> {
-    return try! Realm().objects(HistoryFolderModel.self)
-  }
-  //  private func loadMovie() {
-  //    let historyList = getListHistory()
-  //    groupedMovies = historyList.map { folder in
-  //      (createdDate: folder.createdDate, movies: Array(folder.comparisons))
-  //    }.sorted { $0.createdDate > $1.createdDate }
-  //    collectionView.reloadData()
-  //  }
   private func loadMovie() {
-    let historyList = getListHistory()
-    var moviesGroupedByDate = [Date: [MovieModel]]()
-    
-    for folder in historyList {
-      let dateOnly = Calendar.current.startOfDay(for: folder.createdDate)
-      moviesGroupedByDate[dateOnly, default: []].append(contentsOf: Array(folder.comparisons))
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to view history", onAction: {})
+      return
     }
     
-    groupedMovies = moviesGroupedByDate.map { (date: Date, movies: [MovieModel]) -> (createdDate: Date, movies: [MovieModel]) in
-      return (createdDate: date, movies: movies)
-    } .sorted { $0.createdDate > $1.createdDate }
-    collectionView.reloadData()
+    showLoadingIndicator()
+    FirebaseManager.shared.db.collection("users").document(userId).collection("comparison_history").getDocuments { [weak self] snapshot, error in
+      guard let self = self else { return }
+      self.hideLoadingIndicator()
+      
+      if let error = error {
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+        return
+      }
+      
+      guard let documents = snapshot?.documents else { return }
+      
+      var moviesGroupedByDate = [Date: [MovieModel]]()
+      for document in documents {
+        if let history = try? document.data(as: FirebaseManager.ComparisonHistory.self) {
+          let createdDate = history.createdDate.dateValue()
+          let dateOnly = Calendar.current.startOfDay(for: createdDate)
+          moviesGroupedByDate[dateOnly, default: []].append(contentsOf: history.movies)
+        }
+      }
+      
+      self.groupedMovies = moviesGroupedByDate.map { (date: Date, movies: [MovieModel]) in
+        (createdDate: date, movies: movies)
+      }.sorted { $0.createdDate > $1.createdDate }
+      self.collectionView.reloadData()
+    }
   }
 }
 
 //MARK: Action
 extension HistoryViewController {
   @IBAction func deleteSessionTaped(_ sender: Any) {
-    let realm = try! Realm()
-    try! realm.write {
-      let datesToDelete = listChoose.map { groupedMovies[$0].createdDate }
-      
-      let allHistory = realm.objects(HistoryFolderModel.self)
-      
-      if datesToDelete.isEmpty {
-        self.showAlert(title: "do_you_want_to_delete_everything".localized(), message: "") {
-          realm.delete(realm.objects(HistoryFolderModel.self))
-          self.groupedMovies.removeAll()
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to delete history", onAction: {})
+      return
+    }
+    
+    showLoadingIndicator()
+    let db = FirebaseManager.shared.db.collection("users").document(userId).collection("comparison_history")
+    
+    if listChoose.isEmpty {
+      showAlert(title: "Delete All History", message: "Do you want to delete everything?", onAction: {
+        db.getDocuments { [weak self] snapshot, error in
+          guard let self = self, let documents = snapshot?.documents else {
+            self?.hideLoadingIndicator()
+            self?.showAlert(title: "Error", message: error?.localizedDescription ?? "Failed to fetch history", onAction: {})
+            return
+          }
+          
+          let batch = FirebaseManager.shared.db.batch()
+          for doc in documents {
+            batch.deleteDocument(doc.reference)
+          }
+          batch.commit { error in
+            self.hideLoadingIndicator()
+            if let error = error {
+              self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+            } else {
+              self.groupedMovies.removeAll()
+              self.collectionView.reloadData()
+            }
+          }
         }
-      } else {
-        for date in datesToDelete {
-          let itemsToDelete = allHistory.filter("createdDate == %@", date)
-          realm.delete(itemsToDelete)
+      })
+    } else {
+      db.getDocuments { [weak self] snapshot, error in
+        guard let self = self, let documents = snapshot?.documents else {
+          self?.hideLoadingIndicator()
+          self?.showAlert(title: "Error", message: error?.localizedDescription ?? "Failed to fetch history", onAction: {})
+          return
         }
         
-        for index in listChoose.sorted(by: >) {
-          groupedMovies.remove(at: index)
+        let datesToDelete = self.listChoose.map { self.groupedMovies[$0].createdDate }
+        let batch = FirebaseManager.shared.db.batch()
+        
+        for doc in documents {
+          if let history = try? doc.data(as: FirebaseManager.ComparisonHistory.self) {
+            let createdDate = history.createdDate.dateValue()
+            if datesToDelete.contains(Calendar.current.startOfDay(for: createdDate)) {
+              batch.deleteDocument(doc.reference)
+            }
+          }
         }
-        listChoose.removeAll()
+        
+        batch.commit { error in
+          self.hideLoadingIndicator()
+          if let error = error {
+            self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+          } else {
+            for index in self.listChoose.sorted(by: >) {
+              self.groupedMovies.remove(at: index)
+            }
+            self.listChoose.removeAll()
+            self.collectionView.reloadData()
+          }
+        }
       }
-      collectionView.reloadData()
     }
   }
-  
-  //  @IBAction func cleanAllTapped(_ sender: Any) {
-  //
-  //      let realm = try! Realm()
-  //      try! realm.write {
-  //
-  //
-  //        self.collectionView.reloadData()
-  //      }
-  //    }
-  //  }
   
   @IBAction func backTapped(_ sender: Any) {
     navigationController?.popViewController(animated: true)

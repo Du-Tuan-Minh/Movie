@@ -7,8 +7,8 @@
 
 import UIKit
 import DropDown
-import RealmSwift
 import FittedSheets
+import FirebaseAuth
 
 enum compareModel {
   case compareTwo
@@ -21,13 +21,11 @@ protocol CompareMovieDelegate: AnyObject {
 }
 
 class CompareMoviesViewController: BaseViewController {
-  
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var titleButton: UIButton!
   
   //variable
-  final private let reuseIdentifier: String = "CompareCell"
   weak var delegate: CompareMovieDelegate?
   var selectedMovies: [MovieModel] = []
   var compareModel: compareModel = .compareTwo
@@ -53,8 +51,8 @@ class CompareMoviesViewController: BaseViewController {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupTableView()
     setupView()
+    setupTableView()
     chooseItemDropDown()
   }
 }
@@ -68,7 +66,7 @@ extension CompareMoviesViewController {
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+    tableView.register(UINib(nibName: CompareCell.identifier, bundle: nil), forCellReuseIdentifier: CompareCell.identifier)
     
     //create footer
     guard let footer = Bundle.main.loadNibNamed(FooterCell.identifier, owner: nil, options: nil)?.first as? FooterCell else { return }
@@ -117,7 +115,7 @@ extension CompareMoviesViewController: UITableViewDataSource, UITableViewDelegat
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CompareCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: CompareCell.identifier) as? CompareCell else {
       return UITableViewCell()
     }
     cell.delegate = self
@@ -142,24 +140,40 @@ extension CompareMoviesViewController: CompareCellDelegate {
 
 extension CompareMoviesViewController: FooterCellDelegate {
   func footerClick() {
-    let realm = try! Realm()
-    let history = HistoryFolderModel()
-    
-    try! realm.write {
-      history.comparisons.append(objectsIn: self.selectedMovies)
-      realm.add(history)
-      realm.delete(realm.objects(ComparisonModel.self))
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to save comparison", onAction: {})
+      return
     }
     
-    let resultVC = ResultsViewController()
-    switch compareModel {
-    case .compareTwo:
-      resultVC.resultModel = .ResultTwo
-    case .compareMore:
-      resultVC.resultModel = .ResultMore
+    let compareModelString = compareModel == .compareTwo ? "compareTwo" : "compareMore"
+    showLoadingIndicator()
+    FirebaseManager.shared.saveComparisonHistory(userId: userId, movies: selectedMovies, compareModel: compareModelString) { [weak self] error in
+      guard let self = self else { return }
+      self.hideLoadingIndicator()
+      if let error = error {
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+        return
+      }
+      
+      // Clear temporary comparisons
+      FirebaseManager.shared.clearTemporaryComparisons(userId: userId) { [weak self] error in
+        guard let self = self else { return }
+        if let error = error {
+          self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+          return
+        }
+        
+        let resultVC = ResultsViewController()
+        switch self.compareModel {
+        case .compareTwo:
+          resultVC.resultModel = .ResultTwo
+        case .compareMore:
+          resultVC.resultModel = .ResultMore
+        }
+        resultVC.compareMovies = self.selectedMovies
+        self.navigationController?.pushViewController(resultVC, animated: true)
+      }
     }
-    resultVC.compareMovies = selectedMovies
-    navigationController?.pushViewController(resultVC, animated: true)
   }
 }
 
@@ -173,14 +187,13 @@ extension CompareMoviesViewController {
       switch selectItem {
       case .delete:
         self.selectedMovies.remove(at: selectedIndexPath.row)
-        delegate?.backUploadMovies(movie: selectedMovies )
+        self.delegate?.backUploadMovies(movie: selectedMovies )
         self.tableView.reloadData()
         if selectedMovies.count < 2 {
           navigationController?.popViewController(animated: true)
         }
       case .replace:
         delegate?.replaceUploadMovies(selectedIndexPath.row)
-        print(selectedIndexPath.row)
         navigationController?.popViewController(animated: true)
       }
     }

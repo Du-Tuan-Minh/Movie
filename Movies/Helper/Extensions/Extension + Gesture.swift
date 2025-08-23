@@ -8,14 +8,15 @@
 import UIKit
 
 extension UIViewController {
-  func enableEdgePanBackGesture() {
-    let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePan(_:)))
-    edgePan.edges = .left
-    view.addGestureRecognizer(edgePan)
+  func enablePanBackGesture() {
+    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+    view.addGestureRecognizer(panGesture)
   }
   
-  @objc private func handleEdgePan(_ gesture: UIScreenEdgePanGestureRecognizer) {
-    if gesture.state == .recognized {
+  @objc private func handlePan(_ gesture: UIPanGestureRecognizer) {
+    let translation = gesture.translation(in: view)
+    
+    if translation.x > 80, gesture.state == .ended {
       if let navigationController = navigationController {
         navigationController.popViewController(animated: true)
       } else {
@@ -26,6 +27,7 @@ extension UIViewController {
   
   func hidenKeyboardWhenTapAround() {
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    tapGestureRecognizer.cancelsTouchesInView = false
     view.addGestureRecognizer(tapGestureRecognizer)
   }
   

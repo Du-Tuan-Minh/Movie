@@ -6,7 +6,9 @@
 //
 
 import UIKit
-import RealmSwift
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 enum SearchModel {
   case searchTwo
@@ -14,7 +16,6 @@ enum SearchModel {
 }
 
 class SearchMoviesViewController: BaseViewController {
-  
   //outlet
   @IBOutlet private weak var collectionView: UICollectionView!
   @IBOutlet private weak var searchView: UISearchBar!
@@ -22,54 +23,25 @@ class SearchMoviesViewController: BaseViewController {
   @IBOutlet private weak var movedownButton: UIButton!
   
   //variable
-  final private let reuseIdentifier: String = "SearchCell"
-  private var movies: Results<MovieModel>!
-  private var filteredMovies: Results<MovieModel>!
+  private var movies: [MovieModel] = []
+  private var filteredMovies: [MovieModel] = []
   private var selectsIndexs: Set<IndexPath> = []
-  var searchModel: SearchModel = .searchTwo
   var selectedMovies: [MovieModel] = []
+  var searchModel: SearchModel = .searchTwo
   private var replaceIndexPaths: IndexPath?
-  
-  
-  private var realmNotificationToken: NotificationToken?
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    movies = getMovies()
-    filteredMovies = movies
     setupCollectionView()
     setupSearchBar()
     setupView()
-    
-    realmNotificationToken = movies.observe { [weak self] change in
-      guard let self = self else { return }
-      switch change {
-      case .update:
-        if let searchText = self.searchView.text, !searchText.isEmpty {
-          if let year = Int(searchText) {
-            self.filteredMovies = self.movies.filter("releaseYear == %d", year)
-          } else {
-            self.filteredMovies = self.movies.filter("title CONTAINS[c] %@", searchText)
-          }
-        } else {
-          self.filteredMovies = self.movies
-        }
-        self.collectionView.reloadData()
-      case .initial:
-        self.collectionView.reloadData()
-      case .error(let error):
-        print("Lỗi Realm notification: \(error)")
-      }
-    }
+    loadMovies()
   }
   deinit {
-    realmNotificationToken?.invalidate()
     NotificationCenter.default.removeObserver(self)
   }
 }
-
 
 //MARK: setupView
 extension SearchMoviesViewController {
@@ -93,21 +65,56 @@ extension SearchMoviesViewController {
   private func setupCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
-    collectionView.allowsMultipleSelection = true
-    collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+    collectionView.register(UINib(nibName: SearchCell.identifier, bundle: nil), forCellWithReuseIdentifier: SearchCell.identifier)
     collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "FooterWrapper")
   }
   
-  private func getMovies() -> Results<MovieModel> {
-    return try! Realm().objects(MovieModel.self)
+  private func loadMovies() {
+    showLoadingIndicator()
+    FirebaseManager.shared.fetchMovies { [weak self] movies, error in
+      guard let self = self else { return }
+      self.hideLoadingIndicator()
+      if let error = error {
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+      } else if let movies = movies {
+        self.movies = movies
+        self.filteredMovies = movies
+        self.collectionView.reloadData()
+      }
+    }
   }
   
   private func historyCompare(selectedMovies: [MovieModel]) {
-    let realm = try! Realm()
-    let compare = ComparisonModel()
-    try! realm.write {
-      compare.comparedMovies.append(objectsIn: selectedMovies)
-      realm.add(compare)
+    guard let userId = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to save comparisons", onAction: {})
+      return
+    }
+    
+    showLoadingIndicator()
+    let dispatchGroup = DispatchGroup()
+    var errors: [Error] = []
+    
+    for movie in selectedMovies {
+      dispatchGroup.enter()
+      let watchlistItem = FirebaseManager.WatchlistItem(movie: movie, addedDate: Timestamp())
+      do {
+        try FirebaseManager.shared.db.collection("users").document(userId).collection("temporary_comparisons").document(movie.id ?? UUID().uuidString).setData(from: watchlistItem) { error in
+          if let error = error {
+            errors.append(error)
+          }
+          dispatchGroup.leave()
+        }
+      } catch {
+        errors.append(error)
+        dispatchGroup.leave()
+      }
+    }
+    
+    dispatchGroup.notify(queue: .main) {
+      self.hideLoadingIndicator()
+      if !errors.isEmpty {
+        self.showAlert(title: "Error", message: errors.first?.localizedDescription ?? "Failed to save comparisons", onAction: {})
+      }
     }
   }
 }
@@ -132,9 +139,18 @@ extension SearchMoviesViewController: UISearchBarDelegate {
     if searchText.isEmpty {
       filteredMovies = movies
     } else if let year = Int(searchText) {
-      filteredMovies = movies.filter("releaseYear == %d", year)
+      filteredMovies = movies.filter { movie in
+        guard let releaseYear = movie.releaseYear else { return false }
+        return Calendar.current.component(.year, from: releaseYear) == year
+      }
     } else {
-      filteredMovies = movies.filter("title CONTAINS[c] %@", searchText)
+      filteredMovies = movies.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+    }
+    selectsIndexs = []
+    for (index, movie) in filteredMovies.enumerated() {
+      if selectedMovies.contains(where: { $0.id == movie.id }) {
+        selectsIndexs.insert(IndexPath(item: index, section: 0))
+      }
     }
     collectionView.reloadData()
   }
@@ -151,15 +167,18 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
     
     if selectsIndexs.contains(indexPath) {
       selectsIndexs.remove(indexPath)
+      selectedMovies.removeAll { $0.id == filteredMovies[indexPath.row].id }
     } else {
       switch searchModel {
       case .searchTwo:
         if selectsIndexs.count < 2 {
           selectsIndexs.insert(indexPath)
+          selectedMovies.append(filteredMovies[indexPath.row])
         }
       case .searchMore:
         if selectsIndexs.count < 10 {
           selectsIndexs.insert(indexPath)
+          selectedMovies.append(filteredMovies[indexPath.row])
         }
       }
     }
@@ -169,7 +188,7 @@ extension SearchMoviesViewController: UICollectionViewDelegate, UICollectionView
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? SearchCell else {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else {
       return UICollectionViewCell()
     }
     cell.configSearchCell(with: filteredMovies[indexPath.row])
@@ -241,7 +260,7 @@ extension SearchMoviesViewController: CompareMovieDelegate {
     selectedMovies = movie
     selectsIndexs = []
     for (index, movie) in filteredMovies.enumerated() {
-      if selectedMovies.contains(movie) {
+      if selectedMovies.contains(where: { $0.id == movie.id }) {
         selectsIndexs.insert(IndexPath(item: index, section: 0))
       }
     }
@@ -252,7 +271,7 @@ extension SearchMoviesViewController: CompareMovieDelegate {
     guard index >= 0 && index < selectedMovies.count else { return }
     
     let movieToReplace = selectedMovies[index]
-    guard let filteredIndex = filteredMovies.firstIndex(of: movieToReplace) else {
+    guard let filteredIndex = filteredMovies.firstIndex(where: { $0.id == movieToReplace.id }) else {
       return
     }
     

@@ -7,16 +7,34 @@
 
 import UIKit
 import FittedSheets
+import FirebaseAuth
 
 class SettingViewController: BaseViewController {
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var titleButton: UIButton!
-
+  @IBOutlet private weak var addMovieButton: UIButton!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupTableView()
     setupView()
+    setupTableView()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    FirebaseManager.shared.getUserRole { role in
+      if role == 1 {
+        self.addMovieButton.isHidden = false
+      } else {
+        self.addMovieButton.isHidden = true
+      }
+    }
+  }
+  
+  @IBAction func addMovie(_ sender: Any) {
+    let addMovieVC = AddMovieViewController()
+    self.navigationController?.pushViewController(addMovieVC, animated: true)
   }
 }
 
@@ -31,6 +49,13 @@ extension SettingViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: SettingCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: SettingCell.reuseIdentifier)
+  }
+  
+  private func presentSheet(with controller: UIViewController, size: SheetSize) {
+    let sheet = SheetViewController(controller: controller, sizes: [size])
+    sheet.hasBlurBackground = true
+    sheet.cornerRadius = 20
+    self.present(sheet, animated: true)
   }
 }
 
@@ -49,32 +74,21 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+   
     let listCell = SettingCellType.allCases[indexPath.row]
     switch listCell {
-    case .aboutApp:
-      let aboutAppVC = AboutAppViewController()
-      navigationController?.pushViewController(aboutAppVC, animated: true)
-    case .primaryPolicy:
-      break
     case .feedBack:
-      let feedbackVC = FeedbackViewController()
-      let sheet = SheetViewController(controller: feedbackVC, sizes: [.percent(0.9)])
-      sheet.hasBlurBackground = true
-      sheet.cornerRadius = 20
-      self.present(sheet, animated: true)
+      presentSheet(with: FeedbackViewController(), size: .percent(0.9))
     case .appLanguage:
-      let languageVC = LanguageBottomSheets()
-      let sheet = SheetViewController(controller: languageVC, sizes: [.fixed(200)])
-      sheet.hasBlurBackground = true
-      sheet.cornerRadius = 20
-      self.present(sheet, animated: true)
+      presentSheet(with: LanguageBottomSheets(), size: .fixed(200))
+    case .logout:
+      try! Auth.auth().signOut()
+      self.dismiss(animated: true, completion: nil)
     }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.reuseIdentifier) as? SettingCell else {
-      return UITableViewCell()
-    }
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.reuseIdentifier) as? SettingCell else {  return UITableViewCell() }
     let settingItem = SettingCellType.allCases[indexPath.row]
     cell.configuareSettingCell(with: settingItem.image, title: settingItem.title)
     return cell

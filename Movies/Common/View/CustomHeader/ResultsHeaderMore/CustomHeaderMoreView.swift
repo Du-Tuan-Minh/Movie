@@ -12,7 +12,6 @@ protocol ChooseButtonSessionDelegate: AnyObject {
 }
 
 class CustomHeaderMoreView: UIView {
-  
   //outlet
   @IBOutlet private weak var statusChooseButton: UIButton!
   @IBOutlet private weak var userScore: UILabel!
