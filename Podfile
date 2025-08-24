@@ -1,4 +1,4 @@
-platform :ios, '17.6'
+platform :ios, '16.6'
 
 target 'Movies' do
   use_frameworks!

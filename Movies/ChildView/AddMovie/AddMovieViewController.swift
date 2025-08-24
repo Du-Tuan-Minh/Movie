@@ -8,6 +8,11 @@
 import UIKit
 import FirebaseAuth
 
+enum StatusMovie {
+  case add
+  case update
+}
+
 class AddMovieViewController: BaseViewController {
   //outlet
   @IBOutlet private weak var titleTextField: UITextField!
@@ -25,17 +30,45 @@ class AddMovieViewController: BaseViewController {
   
   private var availableGenres = ["Action", "Comedy", "Drama", "Sci-Fi", "Horror", "Romance", "Thriller"]
   private var selectedGenres: [String] = []
+  var movie: MovieModel?
+  var status: StatusMovie = .add
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
+    populateFieldsForEditing()
   }
   
   // MARK: - Setup
   private func setupView() {
     CAGradientLayer().gradientButton(btn: saveButton)
+    saveButton.setTitle(status == .add ? "Save".localized() : "Update".localized(), for: .normal)
+    descriptionTextView.delegate = self
+    descriptionTextView.text = "Description".localized()
+    descriptionTextView.textColor = .lightGray
   }
+  
+  private func populateFieldsForEditing() {
+    guard status == .update, let movie = movie else { return }
+    
+    titleTextField.text = movie.title
+    descriptionTextView.text = movie.describe
+    descriptionTextView.textColor = .black
+    durationTextField.text = "\(movie.duration)"
+    releaseYearTextField.text = movie.releaseYear != nil ? "\(Date().getYear(date: movie.releaseYear!))" : ""
+    userScoreTextField.text = "\(movie.userScore)"
+    budgetTextField.text = movie.budget != 0.0 ? "\(movie.budget)" : ""
+    revenueTextField.text = movie.revenue != 0.0 ? "\(movie.revenue)" : ""
+    pdfURLTextField.text = movie.imageURL
+    videoURLTextField.text = movie.trailerURL
+    videoURLsTextField.text = movie.videoURLs.joined(separator: ", ")
+    
+    // Populate genres
+    selectedGenres = movie.genres.map { $0.title }
+    genresButton.setTitle(selectedGenres.isEmpty ? "Select Genres".localized() : selectedGenres.joined(separator: ", "), for: .normal)
+  }
+  
   
   // MARK: - Actions
   @IBAction func showGenresPicker(_ sender: Any) {
@@ -95,7 +128,7 @@ class AddMovieViewController: BaseViewController {
     
     // Create MovieModel
     let movie = MovieModel(
-      id: UUID().uuidString,
+      id: self.movie?.id ?? UUID().uuidString, // Reuse existing ID for update
       title: title,
       describe: description,
       duration: duration,
@@ -105,7 +138,7 @@ class AddMovieViewController: BaseViewController {
       budget: budget ?? 0.0,
       revenue: revenue ?? 0.0,
       imageURL: pdfURL,
-      comments: [],
+      comments: self.movie?.comments ?? [],
       trailerURL: videoURL,
       videoURLs: videoURLs
     )
@@ -124,7 +157,8 @@ class AddMovieViewController: BaseViewController {
         if let error = error {
           self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
         } else {
-          self.showAlert(title: "Success".localized(), message: "Movie added successfully".localized(), onAction: {
+          let actionTitle = self.status == .add ? "added" : "updated"
+          self.showAlert(title: "Success".localized(), message: "Movie \(actionTitle) successfully".localized(), onAction: {
             self.navigationController?.popViewController(animated: true)
           })
         }
