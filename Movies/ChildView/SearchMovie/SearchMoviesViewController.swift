@@ -96,7 +96,7 @@ extension SearchMoviesViewController {
     
     for movie in selectedMovies {
       dispatchGroup.enter()
-      let watchlistItem = FirebaseManager.WatchlistItem(movie: movie, addedDate: Timestamp())
+      let watchlistItem = WatchlistItem(movie: movie, addedDate: Timestamp())
       do {
         try FirebaseManager.shared.db.collection("users").document(userId).collection("temporary_comparisons").document(movie.id ?? UUID().uuidString).setData(from: watchlistItem) { error in
           if let error = error {

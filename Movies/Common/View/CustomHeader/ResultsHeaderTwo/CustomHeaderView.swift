@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseStorage
+
 
 struct ResultsCompareHeaderView {
   var movieImage: UIImage
@@ -21,17 +21,19 @@ extension ResultsCompareHeaderView {
         let dispatchGroup = DispatchGroup()
         
         // Load first movie image
-        if let pdfURL = firstMovie.imageURL {
+        if let imageURL = firstMovie.imageURL, let url = URL(string: imageURL) {
             dispatchGroup.enter()
-            FirebaseManager.shared.storage.child(pdfURL).getData(maxSize: 10 * 1024 * 1024) { data, error in
-                let image = data != nil ? UIImage.convertDataToImage(from: data!) ?? defaultImage : defaultImage
-                results.append(ResultsCompareHeaderView(
-                    movieImage: image,
-                    title: firstMovie.title,
-                    releaseYear: "\(Date().getYear(date: firstMovie.releaseYear ?? Date()))"
-                ))
-                dispatchGroup.leave()
-            }
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                let image = data != nil ? UIImage(data: data!) ?? defaultImage : defaultImage
+                DispatchQueue.main.async {
+                    results.append(ResultsCompareHeaderView(
+                        movieImage: image,
+                        title: firstMovie.title,
+                        releaseYear: "\(Date().getYear(date: firstMovie.releaseYear ?? Date()))"
+                    ))
+                    dispatchGroup.leave()
+                }
+            }.resume()
         } else {
             results.append(ResultsCompareHeaderView(
                 movieImage: defaultImage,
@@ -41,17 +43,19 @@ extension ResultsCompareHeaderView {
         }
         
         // Load second movie image
-        if let pdfURL = secondMovie.imageURL {
+        if let imageURL = secondMovie.imageURL, let url = URL(string: imageURL) {
             dispatchGroup.enter()
-            FirebaseManager.shared.storage.child(pdfURL).getData(maxSize: 10 * 1024 * 1024) { data, error in
-                let image = data != nil ? UIImage.convertDataToImage(from: data!) ?? defaultImage : defaultImage
-                results.append(ResultsCompareHeaderView(
-                    movieImage: image,
-                    title: secondMovie.title,
-                    releaseYear: "\(Date().getYear(date: secondMovie.releaseYear ?? Date()))"
-                ))
-                dispatchGroup.leave()
-            }
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                let image = data != nil ? UIImage(data: data!) ?? defaultImage : defaultImage
+                DispatchQueue.main.async {
+                    results.append(ResultsCompareHeaderView(
+                        movieImage: image,
+                        title: secondMovie.title,
+                        releaseYear: "\(Date().getYear(date: secondMovie.releaseYear ?? Date()))"
+                    ))
+                    dispatchGroup.leave()
+                }
+            }.resume()
         } else {
             results.append(ResultsCompareHeaderView(
                 movieImage: defaultImage,

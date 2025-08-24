@@ -11,6 +11,7 @@ import FirebaseAuth
 class UsersViewController: BaseViewController {
   //outlet
   @IBOutlet private weak var tableView: UITableView!
+  
   private var users: [UserModel] = []
   
   override func viewDidLoad() {
@@ -89,21 +90,30 @@ extension UsersViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   private func startChat(with user: UserModel) {
-    guard let currentUserID = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error", message: "You must be logged in to start a chat", onAction: {})
-      return
-    }
-    guard let userId = user.id else { return }
-    showLoadingIndicator()
-    FirebaseManager.shared.createChat(user1: currentUserID, user2: userId) { [weak self] chatID, error in
-      guard let self = self else { return }
-      self.hideLoadingIndicator()
-      if let error = error {
-        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
-      } else if let chatID = chatID {
-        let chatVC = ChatViewController(chatID: chatID, otherUserID: userId)
-        self.pushViewController(view: chatVC)
+      guard let currentUserID = Auth.auth().currentUser?.uid else {
+          showAlert(title: "Error".localized(), message: "You must be logged in to start a chat".localized(), onAction: {})
+          return
       }
-    }
+      guard let userId = user.id else {
+          showAlert(title: "Error".localized(), message: "Invalid user ID".localized(), onAction: {})
+          return
+      }
+      
+      showLoadingIndicator()
+      FirebaseManager.shared.createChat(user1: currentUserID, user2: userId) { [weak self] chatID, error in
+          guard let self = self else { return }
+          self.hideLoadingIndicator()
+          if let error = error {
+              self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+          } else if let chatID = chatID {
+              guard let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else {
+                  self.showAlert(title: "Error".localized(), message: "Failed to load chat screen".localized(), onAction: {})
+                  return
+              }
+              chatVC.chatID = chatID
+              chatVC.otherUserID = userId
+              self.navigationController?.pushViewController(chatVC, animated: true)
+          }
+      }
   }
 }

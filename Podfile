@@ -22,7 +22,6 @@ target 'Movies' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
-  pod 'Firebase/Storage'
 
   # Google Sign-In
   pod 'GoogleSignIn'

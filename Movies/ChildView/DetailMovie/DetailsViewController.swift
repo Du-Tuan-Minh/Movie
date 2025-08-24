@@ -67,27 +67,38 @@ extension DetailsViewController {
   }
   
   private func configureDetails() {
-    guard let movie = movie else { return }
-    // Load PDF from Firebase Storage if pdfURL exists
-    if let pdfURL = movie.trailerURL {
-      FirebaseManager.shared.storage.child(pdfURL).getData(maxSize: 10 * 1024 * 1024) { [weak self] data, error in
-        guard let self = self, let data = data, error == nil, let pdfImage = UIImage.convertDataToImage(from: data) else {
-          self?.movieImage.image = UIImage(named: "placeholder")
-          return
-        }
-        self.movieImage.image = pdfImage
-      }
-    } else {
-      movieImage.image = UIImage(named: "placeholder")
-    }
-    titleLabel.text = movie.title
-    durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
-    userScoreLabel.text = "\(movie.userScore)"
-    releaseYearLabel.text = "\(Date().formattedDate(date: movie.releaseYear ?? Date()))"
-    configureGenresLabels(with: movie.genres)
-    contentLabel.text = movie.describe
-  }
-  
+         guard let movie = movie else { return }
+         
+         let placeholderImage = UIImage(named: "placeholder") ?? UIImage(systemName: "photo") ?? UIImage()
+         if let trailerURL = movie.trailerURL, let url = URL(string: trailerURL) {
+             URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                 guard let self = self, let data = data, error == nil else {
+                     DispatchQueue.main.async {
+                       self?.movieImage.image = placeholderImage
+                     }
+                     return
+                 }
+                 if let image = UIImage(data: data) {
+                     DispatchQueue.main.async {
+                         self.movieImage.image = image
+                     }
+                 } else {
+                     DispatchQueue.main.async {
+                         self.movieImage.image = placeholderImage
+                     }
+                 }
+             }.resume()
+         } else {
+             movieImage.image = placeholderImage
+         }
+         
+         titleLabel.text = movie.title
+         durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
+         userScoreLabel.text = "\(movie.userScore)"
+         releaseYearLabel.text = "\(Date().formattedDate(date: movie.releaseYear ?? Date()))"
+         configureGenresLabels(with: movie.genres)
+         contentLabel.text = movie.describe
+     }
   private func configureGenresLabels(with genres: [GenersModel]) {
     let genresList = genres.map { $0.title }
     
@@ -164,24 +175,26 @@ extension DetailsViewController {
 //MARK: Upload video
 extension DetailsViewController: PHPickerViewControllerDelegate {
   func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-    picker.dismiss(animated: true)
-    
-    guard let provider = results.first?.itemProvider,
-          provider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) else { return }
-    
-    provider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
-      guard let self = self, let tempURL = url, error == nil else { return }
-      do {
-        // Tạo đường dẫn đích trong thư mục tạm
-        let destinationURL = FileManager.default.temporaryDirectory
-          .appendingPathComponent(UUID().uuidString)
-          .appendingPathExtension("mp4")
-        
-        try FileManager.default.copyItem(at: tempURL, to: destinationURL)
-        self.uploadVideoToCloudinary(videoURL: destinationURL)
-      } catch {
-        print(error.localizedDescription)
-      }
-    }
-  }
+       picker.dismiss(animated: true)
+       
+       guard let provider = results.first?.itemProvider,
+             provider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) else { return }
+       
+       provider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+           guard let self = self, let tempURL = url, error == nil else {
+               self?.showAlert(title: "Error".localized(), message: error?.localizedDescription ?? "Failed to load video".localized(), onAction: {})
+               return
+           }
+           do {
+               let destinationURL = FileManager.default.temporaryDirectory
+                   .appendingPathComponent(UUID().uuidString)
+                   .appendingPathExtension("mp4")
+               
+               try FileManager.default.copyItem(at: tempURL, to: destinationURL)
+               self.uploadVideoToCloudinary(videoURL: destinationURL)
+           } catch {
+               self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+           }
+       }
+   }
 }

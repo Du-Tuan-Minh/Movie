@@ -18,25 +18,27 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
   
   private var messages: [Message] = []
   private var usernames: [String: String] = [:]
-  var chatID: String
-  var otherUserID: String
-  
-  init(chatID: String, otherUserID: String) {
-    self.chatID = chatID
-    self.otherUserID = otherUserID
-    super.init(nibName: nil, bundle: nil)
-  }
-  @MainActor required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  var chatID: String?
+  var otherUserID: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    guard chatID != nil, otherUserID != nil else {
+      showAlert(title: "Error".localized(), message: "Invalid chat configuration", onAction: {
+        self.navigationController?.popViewController(animated: true)
+      })
+      return
+    }
     setupUI()
     fetchUsernames()
     listenForMessages()
   }
   
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
+  // MARK: - Setup
   private func setupUI() {
     tableView.dataSource = self
     tableView.delegate = self
@@ -44,7 +46,6 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     
     messageTextField.borderStyle = .roundedRect
     
-    // Keyboard handling
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
   }
@@ -61,7 +62,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
   }
   
   private func fetchUsernames() {
-    guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+    guard let currentUserID = Auth.auth().currentUser?.uid, let otherUserID = otherUserID else { return }
     
     FirebaseManager.shared.fetchUsername(for: currentUserID) { [weak self] username, error in
       guard let self = self else { return }
@@ -75,13 +76,14 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
       guard let self = self else { return }
       if let username = username {
         self.usernames[otherUserID] = username
-        self.title = "Chat with \(username)"
+        self.title = "Chat with \(username)".localized()
         self.tableView.reloadData()
       }
     }
   }
   
   private func listenForMessages() {
+    guard let chatID = chatID else { return }
     FirebaseManager.shared.fetchMessages(chatID: chatID) { [weak self] messages, error in
       guard let self = self else { return }
       if let messages = messages {
@@ -99,11 +101,13 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     }
   }
   
+  // MARK: - Actions
   @IBAction func sendMessage(_ sender: Any) {
     guard let content = messageTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
           !content.isEmpty,
-          let senderUID = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error", message: "Please enter a message", onAction: {})
+          let senderUID = Auth.auth().currentUser?.uid,
+          let chatID = chatID else {
+      showAlert(title: "Error".localized(), message: "Please enter a message".localized(), onAction: {})
       return
     }
     
@@ -113,7 +117,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
       guard let self = self else { return }
       self.hideLoadingIndicator()
       if let error = error {
-        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+        self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
       } else {
         self.messageTextField.text = ""
         self.scrollToBottom()

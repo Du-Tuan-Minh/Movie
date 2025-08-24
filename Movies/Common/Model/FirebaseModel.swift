@@ -43,6 +43,11 @@ struct MovieModel: Codable, Identifiable, Hashable, Equatable {
     }
 }
 
+struct WatchlistItem: Codable {
+  let movie: MovieModel
+  let addedDate: Timestamp
+}
+
 struct GenersModel: Codable, Identifiable {
     @DocumentID var id: String?
     var title: String
@@ -53,6 +58,13 @@ struct ComparisonModel: Codable, Identifiable {
     var comparedMovies: [String]  // Movie IDs
     var criteria: String
     var compareDate: Date
+}
+
+struct ComparisonHistory: Codable {
+  @DocumentID var id: String?
+  var movies: [MovieModel]
+  var createdDate: Timestamp
+  var compareModel: String // "compareTwo" or "compareMore"
 }
 
 struct HistoryFolderModel: Codable, Identifiable {

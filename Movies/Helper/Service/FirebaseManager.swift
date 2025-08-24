@@ -1,13 +1,11 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
-import FirebaseStorage
 import Combine
 
 class FirebaseManager {
   static let shared = FirebaseManager()
   let db = Firestore.firestore()
-  let storage = Storage.storage().reference()
   
   private init() {}
   
@@ -148,11 +146,6 @@ class FirebaseManager {
   }
   
   // MARK: - Watchlist
-  struct WatchlistItem: Codable {
-    let movie: MovieModel
-    let addedDate: Timestamp
-  }
-  
   func addToWatchlist(userId: String, movie: MovieModel, completion: @escaping (Error?) -> Void) {
     let watchlistItem = WatchlistItem(movie: movie, addedDate: Timestamp())
     do {
@@ -271,18 +264,18 @@ class FirebaseManager {
   }
   
   // MARK: - Storage for PDFs
-  func uploadPDF(data: Data, forMovieId: String, completion: @escaping (String?, Error?) -> Void) {
-    let ref = storage.child("movies/\(forMovieId).pdf")
-    ref.putData(data, metadata: nil) { _, error in
-      if let error = error {
-        completion(nil, error)
-        return
-      }
-      ref.downloadURL { url, error in
-        completion(url?.absoluteString, error)
-      }
-    }
-  }
+//  func uploadPDF(data: Data, forMovieId: String, completion: @escaping (String?, Error?) -> Void) {
+//    let ref = storage.child("movies/\(forMovieId).pdf")
+//    ref.putData(data, metadata: nil) { _, error in
+//      if let error = error {
+//        completion(nil, error)
+//        return
+//      }
+//      ref.downloadURL { url, error in
+//        completion(url?.absoluteString, error)
+//      }
+//    }
+//  }
   
   func createWatchlistFolder(userId: String, title: String, completion: @escaping (Error?) -> Void) {
     let folder = WatchlistFolderModel(id: nil, title: title, movies: [], createdDate: Date())
@@ -353,12 +346,6 @@ class FirebaseManager {
   
   
   // FirebaseManager Additions
-  struct ComparisonHistory: Codable {
-    @DocumentID var id: String?
-    var movies: [MovieModel]
-    var createdDate: Timestamp
-    var compareModel: String // "compareTwo" or "compareMore"
-  }
   
   func saveComparisonHistory(userId: String, movies: [MovieModel], compareModel: String, completion: @escaping (Error?) -> Void) {
     let history = ComparisonHistory(id: nil, movies: movies, createdDate: Timestamp(), compareModel: compareModel)

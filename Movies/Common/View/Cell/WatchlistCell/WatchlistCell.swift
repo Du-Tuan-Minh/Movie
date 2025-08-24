@@ -21,16 +21,27 @@ class WatchlistCell: UITableViewCell {
   static let identifier: String = "WatchlistCell"
   
   func configureWatchListCell(with movie: MovieModel, time: Date, tag: Int) {
-        if let pdfURL = movie.imageURL {
-            FirebaseManager.shared.storage.child(pdfURL).getData(maxSize: 10 * 1024 * 1024) { [weak self] data, error in
-                guard let self = self, let data = data, error == nil, let image = UIImage.convertDataToImage(from: data) else {
-                    self?.movieImage.image = UIImage(named: "placeholder")
+        let placeholderImage = UIImage(named: "placeholder") ?? UIImage(systemName: "photo") ?? UIImage()
+        if let imageURL = movie.imageURL, let url = URL(string: imageURL) {
+            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                guard let self = self, let data = data, error == nil else {
+                    DispatchQueue.main.async {
+                      self?.movieImage.image = placeholderImage
+                    }
                     return
                 }
-                self.movieImage.image = image
-            }
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.movieImage.image = image
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.movieImage.image = placeholderImage
+                    }
+                }
+            }.resume()
         } else {
-            movieImage.image = UIImage(named: "placeholder")
+            movieImage.image = placeholderImage
         }
         
         userScoreImage.image = UIImage().convertUseScoreToImage(movieScore: movie.userScore)

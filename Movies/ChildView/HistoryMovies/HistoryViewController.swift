@@ -16,7 +16,6 @@ class HistoryViewController: BaseViewController {
   @IBOutlet private weak var titleButton: UIButton!
   
   //variable
-  final private let reuseIdentifier: String = "SearchCell"
   final private let reuseIdentifierHistoryHeaderView: String = "HistoryHeaderView"
   private var groupedMovies: [(createdDate: Date, movies: [MovieModel])] = []
   private var listChoose: IndexSet = []
@@ -38,7 +37,7 @@ extension HistoryViewController {
   private func setupCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
-    collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+    collectionView.register(UINib(nibName: SearchCell.identifier, bundle: nil), forCellWithReuseIdentifier: SearchCell.identifier)
     
     collectionView.register(
       UINib(nibName: reuseIdentifierHistoryHeaderView, bundle: nil),
@@ -70,7 +69,7 @@ extension HistoryViewController {
       
       var moviesGroupedByDate = [Date: [MovieModel]]()
       for document in documents {
-        if let history = try? document.data(as: FirebaseManager.ComparisonHistory.self) {
+        if let history = try? document.data(as: ComparisonHistory.self) {
           let createdDate = history.createdDate.dateValue()
           let dateOnly = Calendar.current.startOfDay(for: createdDate)
           moviesGroupedByDate[dateOnly, default: []].append(contentsOf: history.movies)
@@ -132,7 +131,7 @@ extension HistoryViewController {
         let batch = FirebaseManager.shared.db.batch()
         
         for doc in documents {
-          if let history = try? doc.data(as: FirebaseManager.ComparisonHistory.self) {
+          if let history = try? doc.data(as: ComparisonHistory.self) {
             let createdDate = history.createdDate.dateValue()
             if datesToDelete.contains(Calendar.current.startOfDay(for: createdDate)) {
               batch.deleteDocument(doc.reference)
@@ -180,7 +179,7 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout, UICollectio
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? SearchCell else {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else {
       return UICollectionViewCell()
     }
     let movieItem = groupedMovies[indexPath.section].movies[indexPath.row]
