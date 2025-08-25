@@ -958,9 +958,6 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.32):
     - BoringSSL-GRPC/Interface (= 0.0.32)
   - BoringSSL-GRPC/Interface (0.0.32)
-  - Cloudinary (5.2.3):
-    - Cloudinary/ios (= 5.2.3)
-  - Cloudinary/ios (5.2.3)
   - DropDown (2.3.13)
   - Firebase/Auth (10.29.0):
     - Firebase/CoreOnly
@@ -1196,7 +1193,6 @@ PODS:
   - RecaptchaInterop (100.0.0)
 
 DEPENDENCIES:
-  - Cloudinary
   - DropDown
   - Firebase/Auth
   - Firebase/Core
@@ -1214,7 +1210,6 @@ SPEC REPOS:
     - abseil
     - AppAuth
     - BoringSSL-GRPC
-    - Cloudinary
     - DropDown
     - Firebase
     - FirebaseAnalytics
@@ -1249,7 +1244,6 @@ SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
-  Cloudinary: 97068bbd89d4afe170cd4ae35937305e5de19fcb
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Firebase: cec914dab6fd7b1bd8ab56ea07ce4e03dd251c2d
   FirebaseAnalytics: 23717de130b779aa506e757edb9713d24b6ffeda
@@ -1280,6 +1274,6 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: 48a8fa18098039764d64226c7beb49b06320e69b
+PODFILE CHECKSUM: 0db983bf7cf83232f525ea03edd5da1af0ef07ac
 
 COCOAPODS: 1.16.2

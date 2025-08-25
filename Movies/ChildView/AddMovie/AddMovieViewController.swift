@@ -23,7 +23,6 @@ class AddMovieViewController: BaseViewController {
   @IBOutlet private weak var budgetTextField: UITextField!
   @IBOutlet private weak var revenueTextField: UITextField!
   @IBOutlet private weak var pdfURLTextField: UITextField!
-  @IBOutlet private weak var videoURLTextField: UITextField!
   @IBOutlet private weak var videoURLsTextField: UITextField!
   @IBOutlet private weak var genresButton: UIButton!
   @IBOutlet private weak var saveButton: UIButton!
@@ -61,7 +60,6 @@ class AddMovieViewController: BaseViewController {
     budgetTextField.text = movie.budget != 0.0 ? "\(movie.budget)" : ""
     revenueTextField.text = movie.revenue != 0.0 ? "\(movie.revenue)" : ""
     pdfURLTextField.text = movie.imageURL
-    videoURLTextField.text = movie.trailerURL
     videoURLsTextField.text = movie.videoURLs.joined(separator: ", ")
     
     // Populate genres
@@ -115,8 +113,6 @@ class AddMovieViewController: BaseViewController {
     let budget = budgetTextField.text?.isEmpty == false ? Double(budgetTextField.text!) : 0.0
     let revenue = revenueTextField.text?.isEmpty == false ? Double(revenueTextField.text!) : 0.0
     let pdfURL = pdfURLTextField.text?.isEmpty == false ? pdfURLTextField.text : nil
-    let videoURL = videoURLTextField.text?.isEmpty == false ? videoURLTextField.text : nil
-    
     // Parse videoURLs
     let videoURLsText = videoURLsTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
     let videoURLs = videoURLsText.isEmpty ? [] : videoURLsText.split(separator: ",").map {
@@ -139,7 +135,6 @@ class AddMovieViewController: BaseViewController {
       revenue: revenue ?? 0.0,
       imageURL: pdfURL,
       comments: self.movie?.comments ?? [],
-      trailerURL: videoURL,
       videoURLs: videoURLs
     )
     

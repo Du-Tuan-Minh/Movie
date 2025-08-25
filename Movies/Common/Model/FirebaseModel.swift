@@ -31,7 +31,6 @@ struct MovieModel: Codable, Identifiable, Hashable, Equatable {
     var revenue: Double
     var imageURL: String?
     var comments: [CommentModel]
-    var trailerURL: String?
     var videoURLs: [String]
     
     func hash(into hasher: inout Hasher) {

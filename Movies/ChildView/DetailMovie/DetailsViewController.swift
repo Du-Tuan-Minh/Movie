@@ -35,8 +35,19 @@ class DetailsViewController: BaseViewController {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    configureDetails()
     setupView()
+    configureDetails()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    FirebaseManager.shared.getUserRole { role in
+      if role == 1 {
+        self.updateMovieButton.isHidden = false
+      } else {
+        self.updateMovieButton.isHidden = true
+      }
+    }
   }
 }
 
@@ -61,29 +72,7 @@ extension DetailsViewController {
   private func configureDetails() {
     guard let movie = movie else { return }
     
-    let placeholderImage = UIImage(named: "placeholder") ?? UIImage(systemName: "photo") ?? UIImage()
-    if let trailerURL = movie.trailerURL, let url = URL(string: trailerURL) {
-      URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-        guard let self = self, let data = data, error == nil else {
-          DispatchQueue.main.async {
-            self?.movieImage.image = placeholderImage
-          }
-          return
-        }
-        if let image = UIImage(data: data) {
-          DispatchQueue.main.async {
-            self.movieImage.image = image
-          }
-        } else {
-          DispatchQueue.main.async {
-            self.movieImage.image = placeholderImage
-          }
-        }
-      }.resume()
-    } else {
-      movieImage.image = placeholderImage
-    }
-    
+    UIImage().convertURLtoImage(movie: movie, movieImage: movieImage)
     titleLabel.text = movie.title
     durationLabel.text = Date().toHoursAndMinutes(time: movie.duration)
     userScoreLabel.text = "\(movie.userScore)"

@@ -38,15 +38,22 @@
                                 <constraint firstAttribute="height" constant="300" id="N0Y-P8-VL9"/>
                             </constraints>
                         </tableView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3N1-mT-Q50">
-                            <rect key="frame" x="146.66666666666666" y="350" width="100" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3N1-mT-Q50">
+                            <rect key="frame" x="46.666666666666657" y="350" width="300" height="45"/>
                             <color key="backgroundColor" name="violet"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="Yhc-gB-9A1"/>
-                                <constraint firstAttribute="width" constant="100" id="exj-p3-eMD"/>
+                                <constraint firstAttribute="height" constant="45" id="Yhc-gB-9A1"/>
+                                <constraint firstAttribute="width" constant="300" id="exj-p3-eMD"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Add Movie"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="addMovie:" destination="-1" eventType="touchUpInside" id="mAR-JL-bHp"/>
                             </connections>
@@ -62,7 +69,7 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="25"/>
+                            <real key="value" value="20"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>

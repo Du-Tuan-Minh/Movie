@@ -3,26 +3,23 @@ platform :ios, '16.6'
 target 'Movies' do
   use_frameworks!
   use_modular_headers!
-
+  
   # UI & Animation
   pod 'lottie-ios'
   pod 'NVActivityIndicatorView'
   pod 'DropDown'
   pod 'FittedSheets'
-
+  
   # Analytics
   pod 'Mixpanel-swift'
-
-  # Image/Media
-  pod 'Cloudinary'
-
+  
   # Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
-
+  
   # Google Sign-In
   pod 'GoogleSignIn'
 end

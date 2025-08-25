@@ -64,4 +64,31 @@ extension UIImage {
     default: return UIImage(resource: .starFive)
     }
   }
+  
+  func convertURLtoImage(movie: MovieModel?, movieImage: UIImageView) {
+    guard let movie = movie else { return }
+    
+    let placeholderImage = UIImage(named: "placeholder") ?? UIImage(systemName: "photo") ?? UIImage()
+    if let imageURL = movie.imageURL, let url = URL(string: imageURL) {
+      URLSession.shared.dataTask(with: url) { data, response, error in
+        guard let data = data, error == nil else {
+          DispatchQueue.main.async {
+            movieImage.image = placeholderImage
+          }
+          return
+        }
+        if let image = UIImage(data: data) {
+          DispatchQueue.main.async {
+            movieImage.image = image
+          }
+        } else {
+          DispatchQueue.main.async {
+            movieImage.image = placeholderImage
+          }
+        }
+      }.resume()
+    } else {
+      movieImage.image = placeholderImage
+    }
+  }
 }

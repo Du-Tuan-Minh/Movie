@@ -39,7 +39,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4Y-Pd-k63">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="888.33333333333337"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="898.33333333333337"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PTC-Bp-khV">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="450"/>
@@ -258,7 +258,7 @@
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="AsN-ls-9BM" secondAttribute="bottom" constant="50" id="6CT-2m-uNL"/>
+                                <constraint firstAttribute="bottom" secondItem="AsN-ls-9BM" secondAttribute="bottom" constant="60" id="6CT-2m-uNL"/>
                                 <constraint firstAttribute="bottom" secondItem="G4Y-Pd-k63" secondAttribute="bottom" id="Bla-qN-SBz"/>
                                 <constraint firstItem="G4Y-Pd-k63" firstAttribute="centerX" secondItem="9e4-pX-cph" secondAttribute="centerX" id="H6d-RA-V4F"/>
                                 <constraint firstItem="G4Y-Pd-k63" firstAttribute="top" secondItem="9e4-pX-cph" secondAttribute="top" id="Xff-Tt-bYg"/>

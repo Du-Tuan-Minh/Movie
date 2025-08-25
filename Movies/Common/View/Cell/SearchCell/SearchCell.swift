@@ -17,31 +17,7 @@ class SearchCell: UICollectionViewCell {
   static let identifier: String = "SearchCell"
   
   func configSearchCell(with model: MovieModel) {
-    // Load image from URL
-    let placeholderImage = UIImage(named: "placeholder") ?? UIImage(systemName: "photo") ?? UIImage()
-    if let imageURL = model.imageURL, let url = URL(string: imageURL) {
-      URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-        guard let self = self, let data = data, error == nil else {
-          DispatchQueue.main.async {
-            self?.imageCell.image = placeholderImage
-          }
-          return
-        }
-        if let image = UIImage(data: data) {
-          DispatchQueue.main.async {
-            self.imageCell.image = image
-          }
-        } else {
-          DispatchQueue.main.async {
-            self.imageCell.image = placeholderImage
-          }
-        }
-      }.resume()
-    } else {
-      imageCell.image = placeholderImage
-    }
-    
-    // Configure other UI elements
+    UIImage().convertURLtoImage(movie: model, movieImage: imageCell)
     titleLabelCell.text = model.title
     yearLabelCell.text = "(\(Date().getYear(date: model.releaseYear ?? Date())))"
   }

@@ -22,7 +22,6 @@
                 <outlet property="saveButton" destination="exe-hz-41F" id="kVY-ZJ-Kmi"/>
                 <outlet property="titleTextField" destination="fQO-7t-hE8" id="jCf-dt-qar"/>
                 <outlet property="userScoreTextField" destination="omr-kf-fyJ" id="dGt-X2-QRe"/>
-                <outlet property="videoURLTextField" destination="WZZ-9P-UhH" id="A3D-W9-YJV"/>
                 <outlet property="videoURLsTextField" destination="nox-t4-HcR" id="Qnn-yA-ezl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -38,109 +37,130 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tF-f3-HNZ">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="amm-uS-niW">
-                                    <rect key="frame" x="16" y="65" width="361" height="572"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="amm-uS-niW">
+                                    <rect key="frame" x="16" y="81.333333333333314" width="361" height="575.66666666666674"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fQO-7t-hE8">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="47.333333333333336"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="51.333333333333336"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="Iqh-WT-RkN">
-                                            <rect key="frame" x="0.0" y="52.333333333333329" width="361" height="47.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="58.333333333333329" width="361" height="51.333333333333329"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <color key="textColor" systemColor="labelColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Duration (minutes)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJx-D0-6ZR">
-                                            <rect key="frame" x="0.0" y="104.99999999999999" width="361" height="47.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="116.66666666666669" width="361" height="51"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Release Year (YYYY)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zWE-gS-A0c">
-                                            <rect key="frame" x="0.0" y="157.33333333333334" width="361" height="47.333333333333343"/>
+                                            <rect key="frame" x="0.0" y="174.66666666666669" width="361" height="51.333333333333343"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Score (0-10)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omr-kf-fyJ">
-                                            <rect key="frame" x="0.0" y="209.66666666666669" width="361" height="47.666666666666686"/>
+                                            <rect key="frame" x="0.0" y="233.00000000000003" width="361" height="51.333333333333343"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Budget ($)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ieU-oh-u20">
-                                            <rect key="frame" x="0.0" y="262.33333333333331" width="361" height="47.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="291.33333333333337" width="361" height="51.333333333333314"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Revenue ($)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kXp-BT-SDq">
-                                            <rect key="frame" x="0.0" y="314.66666666666669" width="361" height="47.666666666666686"/>
+                                            <rect key="frame" x="0.0" y="349.66666666666669" width="361" height="51.333333333333314"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PDF URL (e.g., Google Drive link)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZt-Ml-yDp">
-                                            <rect key="frame" x="0.0" y="367.33333333333331" width="361" height="47.333333333333314"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Video URL (e.g., YouTube link)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WZZ-9P-UhH">
-                                            <rect key="frame" x="0.0" y="419.66666666666669" width="361" height="47.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="408" width="361" height="51"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Video URLs" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nox-t4-HcR">
-                                            <rect key="frame" x="0.0" y="472" width="361" height="47.666666666666629"/>
+                                            <rect key="frame" x="0.0" y="466.00000000000006" width="361" height="51.333333333333314"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oXb-R6-NMX">
-                                            <rect key="frame" x="0.0" y="524.66666666666663" width="361" height="47.333333333333371"/>
+                                            <rect key="frame" x="0.0" y="524.33333333333326" width="361" height="51.333333333333371"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVI-RC-pdo">
-                                    <rect key="frame" x="96.666666666666686" y="667" width="200" height="45"/>
+                                    <rect key="frame" x="96.666666666666686" y="687" width="200" height="45"/>
+                                    <color key="backgroundColor" name="violet"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="kmD-63-26U"/>
                                         <constraint firstAttribute="height" constant="45" id="vAB-wy-pY8"/>
                                     </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Select Genres"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="showGenresPicker:" destination="-1" eventType="touchUpInside" id="FmH-Hg-Hsz"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exe-hz-41F">
-                                    <rect key="frame" x="96.666666666666686" y="737" width="200" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exe-hz-41F">
+                                    <rect key="frame" x="96.666666666666686" y="757" width="200" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="Div-rv-Gx0"/>
                                         <constraint firstAttribute="height" constant="45" id="te3-mg-pa5"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Save"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="saveButtonTapped:" destination="-1" eventType="touchUpInside" id="5TR-5e-wKd"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtR-o1-7mt">
+                                    <rect key="frame" x="127.33333333333333" y="30" width="138.33333333333337" height="31.333333333333329"/>
+                                    <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="27"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="blue"/>
                             <constraints>
-                                <constraint firstItem="amm-uS-niW" firstAttribute="top" secondItem="3tF-f3-HNZ" secondAttribute="top" constant="65" id="AYF-xg-1vV"/>
                                 <constraint firstItem="amm-uS-niW" firstAttribute="leading" secondItem="3tF-f3-HNZ" secondAttribute="leading" constant="16" id="G7d-xm-AJM"/>
                                 <constraint firstItem="aVI-RC-pdo" firstAttribute="top" secondItem="amm-uS-niW" secondAttribute="bottom" constant="30" id="GFo-T9-kDC"/>
                                 <constraint firstItem="exe-hz-41F" firstAttribute="centerX" secondItem="3tF-f3-HNZ" secondAttribute="centerX" id="LjN-6W-LlX"/>
+                                <constraint firstItem="amm-uS-niW" firstAttribute="top" secondItem="qtR-o1-7mt" secondAttribute="bottom" constant="20" id="WX3-4F-nIh"/>
                                 <constraint firstItem="amm-uS-niW" firstAttribute="centerX" secondItem="aVI-RC-pdo" secondAttribute="centerX" id="aSj-hO-qaX"/>
                                 <constraint firstItem="aVI-RC-pdo" firstAttribute="centerX" secondItem="exe-hz-41F" secondAttribute="centerX" id="aef-W7-gc2"/>
                                 <constraint firstItem="exe-hz-41F" firstAttribute="top" secondItem="aVI-RC-pdo" secondAttribute="bottom" constant="25" id="dLT-ae-TUW"/>
+                                <constraint firstItem="qtR-o1-7mt" firstAttribute="centerX" secondItem="3tF-f3-HNZ" secondAttribute="centerX" id="fqV-hq-w4W"/>
                                 <constraint firstAttribute="trailing" secondItem="amm-uS-niW" secondAttribute="trailing" constant="16" id="usi-df-qI9"/>
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" name="blue"/>
                     <constraints>
                         <constraint firstItem="3tF-f3-HNZ" firstAttribute="leading" secondItem="6wd-OK-sUH" secondAttribute="leading" id="03D-kS-9eK"/>
+                        <constraint firstAttribute="bottom" secondItem="exe-hz-41F" secondAttribute="bottom" constant="50" id="0vK-7m-iiu"/>
                         <constraint firstItem="3tF-f3-HNZ" firstAttribute="bottom" secondItem="6wd-OK-sUH" secondAttribute="bottom" id="4Ya-9K-tez"/>
+                        <constraint firstItem="qtR-o1-7mt" firstAttribute="top" secondItem="6wd-OK-sUH" secondAttribute="top" constant="30" id="EpU-ch-0wk"/>
                         <constraint firstItem="3tF-f3-HNZ" firstAttribute="centerX" secondItem="6wd-OK-sUH" secondAttribute="centerX" id="Mda-jX-KX4"/>
                         <constraint firstItem="3tF-f3-HNZ" firstAttribute="trailing" secondItem="6wd-OK-sUH" secondAttribute="trailing" id="gYt-MK-sxk"/>
                         <constraint firstItem="3tF-f3-HNZ" firstAttribute="centerY" secondItem="6wd-OK-sUH" secondAttribute="centerY" id="k90-jq-3Rz"/>
@@ -151,7 +171,6 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="darkBlue"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="exe-hz-41F" secondAttribute="bottom" constant="36" id="CBR-H2-a5q"/>
                 <constraint firstItem="6wd-OK-sUH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="DHD-YQ-6dC"/>
                 <constraint firstAttribute="bottom" secondItem="6wd-OK-sUH" secondAttribute="bottom" id="Q7b-gk-wSX"/>
                 <constraint firstItem="6wd-OK-sUH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="h1Y-CM-k34"/>
@@ -161,12 +180,15 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="blue">
+            <color red="0.050980392156862744" green="0.12156862745098039" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="darkBlue">
             <color red="0.019607843137254902" green="0.054901960784313725" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="violet">
+            <color red="0.65098039215686276" green="0.54117647058823526" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
