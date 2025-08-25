@@ -24,11 +24,7 @@ class SettingViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     FirebaseManager.shared.getUserRole { role in
-      if role == 1 {
-        self.addMovieButton.isHidden = false
-      } else {
-        self.addMovieButton.isHidden = true
-      }
+      self.addMovieButton.isHidden = role != 1
     }
   }
   
@@ -74,7 +70,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-   
+    
     let listCell = SettingCellType.allCases[indexPath.row]
     switch listCell {
     case .feedBack:

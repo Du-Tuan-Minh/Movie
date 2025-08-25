@@ -44,19 +44,35 @@ extension WatchListViewController {
   //MARK: test again
   private func loadMovies() {
     guard let userId = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error", message: "You must be logged in to view your watchlist", onAction: {})
+      showAlert(title: "Error".localized(), message: "You must be logged in to view your watchlist".localized(), onAction: {})
       return
     }
     
     showLoadingIndicator()
-    FirebaseManager.shared.fetchWatchlist(userId: userId) { [weak self] watchlist, error in
-      guard let self = self else { return }
-      self.hideLoadingIndicator()
-      if let error = error {
-        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
-      } else if let watchlist = watchlist {
-        self.allMovies = watchlist
-        self.tableView.reloadData()
+    
+    if let folderId = idFolder {
+      // Nếu có idFolder, lấy phim từ thư mục cụ thể
+      FirebaseManager.shared.fetchWatchlistFolderMovies(userId: userId, folderId: folderId) { [weak self] watchlist, error in
+        guard let self = self else { return }
+        self.hideLoadingIndicator()
+        if let error = error {
+          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        } else if let watchlist = watchlist {
+          self.allMovies = watchlist
+          self.tableView.reloadData()
+        }
+      }
+    } else {
+      // Nếu không có idFolder, lấy toàn bộ watchlist (hoặc xử lý khác tùy yêu cầu)
+      FirebaseManager.shared.fetchWatchlist(userId: userId) { [weak self] watchlist, error in
+        guard let self = self else { return }
+        self.hideLoadingIndicator()
+        if let error = error {
+          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        } else if let watchlist = watchlist {
+          self.allMovies = watchlist
+          self.tableView.reloadData()
+        }
       }
     }
   }

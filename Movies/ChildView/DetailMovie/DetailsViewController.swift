@@ -42,11 +42,7 @@ class DetailsViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     FirebaseManager.shared.getUserRole { role in
-      if role == 1 {
-        self.updateMovieButton.isHidden = false
-      } else {
-        self.updateMovieButton.isHidden = true
-      }
+      self.updateMovieButton.isHidden = role != 1
     }
   }
 }
