@@ -88,31 +88,6 @@ class FirebaseManager {
     }
   }
   
-  // MARK: - Friend Requests
-  func sendFriendRequest(from: String, to: String, completion: @escaping (Error?) -> Void) {
-    let request = FriendRequest(from: from, to: to, status: "pending")
-    do {
-      try db.collection("friend_requests").addDocument(from: request) { error in
-        completion(error)
-      }
-    } catch {
-      completion(error)
-    }
-  }
-  
-  func acceptFriendRequest(requestId: String, from: String, to: String, completion: @escaping (Error?) -> Void) {
-    db.collection("friend_requests").document(requestId).updateData(["status": "accepted"]) { error in
-      if let error = error {
-        completion(error)
-        return
-      }
-      self.db.collection("users").document(from).updateData(["friends": FieldValue.arrayUnion([to])])
-      self.db.collection("users").document(to).updateData(["friends": FieldValue.arrayUnion([from])]) { error in
-        completion(error)
-      }
-    }
-  }
-  
   // MARK: - Chat
   func sendMessage(chatID: String, message: Message, completion: @escaping (Error?) -> Void) {
     do {
@@ -126,8 +101,7 @@ class FirebaseManager {
   
   func createChat(user1: String, user2: String, completion: @escaping (String?, Error?) -> Void) {
     let chatID = [user1, user2].sorted().joined(separator: "_")
-    let chatData: [String: Any] = ["participants": [user1, user2]]
-    db.collection("chats").document(chatID).setData(chatData) { error in
+    db.collection("chats").document(chatID).setData([:]) { error in
       completion(error == nil ? chatID : nil, error)
     }
   }
@@ -256,7 +230,6 @@ class FirebaseManager {
           }
         }
       }
-      
       dispatchGroup.notify(queue: .main) {
         completion(movies, nil)
       }
@@ -264,19 +237,6 @@ class FirebaseManager {
   }
   
   // MARK: - Storage for PDFs
-//  func uploadPDF(data: Data, forMovieId: String, completion: @escaping (String?, Error?) -> Void) {
-//    let ref = storage.child("movies/\(forMovieId).pdf")
-//    ref.putData(data, metadata: nil) { _, error in
-//      if let error = error {
-//        completion(nil, error)
-//        return
-//      }
-//      ref.downloadURL { url, error in
-//        completion(url?.absoluteString, error)
-//      }
-//    }
-//  }
-  
   func createWatchlistFolder(userId: String, title: String, completion: @escaping (Error?) -> Void) {
     let folder = WatchlistFolderModel(id: nil, title: title, movies: [], createdDate: Date())
     do {
@@ -309,7 +269,6 @@ class FirebaseManager {
   }
   
   func deleteWatchlistFolder(userId: String, folderId: String, completion: @escaping (Error?) -> Void) {
-    // Delete folder (movies are not deleted from watchlist collection, as they are referenced by ID)
     db.collection("users").document(userId).collection("watchlist_folders").document(folderId).delete { error in
       completion(error)
     }
@@ -344,9 +303,7 @@ class FirebaseManager {
     }
   }
   
-  
   // FirebaseManager Additions
-  
   func saveComparisonHistory(userId: String, movies: [MovieModel], compareModel: String, completion: @escaping (Error?) -> Void) {
     let history = ComparisonHistory(id: nil, movies: movies, createdDate: Timestamp(), compareModel: compareModel)
     do {

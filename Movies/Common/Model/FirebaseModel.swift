@@ -101,10 +101,3 @@ struct Message: Codable, Identifiable {
     var content: String
     var timestamp: Timestamp
 }
-
-struct FriendRequest: Codable, Identifiable {
-    @DocumentID var id: String?
-    var from: String  // UID người gửi
-    var to: String    // UID người nhận
-    var status: String  // "pending", "accepted", "rejected"
-}

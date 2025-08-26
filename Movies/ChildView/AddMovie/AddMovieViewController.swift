@@ -67,7 +67,6 @@ class AddMovieViewController: BaseViewController {
     genresButton.setTitle(selectedGenres.isEmpty ? "Select Genres".localized() : selectedGenres.joined(separator: ", "), for: .normal)
   }
   
-  
   // MARK: - Actions
   @IBAction func showGenresPicker(_ sender: Any) {
     let genresVC = GenresPickerViewController()
@@ -124,7 +123,7 @@ class AddMovieViewController: BaseViewController {
     
     // Create MovieModel
     let movie = MovieModel(
-      id: self.movie?.id ?? UUID().uuidString, // Reuse existing ID for update
+      id: self.movie?.id ?? UUID().uuidString,
       title: title,
       describe: description,
       duration: duration,
@@ -167,14 +166,12 @@ extension AddMovieViewController: UITextViewDelegate {
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.text == "Description".localized() {
       textView.text = ""
-      textView.textColor = .black
     }
   }
   
   func textViewDidEndEditing(_ textView: UITextView) {
     if textView.text.isEmpty {
       textView.text = "Description".localized()
-      textView.textColor = .lightGray
     }
   }
 }

@@ -21,8 +21,6 @@ class UsersViewController: BaseViewController {
   }
   
   private func setupUI() {
-    tableView.dataSource = self
-    tableView.delegate = self
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UserCell")
     view.addSubview(tableView)
   }
@@ -40,9 +38,34 @@ class UsersViewController: BaseViewController {
       }
     }
   }
+  
+  private func startChat(with user: UserModel) {
+    guard let currentUserID = Auth.auth().currentUser?.uid else {
+      showAlert(title: "Error", message: "You must be logged in to start a chat", onAction: {})
+      return
+    }
+    guard let userId = user.id else {
+      showAlert(title: "Error", message: "Invalid user ID", onAction: {})
+      return
+    }
+    
+    showLoadingIndicator()
+    FirebaseManager.shared.createChat(user1: currentUserID, user2: userId) { [weak self] chatID, error in
+      guard let self = self else { return }
+      self.hideLoadingIndicator()
+      if let error = error {
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+      } else if let chatID = chatID {
+        let chatVC = ChatViewController()
+        chatVC.chatID = chatID
+        chatVC.otherUserID = userId
+        self.navigationController?.pushViewController(chatVC, animated: true)
+      }
+    }
+  }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UITableView
 extension UsersViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return users.count
@@ -56,61 +79,11 @@ extension UsersViewController: UITableViewDataSource, UITableViewDelegate {
     return cell
   }
   
-  // MARK: - UITableViewDelegate
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     let user = users[indexPath.row]
     showAlert(title: "Options", message: "What would you like to do with \(user.username)?", onAction: {
       self.startChat(with: user)
-    }, additionalActions: [
-      UIAlertAction(title: "Send Friend Request", style: .default) { _ in
-        self.sendFriendRequest(to: user)
-      }
-    ])
-  }
-  
-  private func sendFriendRequest(to user: UserModel) {
-    guard let currentUserID = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error", message: "You must be logged in to send friend requests", onAction: {})
-      return
-    }
-    
-    showLoadingIndicator()
-    guard let userId = user.id else { return }
-    
-    FirebaseManager.shared.sendFriendRequest(from: currentUserID, to: userId) { [weak self] error in
-      guard let self = self else { return }
-      self.hideLoadingIndicator()
-      if let error = error {
-        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
-      } else {
-        self.showAlert(title: "Success", message: "Friend request sent to \(user.username)", onAction: {})
-      }
-    }
-  }
-  
-  private func startChat(with user: UserModel) {
-    guard let currentUserID = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error".localized(), message: "You must be logged in to start a chat".localized(), onAction: {})
-      return
-    }
-    guard let userId = user.id else {
-      showAlert(title: "Error".localized(), message: "Invalid user ID".localized(), onAction: {})
-      return
-    }
-    
-    showLoadingIndicator()
-    FirebaseManager.shared.createChat(user1: currentUserID, user2: userId) { [weak self] chatID, error in
-      guard let self = self else { return }
-      self.hideLoadingIndicator()
-      if let error = error {
-        self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
-      } else if let chatID = chatID {
-        let chatVC = ChatViewController()
-        chatVC.chatID = chatID
-        chatVC.otherUserID = userId
-        self.navigationController?.pushViewController(chatVC, animated: true)
-      }
-    }
+    })
   }
 }

@@ -25,6 +25,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lkE-qd-N17">
                     <rect key="frame" x="16" y="30" width="361" height="699"/>
                     <color key="backgroundColor" name="blue"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="OjB-7P-eq0"/>
+                        <outlet property="delegate" destination="-1" id="RNv-Cp-aj0"/>
+                    </connections>
                 </tableView>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="92J-50-6sA">
                     <rect key="frame" x="16" y="744" width="276" height="34"/>
