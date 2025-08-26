@@ -315,6 +315,17 @@ class FirebaseManager {
     }
   }
   
+  // MARK: - Comments
+  func sendComment(movieID: String, comment: CommentModel, completion: @escaping (Error?) -> Void) {
+    do {
+      try db.collection("movies").document(movieID).collection("comments").document(comment.id ?? UUID().uuidString).setData(from: comment) { error in
+        completion(error)
+      }
+    } catch {
+      completion(error)
+    }
+  }
+  
   func clearTemporaryComparisons(userId: String, completion: @escaping (Error?) -> Void) {
     db.collection("users").document(userId).collection("temporary_comparisons").getDocuments { snapshot, error in
       guard let documents = snapshot?.documents else {

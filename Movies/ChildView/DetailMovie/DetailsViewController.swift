@@ -28,6 +28,7 @@ class DetailsViewController: BaseViewController {
   @IBOutlet private weak var descriptionLabel: UILabel!
   @IBOutlet private weak var contentLabel: UILabel!
   @IBOutlet private weak var updateMovieButton: UIButton!
+  @IBOutlet private weak var commentButton: UIButton!
   
   //varible
   var movie: MovieModel?
@@ -122,5 +123,16 @@ extension DetailsViewController {
     playVideoVC.movie = movie
     playVideoVC.modalPresentationStyle = .fullScreen
     present(playVideoVC, animated: true, completion: nil)
+  }
+  
+  @IBAction func commentTapped(_ sender: Any) {
+    guard let movie = movie else {
+      showAlert(title: "Error", message: "No movie data available", onAction: {})
+      return
+    }
+    let commentVC = CommentViewController()
+    commentVC.movie = movie
+    commentVC.modalPresentationStyle = .fullScreen
+    present(commentVC, animated: true, completion: nil)
   }
 }

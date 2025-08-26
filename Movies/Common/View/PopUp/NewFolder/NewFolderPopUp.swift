@@ -71,10 +71,8 @@ extension NewFolderPopUp {
   func configureButton(button: UIButton) {
     if isStatus {
       CAGradientLayer().gradientButton(btn: button)
-      button.setTitleColor(UIColor.red, for: .normal)
     } else {
       button.backgroundColor = UIColor(resource: .gray)
-      button.setTitleColor(UIColor(resource: .violet), for: .normal)
     }
   }
   
@@ -95,42 +93,42 @@ extension NewFolderPopUp {
   
   @IBAction func createFolderTapped(_ sender: Any) {
     guard let userId = Auth.auth().currentUser?.uid else {
-               showAlert(title: "Error".localized(), message: "You must be logged in to create a folder".localized(), onAction: {})
-               return
-           }
-           
-           isStatus.toggle()
-           configureButton(button: yesButton)
-           
-           let folderName = titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-           if folderName.isEmpty {
-               showAlert(title: "Error".localized(), message: "Folder name cannot be empty".localized(), onAction: {})
-               return
-           }
-           
-           let folderId = UUID().uuidString
-           if modelStatus == .folderWatchlist {
-               let folder = WatchlistFolderModel(id: folderId, title: folderName, movies: [], createdDate: Date())
-               FirebaseManager.shared.addFolder(userId: userId, folder: folder, type: .watchlist) { [weak self] error in
-                   guard let self = self else { return }
-                   if let error = error {
-                       self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
-                   } else {
-                       self.delegate?.didCreateNewFolder()
-                       self.hiden()
-                   }
-               }
-           } else {
-               let folder = HistoryFolderModel(id: folderId, folderName: folderName, comparisons: [], createdDate: Date())
-               FirebaseManager.shared.addFolder(userId: userId, folder: folder, type: .history) { [weak self] error in
-                   guard let self = self else { return }
-                   if let error = error {
-                       self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
-                   } else {
-                       self.delegate?.didCreateNewFolder()
-                       self.hiden()
-                   }
-               }
-           }
-       }
-   }
+      showAlert(title: "Error".localized(), message: "You must be logged in to create a folder".localized(), onAction: {})
+      return
+    }
+    
+    isStatus.toggle()
+    configureButton(button: yesButton)
+    
+    let folderName = titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    if folderName.isEmpty {
+      showAlert(title: "Error".localized(), message: "Folder name cannot be empty".localized(), onAction: {})
+      return
+    }
+    
+    let folderId = UUID().uuidString
+    if modelStatus == .folderWatchlist {
+      let folder = WatchlistFolderModel(id: folderId, title: folderName, movies: [], createdDate: Date())
+      FirebaseManager.shared.addFolder(userId: userId, folder: folder, type: .watchlist) { [weak self] error in
+        guard let self = self else { return }
+        if let error = error {
+          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        } else {
+          self.delegate?.didCreateNewFolder()
+          self.hiden()
+        }
+      }
+    } else {
+      let folder = HistoryFolderModel(id: folderId, folderName: folderName, comparisons: [], createdDate: Date())
+      FirebaseManager.shared.addFolder(userId: userId, folder: folder, type: .history) { [weak self] error in
+        guard let self = self else { return }
+        if let error = error {
+          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        } else {
+          self.delegate?.didCreateNewFolder()
+          self.hiden()
+        }
+      }
+    }
+  }
+}

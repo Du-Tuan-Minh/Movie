@@ -71,6 +71,8 @@
 		738482D02D8B8F4B009BA729 /* SelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738482CE2D8B8F4B009BA729 /* SelectCell.swift */; };
 		738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738482CF2D8B8F4B009BA729 /* SelectCell.xib */; };
 		738F4BAD2DAA1FBC004F5C10 /* Extension + Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F4BAC2DAA1FB9004F5C10 /* Extension + Gesture.swift */; };
+		738F97362E5DF9BD00107EFB /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738F97352E5DF9BD00107EFB /* CommentViewController.xib */; };
+		738F97372E5DF9BD00107EFB /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F97342E5DF9BD00107EFB /* CommentViewController.swift */; };
 		739480B32D77E90900980400 /* Extension + Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739480B22D77E8F800980400 /* Extension + Image.swift */; };
 		739574D82D78BBD1002B9C1F /* Extension + GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574D72D78BBBE002B9C1F /* Extension + GradientLayer.swift */; };
 		739EC4072DAAA22300446B29 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739EC4052DAAA22300446B29 /* OnboardingViewController.swift */; };
@@ -178,6 +180,8 @@
 		738482CE2D8B8F4B009BA729 /* SelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCell.swift; sourceTree = "<group>"; };
 		738482CF2D8B8F4B009BA729 /* SelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCell.xib; sourceTree = "<group>"; };
 		738F4BAC2DAA1FB9004F5C10 /* Extension + Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Gesture.swift"; sourceTree = "<group>"; };
+		738F97342E5DF9BD00107EFB /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		738F97352E5DF9BD00107EFB /* CommentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
 		739480B22D77E8F800980400 /* Extension + Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Image.swift"; sourceTree = "<group>"; };
 		739574D72D78BBBE002B9C1F /* Extension + GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + GradientLayer.swift"; sourceTree = "<group>"; };
 		739EC4052DAAA22300446B29 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -584,6 +588,7 @@
 		737666102D9AE15700739A66 /* ChildView */ = {
 			isa = PBXGroup;
 			children = (
+				738F97332E5DF99D00107EFB /* Comment */,
 				7359B7BA2D74AAA10049FAB5 /* SearchMovie */,
 				73215BE72D71D8E600595A86 /* CompareMovie */,
 				733EA5762E5A25E300239610 /* WatchList */,
@@ -597,6 +602,15 @@
 				73E5DD652D839C5B00C75E53 /* FordelWatchList */,
 			);
 			path = ChildView;
+			sourceTree = "<group>";
+		};
+		738F97332E5DF99D00107EFB /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				738F97342E5DF9BD00107EFB /* CommentViewController.swift */,
+				738F97352E5DF9BD00107EFB /* CommentViewController.xib */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		739EC4042DAAA1FB00446B29 /* Onboarding */ = {
@@ -864,6 +878,7 @@
 				73DADFC82D8239A900F1ACD7 /* FolderWatchListViewController.xib in Resources */,
 				73CAA55C2D92BBEB00983DF0 /* DetailsViewController.xib in Resources */,
 				731AD1E22DBA73A2008EA423 /* LoginViewController.xib in Resources */,
+				738F97362E5DF9BD00107EFB /* CommentViewController.xib in Resources */,
 				732E323F2D9F3388005A0E9C /* HistoryHeaderView.xib in Resources */,
 				738482D12D8B8F4B009BA729 /* SelectCell.xib in Resources */,
 				739EC4082DAAA22300446B29 /* OnboardingViewController.xib in Resources */,
@@ -989,6 +1004,7 @@
 				734857A22DC29FA100CBD04F /* Extension + Auth.swift in Sources */,
 				7359B7C42D74C4960049FAB5 /* CompareCell.swift in Sources */,
 				73D0896E2D7B7DAF001C61DB /* Extension + Corner.swift in Sources */,
+				738F97372E5DF9BD00107EFB /* CommentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
