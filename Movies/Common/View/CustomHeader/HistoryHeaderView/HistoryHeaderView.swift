@@ -20,11 +20,6 @@ class HistoryHeaderView: UICollectionReusableView {
     }
   }
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    
-  }
-  
   func configureHistoryHeaderView(with date: String) {
     dateLabel.text = date
   }

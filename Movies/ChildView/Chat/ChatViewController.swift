@@ -68,7 +68,7 @@ class ChatViewController: BaseViewController {
   private func getAllMessages() {
     guard let chatID = chatID else { return }
     listener?.remove()
-
+    
     listener = FirebaseManager.shared.db.collection("chats").document(chatID).collection("messages")
       .order(by: "timestamp")
       .addSnapshotListener { [weak self] snapshot, error in

@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0U-BE-lfy">
-                        <rect key="frame" x="16" y="24.666666666666671" width="47" height="21"/>
+                        <rect key="frame" x="16" y="24.666666666666671" width="229" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Py-vq-Uvc">
-                        <rect key="frame" x="68" y="24.666666666666671" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Py-vq-Uvc">
+                        <rect key="frame" x="250" y="24.666666666666671" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -57,6 +57,7 @@
                     <constraint firstItem="vjU-N4-DU9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0DU-Lu-4So"/>
                     <constraint firstAttribute="trailing" secondItem="vjU-N4-DU9" secondAttribute="trailing" constant="16" id="7GL-AN-Xxq"/>
                     <constraint firstAttribute="trailing" secondItem="kVK-m5-KLy" secondAttribute="trailing" constant="16" id="GcX-t7-SZB"/>
+                    <constraint firstItem="vjU-N4-DU9" firstAttribute="leading" secondItem="2Py-vq-Uvc" secondAttribute="trailing" constant="5" id="OQ2-Cc-oqC"/>
                     <constraint firstItem="kVK-m5-KLy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="PTH-II-YRG"/>
                     <constraint firstItem="kVK-m5-KLy" firstAttribute="top" secondItem="X0U-BE-lfy" secondAttribute="bottom" constant="4" id="WSM-2o-39o"/>
                     <constraint firstItem="2Py-vq-Uvc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="epw-cc-nmY"/>

@@ -44,7 +44,7 @@ class FeedbackViewController: BaseViewController, MFMailComposeViewControllerDel
   private func loadUserInfo() {
     guard let userId = Auth.auth().currentUser?.uid else {
       fromLabel.text = "From: Not logged in"
-      showAlert(title: "Error".localized(), message: "You must be logged in to send feedback".localized(), onAction: {})
+      showAlert(title: "Error", message: "You must be logged in to send feedback", onAction: {})
       return
     }
     
@@ -52,7 +52,7 @@ class FeedbackViewController: BaseViewController, MFMailComposeViewControllerDel
       guard let self = self else { return }
       if let error = error {
         self.fromLabel.text = "From: Error"
-        self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
       } else if let username = username {
         self.fromLabel.text = "From: \(username) (\(Auth.auth().currentUser?.email ?? "No email"))"
       }
@@ -61,12 +61,12 @@ class FeedbackViewController: BaseViewController, MFMailComposeViewControllerDel
   
   @IBAction func sendTapped(_ sender: Any) {
     guard MFMailComposeViewController.canSendMail() else {
-      showAlert(title: "Error".localized(), message: "Mail services are not available. Please configure an email account.".localized(), onAction: {})
+      showAlert(title: "Error", message: "Mail services are not available. Please configure an email account.", onAction: {})
       return
     }
     
     guard let userId = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error".localized(), message: "You must be logged in to send feedback".localized(), onAction: {})
+      showAlert(title: "Error", message: "You must be logged in to send feedback", onAction: {})
       return
     }
     
@@ -74,14 +74,14 @@ class FeedbackViewController: BaseViewController, MFMailComposeViewControllerDel
     let feedback = feedbackTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
     
     if subject.isEmpty || feedback.isEmpty {
-      showAlert(title: "Error".localized(), message: "Please enter both subject and feedback".localized(), onAction: {})
+      showAlert(title: "Error", message: "Please enter both subject and feedback", onAction: {})
       return
     }
     
     FirebaseManager.shared.fetchUsername(for: userId) { [weak self] username, error in
       guard let self = self else { return }
       if let error = error {
-        self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
         return
       }
       
@@ -97,15 +97,15 @@ class FeedbackViewController: BaseViewController, MFMailComposeViewControllerDel
   
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
     if let error = error {
-      showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+      showAlert(title: "Error", message: error.localizedDescription, onAction: {})
     } else {
       switch result {
       case .sent:
-        showAlert(title: "Success".localized(), message: "Feedback sent successfully".localized(), onAction: {})
+        showAlert(title: "Success", message: "Feedback sent successfully", onAction: {})
       case .saved:
-        showAlert(title: "Saved".localized(), message: "Feedback saved as draft".localized(), onAction: {})
+        showAlert(title: "Saved", message: "Feedback saved as draft", onAction: {})
       case .failed:
-        showAlert(title: "Error".localized(), message: "Failed to send feedback".localized(), onAction: {})
+        showAlert(title: "Error", message: "Failed to send feedback", onAction: {})
       case .cancelled:
         break
       @unknown default:

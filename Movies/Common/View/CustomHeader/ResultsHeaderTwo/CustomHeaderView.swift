@@ -15,59 +15,59 @@ struct ResultsCompareHeaderView {
 }
 
 extension ResultsCompareHeaderView {
-    static func compareMoviesHeader(firstMovie: MovieModel, secondMovie: MovieModel, completion: @escaping ([ResultsCompareHeaderView]) -> Void) {
-        let defaultImage = UIImage(systemName: "doc.fill") ?? UIImage()
-        var results: [ResultsCompareHeaderView] = []
-        let dispatchGroup = DispatchGroup()
-        
-        // Load first movie image
-        if let imageURL = firstMovie.imageURL, let url = URL(string: imageURL) {
-            dispatchGroup.enter()
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                let image = data != nil ? UIImage(data: data!) ?? defaultImage : defaultImage
-                DispatchQueue.main.async {
-                    results.append(ResultsCompareHeaderView(
-                        movieImage: image,
-                        title: firstMovie.title,
-                        releaseYear: "\(Date().getYear(date: firstMovie.releaseYear ?? Date()))"
-                    ))
-                    dispatchGroup.leave()
-                }
-            }.resume()
-        } else {
-            results.append(ResultsCompareHeaderView(
-                movieImage: defaultImage,
-                title: firstMovie.title,
-                releaseYear: "\(Date().getYear(date: firstMovie.releaseYear ?? Date()))"
-            ))
+  static func compareMoviesHeader(firstMovie: MovieModel, secondMovie: MovieModel, completion: @escaping ([ResultsCompareHeaderView]) -> Void) {
+    let defaultImage = UIImage(systemName: "doc.fill") ?? UIImage()
+    var results: [ResultsCompareHeaderView] = []
+    let dispatchGroup = DispatchGroup()
+    
+    // Load first movie image
+    if let imageURL = firstMovie.imageURL, let url = URL(string: imageURL) {
+      dispatchGroup.enter()
+      URLSession.shared.dataTask(with: url) { data, response, error in
+        let image = data != nil ? UIImage(data: data!) ?? defaultImage : defaultImage
+        DispatchQueue.main.async {
+          results.append(ResultsCompareHeaderView(
+            movieImage: image,
+            title: firstMovie.title,
+            releaseYear: "\(Date().getYear(date: firstMovie.releaseYear ?? Date()))"
+          ))
+          dispatchGroup.leave()
         }
-        
-        // Load second movie image
-        if let imageURL = secondMovie.imageURL, let url = URL(string: imageURL) {
-            dispatchGroup.enter()
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                let image = data != nil ? UIImage(data: data!) ?? defaultImage : defaultImage
-                DispatchQueue.main.async {
-                    results.append(ResultsCompareHeaderView(
-                        movieImage: image,
-                        title: secondMovie.title,
-                        releaseYear: "\(Date().getYear(date: secondMovie.releaseYear ?? Date()))"
-                    ))
-                    dispatchGroup.leave()
-                }
-            }.resume()
-        } else {
-            results.append(ResultsCompareHeaderView(
-                movieImage: defaultImage,
-                title: secondMovie.title,
-                releaseYear: "\(Date().getYear(date: secondMovie.releaseYear ?? Date()))"
-            ))
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            completion(results)
-        }
+      }.resume()
+    } else {
+      results.append(ResultsCompareHeaderView(
+        movieImage: defaultImage,
+        title: firstMovie.title,
+        releaseYear: "\(Date().getYear(date: firstMovie.releaseYear ?? Date()))"
+      ))
     }
+    
+    // Load second movie image
+    if let imageURL = secondMovie.imageURL, let url = URL(string: imageURL) {
+      dispatchGroup.enter()
+      URLSession.shared.dataTask(with: url) { data, response, error in
+        let image = data != nil ? UIImage(data: data!) ?? defaultImage : defaultImage
+        DispatchQueue.main.async {
+          results.append(ResultsCompareHeaderView(
+            movieImage: image,
+            title: secondMovie.title,
+            releaseYear: "\(Date().getYear(date: secondMovie.releaseYear ?? Date()))"
+          ))
+          dispatchGroup.leave()
+        }
+      }.resume()
+    } else {
+      results.append(ResultsCompareHeaderView(
+        movieImage: defaultImage,
+        title: secondMovie.title,
+        releaseYear: "\(Date().getYear(date: secondMovie.releaseYear ?? Date()))"
+      ))
+    }
+    
+    dispatchGroup.notify(queue: .main) {
+      completion(results)
+    }
+  }
 }
 
 final class CustomHeaderView: UIView {
@@ -95,7 +95,7 @@ final class CustomHeaderView: UIView {
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-            configureView()
+    configureView()
   }
   
   private func configureView() {
@@ -110,25 +110,25 @@ final class CustomHeaderView: UIView {
   }
   
   func configureHeaderView(with firstMovie: MovieModel, secondMovie: MovieModel) {
-          ResultsCompareHeaderView.compareMoviesHeader(firstMovie: firstMovie, secondMovie: secondMovie) { [weak self] results in
-              guard let self = self, results.count == 2 else { return }
-              
-              self.titleFirstLabel.text = results[0].title
-              self.releaseYearFirstLabel.text = "(\(results[0].releaseYear))"
-              self.movieFirstImage.image = results[0].movieImage
-              
-              self.titleSecondLabel.text = results[1].title
-              self.releaseYearSecondLabel.text = "(\(results[1].releaseYear))"
-              self.movieSecondImage.image = results[1].movieImage
-              
-              self.isFirstSelected = false
-              self.isSecondSelected = false
-              self.selectedMovies.removeAll()
-              
-              self.updateButton(self.chooseFirstButton, isSelected: self.isFirstSelected)
-              self.updateButton(self.chooseSecondButton, isSelected: self.isSecondSelected)
-          }
-      }
+    ResultsCompareHeaderView.compareMoviesHeader(firstMovie: firstMovie, secondMovie: secondMovie) { [weak self] results in
+      guard let self = self, results.count == 2 else { return }
+      
+      self.titleFirstLabel.text = results[0].title
+      self.releaseYearFirstLabel.text = "(\(results[0].releaseYear))"
+      self.movieFirstImage.image = results[0].movieImage
+      
+      self.titleSecondLabel.text = results[1].title
+      self.releaseYearSecondLabel.text = "(\(results[1].releaseYear))"
+      self.movieSecondImage.image = results[1].movieImage
+      
+      self.isFirstSelected = false
+      self.isSecondSelected = false
+      self.selectedMovies.removeAll()
+      
+      self.updateButton(self.chooseFirstButton, isSelected: self.isFirstSelected)
+      self.updateButton(self.chooseSecondButton, isSelected: self.isSecondSelected)
+    }
+  }
   
   @IBAction func movieFirstTapped(_ sender: Any) {
     guard let listMovie = self.listMovie, listMovie.count >= 2 else { return }
@@ -137,9 +137,9 @@ final class CustomHeaderView: UIView {
     
     let movie = listMovie[0]
     if isFirstSelected {
-    selectedMovies.insert(movie)
+      selectedMovies.insert(movie)
     } else {
-   selectedMovies.remove(movie)
+      selectedMovies.remove(movie)
     }
     onMoviesSelected?(Array(selectedMovies))
   }
@@ -151,9 +151,9 @@ final class CustomHeaderView: UIView {
     
     let movie = listMovie[1]
     if isSecondSelected {
-    selectedMovies.insert(movie)
+      selectedMovies.insert(movie)
     } else {
-   selectedMovies.remove(movie)
+      selectedMovies.remove(movie)
     }
     onMoviesSelected?(Array(selectedMovies))
   }

@@ -24,6 +24,7 @@ class AddMovieViewController: BaseViewController {
   @IBOutlet private weak var revenueTextField: UITextField!
   @IBOutlet private weak var pdfURLTextField: UITextField!
   @IBOutlet private weak var videoURLsTextField: UITextField!
+  @IBOutlet private weak var genreTextField: UITextField!
   @IBOutlet private weak var genresButton: UIButton!
   @IBOutlet private weak var saveButton: UIButton!
   
@@ -32,20 +33,17 @@ class AddMovieViewController: BaseViewController {
   var movie: MovieModel?
   var status: StatusMovie = .add
   
-  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
     populateFieldsForEditing()
   }
   
-  // MARK: - Setup
   private func setupView() {
     CAGradientLayer().gradientButton(btn: saveButton)
-    saveButton.setTitle(status == .add ? "Save".localized() : "Update".localized(), for: .normal)
+    saveButton.setTitle(status == .add ? "Save" : "Update", for: .normal)
     descriptionTextView.delegate = self
     descriptionTextView.text = "Description".localized()
-    descriptionTextView.textColor = .lightGray
   }
   
   private func populateFieldsForEditing() {
@@ -53,7 +51,6 @@ class AddMovieViewController: BaseViewController {
     
     titleTextField.text = movie.title
     descriptionTextView.text = movie.describe
-    descriptionTextView.textColor = .black
     durationTextField.text = "\(movie.duration)"
     releaseYearTextField.text = movie.releaseYear != nil ? "\(Date().getYear(date: movie.releaseYear!))" : ""
     userScoreTextField.text = "\(movie.userScore)"
@@ -62,9 +59,8 @@ class AddMovieViewController: BaseViewController {
     pdfURLTextField.text = movie.imageURL
     videoURLsTextField.text = movie.videoURLs.joined(separator: ", ")
     
-    // Populate genres
     selectedGenres = movie.genres.map { $0.title }
-    genresButton.setTitle(selectedGenres.isEmpty ? "Select Genres".localized() : selectedGenres.joined(separator: ", "), for: .normal)
+    genreTextField.text =  selectedGenres.isEmpty ? "" : selectedGenres.joined(separator: ", ")
   }
   
   // MARK: - Actions
@@ -74,7 +70,7 @@ class AddMovieViewController: BaseViewController {
     genresVC.selectedGenres = selectedGenres
     genresVC.onSelectionChanged = { [weak self] selected in
       self?.selectedGenres = selected
-      self?.genresButton.setTitle(selected.isEmpty ? "Select Genres".localized() : selected.joined(separator: ", "), for: .normal)
+      self?.genreTextField.text = selected.isEmpty ? "": selected.joined(separator: ", ")
     }
     let navController = UINavigationController(rootViewController: genresVC)
     navController.modalPresentationStyle = .formSheet
@@ -87,7 +83,7 @@ class AddMovieViewController: BaseViewController {
   
   private func saveMovie() {
     guard let userId = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error".localized(), message: "User not logged in".localized(), onAction: {})
+      showAlert(title: "Error", message: "User not logged in", onAction: {})
       return
     }
     
@@ -97,7 +93,7 @@ class AddMovieViewController: BaseViewController {
           description != "Description".localized(),
           let durationText = durationTextField.text, let duration = Int(durationText),
           let userScoreText = userScoreTextField.text, let userScore = Double(userScoreText) else {
-      showAlert(title: "Error".localized(), message: "Please fill in all required fields".localized(), onAction: {})
+      showAlert(title: "Error", message: "Please fill in all required fields", onAction: {})
       return
     }
     
@@ -121,7 +117,6 @@ class AddMovieViewController: BaseViewController {
     // Create genres from selectedGenres
     let genres = selectedGenres.map { GenersModel(id: UUID().uuidString, title: $0) }
     
-    // Create MovieModel
     let movie = MovieModel(
       id: self.movie?.id ?? UUID().uuidString,
       title: title,
@@ -142,17 +137,17 @@ class AddMovieViewController: BaseViewController {
       guard let self = self else { return }
       guard role == 1 else {
         self.hideLoadingIndicator()
-        self.showAlert(title: "Error".localized(), message: "Only admins can add movies".localized(), onAction: {})
+        self.showAlert(title: "Error", message: "Only admins can add movies", onAction: {})
         return
       }
       
       FirebaseManager.shared.saveMovie(movie: movie) { error in
         self.hideLoadingIndicator()
         if let error = error {
-          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+          self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
         } else {
           let actionTitle = self.status == .add ? "added" : "updated"
-          self.showAlert(title: "Success".localized(), message: "Movie \(actionTitle) successfully".localized(), onAction: {
+          self.showAlert(title: "Success", message: "Movie \(actionTitle) successfully", onAction: {
             self.navigationController?.popViewController(animated: true)
           })
         }
@@ -177,7 +172,7 @@ extension AddMovieViewController: UITextViewDelegate {
 }
 
 // MARK: - GenresPickerViewController
-class GenresPickerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class GenresPickerViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
   var availableGenres: [String] = []
   var selectedGenres: [String] = []
   var onSelectionChanged: (([String]) -> Void)?
@@ -192,7 +187,6 @@ class GenresPickerViewController: UIViewController, UITableViewDataSource, UITab
   
   private func setupView() {
     title = "Select Genres".localized()
-    view.backgroundColor = .white
     
     tableView.dataSource = self
     tableView.delegate = self

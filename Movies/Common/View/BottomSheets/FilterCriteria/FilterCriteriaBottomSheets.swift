@@ -24,7 +24,7 @@ enum FilterCriteriaModel: String, CaseIterable {
   }
 }
 
-class FilterCriteriaBottomSheets: UIViewController {
+class FilterCriteriaBottomSheets: BaseViewController {
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   
@@ -39,8 +39,6 @@ class FilterCriteriaBottomSheets: UIViewController {
   }
   
   private func setupTableView() {
-    tableView.delegate = self
-    tableView.dataSource = self
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SelectFolderCell")
   }
 }

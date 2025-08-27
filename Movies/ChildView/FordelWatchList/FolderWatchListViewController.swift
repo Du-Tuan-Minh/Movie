@@ -111,7 +111,7 @@ extension FolderWatchListViewController: UICollectionViewDelegateFlowLayout, UIC
         self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
       } else if let watchlist = watchlist {
         watchListVC.allMovies = watchlist
-        watchListVC.idFolder = folder.id // Pass folderId for potential future use
+        watchListVC.idFolder = folder.id
         self.navigationController?.pushViewController(watchListVC, animated: true)
       }
     }
@@ -178,27 +178,31 @@ extension FolderWatchListViewController {
           }
         }
       case .rename:
-        showAlert(title: "Rename Folder", message: "", onAction: { [weak self] in
-          guard self != nil else { return }
-          // Default OK action does nothing
-        }, additionalActions: [
-          UIAlertAction(title: "Save", style: .default) { [weak self] _ in
-            guard let self = self, let newName = (self.presentedViewController as? UIAlertController)?.textFields?.first?.text, !newName.isEmpty else { return }
-            showLoadingIndicator()
-            FirebaseManager.shared.renameWatchlistFolder(userId: userId, folderId: folderId, newTitle: newName) { [weak self] error in
-              guard let self = self else { return }
-              self.hideLoadingIndicator()
-              if let error = error {
-                self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
-              } else {
-                self.folders[selectedIndexPath.row].title = newName
-                self.collectionView.reloadItems(at: [selectedIndexPath])
-              }
+        // Tạo UIAlertController với text field
+        let alert = UIAlertController(title: "Rename Folder", message: "Enter new folder name", preferredStyle: .alert)
+        alert.addTextField { textField in
+          textField.placeholder = "New folder name"
+          textField.text = self.folders[selectedIndexPath.row].title
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Save", style: .default) { _ in
+          guard let newName = alert.textFields?.first?.text, !newName.isEmpty else {
+            self.showAlert(title: "Error", message: "Folder name cannot be empty", onAction: {})
+            return
+          }
+          self.showLoadingIndicator()
+          FirebaseManager.shared.renameWatchlistFolder(userId: userId, folderId: folderId, newTitle: newName) { [weak self] error in
+            guard let self = self else { return }
+            self.hideLoadingIndicator()
+            if let error = error {
+              self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
+            } else {
+              self.folders[selectedIndexPath.row].title = newName
+              self.collectionView.reloadItems(at: [selectedIndexPath])
             }
-          },
-          UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        ])
-        
+          }
+        })
+        self.present(alert, animated: true, completion: nil)
       }
     }
   }

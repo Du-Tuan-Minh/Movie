@@ -19,7 +19,6 @@ class CommentViewController: BaseViewController {
   private var comments: [CommentModel] = []
   private var usernames: [String: String] = [:]
   private var listener: ListenerRegistration?
-  
   var movie: MovieModel?
   
   override func viewDidLoad() {
@@ -76,7 +75,6 @@ class CommentViewController: BaseViewController {
       .order(by: "createdAt")
       .addSnapshotListener { [weak self] snapshot, error in
         guard let self = self else { return }
-        if let error = error {  return  }
         guard let documents = snapshot?.documents else { return }
         
         self.comments = documents.compactMap { try? $0.data(as: CommentModel.self) }

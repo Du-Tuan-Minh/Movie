@@ -101,7 +101,7 @@ extension SignUpViewController {
       showAlert(title: "Error", message: "Password must be at least 6 characters", onAction: {})
       return
     }
-
+    
     showAlert(title: "Create Account", message: "Would you like to create an account?") {
       self.registerNewAccount(email: email, password: password, username: fullName)
     }

@@ -15,6 +15,7 @@
                 <outlet property="budgetTextField" destination="ieU-oh-u20" id="XW6-y3-GKc"/>
                 <outlet property="descriptionTextView" destination="Iqh-WT-RkN" id="hPg-ah-1Zb"/>
                 <outlet property="durationTextField" destination="xJx-D0-6ZR" id="CV5-io-lLE"/>
+                <outlet property="genreTextField" destination="oXb-R6-NMX" id="Wp2-yh-YZU"/>
                 <outlet property="genresButton" destination="aVI-RC-pdo" id="rvZ-Dl-jBl"/>
                 <outlet property="pdfURLTextField" destination="WZt-Ml-yDp" id="2my-qM-LGX"/>
                 <outlet property="releaseYearTextField" destination="zWE-gS-A0c" id="asQ-Q6-Xkd"/>
@@ -31,7 +32,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6wd-OK-sUH">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wd-OK-sUH">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tF-f3-HNZ">

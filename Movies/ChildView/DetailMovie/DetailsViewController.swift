@@ -33,7 +33,6 @@ class DetailsViewController: BaseViewController {
   //varible
   var movie: MovieModel?
   
-  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
@@ -89,7 +88,7 @@ extension DetailsViewController {
   
   private func playVideo() {
     guard let movie = movie, !movie.videoURLs.isEmpty, let videoURL = URL(string: movie.videoURLs[0]) else {
-      showAlert(title: "Error".localized(), message: "No video available".localized(), onAction: {})
+      showAlert(title: "Error", message: "No video available", onAction: {})
       return
     }
     
@@ -107,7 +106,7 @@ extension DetailsViewController {
 extension DetailsViewController {
   @IBAction func updateMovieTapper(_ sender: Any) {
     guard let movie = movie else {
-      showAlert(title: "Error".localized(), message: "No movie data available".localized(), onAction: {})
+      showAlert(title: "Error", message: "No movie data available", onAction: {})
       return
     }
     

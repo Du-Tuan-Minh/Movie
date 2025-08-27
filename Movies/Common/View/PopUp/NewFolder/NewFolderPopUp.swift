@@ -19,7 +19,7 @@ enum createFolderModel {
   case folderHistory
 }
 
-class NewFolderPopUp: UIViewController {
+class NewFolderPopUp: BaseViewController {
   //outlet
   @IBOutlet private weak var blureView: UIView!
   @IBOutlet private weak var contentView: UIView!
@@ -44,12 +44,6 @@ extension NewFolderPopUp {
   private func setupView() {
     setupButton()
     setupText()
-    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
-    blureView.addGestureRecognizer(tapGesture)
-  }
-  
-  @objc private func dismissPopup() {
-    self.hinderPopUp(blureView: self.blureView, contentView: self.contentView)
   }
   
   private func setupText() {
@@ -62,7 +56,7 @@ extension NewFolderPopUp {
     self.configurePopUp(blureView: blureView, contentView: contentView)
   }
   
-  func appear(sender: UIViewController) {
+  func appear(sender: BaseViewController) {
     sender.present(self, animated: true) {
       self.showPopUp(blureView: self.blureView, contentView: self.contentView)
     }
@@ -93,7 +87,7 @@ extension NewFolderPopUp {
   
   @IBAction func createFolderTapped(_ sender: Any) {
     guard let userId = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error".localized(), message: "You must be logged in to create a folder".localized(), onAction: {})
+      showAlert(title: "Error", message: "You must be logged in to create a folder", onAction: {})
       return
     }
     
@@ -102,7 +96,7 @@ extension NewFolderPopUp {
     
     let folderName = titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
     if folderName.isEmpty {
-      showAlert(title: "Error".localized(), message: "Folder name cannot be empty".localized(), onAction: {})
+      showAlert(title: "Error", message: "Folder name cannot be empty", onAction: {})
       return
     }
     
@@ -112,7 +106,7 @@ extension NewFolderPopUp {
       FirebaseManager.shared.addFolder(userId: userId, folder: folder, type: .watchlist) { [weak self] error in
         guard let self = self else { return }
         if let error = error {
-          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+          self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
         } else {
           self.delegate?.didCreateNewFolder()
           self.hiden()
@@ -123,7 +117,7 @@ extension NewFolderPopUp {
       FirebaseManager.shared.addFolder(userId: userId, folder: folder, type: .history) { [weak self] error in
         guard let self = self else { return }
         if let error = error {
-          self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+          self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
         } else {
           self.delegate?.didCreateNewFolder()
           self.hiden()

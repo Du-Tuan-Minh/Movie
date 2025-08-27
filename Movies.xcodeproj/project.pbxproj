@@ -533,8 +533,8 @@
 		7359B7D42D74E81E0049FAB5 /* ResultsCell */ = {
 			isa = PBXGroup;
 			children = (
-				7359B7D12D74E8170049FAB5 /* ResultsCell.xib */,
 				7359B7D02D74E8170049FAB5 /* ResultsCell.swift */,
+				7359B7D12D74E8170049FAB5 /* ResultsCell.xib */,
 				734CBB9E2D9217A5004B613A /* ResultsMoreCell.swift */,
 				734CBB9F2D9217A5004B613A /* ResultsMoreCell.xib */,
 			);
@@ -588,18 +588,18 @@
 		737666102D9AE15700739A66 /* ChildView */ = {
 			isa = PBXGroup;
 			children = (
-				738F97332E5DF99D00107EFB /* Comment */,
 				7359B7BA2D74AAA10049FAB5 /* SearchMovie */,
 				73215BE72D71D8E600595A86 /* CompareMovie */,
-				733EA5762E5A25E300239610 /* WatchList */,
-				73A6DA9F2DAD637100A1637E /* Chat */,
-				73C283A82E598EE6000E1CE2 /* AddMovie */,
-				73A6DA8B2DAD48C100A1637E /* DetailMovie */,
-				73A6DA8D2DAD490100A1637E /* Feedback */,
 				7359B7C62D74E55F0049FAB5 /* ResultsMovies */,
 				73001FEE2D75EB5A00ACB84B /* HistoryMovies */,
-				73C283AD2E59B714000E1CE2 /* PlayVideo */,
 				73E5DD652D839C5B00C75E53 /* FordelWatchList */,
+				733EA5762E5A25E300239610 /* WatchList */,
+				73A6DA8B2DAD48C100A1637E /* DetailMovie */,
+				738F97332E5DF99D00107EFB /* Comment */,
+				73C283A82E598EE6000E1CE2 /* AddMovie */,
+				73A6DA8D2DAD490100A1637E /* Feedback */,
+				73C283AD2E59B714000E1CE2 /* PlayVideo */,
+				73A6DA9F2DAD637100A1637E /* Chat */,
 			);
 			path = ChildView;
 			sourceTree = "<group>";

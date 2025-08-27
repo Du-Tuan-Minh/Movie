@@ -50,8 +50,8 @@
                                                 </constraint>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ND-xv-Cbi">
-                                            <rect key="frame" x="16" y="475" width="67.666666666666671" height="30.333333333333314"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ND-xv-Cbi">
+                                            <rect key="frame" x="16" y="475" width="361" height="30.333333333333314"/>
                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="26"/>
                                             <color key="textColor" name="lightBlue"/>
                                             <nil key="highlightedColor"/>
@@ -247,6 +247,7 @@
                                         <constraint firstItem="9RH-1z-ADJ" firstAttribute="leading" secondItem="iEp-vW-ATi" secondAttribute="trailing" constant="10" id="A75-Un-Czq"/>
                                         <constraint firstItem="0Dz-wU-Ghx" firstAttribute="leading" secondItem="MqO-9t-W6q" secondAttribute="trailing" constant="15" id="B6R-4b-hep"/>
                                         <constraint firstItem="DX4-jW-6dT" firstAttribute="top" secondItem="DPu-FD-qBP" secondAttribute="bottom" constant="15" id="Bh3-qp-MXI"/>
+                                        <constraint firstAttribute="trailing" secondItem="7ND-xv-Cbi" secondAttribute="trailing" constant="16" id="CwF-1f-qvr"/>
                                         <constraint firstItem="MqO-9t-W6q" firstAttribute="top" secondItem="7ND-xv-Cbi" secondAttribute="bottom" constant="15" id="Hl3-49-Y0Y"/>
                                         <constraint firstItem="7ND-xv-Cbi" firstAttribute="leading" secondItem="G4Y-Pd-k63" secondAttribute="leading" constant="16" id="KRn-ga-UJc"/>
                                         <constraint firstItem="PTC-Bp-khV" firstAttribute="leading" secondItem="G4Y-Pd-k63" secondAttribute="leading" id="Mo9-lc-anT"/>
@@ -327,7 +328,7 @@
             <color red="0.65098039215686276" green="0.54117647058823526" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

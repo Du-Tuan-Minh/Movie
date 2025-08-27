@@ -36,8 +36,6 @@ extension WatchListViewController {
   }
   
   private func setupTableView() {
-    tableView.delegate = self
-    tableView.dataSource = self
     tableView.register(UINib(nibName: WatchlistCell.identifier, bundle: nil), forCellReuseIdentifier: WatchlistCell.identifier)
   }
   
@@ -51,7 +49,6 @@ extension WatchListViewController {
     showLoadingIndicator()
     
     if let folderId = idFolder {
-      // Nếu có idFolder, lấy phim từ thư mục cụ thể
       FirebaseManager.shared.fetchWatchlistFolderMovies(userId: userId, folderId: folderId) { [weak self] watchlist, error in
         guard let self = self else { return }
         self.hideLoadingIndicator()
@@ -63,7 +60,6 @@ extension WatchListViewController {
         }
       }
     } else {
-      // Nếu không có idFolder, lấy toàn bộ watchlist (hoặc xử lý khác tùy yêu cầu)
       FirebaseManager.shared.fetchWatchlist(userId: userId) { [weak self] watchlist, error in
         guard let self = self else { return }
         self.hideLoadingIndicator()

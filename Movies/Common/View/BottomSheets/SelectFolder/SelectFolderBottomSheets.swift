@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestoreSwift
 
-class SelectFolderBottomSheets: UIViewController {
+class SelectFolderBottomSheets: BaseViewController {
   //outlet
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var newFolderButton: UIButton!
@@ -41,14 +41,14 @@ class SelectFolderBottomSheets: UIViewController {
   
   private func fetchFolders() {
     guard let userId = Auth.auth().currentUser?.uid else {
-      showAlert(title: "Error".localized(), message: "You must be logged in to view folders".localized(), onAction: {})
+      showAlert(title: "Error", message: "You must be logged in to view folders", onAction: {})
       return
     }
     
     FirebaseManager.shared.fetchWatchlistFolders(userId: userId) { [weak self] folders, error in
       guard let self = self else { return }
       if let error = error {
-        self.showAlert(title: "Error".localized(), message: error.localizedDescription, onAction: {})
+        self.showAlert(title: "Error", message: error.localizedDescription, onAction: {})
         return
       }
       self.folders = folders ?? []

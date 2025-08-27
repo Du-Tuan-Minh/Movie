@@ -47,7 +47,7 @@ extension SettingViewController {
     tableView.register(UINib(nibName: SettingCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: SettingCell.reuseIdentifier)
   }
   
-  private func presentSheet(with controller: UIViewController, size: SheetSize) {
+  private func presentSheet(with controller: BaseViewController, size: SheetSize) {
     let sheet = SheetViewController(controller: controller, sizes: [size])
     sheet.hasBlurBackground = true
     sheet.cornerRadius = 20
